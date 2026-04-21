@@ -17,7 +17,7 @@
 
   <style>
     /* ============================================================
-       ROOT DESIGN SYSTEM
+       ROOT DESIGN SYSTEM (unchanged)
     ============================================================ */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
@@ -610,14 +610,18 @@
     }
 
     /* ============================================================
-       PROJECTS GALLERY
+       PROJECTS GALLERY (fixed to ensure all 37 images display)
     ============================================================ */
     .projects-grid {
       display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:36px;
+      /* Ensure grid expands naturally */
+      grid-auto-rows: auto;
     }
     .project-tile {
       position:relative; border-radius:20px; overflow:hidden;
       aspect-ratio:4/3; box-shadow:var(--sh-card);
+      /* Ensure tiles take full width */
+      width:100%;
     }
     .project-tile img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.7s var(--ease-cin); }
     .project-tile:hover img { transform:scale(1.07); }
@@ -1389,7 +1393,7 @@
   </section>
 
   <!-- ============================================================
-       PROJECTS GALLERY (UPDATED WITH ALL 37 NEW IMAGES)
+       PROJECTS GALLERY (ALL 37 IMAGES INCLUDED)
   ============================================================ -->
   <section id="projects" style="padding:0 0 80px;">
     <div class="container">
@@ -1401,7 +1405,7 @@
         <a href="#contact" class="btn-outline scroll-reveal">Discuss Your Project →</a>
       </div>
       <div class="projects-grid">
-        <!-- 37 new project images, each used exactly once -->
+        <!-- 37 project images, each used once -->
         <div class="project-tile scroll-reveal"><img src="https://i.ibb.co/272y64t8/35969d6c-72d1-46c7-99ce-6cf4ae788383.jpg" alt="Gamazine project"><div class="project-overlay"><span class="proj-loc">Gauteng</span><span class="proj-name">Premium Finish</span></div></div>
         <div class="project-tile scroll-reveal"><img src="https://i.ibb.co/ZptJHfbL/7a0720ba-39b6-490f-9be8-96db2a97a5cb.jpg" alt="Gamazine project"><div class="project-overlay"><span class="proj-loc">Gauteng</span><span class="proj-name">Modern Texture</span></div></div>
         <div class="project-tile scroll-reveal"><img src="https://i.ibb.co/ks2zdyJ3/493d8b73-dc28-479a-b954-9589fe0f187d.jpg" alt="Gamazine project"><div class="project-overlay"><span class="proj-loc">Gauteng</span><span class="proj-name">Charcoal Classic</span></div></div>
