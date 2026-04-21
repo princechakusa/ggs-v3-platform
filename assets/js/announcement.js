@@ -1,5 +1,17 @@
-// announcement.js – Fully responsive modal that never crops images
+// announcement.js – Marketing Modal (Home Page Only)
 (async function() {
+  // ----- ONLY RUN ON HOME PAGE -----
+  const path = window.location.pathname;
+  const isHome = path === '/' || 
+                 path.endsWith('/index.html') || 
+                 path === '/ggs-v3-platform/' || 
+                 path.endsWith('/ggs-v3-platform/index.html');
+  
+  if (!isHome) {
+    console.log('Announcement modal disabled on this page.');
+    return; // Do nothing on other pages
+  }
+
   const SUPABASE_URL = 'https://fsakwzzcbnqkmchrvzzq.supabase.co'
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA'
 
@@ -49,11 +61,9 @@
   document.head.appendChild(style)
 
   function createModal(message, imageUrl) {
-    // Remove any existing modal
     const existing = document.getElementById('ggs-sale-overlay')
     if (existing) existing.remove()
 
-    // Overlay
     const overlay = document.createElement('div')
     overlay.id = 'ggs-sale-overlay'
     overlay.style.cssText = `
@@ -71,7 +81,6 @@
       if (e.target === overlay) overlay.remove()
     }
 
-    // Modal container – wide, with flexible height
     const modal = document.createElement('div')
     modal.id = 'ggs-sale-modal'
     modal.className = 'ggs-shimmer-border'
@@ -91,7 +100,6 @@
       overflow: hidden;
     `
 
-    // Close button
     const closeBtn = document.createElement('button')
     closeBtn.innerHTML = '✕'
     closeBtn.setAttribute('aria-label', 'Close')
@@ -124,7 +132,6 @@
     }
     closeBtn.onclick = () => overlay.remove()
 
-    // Image – flexible container, no cropping
     if (imageUrl) {
       const imgContainer = document.createElement('div')
       imgContainer.style.cssText = `
@@ -150,7 +157,6 @@
       modal.appendChild(imgContainer)
     }
 
-    // Content section (padding)
     const content = document.createElement('div')
     content.style.cssText = `
       padding: 32px 32px 36px;
@@ -160,7 +166,6 @@
       gap: 20px;
     `
 
-    // Badge
     const badge = document.createElement('div')
     badge.style.cssText = `
       background: #b68b40;
@@ -177,7 +182,6 @@
     badge.textContent = '⚡ Limited Offer ⚡'
     content.appendChild(badge)
 
-    // Message headline
     const msg = document.createElement('h2')
     msg.textContent = message
     msg.style.cssText = `
@@ -192,7 +196,6 @@
     `
     content.appendChild(msg)
 
-    // CTA Button (links to Contact section, closes modal)
     const cta = document.createElement('a')
     cta.href = '#contact'
     cta.textContent = 'Claim Offer →'
@@ -212,16 +215,12 @@
     `
     cta.onmouseover = () => { cta.style.background = '#a07630' }
     cta.onmouseout = () => { cta.style.background = '#b68b40' }
-    
-    cta.addEventListener('click', () => {
-      overlay.remove()
-    })
+    cta.addEventListener('click', () => overlay.remove())
     content.appendChild(cta)
 
     modal.appendChild(closeBtn)
     modal.appendChild(content)
 
-    // Sparkles
     for (let i = 0; i < 15; i++) {
       const sparkle = document.createElement('div')
       sparkle.className = 'ggs-modal-sparkle'
@@ -236,7 +235,7 @@
     document.body.appendChild(overlay)
   }
 
-  // Fetch initial state
+  // Fetch and show only if active
   const { data, error } = await supabase
     .from('site_settings')
     .select('is_sale_active, sale_message, sale_image_url')
@@ -247,7 +246,7 @@
     createModal(data.sale_message, data.sale_image_url)
   }
 
-  // Real‑time subscription
+  // Real‑time subscription (still only shows on home page due to initial check)
   supabase
     .channel('site_settings')
     .on(
