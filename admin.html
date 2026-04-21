@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GGS Admin · Marketing Toggle</title>
-  <!-- Fonts & styling -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,8 +19,8 @@
       min-height: 100vh;
       padding: 24px;
     }
-    .admin-card {
-      max-width: 600px;
+    .admin-card, .login-card {
+      max-width: 500px;
       width: 100%;
       background: #ffffff;
       border: 1px solid #1a1f24;
@@ -106,35 +104,52 @@
       margin-top: 12px;
       border: 1px solid #ddd;
     }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: #1a1f24;
+      color: white;
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    .error-msg {
+      color: #b91c1c;
+      font-size: 0.8rem;
+      margin-top: 12px;
+    }
   </style>
 </head>
 <body>
-<div class="admin-card">
-  <h1>Marketing Toggle</h1>
-  <div class="subhead">Global Gamazine Suppliers · Admin</div>
-
-  <!-- Sale toggle row -->
-  <div class="row">
-    <span class="label">Sale Notification</span>
-    <button id="toggleBtn" class="toggle-btn">INACTIVE</button>
+<div id="app">
+  <!-- Password Gate (hidden when authenticated) -->
+  <div id="loginPanel" class="login-card">
+    <h1>Admin Access</h1>
+    <div class="subhead">Enter password to continue</div>
+    <input type="password" id="passwordInput" class="input-field" placeholder="Password" autocomplete="off">
+    <button id="loginBtn" class="login-btn">Unlock</button>
+    <div id="loginError" class="error-msg"></div>
   </div>
 
-  <!-- Message -->
-  <label class="label" for="messageInput">Message</label>
-  <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale – 20% off this week!" value="Hurry! Limited time offer – Free site inspection this week.">
-
-  <!-- Image URL -->
-  <label class="label" for="imageUrlInput">Image URL (optional)</label>
-  <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg">
-  
-  <!-- Preview -->
-  <div id="imagePreview"></div>
-
-  <!-- Status -->
-  <div id="statusMessage" class="status-msg"></div>
-  
-  <div class="hint">
-    Changes are saved instantly · Visitors see the modal when ACTIVE
+  <!-- Admin Panel (hidden initially) -->
+  <div id="adminPanel" class="admin-card" style="display: none;">
+    <h1>Marketing Toggle</h1>
+    <div class="subhead">Global Gamazine Suppliers · Admin</div>
+    <div class="row">
+      <span class="label">Sale Notification</span>
+      <button id="toggleBtn" class="toggle-btn">INACTIVE</button>
+    </div>
+    <label class="label" for="messageInput">Message</label>
+    <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale – 20% off this week!" value="Hurry! Limited time offer – Free site inspection this week.">
+    <label class="label" for="imageUrlInput">Image URL (optional)</label>
+    <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg">
+    <div id="imagePreview"></div>
+    <div id="statusMessage" class="status-msg"></div>
+    <div class="hint">
+      Changes are saved instantly · Visitors see the modal when ACTIVE
+    </div>
+    <button id="logoutBtn" style="margin-top: 16px; background: none; border: 1px solid #1a1f24; padding: 8px 16px; cursor: pointer;">Log out</button>
   </div>
 </div>
 
@@ -145,112 +160,161 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA'
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-    // DOM elements
-    const toggleBtn = document.getElementById('toggleBtn')
-    const messageInput = document.getElementById('messageInput')
-    const imageUrlInput = document.getElementById('imageUrlInput')
-    const imagePreview = document.getElementById('imagePreview')
-    const statusMsg = document.getElementById('statusMessage')
+    // ----- PASSWORD PROTECTION -----
+    // Hash of your chosen password. You can generate a new one at:
+    // https://emn178.github.io/online-tools/sha256.html
+    // Default password is "GGSadmin2026!" – change it!
+    const PASSWORD_HASH = 'd748f4fb1ba34a6c24dddda738be6497e83404d336502e0ab0af4d7168cfbf6d' // SHA256 of "password" – REPLACE WITH YOUR OWN
 
-    let currentActive = false
+    const loginPanel = document.getElementById('loginPanel')
+    const adminPanel = document.getElementById('adminPanel')
+    const passwordInput = document.getElementById('passwordInput')
+    const loginBtn = document.getElementById('loginBtn')
+    const loginError = document.getElementById('loginError')
+    const logoutBtn = document.getElementById('logoutBtn')
 
-    // Helper to update UI
-    function updateToggleUI(isActive) {
-      currentActive = isActive
-      toggleBtn.textContent = isActive ? 'ACTIVE' : 'INACTIVE'
-      toggleBtn.classList.toggle('active', isActive)
+    // Check if already authenticated (session storage)
+    if (sessionStorage.getItem('ggs_admin_auth') === 'true') {
+      showAdminPanel()
     }
 
-    function showStatus(text, isError = false) {
-      statusMsg.textContent = text
-      statusMsg.style.color = isError ? '#b91c1c' : '#5a6c7a'
-      if (!isError) setTimeout(() => { statusMsg.textContent = '' }, 2500)
+    // SHA-256 hashing function (built into browser)
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message)
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
+      const hashArray = Array.from(new Uint8Array(hashBuffer))
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
     }
 
-    // Preview image
-    function updatePreview(url) {
-      if (url && url.trim()) {
-        imagePreview.innerHTML = `<img src="${url}" class="preview" alt="Preview">`
+    loginBtn.addEventListener('click', async () => {
+      const entered = passwordInput.value
+      if (!entered) {
+        loginError.textContent = 'Please enter a password'
+        return
+      }
+      const hash = await sha256(entered)
+      if (hash === PASSWORD_HASH) {
+        sessionStorage.setItem('ggs_admin_auth', 'true')
+        showAdminPanel()
+        passwordInput.value = ''
+        loginError.textContent = ''
       } else {
-        imagePreview.innerHTML = ''
+        loginError.textContent = 'Incorrect password'
       }
+    })
+
+    passwordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') loginBtn.click()
+    })
+
+    function showAdminPanel() {
+      loginPanel.style.display = 'none'
+      adminPanel.style.display = 'block'
+      initAdminPanel() // load settings etc.
     }
 
-    // Load current settings
-    async function loadSettings() {
-      const { data, error } = await supabase
-        .from('site_settings')
-        .select('*')
-        .eq('id', 1)
-        .single()
-      
-      if (error) {
-        showStatus('Error loading settings', true)
-        return
-      }
-      if (data) {
-        updateToggleUI(data.is_sale_active)
-        messageInput.value = data.sale_message || ''
-        imageUrlInput.value = data.sale_image_url || ''
-        updatePreview(data.sale_image_url)
-      }
-    }
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('ggs_admin_auth')
+      adminPanel.style.display = 'none'
+      loginPanel.style.display = 'block'
+    })
 
-    // Toggle active state
-    async function handleToggle() {
-      const newState = !currentActive
-      toggleBtn.disabled = true
-      
-      const { error } = await supabase
-        .from('site_settings')
-        .update({ is_sale_active: newState })
-        .eq('id', 1)
-      
-      if (error) {
-        showStatus('Update failed', true)
+    // ----- ADMIN PANEL LOGIC (same as before) -----
+    let currentActive = false
+    let toggleBtn, messageInput, imageUrlInput, imagePreview, statusMsg
+
+    function initAdminPanel() {
+      toggleBtn = document.getElementById('toggleBtn')
+      messageInput = document.getElementById('messageInput')
+      imageUrlInput = document.getElementById('imageUrlInput')
+      imagePreview = document.getElementById('imagePreview')
+      statusMsg = document.getElementById('statusMessage')
+
+      function updateToggleUI(isActive) {
+        currentActive = isActive
+        toggleBtn.textContent = isActive ? 'ACTIVE' : 'INACTIVE'
+        toggleBtn.classList.toggle('active', isActive)
+      }
+
+      function showStatus(text, isError = false) {
+        statusMsg.textContent = text
+        statusMsg.style.color = isError ? '#b91c1c' : '#5a6c7a'
+        if (!isError) setTimeout(() => { statusMsg.textContent = '' }, 2500)
+      }
+
+      function updatePreview(url) {
+        if (url && url.trim()) {
+          imagePreview.innerHTML = `<img src="${url}" class="preview" alt="Preview">`
+        } else {
+          imagePreview.innerHTML = ''
+        }
+      }
+
+      async function loadSettings() {
+        const { data, error } = await supabase
+          .from('site_settings')
+          .select('*')
+          .eq('id', 1)
+          .single()
+        if (error) {
+          showStatus('Error loading settings', true)
+          return
+        }
+        if (data) {
+          updateToggleUI(data.is_sale_active)
+          messageInput.value = data.sale_message || ''
+          imageUrlInput.value = data.sale_image_url || ''
+          updatePreview(data.sale_image_url)
+        }
+      }
+
+      async function handleToggle() {
+        const newState = !currentActive
+        toggleBtn.disabled = true
+        const { error } = await supabase
+          .from('site_settings')
+          .update({ is_sale_active: newState })
+          .eq('id', 1)
+        if (error) {
+          showStatus('Update failed', true)
+          toggleBtn.disabled = false
+          return
+        }
+        updateToggleUI(newState)
+        showStatus(`Sale is now ${newState ? 'ACTIVE' : 'INACTIVE'}`)
         toggleBtn.disabled = false
-        return
       }
-      
-      updateToggleUI(newState)
-      showStatus(`Sale is now ${newState ? 'ACTIVE' : 'INACTIVE'}`)
-      toggleBtn.disabled = false
+
+      let messageTimer
+      messageInput.addEventListener('input', (e) => {
+        clearTimeout(messageTimer)
+        messageTimer = setTimeout(async () => {
+          const newMsg = e.target.value
+          const { error } = await supabase
+            .from('site_settings')
+            .update({ sale_message: newMsg })
+            .eq('id', 1)
+          if (!error) showStatus('Message saved')
+        }, 600)
+      })
+
+      let imageTimer
+      imageUrlInput.addEventListener('input', (e) => {
+        const url = e.target.value
+        updatePreview(url)
+        clearTimeout(imageTimer)
+        imageTimer = setTimeout(async () => {
+          const { error } = await supabase
+            .from('site_settings')
+            .update({ sale_image_url: url })
+            .eq('id', 1)
+          if (!error) showStatus('Image URL saved')
+        }, 600)
+      })
+
+      toggleBtn.addEventListener('click', handleToggle)
+      loadSettings()
     }
-
-    // Save message on change (debounced)
-    let messageTimer
-    messageInput.addEventListener('input', (e) => {
-      clearTimeout(messageTimer)
-      messageTimer = setTimeout(async () => {
-        const newMsg = e.target.value
-        const { error } = await supabase
-          .from('site_settings')
-          .update({ sale_message: newMsg })
-          .eq('id', 1)
-        if (!error) showStatus('Message saved')
-      }, 600)
-    })
-
-    // Save image URL on change
-    let imageTimer
-    imageUrlInput.addEventListener('input', (e) => {
-      const url = e.target.value
-      updatePreview(url)
-      clearTimeout(imageTimer)
-      imageTimer = setTimeout(async () => {
-        const { error } = await supabase
-          .from('site_settings')
-          .update({ sale_image_url: url })
-          .eq('id', 1)
-        if (!error) showStatus('Image URL saved')
-      }, 600)
-    })
-
-    // Event listeners
-    toggleBtn.addEventListener('click', handleToggle)
-
-    // Initialize
-    await loadSettings()
   })()
 </script>
 </body>
