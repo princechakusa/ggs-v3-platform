@@ -1,4 +1,4 @@
-// announcement.js – Hero‑Style Modal with Large Top Image, Sparkle, and Contact CTA
+// announcement.js – Fully responsive modal that never crops images
 (async function() {
   const SUPABASE_URL = 'https://fsakwzzcbnqkmchrvzzq.supabase.co'
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA'
@@ -71,14 +71,15 @@
       if (e.target === overlay) overlay.remove()
     }
 
-    // Modal container – hero layout
+    // Modal container – wide, with flexible height
     const modal = document.createElement('div')
     modal.id = 'ggs-sale-modal'
     modal.className = 'ggs-shimmer-border'
     modal.style.cssText = `
       position: relative;
-      max-width: 800px;
-      width: 100%;
+      max-width: 1100px;
+      width: fit-content;
+      min-width: min(95%, 500px);
       background: #1a1f24;
       border-radius: 32px;
       box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(182,139,64,0.3);
@@ -123,12 +124,15 @@
     }
     closeBtn.onclick = () => overlay.remove()
 
-    // Hero Image Section (full width at top)
+    // Image – flexible container, no cropping
     if (imageUrl) {
-      const heroImg = document.createElement('div')
-      heroImg.style.cssText = `
+      const imgContainer = document.createElement('div')
+      imgContainer.style.cssText = `
         width: 100%;
-        max-height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 85vh;
         overflow: hidden;
         border-bottom: 2px solid #b68b40;
       `
@@ -138,11 +142,12 @@
       img.style.cssText = `
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        max-height: 85vh;
+        object-fit: contain;
         display: block;
       `
-      heroImg.appendChild(img)
-      modal.appendChild(heroImg)
+      imgContainer.appendChild(img)
+      modal.appendChild(imgContainer)
     }
 
     // Content section (padding)
@@ -187,7 +192,7 @@
     `
     content.appendChild(msg)
 
-    // CTA Button
+    // CTA Button (links to Contact section, closes modal)
     const cta = document.createElement('a')
     cta.href = '#contact'
     cta.textContent = 'Claim Offer →'
