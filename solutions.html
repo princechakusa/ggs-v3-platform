@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Solutions | Gamazine & Glamour Coat</title>
+  <meta name="description" content="GGS Implementation Solutions – Gamazine Classic from R250/20L, Glamour Coat from R350/20L. Premium wall coatings for Gauteng.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js" defer></script>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="process.html">Process</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-nav-contact">
+    <a href="tel:+27621503704">+27 62 150 3704</a>
+    <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
+  </div>
+</div>
+
+<!-- STICKY HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-wrap">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+      <span class="logo-text">GGS</span>
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="solutions.html" class="active">Solutions</a>
+      <a href="process.html">Process</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-cta-group">
+      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+      <a href="contact.html#quote" class="header-cta">Get Quote →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- PAGE HEADER -->
+  <section style="padding: calc(var(--header-h) + 60px) 0 40px;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Implementation Solutions</span>
+      <h1 style="font-size:4rem;"><span class="masked-rise"><span class="masked-rise-inner">Technical Grade</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Coatings</span></span></h1>
+    </div>
+  </section>
+
+  <!-- GAMAZINE CLASSIC (asymmetric: text left, image right) -->
+  <section style="padding:0 0 40px;">
+    <div class="container">
+      <div class="asymmetric-grid">
+        <div class="asymmetric-content">
+          <h2>Gamazine Classic</h2>
+          <p>High-density quartz and acrylic resin. Engineered for extreme Gauteng weather resistance. UV‑stable pigmentation and crack‑bridge technology.</p>
+          <ul style="margin-top:20px; list-style:none;">
+            <li>✓ 15-Year Life Expectancy</li>
+            <li>✓ Waterproof barrier</li>
+            <li>✓ R250 per 20L drum</li>
+            <li>✓ Labour: R150 per 20L</li>
+          </ul>
+          <a href="contact.html#quote" class="btn-primary" style="margin-top:30px; align-self:flex-start;"><span>Request Quote</span><span>→</span></a>
+        </div>
+        <div class="asymmetric-image">
+          <img class="cinematic-img" src="https://i.ibb.co/sdDqPqVw/Whats-App-Image-2026-04-19-at-3-47-10-PM-1.jpg" alt="Gamazine Classic finish">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLAMOUR COAT (asymmetric: image left, text right) -->
+  <section style="padding:40px 0;">
+    <div class="container">
+      <div class="asymmetric-grid">
+        <div class="asymmetric-image">
+          <img class="cinematic-img" src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat shimmer">
+        </div>
+        <div class="asymmetric-content">
+          <h2>Glamour Coat</h2>
+          <p>Premium mica‑infused finish with reflective shimmer. Smooth trowel application for interior and exterior luxury surfaces.</p>
+          <ul style="margin-top:20px; list-style:none;">
+            <li>✓ Mold & Fungi Resistant</li>
+            <li>✓ R350 per 20L drum</li>
+            <li>✓ Labour: R150 per 20L</li>
+          </ul>
+          <a href="contact.html#quote" class="btn-primary gold-btn" style="margin-top:30px; align-self:flex-start;"><span>Request Quote</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOUR PALETTE -->
+  <section style="padding:40px 0;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Available Finishes</span>
+      <h2><span class="masked-rise"><span class="masked-rise-inner">Signature Colour Range</span></span></h2>
+      <p style="font-size:0.95rem;color:var(--slate);max-width:500px;font-weight:300;line-height:1.72;" class="scroll-reveal">Custom tints available. All pigments are UV-stabilised for lasting vibrancy under Gauteng's high-UV conditions.</p>
+      <div class="palette-grid scroll-reveal">
+        <div class="palette-swatch"><div class="swatch-color" style="background:#e8e4da;"></div><div class="swatch-info"><div class="swatch-name">Classic White</div><div class="swatch-code">GGS-001</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:#c8b89a;"></div><div class="swatch-info"><div class="swatch-name">Sandstone</div><div class="swatch-code">GGS-012</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:#8a7d6b;"></div><div class="swatch-info"><div class="swatch-name">Aged Oak</div><div class="swatch-code">GGS-024</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:#4a4a4a;"></div><div class="swatch-info"><div class="swatch-name">Urban Slate</div><div class="swatch-code">GGS-038</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:#2a2a2a;"></div><div class="swatch-info"><div class="swatch-name">Charcoal</div><div class="swatch-code">GGS-042</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:linear-gradient(135deg,#d4a85a,#b68b40);"></div><div class="swatch-info"><div class="swatch-name">Desert Gold ✦</div><div class="swatch-code">Glamour</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALTY SERVICES -->
+  <section style="padding:40px 0 80px;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Specialty Services</span>
+      <h2><span class="masked-rise"><span class="masked-rise-inner">Complete Coating Solutions</span></span></h2>
+      <div class="features-grid">
+        <div class="feature-card"><i class="fas fa-water"></i><h3>Waterproofing</h3><p>Pre‑application sealing and damp proofing.</p></div>
+        <div class="feature-card"><i class="fas fa-ruler-combined"></i><h3>Value Engineering</h3><p>Cost‑effective material optimization.</p></div>
+        <div class="feature-card"><i class="fas fa-leaf"></i><h3>Green Solutions</h3><p>Low‑VOC, environmentally friendly coatings.</p></div>
+        <div class="feature-card"><i class="fas fa-building"></i><h3>Interior Fit‑Out</h3><p>Feature walls and commercial spaces.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:0 0 80px; text-align:center;">
+    <div class="container">
+      <div class="broadcast-layer">
+        <h2>Ready to transform your property?</h2>
+        <p style="margin:20px 0;">Get a free, no‑obligation quote within 24 hours.</p>
+        <a href="contact.html#quote" class="btn-primary">Request Your Quote →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+          <span>GGS</span>
+        </div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across Gauteng since 2012.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Company Heritage</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="process.html">How It Works</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
+          <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
+          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Gamazine Road, Kya Sands<br>Randburg, Gauteng</li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <div class="footer-col-heading">Stay Updated</div>
+        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+        <div class="newsletter-form">
+          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
+      <span class="footer-copy">Gamazine Johannesburg · Pretoria · Randburg · Gauteng</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap">
+  <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- COOKIE NOTICE -->
+<div id="cookie-notice">
+  <div class="cookie-title">We use cookies</div>
+  <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
+    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+  </div>
+</div>
+
+<script>
+  // Scroll progress
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  }, { passive: true });
+  
+  // Header scroll shadow
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
+  }, { passive: true });
+  
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  
+  // Newsletter
+  function handleNewsletter() {
+    const input = document.getElementById('newsletterEmail');
+    if (input.value && input.value.includes('@')) {
+      localStorage.setItem('ggs_newsletter', input.value);
+      input.value = '';
+      input.placeholder = 'Subscribed! ✓';
+      alert('Thanks for subscribing!');
+    } else {
+      alert('Please enter a valid email.');
+    }
+  }
+  
+  // Cookie
+  function dismissCookie() {
+    document.getElementById('cookie-notice').classList.add('hidden');
+    localStorage.setItem('ggs-cookie', '1');
+  }
+  if (localStorage.getItem('ggs-cookie')) {
+    document.getElementById('cookie-notice').classList.add('hidden');
+  }
+</script>
+</body>
+</html>

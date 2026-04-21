@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Contact GGS | Get a Quote</title>
+  <meta name="description" content="Contact Global Gamazine Suppliers – Free site inspection, quote within 24 hours. Serving Johannesburg, Pretoria, Randburg.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js" defer></script>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="process.html">Process</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-nav-contact">
+    <a href="tel:+27621503704">+27 62 150 3704</a>
+    <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
+  </div>
+</div>
+
+<!-- STICKY HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-wrap">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+      <span class="logo-text">GGS</span>
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="process.html">Process</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="header-cta-group">
+      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+      <a href="contact.html#quote" class="header-cta">Get Quote →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- PAGE HEADER -->
+  <section style="padding: calc(var(--header-h) + 60px) 0 40px;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Contact & Fulfillment</span>
+      <h1 style="font-size:4rem;"><span class="masked-rise"><span class="masked-rise-inner">Let's Build</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Together</span></span></h1>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM (Supabase Connected) -->
+  <section id="quote" style="padding:0 0 40px;">
+    <div class="container">
+      <div class="quote-card scroll-reveal">
+        <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:60px;align-items:start;" class="quote-layout">
+          <div>
+            <span class="metadata-label">Request Quotation</span>
+            <h2 style="margin-bottom:0;">
+              <span class="masked-rise"><span class="masked-rise-inner">Get Quote</span></span>
+              <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">in 60 Seconds</span></span>
+            </h2>
+            <div class="gold-rule"></div>
+            <p style="font-size:0.88rem;color:var(--slate);line-height:1.75;font-weight:300;margin-bottom:28px;">Fill the form and we'll send your tailored quote via WhatsApp — typically within the hour during business hours.</p>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">No deposit required</span></div>
+              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">Free site inspection included</span></div>
+              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">Quote returned within 24 hours</span></div>
+              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">2–4 day delivery across Gauteng</span></div>
+            </div>
+            <div style="margin-top:32px;padding:20px;background:var(--cream-deep);border-radius:var(--r-card);border:1px solid var(--border);">
+              <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;font-weight:500;">Or call us directly</div>
+              <a href="tel:+27621503704" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;letter-spacing:-0.02em;color:var(--charcoal);text-decoration:none;display:block;margin-bottom:4px;">+27 62 150 3704</a>
+              <a href="mailto:deliannyathi@gmail.com" style="font-size:0.8rem;color:var(--slate);text-decoration:none;">deliannyathi@gmail.com</a>
+            </div>
+          </div>
+          <div>
+            <form onsubmit="handleQuoteSubmit(event)" id="quoteForm" novalidate>
+              <div class="form-grid">
+                <div class="form-group"><label>Full Name *</label><input type="text" id="name" required placeholder="Your full name"></div>
+                <div class="form-group"><label>Phone *</label><input type="tel" id="phone" required placeholder="+27 000 000 0000"></div>
+                <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="your@email.com"></div>
+                <div class="form-group"><label>Finish *</label>
+                  <select id="finish">
+                    <option value="Gamazine Classic (R250/20L)">Gamazine Classic — R250/20L</option>
+                    <option value="Glamour Coat (R350/20L)">Glamour Coat — R350/20L</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Rooms / Walls *</label><input type="text" id="rooms" required placeholder="e.g. Full exterior, 3 bedrooms"></div>
+                <div class="form-group"><label>Area (m²)</label>
+                  <select id="area">
+                    <option value="">Select approximate range</option>
+                    <option>Under 50 m²</option>
+                    <option>50–100 m²</option>
+                    <option>100–200 m²</option>
+                    <option>200–500 m²</option>
+                    <option>500 m²+</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top:20px;"><label>Additional Notes</label><textarea id="notes" rows="3" placeholder="Any special requirements, surface conditions, or questions…"></textarea></div>
+              <button type="submit" class="btn-primary" style="width:100%;margin-top:20px;justify-content:center;font-size:1rem;padding:18px 32px;"><span>Send via WhatsApp & Save</span><span>→</span></button>
+            </form>
+            <div id="formMessage" style="margin-top:16px; font-size:0.9rem;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT DETAILS + MAP -->
+  <section style="padding:40px 0 80px;">
+    <div class="container">
+      <div class="contact-card scroll-reveal">
+        <div class="contact-left">
+          <div class="contact-detail">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><div class="contact-detail-label">Address</div><div class="contact-detail-val">12 Ohm Road, Kya Sands, Randburg</div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div><div class="contact-detail-label">Phone</div><div class="contact-detail-val"><a href="tel:+27621503704">+27 62 150 3704</a></div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div><div class="contact-detail-label">Email</div><div class="contact-detail-val"><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div></div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+            <div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-val"><a href="https://wa.me/27621503704" target="_blank">Chat Now →</a></div></div>
+          </div>
+          <div style="margin-top:32px;padding:24px;background:var(--cream-deep);border-radius:var(--r-card);border:1px solid var(--border);">
+            <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:10px;font-weight:500;">Business Hours</div>
+            <div style="font-size:0.88rem;color:var(--charcoal);line-height:1.9;">
+              Mon – Fri: <strong>07:00 – 17:00</strong><br>
+              Saturday: <strong>08:00 – 13:00</strong><br>
+              Sunday: <span style="color:var(--slate);">Closed</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.64210131345!2d27.95!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573fff3b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sKya%20Sands%2C%20Randburg!5e0!3m2!1sen!2sza!4v1712345678901"
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="GGS Location"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+          <span>GGS</span>
+        </div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across Gauteng since 2012.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Company Heritage</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="process.html">How It Works</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
+          <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
+          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Gamazine Road, Kya Sands<br>Randburg, Gauteng</li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <div class="footer-col-heading">Stay Updated</div>
+        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+        <div class="newsletter-form">
+          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
+      <span class="footer-copy">Gamazine Johannesburg · Pretoria · Randburg · Gauteng</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap">
+  <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- COOKIE NOTICE -->
+<div id="cookie-notice">
+  <div class="cookie-title">We use cookies</div>
+  <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
+    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+  </div>
+</div>
+
+<script>
+  // Scroll progress
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrolled + '%';
+  }, { passive: true });
+  
+  // Header scroll shadow
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
+  }, { passive: true });
+  
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  
+  // Newsletter
+  function handleNewsletter() {
+    const input = document.getElementById('newsletterEmail');
+    if (input.value && input.value.includes('@')) {
+      localStorage.setItem('ggs_newsletter', input.value);
+      input.value = '';
+      input.placeholder = 'Subscribed! ✓';
+      alert('Thanks for subscribing!');
+    } else {
+      alert('Please enter a valid email.');
+    }
+  }
+  
+  // Cookie
+  function dismissCookie() {
+    document.getElementById('cookie-notice').classList.add('hidden');
+    localStorage.setItem('ggs-cookie', '1');
+  }
+  if (localStorage.getItem('ggs-cookie')) {
+    document.getElementById('cookie-notice').classList.add('hidden');
+  }
+
+  // Quote Form Submission (Supabase + WhatsApp)
+  async function handleQuoteSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name');
+    const phone = document.getElementById('phone');
+    const rooms = document.getElementById('rooms');
+    const msgDiv = document.getElementById('formMessage');
+    
+    let valid = true;
+    [name, phone, rooms].forEach(field => {
+      if (!field.value.trim()) { field.classList.add('error'); valid = false; }
+      else field.classList.remove('error');
+    });
+    
+    if (!valid) {
+      msgDiv.innerHTML = '<p style="color:#ef4444;">Please fill all required fields.</p>';
+      return;
+    }
+    
+    const formData = {
+      name: name.value,
+      phone: phone.value,
+      email: document.getElementById('email').value || null,
+      finish: document.getElementById('finish').value,
+      rooms: rooms.value,
+      area: document.getElementById('area').value || null,
+      notes: document.getElementById('notes').value || null
+    };
+    
+    msgDiv.innerHTML = '<p style="color:var(--slate);">Submitting...</p>';
+    
+    // Submit to Supabase
+    const result = await submitQuoteToSupabase(formData);
+    
+    // WhatsApp message
+    const waMsg = `Hello GGS! I'd like a quotation:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Finish: ${formData.finish}\n🏠 Rooms/Walls: ${formData.rooms}${formData.area ? '\n📐 Area: ' + formData.area : ''}${formData.notes ? '\n📝 Notes: ' + formData.notes : ''}`;
+    window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
+    
+    if (result.success) {
+      msgDiv.innerHTML = '<p style="color:#22c55e;">✓ Quote submitted successfully! We\'ll contact you shortly.</p>';
+      e.target.reset();
+    } else {
+      msgDiv.innerHTML = '<p style="color:#ef4444;">Error submitting form. Please try again or call us.</p>';
+      console.error('Supabase error:', result.error);
+    }
+  }
+</script>
+</body>
+</html>
