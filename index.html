@@ -16,9 +16,57 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
   
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js" defer></script>
+  <style>
+    .section-surface {
+      background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(250,247,242,0.95) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .process-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .process-mini-card {
+      background: var(--cream-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 24px 20px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .process-mini-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(182,139,64,0.5);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+    .process-step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .process-mini-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .process-mini-card p {
+      font-size: 0.84rem;
+      color: var(--slate);
+      line-height: 1.65;
+      margin: 0;
+    }
+    @media (max-width: 860px) {
+      .process-mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -150,6 +198,31 @@
     </div>
   </section>
 
+  <!-- QUICK PROCESS -->
+  <section class="section-pad section-surface">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">How it works</span>
+      <h2><span class="masked-rise"><span class="masked-rise-inner">Simple 3-step workflow</span></span></h2>
+      <div class="process-mini-grid">
+        <article class="process-mini-card scroll-reveal">
+          <span class="process-step-num">1</span>
+          <h3>Site Inspection</h3>
+          <p>We assess your walls, surface condition, and prep scope with a free visit.</p>
+        </article>
+        <article class="process-mini-card scroll-reveal">
+          <span class="process-step-num">2</span>
+          <h3>Fixed Quote</h3>
+          <p>You receive an itemized quote within 24 hours with clear timelines and pricing.</p>
+        </article>
+        <article class="process-mini-card scroll-reveal">
+          <span class="process-step-num">3</span>
+          <h3>Delivery & Application</h3>
+          <p>Material arrives first, then certified application starts with quality sign-off.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- BROADCAST -->
   <div style="padding:0 0 80px;">
     <div class="container">
@@ -257,20 +330,23 @@
   <div class="cookie-title">We use cookies</div>
   <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
   <div class="cookie-btns">
-    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
-    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+    <button class="cookie-accept" onclick="dismissCookie('all')">Accept All</button>
+    <button class="cookie-dismiss" onclick="dismissCookie('essential')">Essential Only</button>
   </div>
 </div>
 
 <script>
   // Preloader
-  window.addEventListener('load', () => setTimeout(() => document.getElementById('preloader').classList.add('done'), 1800));
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) setTimeout(() => preloader.classList.add('done'), 1800);
+  });
   
   // Scroll progress
   const progressBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
     const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = scrolled + '%';
+    if (progressBar) progressBar.style.width = scrolled + '%';
   }, { passive: true });
   
   // Header scroll shadow
@@ -278,18 +354,20 @@
   const backTop = document.getElementById('back-top');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 30);
-    backTop.classList.toggle('visible', y > 500);
+    if (header) header.classList.toggle('scrolled', y > 30);
+    if (backTop) backTop.classList.toggle('visible', y > 500);
   }, { passive: true });
   
   // Mobile nav
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-  });
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+  }
   function closeMobile() {
     hamburger.classList.remove('open');
     mobileNav.classList.remove('open');
@@ -321,9 +399,8 @@
   function handleNewsletter() {
     const input = document.getElementById('newsletterEmail');
     if (input.value && input.value.includes('@')) {
-      localStorage.setItem('ggs_newsletter', input.value);
       input.value = '';
-      input.placeholder = 'Subscribed! ✓';
+      input.placeholder = 'Subscribed! (ok)';
       alert('Thanks for subscribing!');
     } else {
       alert('Please enter a valid email.');
@@ -331,16 +408,22 @@
   }
   
   // Cookie
-  function dismissCookie() {
-    document.getElementById('cookie-notice').classList.add('hidden');
-    localStorage.setItem('ggs-cookie', '1');
+  function safeStorageSet(key, value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
   }
-  if (localStorage.getItem('ggs-cookie')) {
-    document.getElementById('cookie-notice').classList.add('hidden');
+  function safeStorageGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function dismissCookie(type) {
+    const cookieNotice = document.getElementById('cookie-notice');
+    if (cookieNotice) cookieNotice.classList.add('hidden');
+    safeStorageSet('ggs-cookie-consent', type || 'essential');
+  }
+  if (safeStorageGet('ggs-cookie-consent')) {
+    const cookieNotice = document.getElementById('cookie-notice');
+    if (cookieNotice) cookieNotice.classList.add('hidden');
   }
 </script>
-<!-- Supabase & Announcement Bar -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/announcement.js"></script>
 </body>
 </html>

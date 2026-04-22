@@ -11,60 +11,73 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #faf9f6;
+      background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f6f3ee 45%, #eee8de 100%);
       font-family: 'Inter', sans-serif;
-      display: flex;
+      display: block;
+      color: #1a1f24;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
-      padding: 24px;
+      padding: 36px 24px;
+    }
+    .shell {
+      max-width: 760px;
+      margin: 0 auto;
     }
     .admin-card, .login-card {
-      max-width: 500px;
+      max-width: 760px;
       width: 100%;
       background: #ffffff;
-      border: 1px solid #1a1f24;
-      padding: 40px 32px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.05);
+      border: 1px solid #d8d2c7;
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: 0 16px 45px rgba(26,31,36,0.08);
     }
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: clamp(2.2rem, 5vw, 3rem);
       font-weight: 400;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
-      border-bottom: 1px solid #1a1f24;
-      padding-bottom: 16px;
+      border-bottom: 1px solid #eee9df;
+      padding-bottom: 14px;
     }
     .subhead {
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       color: #5a6c7a;
-      margin-bottom: 32px;
+      margin-bottom: 26px;
+    }
+    .panel-block {
+      background: #faf8f3;
+      border: 1px solid #e6dfd3;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
     }
     .row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 28px;
+      gap: 16px;
     }
     .label {
-      font-size: 1rem;
-      font-weight: 400;
+      font-size: 0.8rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: #1a1f24;
     }
     .toggle-btn {
-      border: 1px solid #1a1f24;
-      background: #fff;
+      border: 1px solid #101317;
+      background: #ffffff;
       padding: 10px 28px;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       cursor: pointer;
-      transition: all 0.2s;
+      border-radius: 999px;
+      transition: all 0.2s ease;
       min-width: 130px;
       text-align: center;
     }
@@ -75,34 +88,43 @@
     .input-field {
       width: 100%;
       padding: 14px 16px;
-      border: 1px solid #1a1f24;
+      border: 1px solid #c9c1b3;
+      border-radius: 12px;
       font-size: 0.95rem;
       font-family: 'Inter', sans-serif;
       background: #fff;
       margin-top: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-field:focus {
+      border-color: #b68b40;
+      box-shadow: 0 0 0 3px rgba(182,139,64,0.16);
+      outline: none;
     }
     .status-msg {
       font-size: 0.8rem;
       color: #5a6c7a;
-      margin: 16px 0 8px;
+      margin: 4px 0 2px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
+      min-height: 1.2em;
     }
     .hint {
       font-size: 0.7rem;
       color: #8a9fae;
-      margin-top: 24px;
+      margin-top: 18px;
       text-transform: uppercase;
       letter-spacing: 0.15em;
       border-top: 1px solid #ddd;
-      padding-top: 20px;
+      padding-top: 16px;
     }
     img.preview {
       max-width: 100%;
-      max-height: 150px;
-      margin-top: 12px;
+      max-height: 170px;
+      margin-top: 10px;
       border: 1px solid #ddd;
+      border-radius: 10px;
     }
     .login-btn {
       width: 100%;
@@ -111,6 +133,7 @@
       color: white;
       border: none;
       font-weight: 500;
+      border-radius: 12px;
       cursor: pointer;
       margin-top: 16px;
     }
@@ -119,10 +142,33 @@
       font-size: 0.8rem;
       margin-top: 12px;
     }
+    .actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .logout-btn {
+      background: #fff;
+      border: 1px solid #1a1f24;
+      border-radius: 10px;
+      padding: 9px 14px;
+      cursor: pointer;
+    }
+    @media (max-width: 640px) {
+      body { padding: 18px 12px; }
+      .admin-card, .login-card { padding: 22px 16px; border-radius: 14px; }
+      .row { flex-direction: column; align-items: flex-start; }
+      .toggle-btn { width: 100%; }
+      .actions-row { flex-direction: column; align-items: stretch; }
+      .logout-btn, .login-btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
-<div id="app">
+<div id="app" class="shell">
   <!-- Password Gate (hidden when authenticated) -->
   <div id="loginPanel" class="login-card">
     <h1>Admin Access</h1>
@@ -136,20 +182,29 @@
   <div id="adminPanel" class="admin-card" style="display: none;">
     <h1>Marketing Toggle</h1>
     <div class="subhead">Global Gamazine Suppliers · Admin</div>
-    <div class="row">
-      <span class="label">Sale Notification</span>
-      <button id="toggleBtn" class="toggle-btn">INACTIVE</button>
+    <div class="panel-block">
+      <div class="row">
+        <span class="label">Sale Notification</span>
+        <button id="toggleBtn" class="toggle-btn">INACTIVE</button>
+      </div>
+      <div class="status-msg" id="statusMessage"></div>
     </div>
-    <label class="label" for="messageInput">Message</label>
-    <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale – 20% off this week!" value="Hurry! Limited time offer – Free site inspection this week.">
-    <label class="label" for="imageUrlInput">Image URL (optional)</label>
-    <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg">
-    <div id="imagePreview"></div>
-    <div id="statusMessage" class="status-msg"></div>
+
+    <div class="panel-block">
+      <label class="label" for="messageInput">Message</label>
+      <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale - 20% off this week!" value="Hurry! Limited time offer - Free site inspection this week.">
+      <label class="label" for="imageUrlInput">Image URL (optional)</label>
+      <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg">
+      <div id="imagePreview"></div>
+    </div>
+
     <div class="hint">
       Changes are saved instantly · Visitors see the modal when ACTIVE
     </div>
-    <button id="logoutBtn" style="margin-top: 16px; background: none; border: 1px solid #1a1f24; padding: 8px 16px; cursor: pointer;">Log out</button>
+    <div class="actions-row">
+      <span style="font-size:0.75rem;color:#6a7e8b;text-transform:uppercase;letter-spacing:0.12em;">Session based admin access</span>
+      <button id="logoutBtn" class="logout-btn">Log out</button>
+    </div>
   </div>
 </div>
 

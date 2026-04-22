@@ -29,8 +29,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js" defer></script>
+  <style>
+    .sol-hero {
+      padding: calc(var(--header-h) + 56px) 0 50px;
+      background: linear-gradient(180deg, rgba(250,247,242,0.6) 0%, rgba(255,255,255,0.98) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .sol-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(182,139,64,0.12);
+      border: 1px solid rgba(182,139,64,0.3);
+      color: var(--gold);
+      border-radius: 40px;
+      padding: 7px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+    .sol-quick-tags { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+    .sol-quick-tags span {
+      border: 1px solid var(--border);
+      background: var(--cream-card);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      color: var(--slate);
+    }
+    .sol-section { padding: 30px 0; }
+    .sol-card {
+      background: var(--cream-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px;
+      box-shadow: 0 10px 35px rgba(17,24,39,0.04);
+    }
+    .sol-card + .sol-card { margin-top: 14px; }
+    .sol-media-img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: var(--r-card);
+      border: 1px solid var(--border);
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+    }
+    .info-card {
+      background: var(--cream-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 24px 22px;
+    }
+    .info-card h3 {
+      font-size: 1.28rem;
+      margin-bottom: 10px;
+    }
+    .mini-list {
+      list-style: none;
+      margin: 10px 0 0;
+      padding: 0;
+    }
+    .mini-list li {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 6px;
+      color: var(--slate);
+    }
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .use-case {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.82rem;
+      color: var(--slate);
+      text-align: center;
+    }
+    .sol-feature-list { list-style:none; margin:0 0 24px; padding:0; }
+    .sol-feature-list li { margin-bottom: 10px; font-size: 0.92rem; }
+    .sol-table-wrap {
+      background: var(--cream-card);
+      border-radius: var(--r-xl);
+      padding: 30px;
+      border: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .sol-table { width:100%; border-collapse: collapse; min-width: 640px; }
+    .sol-table th, .sol-table td { padding: 14px; }
+    .sol-table thead tr { border-bottom: 2px solid var(--gold); }
+    .sol-table tbody tr { border-bottom: 1px solid var(--border); }
+    .sol-table tbody tr:last-child { border-bottom: none; }
+    .sol-table th {
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+    }
+    .sol-table td:nth-child(2), .sol-table td:nth-child(3),
+    .sol-table th:nth-child(2), .sol-table th:nth-child(3) { text-align:center; }
+    .palette-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+    .epoxy-card {
+      background: linear-gradient(135deg, #1a1f24 0%, #111418 100%);
+      border-radius: var(--r-xl);
+      padding: 52px 36px;
+      color: white;
+      text-align: center;
+      border: 1px solid rgba(182,139,64,0.35);
+    }
+    @media (max-width: 768px) {
+      .sol-card { padding: 22px 18px; }
+      .sol-table-wrap { padding: 18px 14px; }
+      .epoxy-card { padding: 38px 20px; }
+      .sol-media-img { max-height: 260px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .use-cases { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
   
   <!-- 🔥 SCHEMA MARKUP – Product + Service -->
   <script type="application/ld+json">
@@ -111,55 +241,64 @@
 
 <main>
   <!-- PAGE HEADER -->
-  <section style="padding: calc(var(--header-h) + 60px) 0 40px;">
+  <section class="sol-hero">
     <div class="container">
-      <span class="metadata-label scroll-reveal">Implementation Solutions</span>
-      <h1 style="font-size:4rem;"><span class="masked-rise"><span class="masked-rise-inner">Technical Grade</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Coatings</span></span></h1>
-      <p style="font-size:1.1rem; color:var(--slate); max-width:700px; margin-top:16px;" class="scroll-reveal">Engineered for South Africa's extreme climate. UV‑stable, waterproof, and crack‑resistant.</p>
+      <span class="sol-badge scroll-reveal"><i class="fas fa-shield-alt"></i> PREMIUM MATERIAL RANGE</span>
+      <h1 style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.06;">
+        <span class="masked-rise"><span class="masked-rise-inner">Technical Grade</span></span><br>
+        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Coatings</span></span>
+      </h1>
+      <p style="font-size:1.05rem; color:var(--slate); max-width:760px; margin-top:16px;line-height:1.8;" class="scroll-reveal">Engineered for South Africa's extreme climate. UV-stable, waterproof, and crack-resistant finishes designed for residential and commercial performance.</p>
+      <div class="sol-quick-tags scroll-reveal">
+        <span>From R250 / 20L</span>
+        <span>15-Year lifespan</span>
+        <span>2-4 day nationwide delivery</span>
+        <span>No deposit model</span>
+      </div>
     </div>
   </section>
 
   <!-- GAMAZINE CLASSIC -->
-  <section style="padding:0 0 40px;">
+  <section class="sol-section">
     <div class="container">
-      <div class="asymmetric-grid">
+      <div class="asymmetric-grid sol-card">
         <div class="asymmetric-content">
           <span class="metadata-label">Flagship Product</span>
           <h2>Gamazine Classic</h2>
           <div class="product-price" style="margin: 16px 0;">R250 <small>/ 20L</small></div>
           <p style="margin-bottom: 20px;">High-density quartz and acrylic resin. Engineered for extreme weather resistance. UV‑stable pigmentation and crack‑bridge technology.</p>
-          <ul style="list-style: none; margin-bottom: 24px;">
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> 15‑Year Life Expectancy</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> 100% Waterproof Barrier</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> Labour: R150 per 20L applied</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> 2–4 Day Nationwide Delivery</li>
+          <ul class="sol-feature-list">
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>15-Year Life Expectancy</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>100% Waterproof Barrier</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>Labour: R150 per 20L applied</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>2-4 Day Nationwide Delivery</li>
           </ul>
           <a href="contact.html#quote" class="btn-primary" style="align-self:flex-start;"><span>Request Gamazine Quote</span><span>→</span></a>
         </div>
         <div class="asymmetric-image">
-          <img class="cinematic-img" src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic application">
+          <img class="cinematic-img sol-media-img" src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic application">
         </div>
       </div>
     </div>
   </section>
 
   <!-- GLAMOUR COAT -->
-  <section style="padding:40px 0;">
+  <section class="sol-section">
     <div class="container">
-      <div class="asymmetric-grid">
+      <div class="asymmetric-grid sol-card">
         <div class="asymmetric-image">
-          <img class="cinematic-img" src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat shimmer">
+          <img class="cinematic-img sol-media-img" src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat shimmer">
         </div>
         <div class="asymmetric-content">
           <span class="metadata-label">Premium Finish</span>
           <h2>Glamour Coat</h2>
           <div class="product-price" style="margin: 16px 0; color: var(--gold);">R350 <small>/ 20L</small></div>
           <p style="margin-bottom: 20px;">Premium mica‑infused finish with reflective shimmer. Smooth trowel application for interior and exterior luxury surfaces.</p>
-          <ul style="list-style: none; margin-bottom: 24px;">
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> Mold & Fungi Resistant</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> Dimensional Pearl Effect</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> Labour: R150 per 20L applied</li>
-            <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i> 2–4 Day Nationwide Delivery</li>
+          <ul class="sol-feature-list">
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>Mold and Fungi Resistant</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>Dimensional Pearl Effect</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>Labour: R150 per 20L applied</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right: 10px;"></i>2-4 Day Nationwide Delivery</li>
           </ul>
           <a href="contact.html#quote" class="btn-primary gold-btn" style="align-self:flex-start;"><span>Request Glamour Quote</span><span>→</span></a>
         </div>
@@ -167,27 +306,61 @@
     </div>
   </section>
 
+  <!-- TECHNICAL DETAILS -->
+  <section class="sol-section">
+    <div class="container">
+      <div class="info-grid">
+        <article class="info-card scroll-reveal">
+          <span class="metadata-label">Technical Overview</span>
+          <h3>What you get with every coating order</h3>
+          <p style="font-size:0.9rem;color:var(--slate);line-height:1.7;">Each project is specified against substrate condition, exposure level, and finish requirement. This gives you consistent adhesion, weather resistance, and visual quality over time.</p>
+          <ul class="mini-list">
+            <li><i class="fas fa-check-circle" style="color:var(--gold);margin-right:8px;"></i>Coverage guidance based on measured square meterage</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold);margin-right:8px;"></i>Prep recommendations for cracked, painted, or damp walls</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold);margin-right:8px;"></i>Material + labor split for transparent budgeting</li>
+            <li><i class="fas fa-check-circle" style="color:var(--gold);margin-right:8px;"></i>Climate-aware finish selection for long-term performance</li>
+          </ul>
+        </article>
+        <article class="info-card scroll-reveal">
+          <span class="metadata-label">Recommended Applications</span>
+          <h3>Best use cases</h3>
+          <p style="font-size:0.88rem;color:var(--slate);line-height:1.7;">Our coatings are suited to both renovation and new-build applications where durability and premium finish quality are required.</p>
+          <div class="use-cases">
+            <div class="use-case">Residential exteriors</div>
+            <div class="use-case">Boundary walls</div>
+            <div class="use-case">Clusters and estates</div>
+            <div class="use-case">Commercial facades</div>
+            <div class="use-case">Accent feature walls</div>
+            <div class="use-case">Office blocks</div>
+            <div class="use-case">Retail centers</div>
+            <div class="use-case">Hospitality sites</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- COMPARISON TABLE -->
-  <section style="padding:40px 0;">
+  <section class="sol-section">
     <div class="container">
       <span class="metadata-label scroll-reveal">At a Glance</span>
       <h2 style="margin-bottom: 30px;">Gamazine vs. Glamour Coat</h2>
-      <div style="background: var(--cream-card); border-radius: var(--r-xl); padding: 40px; border: 1px solid var(--border);">
-        <table style="width:100%; border-collapse: collapse;">
+      <div class="sol-table-wrap">
+        <table class="sol-table">
           <thead>
-            <tr style="border-bottom: 2px solid var(--gold);">
-              <th style="padding: 16px; text-align: left; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">Feature</th>
-              <th style="padding: 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">Gamazine Classic</th>
-              <th style="padding: 16px; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;">Glamour Coat</th>
+            <tr>
+              <th>Feature</th>
+              <th>Gamazine Classic</th>
+              <th>Glamour Coat</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 14px;">Price (20L)</td><td style="padding: 14px; text-align: center;">R250</td><td style="padding: 14px; text-align: center;">R350</td></tr>
-            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 14px;">Labour (per 20L)</td><td style="padding: 14px; text-align: center;">R150</td><td style="padding: 14px; text-align: center;">R150</td></tr>
-            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 14px;">Lifespan</td><td style="padding: 14px; text-align: center;">15 Years</td><td style="padding: 14px; text-align: center;">15 Years</td></tr>
-            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 14px;">Finish</td><td style="padding: 14px; text-align: center;">Textured Matte</td><td style="padding: 14px; text-align: center;">Pearl Shimmer</td></tr>
-            <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 14px;">Best For</td><td style="padding: 14px; text-align: center;">Full Exteriors</td><td style="padding: 14px; text-align: center;">Feature Walls</td></tr>
-            <tr><td style="padding: 14px;">Waterproof</td><td style="padding: 14px; text-align: center;"><i class="fas fa-check" style="color:var(--gold);"></i></td><td style="padding: 14px; text-align: center;"><i class="fas fa-check" style="color:var(--gold);"></i></td></tr>
+            <tr><td>Price (20L)</td><td>R250</td><td>R350</td></tr>
+            <tr><td>Labour (per 20L)</td><td>R150</td><td>R150</td></tr>
+            <tr><td>Lifespan</td><td>15 Years</td><td>15 Years</td></tr>
+            <tr><td>Finish</td><td>Textured Matte</td><td>Pearl Shimmer</td></tr>
+            <tr><td>Best For</td><td>Full Exteriors</td><td>Feature Walls</td></tr>
+            <tr><td>Waterproof</td><td><i class="fas fa-check" style="color:var(--gold);"></i></td><td><i class="fas fa-check" style="color:var(--gold);"></i></td></tr>
           </tbody>
         </table>
       </div>
@@ -195,27 +368,32 @@
   </section>
 
   <!-- COLOR PALETTE -->
-  <section style="padding:40px 0;">
+  <section class="sol-section">
     <div class="container">
-      <span class="metadata-label scroll-reveal">Available Finishes</span>
-      <h2><span class="masked-rise"><span class="masked-rise-inner">Signature Colour Range</span></span></h2>
-      <p style="margin-bottom: 30px;" class="scroll-reveal">Custom tints available. All pigments UV‑stabilised for South African conditions.</p>
+      <div class="palette-head">
+        <div>
+          <span class="metadata-label scroll-reveal">Available Finishes</span>
+          <h2><span class="masked-rise"><span class="masked-rise-inner">Signature Colour Range</span></span></h2>
+        </div>
+        <p style="max-width:500px;font-size:0.9rem;color:var(--slate);" class="scroll-reveal">Custom tints available. All pigments are UV-stabilised for South African conditions and long-term exterior durability.</p>
+      </div>
       <div class="palette-grid scroll-reveal">
         <div class="palette-swatch"><div class="swatch-color" style="background:#e8e4da;"></div><div class="swatch-info"><div class="swatch-name">Classic White</div><div class="swatch-code">GGS-001</div></div></div>
         <div class="palette-swatch"><div class="swatch-color" style="background:#c8b89a;"></div><div class="swatch-info"><div class="swatch-name">Sandstone</div><div class="swatch-code">GGS-012</div></div></div>
         <div class="palette-swatch"><div class="swatch-color" style="background:#8a7d6b;"></div><div class="swatch-info"><div class="swatch-name">Aged Oak</div><div class="swatch-code">GGS-024</div></div></div>
         <div class="palette-swatch"><div class="swatch-color" style="background:#4a4a4a;"></div><div class="swatch-info"><div class="swatch-name">Urban Slate</div><div class="swatch-code">GGS-038</div></div></div>
         <div class="palette-swatch"><div class="swatch-color" style="background:#2a2a2a;"></div><div class="swatch-info"><div class="swatch-name">Charcoal</div><div class="swatch-code">GGS-042</div></div></div>
-        <div class="palette-swatch"><div class="swatch-color" style="background:linear-gradient(135deg,#d4a85a,#b68b40);"></div><div class="swatch-info"><div class="swatch-name">Desert Gold ✦</div><div class="swatch-code">Glamour</div></div></div>
+        <div class="palette-swatch"><div class="swatch-color" style="background:linear-gradient(135deg,#d4a85a,#b68b40);"></div><div class="swatch-info"><div class="swatch-name">Desert Gold</div><div class="swatch-code">Glamour</div></div></div>
       </div>
     </div>
   </section>
 
   <!-- SPECIALTY SERVICES -->
-  <section style="padding:40px 0;">
+  <section class="sol-section">
     <div class="container">
       <span class="metadata-label scroll-reveal">Specialty Services</span>
       <h2>Complete Coating Solutions</h2>
+      <p style="max-width:700px;color:var(--slate);margin-bottom:18px;font-size:0.9rem;">Beyond product supply, we assist with practical implementation planning so timelines, preparation, and quality standards are aligned before work starts.</p>
       <div class="features-grid">
         <div class="feature-card"><i class="fas fa-water"></i><h3>Waterproofing</h3><p>Pre‑application sealing and damp proofing.</p></div>
         <div class="feature-card"><i class="fas fa-ruler-combined"></i><h3>Value Engineering</h3><p>Cost‑effective material optimization.</p></div>
@@ -226,9 +404,9 @@
   </section>
 
   <!-- EPOXY TEASER -->
-  <section style="padding:40px 0;">
+  <section class="sol-section">
     <div class="container">
-      <div style="background: var(--charcoal); border-radius: var(--r-xl); padding: 48px; color: white; text-align: center;">
+      <div class="epoxy-card">
         <span class="metadata-label" style="color: var(--gold);">Coming Q3 2026</span>
         <h2 style="color: white; font-size: 3rem; margin: 16px 0;">Premium Epoxy Flooring</h2>
         <p style="opacity: 0.8; max-width: 600px; margin: 0 auto 24px;">Durable, seamless epoxy floors for garages, warehouses, and commercial spaces. Available nationwide.</p>
@@ -238,7 +416,7 @@
   </section>
 
   <!-- CTA -->
-  <section style="padding:0 0 80px; text-align:center;">
+  <section style="padding:12px 0 80px; text-align:center;">
     <div class="container">
       <div class="broadcast-layer">
         <h2>Ready to transform your property?</h2>
@@ -316,7 +494,7 @@
     const i = document.getElementById('newsletterEmail');
     if (i.value && i.value.includes('@')) {
       i.value = '';
-      i.placeholder = 'Subscribed! ✓';
+      i.placeholder = 'Subscribed! (ok)';
       alert('Thanks! We will contact you via official channels.');
     } else {
       alert('Valid email required.');
@@ -325,14 +503,13 @@
   function dismissCookie(type) {
     const notice = document.getElementById('cookie-notice');
     if (notice) notice.classList.add('hidden');
-    safeStorageSet('ggs-cookie', type || 'essential');
+    safeStorageSet('ggs-cookie-consent', type || 'essential');
   }
-  if (safeStorageGet('ggs-cookie')) {
+  if (safeStorageGet('ggs-cookie-consent')) {
     const notice = document.getElementById('cookie-notice');
     if (notice) notice.classList.add('hidden');
   }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/announcement.js"></script>
 </body>
 </html>
