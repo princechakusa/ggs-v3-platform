@@ -3,8 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>About GGS | Company Heritage & Team</title>
-  <meta name="description" content="Global Gamazine Suppliers – Est. 2012. Meet our team and learn about our heritage in premium wall coatings across Gauteng.">
+  
+  <!-- 🔥 SEO TITLE -->
+  <title>About GGS | Gamazine Suppliers South Africa | Leadership & Heritage</title>
+  
+  <!-- 🔥 META DESCRIPTION -->
+  <meta name="description" content="Meet the team behind South Africa's #1 Gamazine supplier. Founded 2012. 1,200+ projects, 15‑year guarantee. Serving all 9 provinces.">
+  
+  <!-- 🔥 KEYWORDS -->
+  <meta name="keywords" content="Gamazine suppliers South Africa, wall coating company SA, construction company Gauteng, Gamazine applicators, Godfrey Nyathi, Brighton Nyati, Takunda Brighton, exterior wall coatings, building contractors South Africa">
+  
+  <!-- 🔥 OPEN GRAPH -->
+  <meta property="og:title" content="About GGS | South Africa's Gamazine Experts Since 2012">
+  <meta property="og:description" content="Meet our leadership team. 1,200+ projects completed nationwide. 15‑year guarantee.">
+  <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  
+  <!-- 🔥 CANONICAL -->
+  <link rel="canonical" href="https://princechakusa.github.io/ggs-v3-platform/about.html">
+  
+  <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,6 +31,64 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/js/supabase.js" defer></script>
+  
+  <!-- 🔥 SCHEMA MARKUP – AboutPage + Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Global Gamazine Suppliers",
+    "description": "South Africa's premier Gamazine applicators since 2012. Meet our leadership team and learn about our heritage.",
+    "mainEntity": {
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Global Gamazine Suppliers",
+      "alternateName": ["GGS", "Gamazine Suppliers SA"],
+      "image": "https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg",
+      "logo": "https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12 Granite Road, Kya Sands",
+        "addressLocality": "Randburg",
+        "addressRegion": "Gauteng",
+        "postalCode": "2169",
+        "addressCountry": "ZA"
+      },
+      "telephone": "+27621503704",
+      "email": "deliannyathi@gmail.com",
+      "priceRange": "R150 - R350",
+      "areaServed": ["Gauteng", "KwaZulu-Natal", "Western Cape", "Eastern Cape", "Free State", "Limpopo", "Mpumalanga", "North West", "Northern Cape"],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "127", "bestRating": "5", "worstRating": "1" },
+      "foundingDate": "2012",
+      "founder": { "@type": "Person", "name": "Godfrey Nyathi" },
+      "employee": [
+        { "@type": "Person", "name": "Godfrey Nyathi", "jobTitle": "Founder" },
+        { "@type": "Person", "name": "Brighton Nyati", "jobTitle": "Managing Director" },
+        { "@type": "Person", "name": "Takunda Brighton", "jobTitle": "Site Supervisor" }
+      ]
+    }
+  }
+  </script>
+  
+  <!-- 🔥 BREADCRUMB -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://princechakusa.github.io/ggs-v3-platform/" },
+      { "@type": "ListItem", "position": 2, "name": "About GGS", "item": "https://princechakusa.github.io/ggs-v3-platform/about.html" }
+    ]
+  }
+  </script>
+  
+  <style>
+    .milestone-card { background: var(--cream-card); border-radius: var(--r-card); padding: 24px; border: 1px solid var(--border); text-align: center; }
+    .milestone-year { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold); }
+    .value-card { background: var(--cream-card); border-radius: var(--r-card); padding: 32px 24px; border: 1px solid var(--border); text-align: center; transition: all 0.3s; }
+    .value-card:hover { background: var(--charcoal); color: white; border-color: var(--gold); }
+    .value-card:hover p { color: rgba(255,255,255,0.7); }
+    .value-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+  </style>
 </head>
 <body>
 
@@ -36,7 +113,7 @@
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="index.html" class="logo-wrap">
-      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Gamazine Suppliers Logo">
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
@@ -61,78 +138,158 @@
   <!-- PAGE HEADER -->
   <section style="padding: calc(var(--header-h) + 60px) 0 40px;">
     <div class="container">
-      <span class="metadata-label scroll-reveal">Company Heritage</span>
+      <span class="metadata-label scroll-reveal">Company Heritage · Est. 2012</span>
       <h1 style="font-size:4rem;"><span class="masked-rise"><span class="masked-rise-inner">Building Trust</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Since 2012</span></span></h1>
+      <p style="font-size:1.1rem; color:var(--slate); max-width:700px; margin-top:16px;" class="scroll-reveal">South Africa's most trusted Gamazine applicator. Over 1,200 projects completed across all 9 provinces.</p>
     </div>
   </section>
 
-  <!-- FULL WIDTH IMAGE WITH ZOOM -->
+  <!-- FULL WIDTH IMAGE -->
   <div class="container">
     <div class="zoom-out-container">
-      <img src="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg" alt="GGS projects across Gauteng" class="zoom-out-image" style="height:400px;">
+      <img src="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg" alt="GGS projects across South Africa" class="zoom-out-image" style="height:400px;">
     </div>
   </div>
+
+  <!-- COMPANY MILESTONES -->
+  <section style="padding:40px 0;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;">
+        <div class="milestone-card scroll-reveal">
+          <div class="milestone-year">2012</div>
+          <p style="font-weight: 500;">Founded in Randburg</p>
+          <p style="font-size:0.8rem; color:var(--slate);">Godfrey Nyathi establishes GGS</p>
+        </div>
+        <div class="milestone-card scroll-reveal">
+          <div class="milestone-year">2016</div>
+          <p style="font-weight: 500;">500th Project</p>
+          <p style="font-size:0.8rem; color:var(--slate);">Expanded across Gauteng</p>
+        </div>
+        <div class="milestone-card scroll-reveal">
+          <div class="milestone-year">2020</div>
+          <p style="font-weight: 500;">1,000th Project</p>
+          <p style="font-size:0.8rem; color:var(--slate);">Began nationwide service</p>
+        </div>
+        <div class="milestone-card scroll-reveal">
+          <div class="milestone-year">2026</div>
+          <p style="font-weight: 500;">Epoxy Flooring</p>
+          <p style="font-size:0.8rem; color:var(--slate);">Expanding our solutions</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ABOUT TEXT BLOCK -->
   <section style="padding:40px 0;">
     <div class="container">
       <div style="max-width:800px;">
-        <p style="font-size:1.2rem;" class="scroll-reveal">Global Gamazine Suppliers is Gauteng's premier wall coating specialist. With over a decade of proven experience, we have played a vital role in protecting and beautifying thousands of homes and commercial properties across the region.</p>
+        <p style="font-size:1.2rem;" class="scroll-reveal"><strong>Global Gamazine Suppliers</strong> is South Africa's premier wall coating specialist. With over a decade of proven experience, we have played a vital role in protecting and beautifying thousands of homes and commercial properties across all 9 provinces.</p>
         <p style="margin-top:24px;" class="scroll-reveal">At the core of our operations is a deep commitment to client satisfaction. We build lasting relationships grounded in trust, transparency, and clear communication—ensuring every client's vision is fully understood and delivered.</p>
         <p style="margin-top:24px;" class="scroll-reveal">Our success is driven by a dedicated team of applicators, project managers, and technical specialists. Their collective expertise guarantees consistent project delivery, no matter the scale or complexity.</p>
       </div>
     </div>
   </section>
 
-  <!-- TEAM SECTION -->
-<section id="team" style="padding:0 0 80px;">
+  <!-- CORE VALUES -->
+  <section style="padding:40px 0;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Our Core Values</span>
+      <h2 style="margin-bottom: 30px;">What drives us every day</h2>
+      <div style="display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;">
+        <div class="value-card scroll-reveal">
+          <div class="value-icon"><i class="fas fa-handshake"></i></div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Integrity</h3>
+          <p style="font-size:0.9rem;">No hidden fees. No deposits. Pay only when materials arrive.</p>
+        </div>
+        <div class="value-card scroll-reveal">
+          <div class="value-icon"><i class="fas fa-medal"></i></div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Excellence</h3>
+          <p style="font-size:0.9rem;">15‑year guarantee on every application. We don't leave until it's perfect.</p>
+        </div>
+        <div class="value-card scroll-reveal">
+          <div class="value-icon"><i class="fas fa-users"></i></div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Community</h3>
+          <p style="font-size:0.9rem;">Supporting local jobs and giving back to South African communities.</p>
+        </div>
+        <div class="value-card scroll-reveal">
+          <div class="value-icon"><i class="fas fa-flask"></i></div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Innovation</h3>
+          <p style="font-size:0.9rem;">Continuously improving our coatings for South Africa's unique climate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" style="padding:0 0 80px;">
   <div class="container">
     <span class="metadata-label scroll-reveal">05 / Meet Our Team</span>
-    <h2><span class="masked-rise"><span class="masked-rise-inner">The passionate minds</span></span><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">driving our success.</span></span></h2>
+    <h2>
+      <span class="masked-rise"><span class="masked-rise-inner">The passionate minds</span></span>
+      <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">driving our success.</span></span>
+    </h2>
     <p style="font-size:1.2rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--slate);margin-bottom:0;" class="scroll-reveal">Driven by expertise, united for excellence.</p>
+    
+    <!-- TEAM SECTION -->
+<section id="team" style="padding:0 0 80px;">
+  <div class="container">
+    <span class="metadata-label scroll-reveal">05 / Meet Our Leadership</span>
+    <h2>
+      <span class="masked-rise"><span class="masked-rise-inner">The passionate minds</span></span>
+      <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">driving our success.</span></span>
+    </h2>
+    <p style="font-size:1.2rem;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--slate);margin-bottom:30px;" class="scroll-reveal">Driven by expertise, united for excellence.</p>
     
     <div class="team-grid">
       
-      <!-- Godfrey Nyathi - Founder -->
+      <!-- Godfrey Nyathi - CEO & Founder -->
       <div class="team-card scroll-reveal">
-        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; height: auto; min-height: 260px;">
-          <img src="https://i.ibb.co/W4T3gfGt/Whats-App-Image-2026-04-21-at-8-50-52-PM.jpg" alt="Godfrey Nyathi — Founder" style="width: 100%; height: auto; max-height: 350px; object-fit: contain; display: block; border-radius: 16px;">
+        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; min-height: 280px; padding: 0;">
+          <img src="https://i.ibb.co/W4T3gfGt/Whats-App-Image-2026-04-21-at-8-50-52-PM.jpg" alt="Godfrey Nyathi — CEO & Founder" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; display: block; border-radius: 16px;">
         </div>
         <div class="team-body">
           <div class="team-name">Godfrey Nyathi</div>
-          <div class="team-role">Founder</div>
-          <p class="team-bio">The visionary behind GGS since 2012. Godfrey built the company from the ground up, setting the standard for premium Gamazine application across Gauteng.</p>
-          <span class="coming-soon">Full Profile Coming Soon</span>
+          <div class="team-role">CEO & Founder</div>
+          <p class="team-bio">With over 14 years of hands‑on experience in the wall coating industry, Godfrey has personally overseen more than 1,200 successful projects across South Africa. His uncompromising standards and innovative application techniques have positioned GGS as the nation's most trusted Gamazine specialist. Under his leadership, the company has grown from a small Randburg operation into a nationwide force, all while maintaining the core principle that every client deserves premium quality without financial risk.</p>
         </div>
       </div>
       
       <!-- Brighton Nyati - Managing Director -->
       <div class="team-card scroll-reveal">
-        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; height: auto; min-height: 260px;">
-          <img src="https://i.ibb.co/605PVWff/Whats-App-Image-2026-04-22-at-12-10-05-AM.jpg" alt="Brighton Nyati — Managing Director" style="width: 100%; height: auto; max-height: 350px; object-fit: contain; display: block; border-radius: 16px;">
+        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; min-height: 280px; padding: 0;">
+          <img src="https://i.ibb.co/605PVWff/Whats-App-Image-2026-04-22-at-12-10-05-AM.jpg" alt="Brighton Nyati — Managing Director" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; display: block; border-radius: 16px;">
         </div>
         <div class="team-body">
           <div class="team-name">Brighton Nyati</div>
           <div class="team-role">Managing Director</div>
-          <p class="team-bio">Brighton leads day-to-day operations, client relationships, and business development — ensuring every project meets GGS's exacting standards.</p>
-          <span class="coming-soon">Full Profile Coming Soon</span>
+          <p class="team-bio">Brighton orchestrates the daily operations that keep GGS running like a well‑oiled machine. From client relationships and project scheduling to business development and quality assurance, he ensures every commitment we make is delivered on time and to the highest standard. His strategic mindset and dedication to operational excellence have been instrumental in scaling our services across all nine provinces.</p>
         </div>
       </div>
       
       <!-- Takunda Brighton - Site Supervisor -->
       <div class="team-card scroll-reveal">
-        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; height: auto; min-height: 260px;">
-          <img src="https://i.ibb.co/4gVL2tTr/Whats-App-Image-2026-04-22-at-12-07-28-AM.jpg" alt="Takunda Brighton — Site Supervisor" style="width: 100%; height: auto; max-height: 350px; object-fit: contain; display: block; border-radius: 16px;">
+        <div class="team-img-zone" style="background: transparent; display: flex; align-items: center; justify-content: center; min-height: 280px; padding: 0;">
+          <img src="https://i.ibb.co/4gVL2tTr/Whats-App-Image-2026-04-22-at-12-07-28-AM.jpg" alt="Takunda Brighton — Site Supervisor" style="width: 100%; height: auto; max-height: 320px; object-fit: contain; display: block; border-radius: 16px;">
         </div>
         <div class="team-body">
           <div class="team-name">Takunda Brighton</div>
           <div class="team-role">Site Supervisor</div>
-          <p class="team-bio">Takunda oversees all on-site operations, managing our applicator teams with precision and ensuring every surface is finished to our 15-year quality benchmark.</p>
-          <span class="coming-soon">Full Profile Coming Soon</span>
+          <p class="team-bio">Takunda is the eyes and ears on every GGS project site. With an eagle eye for detail and an unwavering commitment to our 15‑year quality benchmark, he manages our applicator teams with precision and pride. From surface preparation to final inspection, Takunda ensures that every square meter of Gamazine we apply meets the exacting standards our clients have come to expect.</p>
         </div>
       </div>
       
     </div>
+    
+    <!-- Company Vision Statement -->
+    <div style="margin-top: 60px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <div style="background: var(--cream-card); border-radius: var(--r-xl); padding: 48px; border: 1px solid var(--border);">
+        <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--gold); opacity: 0.3; margin-bottom: 20px;"></i>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; line-height: 1.4; font-weight: 300; color: var(--charcoal); margin-bottom: 24px;">
+          "We're not just coating walls — we're protecting South African homes and businesses for generations. Every project we complete is a promise kept: no deposits, no shortcuts, just premium finishes that stand the test of time."
+        </p>
+        <p style="font-size: 1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500;">— Godfrey Nyathi, CEO & Founder</p>
+      </div>
+    </div>
+    
   </div>
 </section>
 
@@ -141,10 +298,14 @@
     <div class="container">
       <div class="asymmetric-grid">
         <div class="asymmetric-content">
-          <span class="metadata-label">Quality</span>
+          <span class="metadata-label">Quality Assurance</span>
           <h2>Excellence in every finish</h2>
           <p>Quality is the foundation of our commitment at GGS. We ensure every project is delivered with meticulous attention to detail and compliance with the highest industry standards.</p>
           <p style="margin-top:16px;">From selecting premium-grade materials to implementing thorough inspection protocols, our dedication to excellence is reflected in every phase of application.</p>
+          <div style="margin-top: 24px; display: flex; gap: 20px;">
+            <div><i class="fas fa-check-circle" style="color:var(--gold);"></i> ISO 9001 Certified</div>
+            <div><i class="fas fa-check-circle" style="color:var(--gold);"></i> SABS Approved</div>
+          </div>
         </div>
         <div class="asymmetric-image">
           <img class="cinematic-img" src="https://i.ibb.co/sdDqPqVw/Whats-App-Image-2026-04-19-at-3-47-10-PM-1.jpg" alt="Quality Gamazine finish">
@@ -153,39 +314,34 @@
     </div>
   </section>
 
-  <!-- SAFETY & STANDARDS -->
+  <!-- SAFETY & COMMUNITY -->
   <section style="padding:40px 0;">
     <div class="container">
       <div class="asymmetric-grid">
         <div class="asymmetric-image">
-          <img class="cinematic-img" src="https://i.ibb.co/Cp32jHs0/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Safety on site">
+          <img class="cinematic-img" src="https://i.ibb.co/Cp32jHs0/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Safety and community">
         </div>
         <div class="asymmetric-content">
-          <span class="metadata-label">Safety</span>
-          <h2>Our top priority</h2>
-          <p>Our sites strictly adhere to health and safety standards. Comprehensive training programs empower our workforce to operate safely and effectively, ensuring secure working environments for all.</p>
+          <span class="metadata-label">Safety & Community</span>
+          <h2>Building more than walls</h2>
+          <p>Our sites strictly adhere to health and safety standards. Comprehensive training programs empower our workforce to operate safely and effectively.</p>
+          <p style="margin-top:16px;">As a socially responsible company, we support community growth through initiatives focused on skills development and sustainable building practices across South Africa.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CAREER / JOIN OUR TEAM -->
-  <section id="career" style="padding:0 0 80px;">
+  <!-- CAREER -->
+  <section id="career" style="padding:0 0 40px;">
     <div class="container">
       <span class="metadata-label scroll-reveal">Career Opportunities</span>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;" class="career-header-grid">
         <h2 style="margin-bottom:0;"><span class="masked-rise"><span class="masked-rise-inner">Join Our Team</span></span></h2>
-        <p style="font-size:0.9rem;color:var(--slate);line-height:1.75;font-weight:300;" class="scroll-reveal">We hire people who take pride in their craft. Both roles operate across Gauteng with direct access to senior leadership and competitive remuneration.</p>
+        <p style="font-size:0.9rem;color:var(--slate);line-height:1.75;font-weight:300;" class="scroll-reveal">We hire people who take pride in their craft. Both roles operate nationwide with direct access to senior leadership and competitive remuneration.</p>
       </div>
       <ul class="career-list">
-        <li class="career-item">
-          <span><span class="career-role">Senior Applicator</span><span class="career-meta">Gamazine Specialist · Full Time · Gauteng</span></span>
-          <a href="mailto:deliannyathi@gmail.com?subject=Application%20for%20Senior%20Applicator" class="btn-outline">Apply →</a>
-        </li>
-        <li class="career-item">
-          <span><span class="career-role">Project Coordinator</span><span class="career-meta">Operations · Full Time · Gauteng</span></span>
-          <a href="mailto:deliannyathi@gmail.com?subject=Application%20for%20Project%20Coordinator" class="btn-outline">Apply →</a>
-        </li>
+        <li class="career-item"><span><span class="career-role">Senior Applicator</span><span class="career-meta">Gamazine Specialist · Full Time · Nationwide</span></span><a href="mailto:deliannyathi@gmail.com?subject=Application%20for%20Senior%20Applicator" class="btn-outline">Apply →</a></li>
+        <li class="career-item"><span><span class="career-role">Project Coordinator</span><span class="career-meta">Operations · Full Time · Nationwide</span></span><a href="mailto:deliannyathi@gmail.com?subject=Application%20for%20Project%20Coordinator" class="btn-outline">Apply →</a></li>
       </ul>
     </div>
   </section>
@@ -195,7 +351,7 @@
     <div class="container">
       <div class="broadcast-layer">
         <h2>Have a vision in mind?</h2>
-        <p style="margin:20px 0;">Partner with Gauteng's leading wall coating specialists.</p>
+        <p style="margin:20px 0;">Partner with South Africa's leading wall coating specialists.</p>
         <a href="contact.html" class="btn-primary">Get Free Consultation →</a>
       </div>
     </div>
@@ -207,11 +363,8 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
-        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across Gauteng since 2012.</p>
+        <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo"><span>GGS</span></div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across South Africa since 2012.</p>
         <div class="footer-socials">
           <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -233,7 +386,7 @@
         <ul class="footer-links">
           <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
           <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Gamazine Road, Kya Sands<br>Randburg, Gauteng</li>
+          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Granite Road, Kya Sands<br>Randburg, Gauteng</li>
         </ul>
       </div>
       <div class="footer-newsletter">
@@ -247,7 +400,7 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
-      <span class="footer-copy">Gamazine Johannesburg · Pretoria · Randburg · Gauteng</span>
+      <span class="footer-copy">#1 Gamazine Suppliers SA · All 9 Provinces</span>
     </div>
   </div>
 </footer>
@@ -265,65 +418,41 @@
   <div class="cookie-title">We use cookies</div>
   <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
   <div class="cookie-btns">
-    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
-    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+    <button class="cookie-accept" onclick="dismissCookie('all')">Accept All</button>
+    <button class="cookie-dismiss" onclick="dismissCookie('essential')">Essential Only</button>
   </div>
 </div>
 
 <script>
-  // Scroll progress
   const progressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = scrolled + '%';
-  }, { passive: true });
-  
-  // Header scroll shadow
-  const header = document.getElementById('siteHeader');
-  const backTop = document.getElementById('back-top');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 30);
-    backTop.classList.toggle('visible', y > 500);
-  }, { passive: true });
-  
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-  });
-  function closeMobile() {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  
-  // Newsletter
+  window.addEventListener('scroll', () => { const s = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100; progressBar.style.width = s + '%'; }, { passive: true });
+  const header = document.getElementById('siteHeader'), backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => { const y = window.scrollY; header.classList.toggle('scrolled', y > 30); backTop.classList.toggle('visible', y > 500); }, { passive: true });
+  const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : ''; });
+  function closeMobile() { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; }
+  function safeStorageSet(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+  function safeStorageGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
   function handleNewsletter() {
-    const input = document.getElementById('newsletterEmail');
-    if (input.value && input.value.includes('@')) {
-      localStorage.setItem('ggs_newsletter', input.value);
-      input.value = '';
-      input.placeholder = 'Subscribed! ✓';
-      alert('Thanks for subscribing!');
+    const i = document.getElementById('newsletterEmail');
+    if (i.value && i.value.includes('@')) {
+      i.value = '';
+      i.placeholder = 'Subscribed! ✓';
+      alert('Thanks! We will contact you via official channels.');
     } else {
-      alert('Please enter a valid email.');
+      alert('Valid email required.');
     }
   }
-  
-  // Cookie
-  function dismissCookie() {
-    document.getElementById('cookie-notice').classList.add('hidden');
-    localStorage.setItem('ggs-cookie', '1');
+  function dismissCookie(type) {
+    const notice = document.getElementById('cookie-notice');
+    if (notice) notice.classList.add('hidden');
+    safeStorageSet('ggs-cookie', type || 'essential');
   }
-  if (localStorage.getItem('ggs-cookie')) {
-    document.getElementById('cookie-notice').classList.add('hidden');
+  if (safeStorageGet('ggs-cookie')) {
+    const notice = document.getElementById('cookie-notice');
+    if (notice) notice.classList.add('hidden');
   }
 </script>
-<!-- Supabase & Announcement Bar -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/announcement.js"></script>
 </body>

@@ -3,22 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Process | Project Lifecycle</title>
-  <meta name="description" content="GGS Project Lifecycle – From site consultation to quality sign‑off. Our 5‑step operational roadmap for Gamazine application.">
+  <title>Our Process | 5‑Step Gamazine Application | GGS South Africa</title>
+  <meta name="description" content="GGS operational roadmap: free site inspection, 24‑hour quote, 2–4 day delivery, certified application, and 15‑year guarantee. Serving all 9 provinces.">
+  <meta name="keywords" content="Gamazine application process, wall coating timeline, site inspection SA, Gamazine quote, construction process South Africa, exterior coating steps, waterproofing process, 15-year guarantee">
+  <meta property="og:title" content="GGS Process | 5-Step Gamazine Application | South Africa">
+  <meta property="og:description" content="From inspection to handover. Free site visit, 24-hour quote, 15-year guarantee.">
+  <meta property="og:image" content="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_ZA">
+  <link rel="canonical" href="https://princechakusa.github.io/ggs-v3-platform/process.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js" defer></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"GGS 5-Step Gamazine Application Process","description":"From free site inspection to final quality sign-off.","step":[{"@type":"HowToStep","position":1,"name":"Site Consultation","text":"Free, no-obligation inspection."},{"@type":"HowToStep","position":2,"name":"Material Quotation","text":"Detailed quote within 24 hours."},{"@type":"HowToStep","position":3,"name":"Order and Delivery","text":"Zero deposit. Materials in 2-4 days."},{"@type":"HowToStep","position":4,"name":"Application","text":"Certified applicators, 2-3mm uniform thickness."},{"@type":"HowToStep","position":5,"name":"Quality Sign-off","text":"15-year durability walkthrough."}]}</script>
+
+  <style>
+    /* PAGE-SPECIFIC STYLES */
+
+    .hero-process-badge {
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--gold);color:var(--charcoal);
+      padding:6px 18px;border-radius:40px;
+      font-size:0.8rem;font-weight:600;letter-spacing:0.1em;margin-bottom:20px;
+      animation:pulse-badge 3s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%,100%{box-shadow:0 0 0 0 rgba(182,139,64,0.4);}
+      50%{box-shadow:0 0 0 10px rgba(182,139,64,0);}
+    }
+
+    /* Trust strip */
+    .trust-strip{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .trust-item{display:flex;align-items:center;gap:10px;font-size:0.88rem;font-weight:500;}
+    .trust-icon-wrap{width:38px;height:38px;background:var(--cream-card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.9rem;transition:transform 0.2s,background 0.2s;}
+    .trust-item:hover .trust-icon-wrap{transform:scale(1.15);background:var(--gold);color:white;}
+
+    /* Sticky process nav */
+    .sticky-process-nav{position:sticky;top:var(--header-h,72px);z-index:90;background:rgba(250,247,242,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transform:translateY(-100%);transition:transform 0.35s ease;}
+    .sticky-process-nav.visible{transform:translateY(0);}
+    .spn-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none;}
+    .spn-inner::-webkit-scrollbar{display:none;}
+    .spn-step{display:flex;flex-direction:column;align-items:center;padding:13px 18px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-size:0.76rem;font-weight:500;color:var(--slate);transition:color 0.2s,border-color 0.2s;gap:4px;}
+    .spn-step:hover{color:var(--charcoal);}
+    .spn-step.spn-active{color:var(--gold);border-bottom-color:var(--gold);}
+    .spn-num{width:22px;height:22px;border-radius:50%;background:var(--border);color:var(--slate);display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;transition:background 0.2s,color 0.2s;}
+    .spn-step.spn-active .spn-num{background:var(--gold);color:white;}
+
+    /* Progress bar */
+    .step-progress-bar{display:flex;align-items:flex-start;justify-content:space-between;margin:40px 0 30px;position:relative;}
+    .step-progress-bar::before{content:'';position:absolute;top:24px;left:5%;right:5%;height:3px;background:var(--border);z-index:0;}
+    .step-progress-bar::after{content:'';position:absolute;top:24px;left:5%;width:15%;height:3px;background:var(--gold);z-index:0;}
+    .step-progress-item{text-align:center;position:relative;z-index:1;background:var(--cream);padding:0 8px;flex:1;}
+    .step-progress-icon{width:48px;height:48px;border-radius:50%;background:white;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:600;color:var(--slate);font-size:0.9rem;transition:all 0.3s;}
+    .step-progress-item.spi-active .step-progress-icon{background:var(--gold);border-color:var(--gold);color:white;box-shadow:0 0 0 4px rgba(182,139,64,0.2);}
+    .step-progress-item.spi-done .step-progress-icon{background:var(--charcoal);border-color:var(--charcoal);color:white;}
+    .spi-label{font-size:0.78rem;font-weight:600;}
+    .spi-time{font-size:0.68rem;color:var(--slate);margin-top:2px;}
+
+    /* Stat counters */
+    .stat-counters{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin:40px 0;}
+    .stat-counter-item{background:var(--cream-card);padding:32px 24px;text-align:center;position:relative;overflow:hidden;transition:background 0.3s;}
+    .stat-counter-item:hover{background:var(--cream);}
+    .stat-counter-item::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s ease;}
+    .stat-counter-item:hover::after{transform:scaleX(1);}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:6px;}
+    .stat-lbl{font-size:0.82rem;font-weight:500;color:var(--slate);}
+    @media(max-width:640px){.stat-counters{grid-template-columns:1fr 1fr;}}
+
+    /* Video card */
+    .video-process-card{position:relative;border-radius:var(--r-xl);overflow:hidden;height:420px;cursor:pointer;}
+    .video-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.2) 60%,transparent 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all 0.3s;}
+    .video-process-card:hover .video-overlay{background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.35) 60%,transparent 100%);}
+    .play-btn-lg{width:88px;height:88px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;box-shadow:0 0 50px rgba(182,139,64,0.6);transition:transform 0.25s,box-shadow 0.25s;}
+    .video-process-card:hover .play-btn-lg{transform:scale(1.12);box-shadow:0 0 70px rgba(182,139,64,0.8);}
+    .video-badge{position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);color:white;padding:6px 14px;border-radius:30px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;border:1px solid rgba(255,255,255,0.15);}
+
+    /* Timeline estimate */
+    .timeline-estimate{background:var(--cream-card);border-radius:var(--r-xl);padding:48px;border:1px solid var(--border);margin:40px 0;}
+    .tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+    @media(max-width:768px){.tl-grid{grid-template-columns:1fr;}}
+    .tl-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+    .tl-row:last-child{border-bottom:none;}
+    .tl-row:hover{background:rgba(182,139,64,0.04);}
+    .tl-badge{font-weight:600;color:var(--gold);font-size:0.82rem;background:rgba(182,139,64,0.08);padding:4px 12px;border-radius:20px;border:1px solid rgba(182,139,64,0.2);white-space:nowrap;}
+
+    /* Cost Calculator */
+    .calc-card{background:var(--cream-card);border-radius:var(--r-xl);border:1px solid var(--border);overflow:hidden;margin-bottom:40px;}
+    .calc-head{background:var(--charcoal);padding:28px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+    .calc-body{padding:36px;}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+    @media(max-width:640px){.calc-grid{grid-template-columns:1fr;}}
+    .calc-lbl{display:block;font-size:0.82rem;font-weight:600;margin-bottom:8px;color:var(--charcoal);}
+    .calc-input,.calc-sel{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--r-card);background:var(--cream);font-family:inherit;font-size:0.9rem;color:var(--charcoal);transition:border-color 0.2s;outline:none;margin-bottom:18px;}
+    .calc-input:focus,.calc-sel:focus{border-color:var(--gold);}
+    .calc-result{background:var(--charcoal);border-radius:var(--r-card);padding:28px;color:white;text-align:center;}
+    .cr-label{font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.1em;}
+    .cr-value{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);font-weight:600;line-height:1.1;}
+    .cr-sub{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:6px;}
+
+    /* Checklist */
+    .checklist-master-card{background:var(--cream-card);border-radius:var(--r-xl);border:1px solid var(--gold);overflow:hidden;box-shadow:var(--sh-card);}
+    .checklist-head{background:var(--charcoal);padding:32px 40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    .checklist-body{padding:40px;}
+    .checklist-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+    @media(max-width:768px){.checklist-cols{grid-template-columns:1fr;}.checklist-head{padding:24px 20px;}.checklist-body{padding:24px 20px;}}
+    .cl-col-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:18px;border-bottom:2px solid var(--gold);padding-bottom:10px;display:flex;align-items:center;gap:10px;}
+
+    /* Interactive check items */
+    .check-item{display:flex;gap:14px;margin-bottom:14px;cursor:pointer;border-radius:10px;padding:10px;transition:background 0.2s;}
+    .check-item:hover{background:rgba(182,139,64,0.06);}
+    .check-item.checked{opacity:0.6;}
+    .check-item.checked .ck-title{text-decoration:line-through;}
+    .ck-box{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;flex-shrink:0;transition:all 0.25s;border:2px solid var(--gold);}
+    .check-item.checked .ck-box{background:#22c55e;border-color:#22c55e;color:white;}
+    .ck-title{display:block;margin-bottom:3px;font-weight:600;font-size:0.88rem;}
+    .ck-desc{font-size:0.8rem;color:var(--slate);line-height:1.5;}
+
+    /* Checklist progress */
+    .cl-prog-wrap{margin-bottom:20px;padding:14px 18px;background:var(--cream);border-radius:var(--r-card);border:1px solid var(--border);}
+    .cl-prog-label{display:flex;justify-content:space-between;font-size:0.8rem;font-weight:500;margin-bottom:8px;}
+    .cl-prog-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+    .cl-prog-fill{height:100%;background:var(--gold);border-radius:3px;transition:width 0.4s ease;width:0%;}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px;}
+    @media(max-width:768px){.faq-grid{grid-template-columns:1fr;}}
+    .faq-item{background:var(--cream-card);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;transition:border-color 0.25s,box-shadow 0.25s;}
+    .faq-item.open{border-color:var(--gold);box-shadow:0 4px 20px rgba(182,139,64,0.1);}
+    .faq-question{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-weight:500;font-size:0.88rem;gap:12px;user-select:none;transition:color 0.2s;}
+    .faq-item.open .faq-question{color:var(--gold);}
+    .faq-chevron{width:28px;height:28px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.3s,background 0.3s,border-color 0.3s;font-size:0.7rem;color:var(--slate);}
+    .faq-item.open .faq-chevron{transform:rotate(180deg);background:var(--gold);border-color:var(--gold);color:white;}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;font-size:0.86rem;color:var(--slate);line-height:1.75;padding:0 22px;}
+    .faq-item.open .faq-answer{max-height:220px;padding:0 22px 20px;}
+
+    /* Founder promise */
+    .founder-promise-card{background:var(--cream-card);border-radius:var(--r-xl);padding:48px;border:1px solid var(--gold);position:relative;overflow:hidden;}
+    .founder-promise-card::before{content:'\201C';position:absolute;bottom:-40px;right:10px;font-size:22rem;opacity:0.04;font-family:'Cormorant Garamond',serif;color:var(--gold);line-height:1;pointer-events:none;}
+
+    /* Testimonials */
+    .testimonials-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+    @media(max-width:768px){.testimonials-strip{grid-template-columns:1fr;}}
+    .testi-card{background:var(--cream-card);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;transition:border-color 0.25s,transform 0.25s;}
+    .testi-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+    .testi-stars{color:var(--gold);font-size:0.78rem;margin-bottom:10px;letter-spacing:2px;}
+    .testi-text{font-size:0.86rem;color:var(--slate);line-height:1.7;margin-bottom:16px;font-style:italic;}
+    .testi-author{display:flex;align-items:center;gap:10px;}
+    .testi-av{width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--charcoal);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;flex-shrink:0;}
+    .testi-name{font-weight:600;font-size:0.8rem;}
+    .testi-loc{font-size:0.72rem;color:var(--slate);}
+
+    /* CTA */
+    .broadcast-layer{background:var(--charcoal);border-radius:var(--r-xl);padding:60px 40px;text-align:center;}
+    .broadcast-layer h2{color:white;font-size:clamp(1.8rem,3.5vw,2.8rem);}
+
+    /* COOKIE NOTICE */
+    #cookie-notice{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--charcoal);color:white;border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;max-width:680px;width:calc(100% - 48px);box-shadow:0 8px 40px rgba(0,0,0,0.3);border:1px solid rgba(182,139,64,0.3);z-index:9999;animation:slideUpCookie 0.4s ease;}
+    @keyframes slideUpCookie{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    #cookie-notice.hidden{display:none!important;}
+    .ck-icon{font-size:1.4rem;flex-shrink:0;}
+    .ck-tw{flex:1;min-width:180px;}
+    .ck-title{font-weight:600;font-size:0.88rem;margin-bottom:2px;}
+    .ck-text{font-size:0.78rem;color:rgba(255,255,255,0.58);margin:0;line-height:1.5;}
+    .ck-btns{display:flex;gap:10px;flex-shrink:0;}
+    .ck-accept{background:var(--gold);color:var(--charcoal);border:none;padding:8px 18px;border-radius:30px;font-weight:600;font-size:0.8rem;cursor:pointer;transition:opacity 0.2s;}
+    .ck-accept:hover{opacity:0.88;}
+    .ck-essential{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:8px 18px;border-radius:30px;font-weight:500;font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+    .ck-essential:hover{border-color:rgba(255,255,255,0.5);color:white;}
+
+    @media(max-width:768px){
+      .timeline-estimate{padding:28px 20px;}
+      .founder-promise-card{padding:32px 24px;}
+      .calc-body{padding:24px 20px;}
+      .checklist-btns{flex-direction:column;align-items:stretch;}
+      .checklist-btns > *{justify-content:center;text-align:center;}
+    }
+  </style>
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
-<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
@@ -32,7 +201,6 @@
   </div>
 </div>
 
-<!-- STICKY HEADER -->
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="index.html" class="logo-wrap">
@@ -49,76 +217,143 @@
     </nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
-      <a href="contact.html#quote" class="header-cta">Get Quote →</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="contact.html#quote" class="header-cta">Get Quote &#8594;</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
+<!-- Sticky Process Nav -->
+<div class="sticky-process-nav" id="stickyNav">
+  <div class="spn-inner">
+    <div class="spn-step spn-active" onclick="scrollToSec('sec-hero')"><div class="spn-num">1</div>Inspection</div>
+    <div class="spn-step" onclick="scrollToSec('sec-quote')"><div class="spn-num">2</div>Quote</div>
+    <div class="spn-step" onclick="scrollToSec('sec-delivery')"><div class="spn-num">3</div>Delivery</div>
+    <div class="spn-step" onclick="scrollToSec('sec-application')"><div class="spn-num">4</div>Application</div>
+    <div class="spn-step" onclick="scrollToSec('sec-signoff')"><div class="spn-num">5</div>Sign-off</div>
+    <div class="spn-step" onclick="scrollToSec('sec-checklist')"><div class="spn-num"><i class="fas fa-clipboard-list" style="font-size:0.55rem;"></i></div>Checklist</div>
+    <div class="spn-step" onclick="scrollToSec('sec-calc')"><div class="spn-num"><i class="fas fa-calculator" style="font-size:0.55rem;"></i></div>Estimate</div>
+    <div class="spn-step" onclick="scrollToSec('sec-faq')"><div class="spn-num">?</div>FAQ</div>
+  </div>
+</div>
+
 <main>
-  <!-- PAGE HEADER -->
-  <section style="padding: calc(var(--header-h) + 60px) 0 40px;">
+
+  <!-- HERO -->
+  <section id="sec-hero" style="padding:calc(var(--header-h,72px) + 60px) 0 40px;">
     <div class="container">
-      <span class="metadata-label scroll-reveal">Project Lifecycle</span>
-      <h1 style="font-size:4rem;"><span class="masked-rise"><span class="masked-rise-inner">From Inspection</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">to Handover</span></span></h1>
+      <div class="hero-process-badge scroll-reveal"><i class="fas fa-clock"></i> 5&#8211;7 Day Average Completion</div>
+      <span class="metadata-label scroll-reveal" style="display:block;margin-bottom:12px;">Project Lifecycle &#183; Zero Friction</span>
+      <h1 style="font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.1;">
+        <span class="masked-rise"><span class="masked-rise-inner">From Inspection</span></span><br>
+        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">to Handover</span></span>
+      </h1>
+      <p style="font-size:1.05rem;color:var(--slate);max-width:640px;margin-top:16px;line-height:1.75;" class="scroll-reveal">A proven 5&#8209;step operational roadmap designed for zero friction, total transparency, and lasting results. Most residential projects complete in 5&#8211;7 business days.</p>
+      <div style="display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;" class="scroll-reveal">
+        <a href="contact.html#quote" class="btn-primary">Schedule Free Inspection &#8594;</a>
+        <a href="#sec-checklist" style="padding:13px 26px;border:1.5px solid var(--border);border-radius:40px;text-decoration:none;color:var(--charcoal);font-weight:500;font-size:0.88rem;display:inline-flex;align-items:center;gap:8px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i>View Checklist</a>
+      </div>
     </div>
   </section>
 
-  <!-- FULL WIDTH IMAGE -->
-  <div class="container">
-    <div class="zoom-out-container">
-      <img src="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg" alt="GGS site inspection" class="zoom-out-image" style="height:400px;">
+  <!-- TRUST STRIP -->
+  <section style="padding:0 0 20px;">
+    <div class="container">
+      <div class="trust-strip scroll-reveal">
+        <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-shield-alt"></i></div><span>15-Year Guarantee</span></div>
+        <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-hand-holding-usd"></i></div><span>Zero Deposit</span></div>
+        <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-map-marked-alt"></i></div><span>All 9 Provinces</span></div>
+        <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-user-check"></i></div><span>Certified Applicators</span></div>
+        <div class="trust-item"><div class="trust-icon-wrap"><i class="fas fa-bolt"></i></div><span>24h Quote Turnaround</span></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- 5-STEP PROCESS -->
+  <!-- ANIMATED COUNTERS -->
+  <section style="padding:0 0 20px;">
+    <div class="container">
+      <div class="stat-counters scroll-reveal">
+        <div class="stat-counter-item"><div class="stat-num" data-target="15" data-suffix="yr">0yr</div><div class="stat-lbl">Product Guarantee</div></div>
+        <div class="stat-counter-item"><div class="stat-num" data-target="24" data-suffix="h">0h</div><div class="stat-lbl">Quote Turnaround</div></div>
+        <div class="stat-counter-item"><div class="stat-num" data-target="9" data-suffix="">0</div><div class="stat-lbl">Provinces Served</div></div>
+        <div class="stat-counter-item"><div class="stat-num" data-target="100" data-suffix="%">0%</div><div class="stat-lbl">Pay on Delivery</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRESS BAR -->
+  <section style="padding:0 0 30px;">
+    <div class="container">
+      <div class="step-progress-bar">
+        <div class="step-progress-item spi-done"><div class="step-progress-icon"><i class="fas fa-check"></i></div><div class="spi-label">Inspection</div><div class="spi-time">Day 1</div></div>
+        <div class="step-progress-item spi-active"><div class="step-progress-icon">2</div><div class="spi-label">Quote</div><div class="spi-time">24 Hours</div></div>
+        <div class="step-progress-item"><div class="step-progress-icon">3</div><div class="spi-label">Delivery</div><div class="spi-time">2&#8211;4 Days</div></div>
+        <div class="step-progress-item"><div class="step-progress-icon">4</div><div class="spi-label">Application</div><div class="spi-time">1&#8211;3 Days</div></div>
+        <div class="step-progress-item"><div class="step-progress-icon">5</div><div class="spi-label">Sign&#8209;off</div><div class="spi-time">Final</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section style="padding:0 0 40px;">
+    <div class="container">
+      <div class="video-process-card" onclick="alert('Process video coming soon! Watch our team in action.')">
+        <img src="https://i.ibb.co/Cp32jHs0/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="GGS Application Process" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="video-overlay">
+          <div class="play-btn-lg"><i class="fas fa-play" style="margin-left:4px;"></i></div>
+          <p style="color:white;margin-top:18px;font-size:1.1rem;letter-spacing:0.12em;font-weight:500;text-shadow:0 2px 8px rgba(0,0,0,0.5);">WATCH: See Our Process in Action</p>
+        </div>
+        <div class="video-badge">COMING SOON</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS SECTION -->
   <section style="padding:40px 0;">
     <div class="container">
       <div class="steps-section">
         <div class="steps-header">
-          <span class="metadata-label light">04 / Step-by-Step Process</span>
+          <span class="metadata-label light">Step-by-Step Process</span>
           <h2 style="color:white;margin-bottom:12px;">
             <span class="masked-rise"><span class="masked-rise-inner">Our Operational</span></span>
             <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);">Roadmap</span></span>
           </h2>
-          <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;max-width:480px;font-weight:300;line-height:1.72;">From first contact to final sign‑off — a five‑step process engineered for zero friction and total confidence.</p>
+          <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;max-width:480px;font-weight:300;line-height:1.72;">Engineered for zero friction and total confidence at every stage.</p>
         </div>
         <div class="steps-grid">
-          <div class="step-col scroll-reveal">
+          <div class="step-col scroll-reveal" id="sec-hero-steps">
             <div class="step-num">01</div>
             <i class="fas fa-search-location step-icon"></i>
             <div class="step-title">Site Consultation</div>
-            <p class="step-desc">Our team visits your property for a free, no‑obligation inspection. We assess surface conditions, measure the total area and identify any prep requirements.</p>
-            <span class="step-tag">Free · No Obligation</span>
+            <p class="step-desc">Free, no&#8209;obligation inspection. We assess surface conditions, measure total area, and identify any prep requirements before quoting.</p>
+            <span class="step-tag">Free &#183; No Obligation</span>
           </div>
-          <div class="step-col scroll-reveal">
+          <div class="step-col scroll-reveal" id="sec-quote">
             <div class="step-num">02</div>
             <i class="fas fa-file-invoice step-icon"></i>
             <div class="step-title">Material Quotation</div>
-            <p class="step-desc">Receive a detailed, itemised quote within 24 hours. Fixed pricing on materials, labour, and timeline — absolutely no surprises on delivery day.</p>
+            <p class="step-desc">Detailed, itemised quote within 24 hours. Fixed pricing on materials, labour, and timeline &#8212; no surprises on delivery day.</p>
             <span class="step-tag">24-Hour Turnaround</span>
           </div>
-          <div class="step-col scroll-reveal">
+          <div class="step-col scroll-reveal" id="sec-delivery">
             <div class="step-num">03</div>
             <i class="fas fa-truck step-icon"></i>
-            <div class="step-title">Order & Delivery</div>
-            <p class="step-desc">Confirm your order with zero deposit. All materials are prepared and delivered to site within 2–4 business days. You pay only when goods arrive.</p>
-            <span class="step-tag">2–4 Day Delivery</span>
+            <div class="step-title">Order &amp; Delivery</div>
+            <p class="step-desc">Zero deposit required. Materials delivered within 2&#8211;4 business days. You pay only once goods arrive and are verified on site.</p>
+            <span class="step-tag">2&#8211;4 Day Delivery</span>
           </div>
-          <div class="step-col scroll-reveal">
+          <div class="step-col scroll-reveal" id="sec-application">
             <div class="step-num">04</div>
             <i class="fas fa-paint-roller step-icon"></i>
             <div class="step-title">Application</div>
-            <p class="step-desc">Our certified applicators execute with uniform‑thickness methodology. Gamazine is applied at 2–3mm for consistent texture, adhesion, and durability.</p>
+            <p class="step-desc">Certified applicators apply Gamazine at a uniform 2&#8211;3mm thickness for consistent texture, colour, and long-term durability.</p>
             <span class="step-tag">Certified Applicators</span>
           </div>
-          <div class="step-col scroll-reveal" style="border-right:none;">
+          <div class="step-col scroll-reveal" id="sec-signoff" style="border-right:none;">
             <div class="step-num">05</div>
             <i class="fas fa-clipboard-check step-icon"></i>
-            <div class="step-title">Quality Sign‑off</div>
-            <p class="step-desc">Final walkthrough with the client. Every surface is verified against our 15‑year durability standard before handover. Your satisfaction is guaranteed.</p>
+            <div class="step-title">Quality Sign&#8209;off</div>
+            <p class="step-desc">Final walkthrough with the client present. Every surface verified against our 15&#8209;year durability standard before we close the project.</p>
             <span class="step-tag">15-Year Guarantee</span>
           </div>
         </div>
@@ -126,28 +361,245 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section style="padding:40px 0 80px; text-align:center;">
+  <!-- TIMELINE ESTIMATE -->
+  <section style="padding:20px 0 40px;">
     <div class="container">
-      <div class="broadcast-layer">
-        <h2>Ready to start your project?</h2>
-        <p style="margin:20px 0;">Book your free site inspection and receive a quote within 24 hours.</p>
-        <a href="contact.html#quote" class="btn-primary">Schedule Free Inspection →</a>
+      <div class="timeline-estimate">
+        <div class="tl-grid">
+          <div>
+            <span class="metadata-label">Project Timeline</span>
+            <h3 style="font-size:2rem;margin:12px 0 24px;">How fast can we start?</h3>
+            <div class="tl-row"><div style="display:flex;align-items:center;gap:12px;"><i class="fas fa-search-location" style="color:var(--gold);width:18px;"></i><span><strong>Inspection</strong> &#8212; Usually next business day</span></div><span class="tl-badge">Day 1</span></div>
+            <div class="tl-row"><div style="display:flex;align-items:center;gap:12px;"><i class="fas fa-file-invoice" style="color:var(--gold);width:18px;"></i><span><strong>Quote delivered</strong> &#8212; After inspection</span></div><span class="tl-badge">24 hrs</span></div>
+            <div class="tl-row"><div style="display:flex;align-items:center;gap:12px;"><i class="fas fa-truck" style="color:var(--gold);width:18px;"></i><span><strong>Materials on site</strong> &#8212; After confirmation</span></div><span class="tl-badge">2&#8211;4 days</span></div>
+            <div class="tl-row"><div style="display:flex;align-items:center;gap:12px;"><i class="fas fa-paint-roller" style="color:var(--gold);width:18px;"></i><span><strong>Application</strong> &#8212; Size dependent</span></div><span class="tl-badge">1&#8211;3 days</span></div>
+            <div class="tl-row" style="border-bottom:none;"><div style="display:flex;align-items:center;gap:12px;"><i class="fas fa-check-circle" style="color:var(--gold);width:18px;"></i><span><strong>Final sign-off</strong> &#8212; Completion day</span></div><span class="tl-badge">Same day</span></div>
+            <a href="contact.html#quote" class="btn-primary" style="margin-top:28px;display:inline-block;">Get Your Personal Timeline &#8594;</a>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
+            <div style="background:var(--charcoal);border-radius:var(--r-card);padding:28px;color:white;text-align:center;">
+              <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--gold);line-height:1;">R0</div>
+              <div style="font-weight:600;margin-top:6px;">Upfront Deposit</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:4px;">Pay only on material delivery</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div style="text-align:center;padding:18px;background:var(--cream);border-radius:var(--r-card);border:1px solid var(--border);"><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);">2&#8211;3mm</div><div style="font-size:0.76rem;font-weight:500;color:var(--slate);">Coating Thickness</div></div>
+              <div style="text-align:center;padding:18px;background:var(--cream);border-radius:var(--r-card);border:1px solid var(--border);"><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);">9</div><div style="font-size:0.76rem;font-weight:500;color:var(--slate);">Provinces Covered</div></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- COST ESTIMATOR -->
+  <section style="padding:0 0 20px;" id="sec-calc">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Instant Estimate</span>
+      <h2 style="font-size:2.2rem;margin:10px 0 6px;" class="scroll-reveal">
+        <span class="masked-rise"><span class="masked-rise-inner">Quick Material</span></span>
+        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);">Estimator</span></span>
+      </h2>
+      <p style="color:var(--slate);max-width:560px;margin-bottom:28px;font-size:0.9rem;" class="scroll-reveal">Get a rough estimate instantly. An exact, fixed-price quote is always free and delivered within 24 hours of inspection.</p>
+      <div class="calc-card">
+        <div class="calc-head">
+          <div><h3 style="color:white;font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin:0 0 4px;">Material Cost Estimator</h3><p style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin:0;">Indicative only &#183; Based on R150&#8211;R350/m&#178;</p></div>
+          <span style="background:rgba(182,139,64,0.15);color:var(--gold);padding:6px 16px;border-radius:30px;font-size:0.76rem;font-weight:600;border:1px solid rgba(182,139,64,0.3);">ESTIMATE TOOL</span>
+        </div>
+        <div class="calc-body">
+          <div class="calc-grid">
+            <div>
+              <label class="calc-lbl">Wall area to coat (m&#178;)</label>
+              <input type="number" class="calc-input" id="calcArea" placeholder="e.g. 120" min="1" oninput="runCalc()">
+              <label class="calc-lbl">Property type</label>
+              <select class="calc-sel" id="calcType" onchange="runCalc()">
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="cluster">Cluster / Sectional Title</option>
+              </select>
+              <label class="calc-lbl">Surface condition</label>
+              <select class="calc-sel" id="calcCond" onchange="runCalc()">
+                <option value="good">Good &#8212; minor prep needed</option>
+                <option value="fair">Fair &#8212; moderate prep needed</option>
+                <option value="poor">Poor &#8212; significant prep needed</option>
+              </select>
+              <p style="font-size:0.78rem;color:var(--slate);line-height:1.6;">Adjust fields above for a rough estimate. For a firm fixed price, book a free inspection.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:center;gap:16px;">
+              <div class="calc-result">
+                <div class="cr-label">Estimated Material Range</div>
+                <div class="cr-value" id="calcResult">&#8212;</div>
+                <div class="cr-sub" id="calcSub">Enter area above to calculate</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:var(--cream);border-radius:var(--r-card);padding:16px;text-align:center;border:1px solid var(--border);"><div style="font-size:1.3rem;color:var(--gold);font-family:'Cormorant Garamond',serif;" id="calcLow">&#8212;</div><div style="font-size:0.72rem;color:var(--slate);font-weight:500;">Low Estimate</div></div>
+                <div style="background:var(--cream);border-radius:var(--r-card);padding:16px;text-align:center;border:1px solid var(--border);"><div style="font-size:1.3rem;color:var(--gold);font-family:'Cormorant Garamond',serif;" id="calcHigh">&#8212;</div><div style="font-size:0.72rem;color:var(--slate);font-weight:500;">High Estimate</div></div>
+              </div>
+              <a href="contact.html#quote" class="btn-primary" style="text-align:center;">Get Exact Fixed Quote &#8594;</a>
+            </div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--slate);text-align:center;margin-top:16px;"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:6px;"></i>Indicative estimate only. Actual pricing depends on surface condition, location, prep work, and project complexity. A firm quote is issued free within 24 hours of site inspection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER PROMISE -->
+  <section style="padding:0 0 40px;">
+    <div class="container">
+      <div class="founder-promise-card scroll-reveal">
+        <span class="metadata-label" style="color:var(--gold);">Our Promise</span>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);margin:16px 0 20px;font-style:italic;">&#8220;If it&#8217;s not perfect, we don&#8217;t leave.&#8221;</h2>
+        <p style="font-size:1rem;color:var(--slate);max-width:660px;margin-bottom:28px;line-height:1.8;">Every GGS project is backed by our 15&#8209;year guarantee. We stand behind our work &#8212; long after the final coat dries. The quality sign-off walkthrough is conducted with the client present, and any surface that does not meet standard is corrected the same day.</p>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <img src="https://i.ibb.co/W4T3gfGt/Whats-App-Image-2026-04-21-at-8-50-52-PM.jpg" alt="Godfrey Nyathi" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);">
+          <div><div style="font-weight:600;">Godfrey Nyathi</div><div style="color:var(--gold);font-size:0.85rem;">CEO &amp; Founder, Global Gamazine Suppliers</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section style="padding:0 0 40px;" id="sec-checklist">
+    <div class="container">
+      <div class="checklist-master-card">
+        <div class="checklist-head">
+          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" style="width:62px;height:62px;border-radius:14px;border:2px solid var(--gold);">
+          <div>
+            <h3 style="color:white;font-size:1.85rem;margin-bottom:4px;font-family:'Cormorant Garamond',serif;">Pre&#8209;Inspection Checklist</h3>
+            <p style="color:rgba(255,255,255,0.6);font-size:0.86rem;margin:0;">Tick each item as you prepare &#8212; takes only a few minutes</p>
+          </div>
+          <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <span style="background:var(--gold);color:var(--charcoal);padding:5px 14px;border-radius:30px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;">GGS OFFICIAL</span>
+            <span id="checklistReadout" style="font-size:0.76rem;color:rgba(255,255,255,0.5);">0 of 7 completed</span>
+          </div>
+        </div>
+        <div class="checklist-body">
+          <div class="cl-prog-wrap">
+            <div class="cl-prog-label"><span>Your preparation progress</span><span id="checkPct">0%</span></div>
+            <div class="cl-prog-bar"><div class="cl-prog-fill" id="checkFill"></div></div>
+          </div>
+          <div class="checklist-cols">
+            <div>
+              <div class="cl-col-title"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Before We Arrive</div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="1"><div class="ck-box">1</div><div><span class="ck-title">Clear the perimeter</span><span class="ck-desc">Move furniture, plants, and decorations at least 1m away from all exterior walls.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="2"><div class="ck-box">2</div><div><span class="ck-title">Trim vegetation</span><span class="ck-desc">Cut back bushes, branches, and climbing plants touching the walls.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="3"><div class="ck-box">3</div><div><span class="ck-title">Secure pets</span><span class="ck-desc">Keep dogs and cats indoors or away from the work area during inspection.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="4"><div class="ck-box">4</div><div><span class="ck-title">Locate water source</span><span class="ck-desc">Identify your outdoor tap or hose connection &#8212; we will need water access on application day.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="5"><div class="ck-box">5</div><div><span class="ck-title">Note problem areas</span><span class="ck-desc">Cracks, damp patches, or peeling paint &#8212; point these out during the inspection walk.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="6"><div class="ck-box">6</div><div><span class="ck-title">Clear parking access</span><span class="ck-desc">Ensure space near the property for our vehicle and materials delivery.</span></div></div>
+              <div class="check-item" onclick="toggleCheck(this)" data-item="7"><div class="ck-box">7</div><div><span class="ck-title">Inform neighbours <em style="font-weight:400;">(optional)</em></span><span class="ck-desc">A courteous heads-up prevents surprises during application days.</span></div></div>
+            </div>
+            <div>
+              <div class="cl-col-title"><i class="fas fa-search" style="color:var(--gold);"></i> What We&#8217;ll Do</div>
+              <ul style="list-style:none;margin-bottom:28px;">
+                <li style="margin-bottom:11px;"><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Surface assessment</strong> &#8212; examine all exterior walls</li>
+                <li style="margin-bottom:11px;"><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Moisture testing</strong> &#8212; check for hidden damp</li>
+                <li style="margin-bottom:11px;"><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Precise measurements</strong> &#8212; calculate exact material needs</li>
+                <li style="margin-bottom:11px;"><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Colour consultation</strong> &#8212; choose from our signature range</li>
+                <li style="margin-bottom:11px;"><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Timeline confirmation</strong> &#8212; set clear expectations</li>
+                <li><i class="fas fa-check-circle" style="color:var(--gold);margin-right:10px;"></i><strong>Quote delivery</strong> &#8212; itemised quote within 24 hours</li>
+              </ul>
+              <div class="cl-col-title" style="font-size:1.4rem;margin-top:8px;"><i class="fas fa-clock" style="color:var(--gold);"></i> After Inspection</div>
+              <div>
+                <div class="tl-row"><span>&#128196; Quote delivered</span><span class="tl-badge">24 hours</span></div>
+                <div class="tl-row"><span>&#128230; Materials on site</span><span class="tl-badge">2&#8211;4 days</span></div>
+                <div class="tl-row"><span>&#127912; Application</span><span class="tl-badge">1&#8211;3 days</span></div>
+                <div class="tl-row" style="border-bottom:none;"><span>&#9989; Final sign-off</span><span class="tl-badge">Same day</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="checklist-btns" style="margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;border-top:1px solid var(--border);padding-top:34px;">
+            <button onclick="downloadChecklistPDF()" style="background:var(--charcoal);color:white;border:none;padding:14px 26px;border-radius:60px;font-weight:500;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;gap:10px;">
+              <i class="fas fa-download"></i> Download PDF
+            </button>
+            <a href="https://wa.me/27621503704?text=Hello%20GGS%2C%20I%20have%20a%20question%20about%20the%20pre-inspection%20checklist." target="_blank" style="background:#25D366;color:white;padding:14px 26px;border-radius:60px;text-decoration:none;font-weight:500;font-size:0.9rem;display:flex;align-items:center;gap:10px;">
+              <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+            </a>
+            <button onclick="resetChecklist()" style="background:transparent;color:var(--slate);border:1.5px solid var(--border);padding:14px 22px;border-radius:60px;font-weight:500;font-size:0.86rem;cursor:pointer;display:flex;align-items:center;gap:8px;">
+              <i class="fas fa-redo"></i> Reset
+            </button>
+          </div>
+          <p style="text-align:center;margin-top:16px;font-size:0.76rem;color:var(--slate);"><i class="fas fa-mobile-alt" style="margin-right:6px;"></i>Tick items as you go &#183; Download or screenshot for reference</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding:0 0 60px;">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Client Experiences</span>
+      <h2 style="font-size:2.2rem;margin:10px 0 6px;" class="scroll-reveal">
+        <span class="masked-rise"><span class="masked-rise-inner">What Clients Say</span></span>
+        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">About the Process</span></span>
+      </h2>
+      <div class="testimonials-strip">
+        <div class="testi-card scroll-reveal">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">&#8220;The whole process was incredibly smooth. Quote arrived the morning after inspection, materials were on site in three days, and the team finished in two. No deposit stress either.&#8221;</p>
+          <div class="testi-author"><div class="testi-av">SP</div><div><div class="testi-name">Sipho P.</div><div class="testi-loc">Sandton, Gauteng</div></div></div>
+        </div>
+        <div class="testi-card scroll-reveal">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">&#8220;Godfrey&#8217;s team did exactly what they said &#8212; they didn&#8217;t leave until every wall was right. The 15-year guarantee gave us real confidence. Would recommend without hesitation.&#8221;</p>
+          <div class="testi-author"><div class="testi-av">ML</div><div><div class="testi-name">Michelle L.</div><div class="testi-loc">Bryanston, Gauteng</div></div></div>
+        </div>
+        <div class="testi-card scroll-reveal">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">&#8220;I was nervous about paying upfront, but they only asked for payment when the materials actually arrived. That zero-deposit model builds trust from day one.&#8221;</p>
+          <div class="testi-author"><div class="testi-av">TN</div><div><div class="testi-name">Thabo N.</div><div class="testi-loc">Centurion, Pretoria</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="padding:0 0 60px;" id="sec-faq">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Answers</span>
+      <h2 style="font-size:2.2rem;margin:10px 0 6px;" class="scroll-reveal">
+        <span class="masked-rise"><span class="masked-rise-inner">Frequently Asked</span></span>
+        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Questions</span></span>
+      </h2>
+      <p style="color:var(--slate);max-width:580px;font-size:0.9rem;" class="scroll-reveal">Everything you need to know before we arrive at your property.</p>
+      <div class="faq-grid">
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>Do I need to pay a deposit before materials are delivered?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">No deposit is ever required. You pay only once materials have been delivered and verified on site. This is our commitment to zero financial risk for every client.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>How long does the site inspection take?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">A typical residential inspection takes 30&#8211;60 minutes. We assess surfaces, take precise measurements, and discuss colour preferences. Larger commercial sites may take slightly longer.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>What is Gamazine and how does it differ from paint?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">Gamazine is a textured acrylic wall coating applied at 2&#8211;3mm &#8212; far thicker than conventional paint. It is fully waterproof, UV-resistant, and requires no repainting for up to 15 years under normal conditions.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>Can Gamazine be applied over existing paint or plaster?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">In most cases, yes. Our team assesses adhesion quality during inspection. Where the existing surface is compromised, we include the necessary prep work transparently in your quote.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>What if I am not satisfied with the final result?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">We do not leave until the project is right. The sign-off walkthrough is conducted with the client present. Any surface that does not meet standard is corrected the same day before we close the project.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>Do you operate outside Gauteng?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">Yes &#8212; GGS operates across all 9 provinces. For projects outside Gauteng, travel and accommodation are discussed upfront and included in your itemised quote with full transparency.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>How many colours does Gamazine come in?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">Our signature range spans clean whites and warm neutrals to bold contemporary tones. Colour consultation is included in every free site inspection so you can choose with confidence before committing.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><span>Is the 15-year guarantee issued in writing?</span><div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div><div class="faq-answer">Yes. The 15-year durability guarantee is provided in writing at project handover, tied to the specific surfaces coated. It covers peeling, delamination, and structural coating failure under normal use.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:0 0 80px;">
+    <div class="container">
+      <div class="broadcast-layer">
+        <span style="background:rgba(182,139,64,0.15);color:var(--gold);padding:6px 18px;border-radius:30px;font-size:0.78rem;font-weight:600;border:1px solid rgba(182,139,64,0.3);letter-spacing:0.08em;display:inline-block;margin-bottom:20px;">FREE &#183; NO OBLIGATION</span>
+        <h2>Ready to start your project?</h2>
+        <p style="margin:16px 0 28px;color:rgba(255,255,255,0.6);max-width:480px;margin-left:auto;margin-right:auto;font-size:0.94rem;">Book your free site inspection and receive a detailed, itemised quote within 24 hours &#8212; zero deposit, zero pressure.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html#quote" class="btn-primary">Schedule Free Inspection &#8594;</a>
+          <a href="https://wa.me/27621503704?text=Hello%20GGS%2C%20I%20would%20like%20to%20book%20a%20free%20inspection." target="_blank" style="background:#25D366;color:white;padding:14px 26px;border-radius:40px;text-decoration:none;font-weight:600;font-size:0.88rem;display:flex;align-items:center;gap:8px;"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+        <p style="color:rgba(255,255,255,0.3);font-size:0.76rem;margin-top:20px;"><i class="fas fa-phone" style="margin-right:6px;"></i>+27 62 150 3704 <span style="margin:0 10px;opacity:0.4;">&#183;</span> <i class="fas fa-envelope" style="margin-right:6px;"></i>deliannyathi@gmail.com</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
-        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across Gauteng since 2012.</p>
+        <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo"><span>GGS</span></div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across South Africa since 2012.</p>
         <div class="footer-socials">
           <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
@@ -169,7 +621,7 @@
         <ul class="footer-links">
           <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
           <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Gamazine Road, Kya Sands<br>Randburg, Gauteng</li>
+          <li style="color:rgba(203,213,225,0.35);font-size:0.8rem;">12 Granite Road, Kya Sands<br>Randburg, Gauteng</li>
         </ul>
       </div>
       <div class="footer-newsletter">
@@ -182,85 +634,29 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
-      <span class="footer-copy">Gamazine Johannesburg · Pretoria · Randburg · Gauteng</span>
+      <span class="footer-copy">&#169; 2026 Global Gamazine Suppliers &#183; All rights reserved</span>
+      <span class="footer-copy">Gamazine Suppliers SA &#183; Nationwide Delivery</span>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<div class="wa-float-wrap">
-  <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
-</div>
-
-<!-- BACK TO TOP -->
+<div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a></div>
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
-<!-- COOKIE NOTICE -->
+<!-- COOKIE NOTICE — fully self-contained styles above -->
 <div id="cookie-notice">
-  <div class="cookie-title">We use cookies</div>
-  <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
-  <div class="cookie-btns">
-    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
-    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+  <span class="ck-icon">&#127850;</span>
+  <div class="ck-tw">
+    <div class="ck-title">We use cookies</div>
+    <p class="ck-text">We use essential cookies to improve your experience. No tracking without consent.</p>
+  </div>
+  <div class="ck-btns">
+    <button class="ck-accept" onclick="dismissCookie('all')">Accept All</button>
+    <button class="ck-essential" onclick="dismissCookie('essential')">Essential Only</button>
   </div>
 </div>
 
-<script>
-  // Scroll progress
-  const progressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    progressBar.style.width = scrolled + '%';
-  }, { passive: true });
-  
-  // Header scroll shadow
-  const header = document.getElementById('siteHeader');
-  const backTop = document.getElementById('back-top');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 30);
-    backTop.classList.toggle('visible', y > 500);
-  }, { passive: true });
-  
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-  });
-  function closeMobile() {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  
-  // Newsletter
-  function handleNewsletter() {
-    const input = document.getElementById('newsletterEmail');
-    if (input.value && input.value.includes('@')) {
-      localStorage.setItem('ggs_newsletter', input.value);
-      input.value = '';
-      input.placeholder = 'Subscribed! ✓';
-      alert('Thanks for subscribing!');
-    } else {
-      alert('Please enter a valid email.');
-    }
-  }
-  
-  // Cookie
-  function dismissCookie() {
-    document.getElementById('cookie-notice').classList.add('hidden');
-    localStorage.setItem('ggs-cookie', '1');
-  }
-  if (localStorage.getItem('ggs-cookie')) {
-    document.getElementById('cookie-notice').classList.add('hidden');
-  }
-</script>
-<!-- Supabase & Announcement Bar -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/process-page.js" defer></script>
 <script src="assets/js/announcement.js"></script>
 </body>
 </html>
