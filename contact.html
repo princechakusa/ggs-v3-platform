@@ -124,13 +124,15 @@
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/solutions">Solutions</a>
-      <a href="/process">Process</a>
-      <a href="/projects">Projects</a>
-      <a href="/contact" class="active">Contact</a>
-    </nav>
+  <a href="/"$(/contact -eq '/' ? ' class="active"' : '')>Home</a>
+  <a href="/about"$(/contact -eq '/about' ? ' class="active"' : '')>About</a>
+  <a href="/solutions"$(/contact -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
+  <a href="/process"$(/contact -eq '/process' ? ' class="active"' : '')>Process</a>
+  <a href="/projects"$(/contact -eq '/projects' ? ' class="active"' : '')>Projects</a>
+  <a href="/epoxy"$(/contact -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
+  <a href="/shop"$(/contact -eq '/shop' ? ' class="active"' : '')>Shop</a>
+  <a href="/contact"$(/contact -eq '/contact' ? ' class="active"' : '')>Contact</a>
+</nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
       <a href="/contact#quote" class="header-cta">Get Quote →</a>
@@ -290,15 +292,15 @@
       </div>
       <div>
         <div class="footer-col-heading">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="/about">Company Heritage</a></li>
-          <li><a href="/solutions">Solutions</a></li>
-          <li><a href="/process">How It Works</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/epoxy">Epoxy Flooring</a></li>
-          <li><a href="/shop">Online Shop</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+<ul class="footer-links">
+  <li><a href="/about">Company Heritage</a></li>
+  <li><a href="/solutions">Solutions</a></li>
+  <li><a href="/process">How It Works</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/epoxy">Epoxy Flooring</a></li>
+  <li><a href="/shop">Online Shop</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
       </div>
       <div>
         <div class="footer-col-heading">Contact</div>

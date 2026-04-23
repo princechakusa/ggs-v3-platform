@@ -98,11 +98,11 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <a href="/">Home</a>
-<a href="/about">About</a>
-<a href="/solutions">Solutions</a>
-<a href="/process">Process</a>
-<a href="/projects">Projects</a>
-<a href="/epoxy">Epoxy</a>
+  <a href="/about">About</a>
+  <a href="/solutions">Solutions</a>
+  <a href="/process">Process</a>
+  <a href="/projects">Projects</a>
+  <a href="/epoxy">Epoxy</a>
   <a href="/shop">Shop</a>
   <a href="/contact">Contact</a>
   <div class="mobile-nav-contact">
@@ -119,12 +119,14 @@
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
-  <a href="/" class="active">Home</a>
-  <a href="/about">About</a>
-  <a href="/solutions">Solutions</a>
-  <a href="/process">Process</a>
-  <a href="/projects">Projects</a>
-  <a href="/contact">Contact</a>
+  <a href="/"$(/about -eq '/' ? ' class="active"' : '')>Home</a>
+  <a href="/about"$(/about -eq '/about' ? ' class="active"' : '')>About</a>
+  <a href="/solutions"$(/about -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
+  <a href="/process"$(/about -eq '/process' ? ' class="active"' : '')>Process</a>
+  <a href="/projects"$(/about -eq '/projects' ? ' class="active"' : '')>Projects</a>
+  <a href="/epoxy"$(/about -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
+  <a href="/shop"$(/about -eq '/shop' ? ' class="active"' : '')>Shop</a>
+  <a href="/contact"$(/about -eq '/contact' ? ' class="active"' : '')>Contact</a>
 </nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
@@ -379,17 +381,15 @@
       </div>
       <div>
         <div class="footer-col-heading">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="/about">Company Heritage</a></li>
-          <li><a href="/solutions">Solutions</a></li>
-          <li><a href="/process">How It Works</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/epoxy">Epoxy Flooring</a></li>
-          <li><a href="/shop">Online Shop</a></li>
-          <li><a href="/epoxy">Epoxy Flooring</a></li>
-          <li><a href="/shop">Online Shop</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+<ul class="footer-links">
+  <li><a href="/about">Company Heritage</a></li>
+  <li><a href="/solutions">Solutions</a></li>
+  <li><a href="/process">How It Works</a></li>
+  <li><a href="/projects">Projects</a></li>
+  <li><a href="/epoxy">Epoxy Flooring</a></li>
+  <li><a href="/shop">Online Shop</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
       </div>
       <div>
         <div class="footer-col-heading">Contact</div>
