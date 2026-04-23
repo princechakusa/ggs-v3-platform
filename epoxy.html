@@ -4,53 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Epoxy Flooring Gauteng | Self‑Levelling, Metallic & Flake | GGS</title>
-  <meta name="description" content="Professional epoxy flooring solutions in Johannesburg, Pretoria, Randburg. Self‑levelling, metallic, flake, quartz & anti‑static epoxy. Free consultation & quote.">
-  <meta name="keywords" content="epoxy flooring, self-levelling epoxy, metallic epoxy, flake epoxy, quartz epoxy, anti-static, Gauteng">
-  <meta property="og:title" content="Epoxy Flooring Services Gauteng | GGS">
-  <meta property="og:description" content="Transform your floors with durable, decorative epoxy coatings. We design, quote, and coordinate professional installation.">
-  <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
+  <meta name="description" content="Professional epoxy flooring solutions in Johannesburg, Pretoria, Randburg.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
-    /* ========== MOBILE‑FIRST BASE ========== */
-    * {
-      box-sizing: border-box;
-    }
-    
+    /* ============================================================
+       EPOXY PAGE – MOBILE‑FIRST STYLES (version 2026-04-23.1)
+       Uses the same breakpoints as the shop page to guarantee
+       proper stacking on phones.
+    ============================================================ */
     body {
       overflow-x: hidden;
     }
-    
-    img, .coming-soon-img, .floor-type-card, .swatch-circle {
+    img, .coming-soon-img, .floor-type-card, .swatch-circle, .project-card {
       max-width: 100%;
-      height: auto; 
     }
 
-    .container {
-      width: 100%;
-      padding-left: 16px;
-      padding-right: 16px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    @media screen and (max-width: 768px) {
-      .floor-type-card {
-        width: 100%; 
-        display: block;
-        margin-bottom: 1rem;
-      }
-      
-      .swatch-container { 
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-    }
-
+    /* Coming‑soon placeholder */
     .coming-soon-img {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -63,44 +36,88 @@
       justify-content: center;
       color: var(--slate);
       font-family: 'Inter', sans-serif;
-      gap: 6px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 500;
-      font-size: 0.7rem;
-      transition: background 0.25s;
+      font-size: 0.72rem;
+      gap: 6px;
     }
     .coming-soon-img i {
       font-size: 1.5rem;
       opacity: 0.45;
       color: var(--gold);
     }
-    .coming-soon-img:hover { background: rgba(182,139,64,0.05); }
 
+    /* Floor type card */
     .floor-type-card {
       background: var(--cream-card);
       border: 1px solid var(--border);
       border-radius: var(--r-card);
       overflow: hidden;
       box-shadow: var(--sh-card);
-      transition: transform 0.3s;
     }
-    .floor-type-card:hover { transform: translateY(-4px); }
-    .floor-type-card .card-body { padding: 16px; }
-    .floor-type-card h3 { font-size: 1rem; margin-bottom: 6px; }
-    .floor-type-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.5; margin: 0; }
+    .floor-type-card .card-body {
+      padding: 16px;
+    }
+    .floor-type-card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .floor-type-card p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.5;
+      margin: 0;
+    }
 
-    /* default grids: single column */
+    /* ========== GRID DEFINITIONS (mobile‑first, exactly like shop) ========== */
     .benefits-grid,
     .flooring-grid,
     .projects-grid,
     .swatch-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr;          /* 1 column on phones */
       gap: 20px;
     }
 
-    /* Timeline */
+    /* Tablet – 2 columns (matches shop's min‑width 640px) */
+    @media (min-width: 640px) {
+      .benefits-grid,
+      .flooring-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop – 3‑4 columns */
+    @media (min-width: 900px) {
+      .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .flooring-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .swatch-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Larger desktop */
+    @media (min-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Timeline – mobile friendly */
     .help-timeline {
       max-width: 100%;
       padding-left: 30px;
@@ -136,31 +153,12 @@
       padding: 32px 20px;
       text-align: center;
     }
-
-    /* ========== TABLET (min-width: 481px) ========== */
-    @media (min-width: 481px) {
-      .benefits-grid,
-      .flooring-grid,
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ========== DESKTOP (min-width: 769px) ========== */
-    @media (min-width: 769px) {
-      .benefits-grid { grid-template-columns: repeat(4, 1fr); }
-      .flooring-grid { grid-template-columns: repeat(3, 1fr); }
-      .projects-grid { grid-template-columns: repeat(4, 1fr); }
-      .swatch-grid { grid-template-columns: repeat(4, 1fr); }
-      .container {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-    }
   </style>
 </head>
 <body>
   <div id="scroll-progress"></div>
 
+  <!-- MOBILE NAV (matches shop navigation) -->
   <div class="mobile-nav" id="mobileNav">
     <a href="/">Home</a>
     <a href="/about">About</a>
@@ -176,6 +174,7 @@
     </div>
   </div>
 
+  <!-- HEADER -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a href="/" class="logo-wrap">
@@ -203,6 +202,7 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section style="background: linear-gradient(180deg, rgba(250,247,242,0.7) 0%, rgba(255,255,255,0.98) 100%); border-bottom: 1px solid var(--border); padding: calc(var(--header-h,72px) + 40px) 0 30px;">
       <div class="container">
         <span class="metadata-label">03 / Specialised Flooring</span>
@@ -215,6 +215,7 @@
       </div>
     </section>
 
+    <!-- BENEFITS (4 cards -> 2 on tablet, 1 on phone) -->
     <section style="padding: 50px 0 30px;">
       <div class="container">
         <div class="benefits-grid">
@@ -226,6 +227,7 @@
       </div>
     </section>
 
+    <!-- EPOXY SYSTEMS (6 cards -> 2 on tablet, 1 on phone) -->
     <section style="padding: 20px 0 40px;">
       <div class="container">
         <h2 style="text-align:center;margin-bottom:24px;">Epoxy Systems We Offer</h2>
@@ -240,6 +242,7 @@
       </div>
     </section>
 
+    <!-- HOW WE HELP -->
     <section style="background:var(--cream-deep); padding:60px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
       <div class="container">
         <h2 style="text-align:center;margin-bottom:16px;">How We Help</h2>
@@ -251,28 +254,30 @@
           <div class="help-step"><div class="step-marker">4</div><h3>Professional Application</h3><p>Certified teams apply primer, layers, decorative finish, and UV‑stable top coat.</p></div>
         </div>
         <p style="text-align:center; margin-top:36px;">
-          <i class="fas fa-phone" style="color:var(--gold);"></i> <strong>+27 62 150 3704</strong>   or   <a href="/contact#quote" style="color:var(--gold); font-weight:600;">request a quote →</a>
+          <i class="fas fa-phone" style="color:var(--gold);"></i> <strong>+27 62 150 3704</strong> &nbsp; or &nbsp; <a href="/contact#quote" style="color:var(--gold); font-weight:600;">request a quote →</a>
         </p>
       </div>
     </section>
 
+    <!-- COLOR SWATCHES -->
     <section style="padding: 60px 0 20px;">
       <div class="container">
         <h2 style="text-align:center;margin-bottom:24px;">Available Colours & Finishes</h2>
         <div class="swatch-grid">
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Light Grey</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Charcoal</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Terracotta</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Ocean Blue</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Pearl White</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Copper Swirl</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Silver Flake</span></div></div>
-          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Midnight Glitter</span></div></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Light Grey</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Charcoal</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Terracotta</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Ocean Blue</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Pearl White</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Copper Swirl</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Silver Flake</span></div>
+          <div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Midnight Glitter</span></div>
         </div>
-        <p style="text-align:center; margin-top:16px; color:var(--slate); font-size:0.85rem;">Custom colour matching available.</p>
+        <p style="text-align:center; margin-top:16px; color:var(--slate); font-size:0.85rem;">Custom colour matching available – contact us for bespoke tints.</p>
       </div>
     </section>
 
+    <!-- RECENT PROJECTS -->
     <section style="padding: 40px 0 60px;">
       <div class="container">
         <h2 style="text-align:center;margin-bottom:16px;">Recent Epoxy Projects</h2>
@@ -289,6 +294,7 @@
       </div>
     </section>
 
+    <!-- CTA -->
     <div style="padding: 0 0 80px;">
       <div class="container">
         <div class="cta-banner">
@@ -301,6 +307,7 @@
     </div>
   </main>
 
+  <!-- FOOTER (identical to shop/contact) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -309,9 +316,9 @@
           <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
           <div class="footer-socials">
             <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="YOUR_TIKTOK_URL" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
         <div>
@@ -338,7 +345,10 @@
         <div class="footer-newsletter">
           <div class="footer-col-heading">Stay Updated</div>
           <p class="newsletter-desc">Get seasonal offers and product updates.</p>
-          <div class="newsletter-form"><input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail"><button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button></div>
+          <div class="newsletter-form">
+            <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+            <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -348,34 +358,14 @@
     </div>
   </footer>
 
-  <div class="wa-float-wrap">
-    <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
-  </div>
-  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
-
   <script>
     const progressBar = document.getElementById('scroll-progress');
-    window.addEventListener('scroll', () => {
-      const s = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      progressBar.style.width = s + '%';
-    }, {passive: true});
+    window.addEventListener('scroll', () => { const s = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100; progressBar.style.width = s + '%'; }, {passive: true});
     const header = document.getElementById('siteHeader'), backTopBtn = document.getElementById('back-top');
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (header) header.classList.toggle('scrolled', y > 30);
-      if (backTopBtn) backTopBtn.classList.toggle('visible', y > 500);
-    }, {passive: true});
+    window.addEventListener('scroll', () => { const y = window.scrollY; if (header) header.classList.toggle('scrolled', y > 30); if (backTopBtn) backTopBtn.classList.toggle('visible', y > 500); }, {passive: true});
     const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-    });
-    window.closeMobile = () => {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    };
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : ''; });
+    window.closeMobile = () => { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; };
   </script>
 </body>
 </html>
