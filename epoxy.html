@@ -15,7 +15,42 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
-    /* ---------- COMING SOON PLACEHOLDER ---------- */
+    /* ========== MOBILE‑FIRST BASE ========== */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      overflow-x: hidden;
+    }
+    
+    img, .coming-soon-img, .floor-type-card, .swatch-circle {
+      max-width: 100%;
+      height: auto; 
+    }
+
+    .container {
+      width: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (max-width: 768px) {
+      .floor-type-card {
+        width: 100%; 
+        display: block;
+        margin-bottom: 1rem;
+      }
+      
+      .swatch-container { 
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+
     .coming-soon-img {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -32,453 +67,315 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 500;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       transition: background 0.25s;
-      box-sizing: border-box;
     }
     .coming-soon-img i {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       opacity: 0.45;
       color: var(--gold);
     }
-    .coming-soon-img:hover {
-      background: rgba(182,139,64,0.05);
-    }
+    .coming-soon-img:hover { background: rgba(182,139,64,0.05); }
 
-    /* ---------- FLOORING TYPE CARDS (compact) ---------- */
     .floor-type-card {
       background: var(--cream-card);
       border: 1px solid var(--border);
       border-radius: var(--r-card);
       overflow: hidden;
       box-shadow: var(--sh-card);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s;
     }
-    .floor-type-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--sh-lift);
-    }
-    .floor-type-card .card-body {
-      padding: 16px;
-    }
-    .floor-type-card .card-body h3 {
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-    .floor-type-card .card-body p {
-      font-size: 0.82rem;
-      color: var(--slate);
-      line-height: 1.6;
-      margin: 0;
+    .floor-type-card:hover { transform: translateY(-4px); }
+    .floor-type-card .card-body { padding: 16px; }
+    .floor-type-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .floor-type-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.5; margin: 0; }
+
+    /* default grids: single column */
+    .benefits-grid,
+    .flooring-grid,
+    .projects-grid,
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    /* ---------- HOW WE HELP TIMELINE ---------- */
+    /* Timeline */
     .help-timeline {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 100%;
+      padding-left: 30px;
       position: relative;
-      padding-left: 40px;
     }
     .help-timeline::before {
       content: '';
       position: absolute;
-      left: 18px;
-      top: 8px;
-      bottom: 8px;
+      left: 12px; top: 0; bottom: 0;
       width: 2px;
       background: var(--border);
     }
     .help-step {
       position: relative;
-      margin-bottom: 32px;
-      padding-left: 28px;
+      padding-left: 24px;
+      margin-bottom: 28px;
     }
-    .help-step:last-child { margin-bottom: 0; }
     .help-step .step-marker {
       position: absolute;
-      left: -34px;
-      top: 4px;
-      width: 36px;
-      height: 36px;
+      left: -25px; top: 2px;
+      width: 28px; height: 28px;
       border-radius: 50%;
-      background: var(--gold);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 12px rgba(182,139,64,0.3);
+      background: var(--gold); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    .help-step h3 { font-size: 1.1rem; margin-bottom: 4px; }
-    .help-step p { color: var(--slate); font-size: 0.9rem; line-height: 1.65; margin: 0; }
+    .help-step h3 { font-size: 1rem; margin-bottom: 4px; }
+    .help-step p { font-size: 0.85rem; color: var(--slate); line-height: 1.5; }
 
-    /* Color swatch grid */
-    .swatch-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .swatch-item {
+    /* CTA banner */
+    .cta-banner {
+      padding: 32px 20px;
       text-align: center;
     }
-    .swatch-circle {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 20px;
-      background: var(--cream-deep);
-      border: 1px dashed var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-      font-size: 0.7rem;
-      color: var(--slate);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: background 0.25s;
-      box-sizing: border-box;
-    }
-    .swatch-circle:hover {
-      background: rgba(182,139,64,0.05);
+
+    /* ========== TABLET (min-width: 481px) ========== */
+    @media (min-width: 481px) {
+      .benefits-grid,
+      .flooring-grid,
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* ---------- MOBILE RESPONSIVENESS ---------- */
-    @media (max-width: 768px) {
-      /* Benefits stack 2x2 */
-      .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      /* Flooring type cards stack 2 then 1 */
-      .flooring-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      /* Project gallery stacks 2 columns */
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-      .swatch-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .help-timeline {
-        padding-left: 30px;
-      }
-      .help-step {
-        padding-left: 20px;
-      }
-      .help-step .step-marker {
-        left: -28px;
-        width: 30px;
-        height: 30px;
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .benefits-grid {
-        grid-template-columns: 1fr;
-      }
-      .flooring-grid {
-        grid-template-columns: 1fr;
-      }
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      .swatch-grid {
-        grid-template-columns: 1fr 1fr;
+    /* ========== DESKTOP (min-width: 769px) ========== */
+    @media (min-width: 769px) {
+      .benefits-grid { grid-template-columns: repeat(4, 1fr); }
+      .flooring-grid { grid-template-columns: repeat(3, 1fr); }
+      .projects-grid { grid-template-columns: repeat(4, 1fr); }
+      .swatch-grid { grid-template-columns: repeat(4, 1fr); }
+      .container {
+        padding-left: 24px;
+        padding-right: 24px;
       }
     }
   </style>
 </head>
 <body>
+  <div id="scroll-progress"></div>
 
-<!-- SCROLL PROGRESS -->
-<div id="scroll-progress"></div>
-
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/solutions">Solutions</a>
-  <a href="/process">Process</a>
-  <a href="/projects">Projects</a>
-  <a href="/epoxy" class="active">Epoxy</a>
-  <a href="/shop">Shop</a>
-  <a href="/contact">Contact</a>
-  <div class="mobile-nav-contact">
-    <a href="tel:+27621503704">+27 62 150 3704</a>
-    <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
-  </div>
-</div>
-
-<!-- STICKY HEADER -->
-<header class="site-header" id="siteHeader">
-  <div class="container header-inner">
-    <a href="/" class="logo-wrap">
-      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-      <span class="logo-text">GGS</span>
-    </a>
-    <nav class="nav-desktop">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/solutions">Solutions</a>
-      <a href="/process">Process</a>
-      <a href="/projects">Projects</a>
-      <a href="/epoxy" class="active">Epoxy</a>
-      <a href="/shop">Shop</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <div class="header-cta-group">
-      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
-      <a href="/contact#quote" class="header-cta">Get Quote →</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/solutions">Solutions</a>
+    <a href="/process">Process</a>
+    <a href="/projects">Projects</a>
+    <a href="/epoxy" class="active">Epoxy</a>
+    <a href="/shop">Shop</a>
+    <a href="/contact">Contact</a>
+    <div class="mobile-nav-contact">
+      <a href="tel:+27621503704">+27 62 150 3704</a>
+      <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
     </div>
   </div>
-</header>
 
-<main>
-  <!-- HERO -->
-  <section style="background: linear-gradient(180deg, rgba(250,247,242,0.7) 0%, rgba(255,255,255,0.98) 100%); border-bottom: 1px solid var(--border); padding: calc(var(--header-h,72px) + 56px) 0 40px;">
-    <div class="container">
-      <span class="metadata-label scroll-reveal">03 / Specialised Flooring</span>
-      <h1 style="font-size:clamp(2.6rem,5vw,4.4rem);line-height:1.12;">
-        <span class="masked-rise"><span class="masked-rise-inner">Epoxy</span></span>
-        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Flooring</span></span>
-      </h1>
-      <p style="font-size:1.05rem;color:var(--slate);max-width:680px;margin-top:18px;line-height:1.7;" class="scroll-reveal">
-        Transform any floor with seamless, durable epoxy. We design the perfect solution, provide a clear quote, and connect you with top‑rated applicators across Gauteng.
-      </p>
-    </div>
-  </section>
-
-  <!-- BENEFITS (responsive grid) -->
-  <section style="padding: 60px 0 20px;">
-    <div class="container">
-      <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
-        <div class="feature-card scroll-reveal"><i class="fas fa-tint-slash" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Waterproof</h3><p>Seamless surface resists moisture – ideal for basements and wet areas.</p></div>
-        <div class="feature-card scroll-reveal"><i class="fas fa-flask" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Chemical‑Resistant</h3><p>Stands up to oils, solvents, and heavy cleaning agents.</p></div>
-        <div class="feature-card scroll-reveal"><i class="fas fa-broom" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Easy Maintenance</h3><p>Non‑porous finish repels dust and dirt – just wipe or mop.</p></div>
-        <div class="feature-card scroll-reveal"><i class="fas fa-palette" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Decorative</h3><p>Metallic, flake, or solid colours to complement any interior style.</p></div>
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="/" class="logo-wrap">
+        <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+        <span class="logo-text">GGS</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/process">Process</a>
+        <a href="/projects">Projects</a>
+        <a href="/epoxy" class="active">Epoxy</a>
+        <a href="/shop">Shop</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="header-cta-group">
+        <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+        <a href="/contact#quote" class="header-cta">Get Quote →</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- FLOORING TYPES (6 systems, responsive) -->
-  <section style="padding: 40px 0 60px;">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:30px;">Epoxy Systems We Offer</h2>
-      <div class="flooring-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-        <!-- 1 -->
-        <div class="floor-type-card scroll-reveal">
-          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Self‑Levelling Epoxy</h3>
-            <p>Glass‑smooth finish for showrooms, retail, and modern homes.</p>
-          </div>
+  <main>
+    <section style="background: linear-gradient(180deg, rgba(250,247,242,0.7) 0%, rgba(255,255,255,0.98) 100%); border-bottom: 1px solid var(--border); padding: calc(var(--header-h,72px) + 40px) 0 30px;">
+      <div class="container">
+        <span class="metadata-label">03 / Specialised Flooring</span>
+        <h1 style="font-size:clamp(2rem,6vw,3.8rem); line-height:1.15; word-break:break-word;">
+          Epoxy <em style="color:var(--gold); font-style:italic;">Flooring</em>
+        </h1>
+        <p style="color:var(--slate); font-size:1rem; line-height:1.6; margin-top:12px;">
+          Transform any floor with seamless, durable epoxy. We design the perfect solution, provide a clear quote, and connect you with top‑rated applicators across Gauteng.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding: 50px 0 30px;">
+      <div class="container">
+        <div class="benefits-grid">
+          <div class="feature-card"><i class="fas fa-tint-slash" style="font-size:2rem;color:var(--gold);margin-bottom:8px;"></i><h3>Waterproof</h3><p>Seamless, moisture‑proof finish.</p></div>
+          <div class="feature-card"><i class="fas fa-flask" style="font-size:2rem;color:var(--gold);margin-bottom:8px;"></i><h3>Chemical‑Resistant</h3><p>Withstands oils and solvents.</p></div>
+          <div class="feature-card"><i class="fas fa-broom" style="font-size:2rem;color:var(--gold);margin-bottom:8px;"></i><h3>Easy Maintenance</h3><p>Non‑porous, simple to clean.</p></div>
+          <div class="feature-card"><i class="fas fa-palette" style="font-size:2rem;color:var(--gold);margin-bottom:8px;"></i><h3>Decorative</h3><p>Metallic, flake, solid hues.</p></div>
         </div>
-        <!-- 2 -->
-        <div class="floor-type-card scroll-reveal">
-          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Metallic Epoxy</h3>
-            <p>Dramatic 3D effects with metallic pigments – a unique floor every time.</p>
-          </div>
+      </div>
+    </section>
+
+    <section style="padding: 20px 0 40px;">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:24px;">Epoxy Systems We Offer</h2>
+        <div class="flooring-grid">
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Self‑Levelling</h3><p>Glass‑smooth for showrooms & modern homes.</p></div></div>
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Metallic</h3><p>Dramatic 3D pigments, luxury effect.</p></div></div>
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Flake</h3><p>Slip‑resistant, ideal for garages.</p></div></div>
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Quartz</h3><p>Textured grip, durable finish.</p></div></div>
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Anti‑Static</h3><p>For labs, server rooms, electronics.</p></div></div>
+          <div class="floor-type-card"><div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div><div class="card-body"><h3>Decorative Chip</h3><p>Terrazzo‑style for lobbies & retail.</p></div></div>
         </div>
-        <!-- 3 -->
-        <div class="floor-type-card scroll-reveal">
-          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Flake Epoxy</h3>
-            <p>Decorative colour flakes for slip‑resistant garage & workshop floors.</p>
-          </div>
+      </div>
+    </section>
+
+    <section style="background:var(--cream-deep); padding:60px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:16px;">How We Help</h2>
+        <p style="text-align:center; max-width:600px; margin:0 auto 40px; color:var(--slate);">We design, quote, and coordinate – you get a hassle‑free floor.</p>
+        <div class="help-timeline">
+          <div class="help-step"><div class="step-marker">1</div><h3>Free Consultation</h3><p>We recommend the best system for your space and traffic.</p></div>
+          <div class="help-step"><div class="step-marker">2</div><h3>Tailored Quote</h3><p>Clear pricing, material specs, and timeline.</p></div>
+          <div class="help-step"><div class="step-marker">3</div><h3>Surface Preparation</h3><p>Our partners grind, shot‑blast, or etch for perfect adhesion.</p></div>
+          <div class="help-step"><div class="step-marker">4</div><h3>Professional Application</h3><p>Certified teams apply primer, layers, decorative finish, and UV‑stable top coat.</p></div>
         </div>
-        <!-- 4 -->
-        <div class="floor-type-card scroll-reveal">
-          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Quartz Epoxy</h3>
-            <p>Textured, durable finish with natural quartz aggregates. Excellent grip.</p>
-          </div>
+        <p style="text-align:center; margin-top:36px;">
+          <i class="fas fa-phone" style="color:var(--gold);"></i> <strong>+27 62 150 3704</strong>   or   <a href="/contact#quote" style="color:var(--gold); font-weight:600;">request a quote →</a>
+        </p>
+      </div>
+    </section>
+
+    <section style="padding: 60px 0 20px;">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:24px;">Available Colours & Finishes</h2>
+        <div class="swatch-grid">
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Light Grey</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Charcoal</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Terracotta</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Ocean Blue</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Pearl White</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Copper Swirl</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Silver Flake</span></div></div>
+          <div style="text-align:center;"><div class="coming-soon-img" style="border-radius:14px; aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Midnight Glitter</span></div></div>
         </div>
-        <!-- 5 -->
-        <div class="floor-type-card scroll-reveal">
+        <p style="text-align:center; margin-top:16px; color:var(--slate); font-size:0.85rem;">Custom colour matching available.</p>
+      </div>
+    </section>
+
+    <section style="padding: 40px 0 60px;">
+      <div class="container">
+        <h2 style="text-align:center;margin-bottom:16px;">Recent Epoxy Projects</h2>
+        <div class="projects-grid">
           <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Anti‑Static Epoxy</h3>
-            <p>Controls static discharge – ideal for server rooms, labs & electronics.</p>
-          </div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
         </div>
-        <!-- 6 -->
-        <div class="floor-type-card scroll-reveal">
-          <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-          <div class="card-body">
-            <h3>Decorative Chip Epoxy</h3>
-            <p>Broadcast coloured chips for a terrazzo‑like look, perfect for lobbies.</p>
-          </div>
+      </div>
+    </section>
+
+    <div style="padding: 0 0 80px;">
+      <div class="container">
+        <div class="cta-banner">
+          <span style="background:rgba(182,139,64,0.15);color:var(--gold);padding:6px 18px;border-radius:30px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;display:inline-block;margin-bottom:20px;">FREE SITE ASSESSMENT</span>
+          <h2 style="color:white;">Ready for a flawless floor?</h2>
+          <p style="color:rgba(255,255,255,0.7);">Let’s discuss your project. We’ll design the right epoxy floor and handle everything from quote to completion.</p>
+          <a href="/contact#quote" class="btn-primary">Request a Quote →</a>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- HOW WE HELP (timeline) -->
-  <section style="background:var(--cream-deep);padding:70px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <footer class="footer">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:16px;">How We Help</h2>
-      <p style="text-align:center;max-width:640px;margin:0 auto 48px;color:var(--slate);line-height:1.7;">
-        We don’t just supply materials – we handle the design, quoting, and coordination so you get a seamless experience.
-      </p>
-      <div class="help-timeline">
-        <div class="help-step">
-          <div class="step-marker">1</div>
-          <h3>Free Consultation</h3>
-          <p>Tell us about your space, traffic, and style. We’ll recommend the best system.</p>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo"><span>GGS</span></div>
+          <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
-        <div class="help-step">
-          <div class="step-marker">2</div>
-          <h3>Tailored Quote</h3>
-          <p>Receive a clear, itemised quote with material specs, timeline, and no hidden fees.</p>
+        <div>
+          <div class="footer-col-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="/about">Company Heritage</a></li>
+            <li><a href="/solutions">Solutions</a></li>
+            <li><a href="/process">How It Works</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/epoxy">Epoxy Flooring</a></li>
+            <li><a href="/shop">Online Shop</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
         </div>
-        <div class="help-step">
-          <div class="step-marker">3</div>
-          <h3>Surface Preparation</h3>
-          <p>Our trusted partners handle grinding, shot blasting, or acid etching.</p>
+        <div>
+          <div class="footer-col-heading">Contact</div>
+          <ul class="footer-links">
+            <li><strong>Global Gamazine Suppliers</strong></li>
+            <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
+            <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
+            <li><a href="https://maps.google.com/?q=12+Granite+Road,+Kya+Sands,+Randburg,+Gauteng" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">12 Granite Road, Kya Sands<br>Randburg, Gauteng</a></li>
+          </ul>
         </div>
-        <div class="help-step">
-          <div class="step-marker">4</div>
-          <h3>Professional Application</h3>
-          <p>Certified teams apply primer, layers, decorative finish, and UV‑stable top coat.</p>
+        <div class="footer-newsletter">
+          <div class="footer-col-heading">Stay Updated</div>
+          <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+          <div class="newsletter-form"><input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail"><button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button></div>
         </div>
       </div>
-      <p style="text-align:center;margin-top:40px;font-size:0.95rem;color:var(--slate);">
-        <i class="fas fa-phone" style="margin-right:6px;color:var(--gold);"></i> Call <strong>+27 62 150 3704</strong> or <a href="/contact#quote" style="color:var(--gold);font-weight:500;">request a quote →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- COLOR PALETTE -->
-  <section style="padding: 60px 0 20px;">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:28px;">Available Epoxy Colours & Finishes</h2>
-      <div class="swatch-grid scroll-reveal">
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Light Grey</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Charcoal</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Terracotta</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Ocean Blue</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Pearl White</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Copper Swirl</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Silver Flake</span></div></div>
-        <div class="swatch-item"><div class="swatch-circle coming-soon-img" style="width:100%;border-radius:14px;aspect-ratio:1/1;"><i class="fas fa-palette"></i><span>Midnight Glitter</span></div></div>
-      </div>
-      <p style="text-align:center;margin-top:18px;color:var(--slate);font-size:0.85rem;">Custom colour matching available – contact us for bespoke tints.</p>
-    </div>
-  </section>
-
-  <!-- RECENT PROJECTS (12 images, responsive) -->
-  <section style="padding: 40px 0 60px;">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:20px;">Recent Epoxy Projects</h2>
-      <div class="projects-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="scroll-reveal">
-        <!-- 12 placeholders -->
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
-        <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
+        <span class="footer-copy">Gamazine & Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- CTA -->
-  <div style="padding: 0 0 80px;">
-    <div class="container">
-      <div class="cta-banner scroll-reveal">
-        <span style="background:rgba(182,139,64,0.15);color:var(--gold);padding:6px 18px;border-radius:30px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;display:inline-block;margin-bottom:20px;">FREE SITE ASSESSMENT</span>
-        <h2 style="color:white;">Ready for a flawless floor?</h2>
-        <p style="color:rgba(255,255,255,0.7);">Let’s discuss your project. We’ll design the right epoxy floor and handle everything from quote to completion.</p>
-        <a href="/contact#quote" class="btn-primary">Request a Quote →</a>
-      </div>
-    </div>
+  <div class="wa-float-wrap">
+    <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
   </div>
-</main>
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
-        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="YOUR_TIKTOK_URL" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-heading">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="/about">Company Heritage</a></li>
-          <li><a href="/solutions">Solutions</a></li>
-          <li><a href="/process">How It Works</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/epoxy">Epoxy Flooring</a></li>
-          <li><a href="/shop">Online Shop</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-heading">Contact</div>
-        <ul class="footer-links">
-          <li><strong>Global Gamazine Suppliers</strong></li>
-          <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
-          <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li>
-            <a href="https://maps.google.com/?q=12+Granite+Road,+Kya+Sands,+Randburg,+Gauteng" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">
-              12 Granite Road, Kya Sands<br>Randburg, Gauteng
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="footer-newsletter">
-        <div class="footer-col-heading">Stay Updated</div>
-        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
-        <div class="newsletter-form">
-          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
-          <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
-      <span class="footer-copy">Gamazine & Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  const progressBar=document.getElementById('scroll-progress');
-  window.addEventListener('scroll',()=>{const s=(document.documentElement.scrollTop/(document.documentElement.scrollHeight-window.innerHeight))*100;progressBar.style.width=s+'%';},{passive:true});
-  const header=document.getElementById('siteHeader'),backTop=document.getElementById('back-top');
-  window.addEventListener('scroll',()=>{const y=window.scrollY;header.classList.toggle('scrolled',y>30);backTop.classList.toggle('visible',y>500);},{passive:true});
-  const hamburger=document.getElementById('hamburger'),mobileNav=document.getElementById('mobileNav');
-  hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileNav.classList.toggle('open');document.body.style.overflow=mobileNav.classList.contains('open')?'hidden':'';});
-  window.closeMobile=function(){hamburger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow='';};
-</script>
+  <script>
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const s = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = s + '%';
+    }, {passive: true});
+    const header = document.getElementById('siteHeader'), backTopBtn = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (header) header.classList.toggle('scrolled', y > 30);
+      if (backTopBtn) backTopBtn.classList.toggle('visible', y > 500);
+    }, {passive: true});
+    const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    window.closeMobile = () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+  </script>
 </body>
 </html>
