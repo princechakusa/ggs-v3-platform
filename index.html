@@ -10,12 +10,18 @@
   <meta property="og:description" content="Gamazine from R250/20L. No deposit. Free site inspection.">
   <meta property="og:image" content="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg">
 
+  <!-- ✅ FIX: Branded favicon — no file needed -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a84c' text-anchor='middle'>G</text></svg>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  
+
+  <!-- Supabase (needed for sale modal) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     .section-surface {
       background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(250,247,242,0.95) 100%);
@@ -53,17 +59,13 @@
       font-weight: 700;
       margin-bottom: 12px;
     }
-    .process-mini-card h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
+    .process-mini-card h3 { font-size: 1rem; margin-bottom: 8px; }
     .process-mini-card p {
       font-size: 0.84rem;
       color: var(--slate);
       line-height: 1.65;
       margin: 0;
     }
-    /* Subtle inline shop CTA */
     .shop-inline-cta {
       display: inline-flex;
       align-items: center;
@@ -75,10 +77,149 @@
       border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
     }
-    .shop-inline-cta:hover {
-      border-bottom-color: var(--gold);
+    .shop-inline-cta:hover { border-bottom-color: var(--gold); }
+
+    /* ── Sale Modal ───────────────────────────────────────────── */
+    #ggs-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(15,18,22,0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: ggs-fade 0.35s ease;
     }
-    @media (max-width: 860px) {
+    @keyframes ggs-fade { from { opacity: 0 } to { opacity: 1 } }
+
+    #ggs-modal {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 0;
+      max-width: 460px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.22);
+      position: relative;
+      animation: ggs-rise 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    @keyframes ggs-rise {
+      from { transform: translateY(28px) scale(0.97); opacity: 0 }
+      to   { transform: translateY(0)    scale(1);    opacity: 1 }
+    }
+
+    #ggs-modal-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    #ggs-modal-body {
+      padding: 28px 28px 24px;
+    }
+
+    #ggs-modal-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b68b40;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    #ggs-modal-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #b68b40;
+      animation: livePulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes livePulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.4; transform:scale(1.4); }
+    }
+
+    #ggs-modal-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: #1a1f24;
+      line-height: 1.35;
+      margin-bottom: 20px;
+    }
+
+    #ggs-modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    #ggs-cta {
+      flex: 1;
+      background: #1a1f24;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    #ggs-cta:hover { background: #2e363d; }
+
+    #ggs-dismiss {
+      background: transparent;
+      border: 1px solid #d5cfc5;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #6a7e8b;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    #ggs-dismiss:hover { border-color: #1a1f24; color: #1a1f24; }
+
+    #ggs-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #444;
+      line-height: 1;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    #ggs-close:hover { background: #fff; color: #1a1f24; }
+
+    @media (max-width: 640px) {
+      #ggs-modal { border-radius: 16px; }
+      #ggs-modal-body { padding: 22px 18px 20px; }
+      #ggs-modal-message { font-size: 1.3rem; }
+      #ggs-modal-actions { flex-direction: column; }
       .process-mini-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -98,7 +239,7 @@
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
-<!-- MOBILE NAV (clean URLs, Epoxy & Shop included) -->
+<!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <a href="/">Home</a>
   <a href="/about">About</a>
@@ -114,7 +255,7 @@
   </div>
 </div>
 
-<!-- STICKY HEADER (all pages, clean URLs) -->
+<!-- STICKY HEADER -->
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
     <a href="/" class="logo-wrap">
@@ -257,7 +398,12 @@
             <h3 class="broadcast-headline">Free site inspection<br><em>this week</em></h3>
             <div class="gold-rule"></div>
             <p class="broadcast-desc">Book your complimentary on-site assessment and receive a detailed, itemised quote within 24 hours — absolutely no cost and no obligation.</p>
-            <div class="pill-tags"><span class="pill">Free Inspection</span><span class="pill">24-Hour Quote</span><span class="pill">All Gauteng</span><span class="pill">No Obligation</span></div>
+            <div class="pill-tags">
+              <span class="pill">Free Inspection</span>
+              <span class="pill">24-Hour Quote</span>
+              <span class="pill">All Gauteng</span>
+              <span class="pill">No Obligation</span>
+            </div>
             <a href="/contact#quote" class="btn-primary" style="align-self:flex-start;"><span>Secure Slot</span><span>→</span></a>
             <p class="broadcast-validity">Valid for bookings placed before 30 April 2026 · Gauteng properties only</p>
           </div>
@@ -275,7 +421,10 @@
       <div class="asymmetric-grid">
         <div class="asymmetric-content">
           <span class="metadata-label">02 / Company Heritage</span>
-          <h2><span class="masked-rise"><span class="masked-rise-inner">Trusted</span></span><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">since 2012</span></span></h2>
+          <h2>
+            <span class="masked-rise"><span class="masked-rise-inner">Trusted</span></span>
+            <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">since 2012</span></span>
+          </h2>
           <div class="gold-rule"></div>
           <p style="font-size:1rem;color:var(--slate);line-height:1.78;font-weight:300;max-width:420px;" class="scroll-reveal">Global Gamazine Suppliers was founded on a single principle: deliver premium coating solutions with zero compromise. Over 14 years and 1,200+ projects later, our methodology ensures uniform thickness, zero-waste application, and lasting beauty.</p>
           <a href="/about" class="btn-primary" style="margin-top:36px;align-self:flex-start;"><span>Learn More</span><span>→</span></a>
@@ -288,7 +437,7 @@
   </section>
 </main>
 
-<!-- FOOTER (consistent with all other pages) -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -299,10 +448,10 @@
         </div>
         <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="YOUR_LINKEDIN_URL" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       <div>
@@ -348,14 +497,16 @@
 
 <!-- WHATSAPP FLOAT -->
 <div class="wa-float-wrap">
-  <a href="https://wa.me/27621503704" class="wa-float" target="_blank">
+  <a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <span class="wa-pulse"></span>
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
 
 <!-- BACK TO TOP -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
 <!-- COOKIE NOTICE -->
 <div id="cookie-notice">
@@ -368,29 +519,29 @@
 </div>
 
 <script>
-  // Preloader
+  // ── Preloader ──────────────────────────────────────────────────────────
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) setTimeout(() => preloader.classList.add('done'), 1800);
   });
-  
-  // Scroll progress
+
+  // ── Scroll progress ────────────────────────────────────────────────────
   const progressBar = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
-    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    if (progressBar) progressBar.style.width = scrolled + '%';
+    const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    if (progressBar) progressBar.style.width = pct + '%';
   }, { passive: true });
-  
-  // Header scroll shadow
-  const header = document.getElementById('siteHeader');
+
+  // ── Header shadow + back-to-top ────────────────────────────────────────
+  const header  = document.getElementById('siteHeader');
   const backTop = document.getElementById('back-top');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    if (header) header.classList.toggle('scrolled', y > 30);
+    if (header)  header.classList.toggle('scrolled', y > 30);
     if (backTop) backTop.classList.toggle('visible', y > 500);
   }, { passive: true });
-  
-  // Mobile nav
+
+  // ── Mobile nav ─────────────────────────────────────────────────────────
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   if (hamburger && mobileNav) {
@@ -400,23 +551,17 @@
       document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
     });
   }
-  function closeMobile() {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  
-  // Counter animation
+
+  // ── Counter animation ──────────────────────────────────────────────────
   const counters = document.querySelectorAll('.stat-num[data-target]');
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
+      const el     = entry.target;
       const target = parseInt(el.dataset.target);
       const suffix = el.dataset.suffix || '';
       let start = 0;
-      const duration = 1600;
-      const step = target / (duration / 16);
+      const step = target / (1600 / 16);
       const timer = setInterval(() => {
         start = Math.min(start + step, target);
         el.textContent = Math.floor(start).toLocaleString() + suffix;
@@ -426,36 +571,104 @@
     });
   }, { threshold: 0.7 });
   counters.forEach(c => counterObserver.observe(c));
-  
-  // Newsletter
+
+  // ── Newsletter ─────────────────────────────────────────────────────────
   function handleNewsletter() {
     const input = document.getElementById('newsletterEmail');
     if (input.value && input.value.includes('@')) {
       input.value = '';
-      input.placeholder = 'Subscribed! (ok)';
+      input.placeholder = 'Subscribed! ✓';
       alert('Thanks for subscribing!');
     } else {
       alert('Please enter a valid email.');
     }
   }
-  
-  // Cookie
-  function safeStorageSet(key, value) {
-    try { localStorage.setItem(key, value); } catch (e) {}
-  }
-  function safeStorageGet(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
-  }
+
+  // ── Cookie notice ──────────────────────────────────────────────────────
+  function safeStorageSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function safeStorageGet(k)    { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function dismissCookie(type) {
-    const cookieNotice = document.getElementById('cookie-notice');
-    if (cookieNotice) cookieNotice.classList.add('hidden');
+    const el = document.getElementById('cookie-notice');
+    if (el) el.classList.add('hidden');
     safeStorageSet('ggs-cookie-consent', type || 'essential');
   }
   if (safeStorageGet('ggs-cookie-consent')) {
-    const cookieNotice = document.getElementById('cookie-notice');
-    if (cookieNotice) cookieNotice.classList.add('hidden');
+    const el = document.getElementById('cookie-notice');
+    if (el) el.classList.add('hidden');
   }
+
+  // ── ✅ Sale Modal (Supabase-powered) ───────────────────────────────────
+  (function () {
+    const SUPABASE_URL      = 'https://fsakwzzcbnqkmchrvzzq.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function checkSaleModal() {
+      try {
+        const { data, error } = await supabase
+          .from('site_settings')
+          .select('is_sale_active, sale_message, sale_image_url')
+          .eq('id', 1)
+          .single();
+
+        if (error || !data || !data.is_sale_active) return;
+
+        // Build overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'ggs-overlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Special offer');
+
+        overlay.innerHTML = `
+          <div id="ggs-modal">
+            <button id="ggs-close" aria-label="Close offer">&#x2715;</button>
+            ${data.sale_image_url ? `<img id="ggs-modal-img" src="${data.sale_image_url}" alt="Special offer banner">` : ''}
+            <div id="ggs-modal-body">
+              <div id="ggs-modal-eyebrow">Limited Offer · Gauteng</div>
+              <div id="ggs-modal-message">${data.sale_message}</div>
+              <div id="ggs-modal-actions">
+                <a id="ggs-cta" href="/contact#quote">
+                  <i class="fas fa-calendar-check"></i> Book Free Inspection
+                </a>
+                <button id="ggs-dismiss">Maybe later</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Trap focus inside modal
+        const focusable = overlay.querySelectorAll('button, a, input');
+        if (focusable.length) focusable[0].focus();
+
+        const close = () => {
+          overlay.style.animation = 'ggs-fade 0.2s ease reverse';
+          setTimeout(() => overlay.remove(), 200);
+        };
+
+        document.getElementById('ggs-close').addEventListener('click', close);
+        document.getElementById('ggs-dismiss').addEventListener('click', close);
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function escHandler(e) {
+          if (e.key === 'Escape') { close(); document.removeEventListener('keydown', escHandler); }
+        });
+
+      } catch (err) {
+        console.warn('GGS sale modal:', err);
+      }
+    }
+
+    // Slight delay so page paints first
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(checkSaleModal, 1200));
+    } else {
+      setTimeout(checkSaleModal, 1200);
+    }
+  })();
 </script>
-<script src="assets/js/announcement.js"></script>
 </body>
 </html>
