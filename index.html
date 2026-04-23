@@ -63,6 +63,21 @@
       line-height: 1.65;
       margin: 0;
     }
+    /* Subtle inline shop CTA */
+    .shop-inline-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      margin-left: 12px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .shop-inline-cta:hover {
+      border-bottom-color: var(--gold);
+    }
     @media (max-width: 860px) {
       .process-mini-grid { grid-template-columns: 1fr; }
     }
@@ -83,7 +98,7 @@
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
 
-<!-- MOBILE NAV -->
+<!-- MOBILE NAV (clean URLs, Epoxy & Shop included) -->
 <div class="mobile-nav" id="mobileNav">
   <a href="/">Home</a>
   <a href="/about">About</a>
@@ -99,26 +114,26 @@
   </div>
 </div>
 
-<!-- STICKY HEADER -->
+<!-- STICKY HEADER (all pages, clean URLs) -->
 <header class="site-header" id="siteHeader">
   <div class="container header-inner">
-    <a href="index.html" class="logo-wrap">
+    <a href="/" class="logo-wrap">
       <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
-  <a href="/"$(/ -eq '/' ? ' class="active"' : '')>Home</a>
-  <a href="/about"$(/ -eq '/about' ? ' class="active"' : '')>About</a>
-  <a href="/solutions"$(/ -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
-  <a href="/process"$(/ -eq '/process' ? ' class="active"' : '')>Process</a>
-  <a href="/projects"$(/ -eq '/projects' ? ' class="active"' : '')>Projects</a>
-  <a href="/epoxy"$(/ -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
-  <a href="/shop"$(/ -eq '/shop' ? ' class="active"' : '')>Shop</a>
-  <a href="/contact"$(/ -eq '/contact' ? ' class="active"' : '')>Contact</a>
-</nav>
+      <a href="/" class="active">Home</a>
+      <a href="/about">About</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/process">Process</a>
+      <a href="/projects">Projects</a>
+      <a href="/epoxy">Epoxy</a>
+      <a href="/shop">Shop</a>
+      <a href="/contact">Contact</a>
+    </nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
-      <a href="contact.html#quote" class="header-cta">Get Quote →</a>
+      <a href="/contact#quote" class="header-cta">Get Quote →</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -142,10 +157,15 @@
               <span class="masked-rise"><span class="masked-rise-inner">Gamazine</span></span>
               <span class="masked-rise"><span class="masked-rise-inner italic-gold">Coatings</span></span>
             </h1>
-            <p class="hero-sub scroll-reveal">From <strong>R250/20L.</strong> No deposit — pay only on delivery. Complimentary site inspection across all of Gauteng.</p>
+            <p class="hero-sub scroll-reveal">
+              From <strong>R250/20L.</strong> No deposit — pay only on delivery. Complimentary site inspection across all of Gauteng.
+              <a href="/shop" class="shop-inline-cta">
+                <i class="fas fa-shopping-cart"></i> Shop Online →
+              </a>
+            </p>
             <div class="hero-btns scroll-reveal">
-              <a href="contact.html#quote" class="btn-primary"><span>Get Free Quote</span><span>→</span></a>
-              <a href="solutions.html" class="btn-outline">Our Products</a>
+              <a href="/contact#quote" class="btn-primary"><span>Get Free Quote</span><span>→</span></a>
+              <a href="/solutions" class="btn-outline">Our Products</a>
             </div>
           </div>
           <div class="hero-trust scroll-reveal">
@@ -238,7 +258,7 @@
             <div class="gold-rule"></div>
             <p class="broadcast-desc">Book your complimentary on-site assessment and receive a detailed, itemised quote within 24 hours — absolutely no cost and no obligation.</p>
             <div class="pill-tags"><span class="pill">Free Inspection</span><span class="pill">24-Hour Quote</span><span class="pill">All Gauteng</span><span class="pill">No Obligation</span></div>
-            <a href="contact.html#quote" class="btn-primary" style="align-self:flex-start;"><span>Secure Slot</span><span>→</span></a>
+            <a href="/contact#quote" class="btn-primary" style="align-self:flex-start;"><span>Secure Slot</span><span>→</span></a>
             <p class="broadcast-validity">Valid for bookings placed before 30 April 2026 · Gauteng properties only</p>
           </div>
           <div class="broadcast-right">
@@ -258,7 +278,7 @@
           <h2><span class="masked-rise"><span class="masked-rise-inner">Trusted</span></span><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">since 2012</span></span></h2>
           <div class="gold-rule"></div>
           <p style="font-size:1rem;color:var(--slate);line-height:1.78;font-weight:300;max-width:420px;" class="scroll-reveal">Global Gamazine Suppliers was founded on a single principle: deliver premium coating solutions with zero compromise. Over 14 years and 1,200+ projects later, our methodology ensures uniform thickness, zero-waste application, and lasting beauty.</p>
-          <a href="about.html" class="btn-primary" style="margin-top:36px;align-self:flex-start;"><span>Learn More</span><span>→</span></a>
+          <a href="/about" class="btn-primary" style="margin-top:36px;align-self:flex-start;"><span>Learn More</span><span>→</span></a>
         </div>
         <div class="asymmetric-image">
           <img class="cinematic-img" src="https://i.ibb.co/75QVyXB/Whats-App-Image-2026-04-16-at-9-52-39-AM-1.jpg" alt="Beautiful charcoal Gamazine home exterior — Gauteng">
@@ -268,7 +288,7 @@
   </section>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER (consistent with all other pages) -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
