@@ -34,6 +34,7 @@
       font-weight: 500;
       font-size: 0.72rem;
       transition: background 0.25s;
+      box-sizing: border-box;
     }
     .coming-soon-img i {
       font-size: 1.6rem;
@@ -136,19 +137,59 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: background 0.25s;
+      box-sizing: border-box;
     }
     .swatch-circle:hover {
       background: rgba(182,139,64,0.05);
     }
 
+    /* ---------- MOBILE RESPONSIVENESS ---------- */
     @media (max-width: 768px) {
-      .swatch-grid { grid-template-columns: repeat(2, 1fr); }
-      .help-timeline { padding-left: 30px; }
-      .help-step { padding-left: 20px; }
-      .help-step .step-marker { left: -28px; width: 30px; height: 30px; font-size: 0.75rem; }
+      /* Benefits stack 2x2 */
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      /* Flooring type cards stack 2 then 1 */
+      .flooring-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      /* Project gallery stacks 2 columns */
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .help-timeline {
+        padding-left: 30px;
+      }
+      .help-step {
+        padding-left: 20px;
+      }
+      .help-step .step-marker {
+        left: -28px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+      }
     }
+
     @media (max-width: 480px) {
-      .swatch-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .flooring-grid {
+        grid-template-columns: 1fr;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .swatch-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -164,7 +205,7 @@
   <a href="/solutions">Solutions</a>
   <a href="/process">Process</a>
   <a href="/projects">Projects</a>
-  <a href="/epoxy">Epoxy</a>
+  <a href="/epoxy" class="active">Epoxy</a>
   <a href="/shop">Shop</a>
   <a href="/contact">Contact</a>
   <div class="mobile-nav-contact">
@@ -181,15 +222,15 @@
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
-  <a href="/"$(/epoxy -eq '/' ? ' class="active"' : '')>Home</a>
-  <a href="/about"$(/epoxy -eq '/about' ? ' class="active"' : '')>About</a>
-  <a href="/solutions"$(/epoxy -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
-  <a href="/process"$(/epoxy -eq '/process' ? ' class="active"' : '')>Process</a>
-  <a href="/projects"$(/epoxy -eq '/projects' ? ' class="active"' : '')>Projects</a>
-  <a href="/epoxy"$(/epoxy -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
-  <a href="/shop"$(/epoxy -eq '/shop' ? ' class="active"' : '')>Shop</a>
-  <a href="/contact"$(/epoxy -eq '/contact' ? ' class="active"' : '')>Contact</a>
-</nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/process">Process</a>
+      <a href="/projects">Projects</a>
+      <a href="/epoxy" class="active">Epoxy</a>
+      <a href="/shop">Shop</a>
+      <a href="/contact">Contact</a>
+    </nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
       <a href="/contact#quote" class="header-cta">Get Quote →</a>
@@ -215,10 +256,10 @@
     </div>
   </section>
 
-  <!-- BENEFITS -->
+  <!-- BENEFITS (responsive grid) -->
   <section style="padding: 60px 0 20px;">
     <div class="container">
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+      <div class="benefits-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
         <div class="feature-card scroll-reveal"><i class="fas fa-tint-slash" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Waterproof</h3><p>Seamless surface resists moisture – ideal for basements and wet areas.</p></div>
         <div class="feature-card scroll-reveal"><i class="fas fa-flask" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Chemical‑Resistant</h3><p>Stands up to oils, solvents, and heavy cleaning agents.</p></div>
         <div class="feature-card scroll-reveal"><i class="fas fa-broom" style="font-size:2rem;color:var(--gold);margin-bottom:10px;"></i><h3>Easy Maintenance</h3><p>Non‑porous finish repels dust and dirt – just wipe or mop.</p></div>
@@ -227,11 +268,11 @@
     </div>
   </section>
 
-  <!-- FLOORING TYPES (6 systems) -->
+  <!-- FLOORING TYPES (6 systems, responsive) -->
   <section style="padding: 40px 0 60px;">
     <div class="container">
       <h2 style="text-align:center;margin-bottom:30px;">Epoxy Systems We Offer</h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="flooring-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
         <!-- 1 -->
         <div class="floor-type-card scroll-reveal">
           <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
@@ -319,7 +360,7 @@
     </div>
   </section>
 
-  <!-- COLOR PALETTE (new) -->
+  <!-- COLOR PALETTE -->
   <section style="padding: 60px 0 20px;">
     <div class="container">
       <h2 style="text-align:center;margin-bottom:28px;">Available Epoxy Colours & Finishes</h2>
@@ -337,11 +378,11 @@
     </div>
   </section>
 
-  <!-- RECENT PROJECTS (12 images) -->
+  <!-- RECENT PROJECTS (12 images, responsive) -->
   <section style="padding: 40px 0 60px;">
     <div class="container">
       <h2 style="text-align:center;margin-bottom:20px;">Recent Epoxy Projects</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="scroll-reveal">
+      <div class="projects-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="scroll-reveal">
         <!-- 12 placeholders -->
         <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
         <div class="coming-soon-img"><i class="fas fa-image"></i><span>Coming Soon</span></div>
@@ -391,15 +432,15 @@
       </div>
       <div>
         <div class="footer-col-heading">Navigate</div>
-<ul class="footer-links">
-  <li><a href="/about">Company Heritage</a></li>
-  <li><a href="/solutions">Solutions</a></li>
-  <li><a href="/process">How It Works</a></li>
-  <li><a href="/projects">Projects</a></li>
-  <li><a href="/epoxy">Epoxy Flooring</a></li>
-  <li><a href="/shop">Online Shop</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
+        <ul class="footer-links">
+          <li><a href="/about">Company Heritage</a></li>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/process">How It Works</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/epoxy">Epoxy Flooring</a></li>
+          <li><a href="/shop">Online Shop</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
       </div>
       <div>
         <div class="footer-col-heading">Contact</div>
