@@ -210,16 +210,9 @@
 
 <script>
   (async function() {
-    // ----- SUPABASE CONFIG -----
     const SUPABASE_URL = 'https://fsakwzzcbnqkmchrvzzq.supabase.co'
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA'
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' // keep your existing key
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-    // ----- PASSWORD PROTECTION -----
-    // Hash of your chosen password. You can generate a new one at:
-    // https://emn178.github.io/online-tools/sha256.html
-    // Default password is "GGSadmin2026!" – change it!
-    const PASSWORD_HASH = 'd748f4fb1ba34a6c24dddda738be6497e83404d336502e0ab0af4d7168cfbf6d' // SHA256 of "password" – REPLACE WITH YOUR OWN
 
     const loginPanel = document.getElementById('loginPanel')
     const adminPanel = document.getElementById('adminPanel')
@@ -228,27 +221,33 @@
     const loginError = document.getElementById('loginError')
     const logoutBtn = document.getElementById('logoutBtn')
 
-    // Check if already authenticated (session storage)
+    // Check if already authenticated
     if (sessionStorage.getItem('ggs_admin_auth') === 'true') {
       showAdminPanel()
     }
 
-    // SHA-256 hashing function (built into browser)
-    async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message)
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
-      const hashArray = Array.from(new Uint8Array(hashBuffer))
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
-    }
-
     loginBtn.addEventListener('click', async () => {
-      const entered = passwordInput.value
-      if (!entered) {
+      const password = passwordInput.value
+      if (!password) {
         loginError.textContent = 'Please enter a password'
         return
       }
-      const hash = await sha256(entered)
-      if (hash === PASSWORD_HASH) {
+      loginBtn.disabled = true
+      loginError.textContent = 'Verifying...'
+
+      const { data, error } = await supabase.rpc('verify_admin', {
+        uname: 'admin',
+        pwd: password
+      })
+
+      if (error) {
+        loginError.textContent = 'An error occurred. Please try again.'
+        console.error(error)
+        loginBtn.disabled = false
+        return
+      }
+
+      if (data === true) {
         sessionStorage.setItem('ggs_admin_auth', 'true')
         showAdminPanel()
         passwordInput.value = ''
@@ -256,6 +255,7 @@
       } else {
         loginError.textContent = 'Incorrect password'
       }
+      loginBtn.disabled = false
     })
 
     passwordInput.addEventListener('keypress', (e) => {
@@ -265,7 +265,7 @@
     function showAdminPanel() {
       loginPanel.style.display = 'none'
       adminPanel.style.display = 'block'
-      initAdminPanel() // load settings etc.
+      initAdminPanel()
     }
 
     logoutBtn.addEventListener('click', () => {
@@ -274,7 +274,7 @@
       loginPanel.style.display = 'block'
     })
 
-    // ----- ADMIN PANEL LOGIC (same as before) -----
+    // ----- ADMIN PANEL LOGIC (unchanged) -----
     let currentActive = false
     let toggleBtn, messageInput, imageUrlInput, imagePreview, statusMsg
 
