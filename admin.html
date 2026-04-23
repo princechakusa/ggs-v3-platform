@@ -4,27 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GGS Admin · Marketing Toggle</title>
+
+  <!-- ✅ FIX: Branded favicon — no file upload needed -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a84c' text-anchor='middle'>G</text></svg>">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f6f3ee 45%, #eee8de 100%);
       font-family: 'Inter', sans-serif;
-      display: block;
       color: #1a1f24;
-      align-items: center;
       min-height: 100vh;
       padding: 36px 24px;
     }
+
     .shell {
       max-width: 760px;
       margin: 0 auto;
     }
-    .admin-card, .login-card {
-      max-width: 760px;
+
+    .admin-card,
+    .login-card {
       width: 100%;
       background: #ffffff;
       border: 1px solid #d8d2c7;
@@ -32,6 +38,7 @@
       padding: 34px;
       box-shadow: 0 16px 45px rgba(26,31,36,0.08);
     }
+
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 5vw, 3rem);
@@ -41,6 +48,7 @@
       border-bottom: 1px solid #eee9df;
       padding-bottom: 14px;
     }
+
     .subhead {
       font-size: 0.75rem;
       text-transform: uppercase;
@@ -48,6 +56,7 @@
       color: #5a6c7a;
       margin-bottom: 26px;
     }
+
     .panel-block {
       background: #faf8f3;
       border: 1px solid #e6dfd3;
@@ -55,19 +64,24 @@
       padding: 18px;
       margin-bottom: 14px;
     }
+
     .row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
     }
+
     .label {
       font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #1a1f24;
+      display: block;
+      margin-bottom: 4px;
     }
+
     .toggle-btn {
       border: 1px solid #101317;
       background: #ffffff;
@@ -81,10 +95,17 @@
       min-width: 130px;
       text-align: center;
     }
+
     .toggle-btn.active {
       background: #1a1f24;
       color: #fff;
     }
+
+    .toggle-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .input-field {
       width: 100%;
       padding: 14px 16px;
@@ -97,11 +118,13 @@
       margin-bottom: 18px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
+
     .input-field:focus {
       border-color: #b68b40;
       box-shadow: 0 0 0 3px rgba(182,139,64,0.16);
       outline: none;
     }
+
     .status-msg {
       font-size: 0.8rem;
       color: #5a6c7a;
@@ -109,7 +132,9 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       min-height: 1.2em;
+      transition: color 0.2s;
     }
+
     .hint {
       font-size: 0.7rem;
       color: #8a9fae;
@@ -119,13 +144,16 @@
       border-top: 1px solid #ddd;
       padding-top: 16px;
     }
+
     img.preview {
       max-width: 100%;
       max-height: 170px;
       margin-top: 10px;
       border: 1px solid #ddd;
       border-radius: 10px;
+      display: block;
     }
+
     .login-btn {
       width: 100%;
       padding: 14px;
@@ -136,12 +164,23 @@
       border-radius: 12px;
       cursor: pointer;
       margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
     }
+
+    .login-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     .error-msg {
       color: #b91c1c;
       font-size: 0.8rem;
       margin-top: 12px;
+      min-height: 1.2em;
     }
+
     .actions-row {
       display: flex;
       justify-content: space-between;
@@ -150,242 +189,274 @@
       margin-top: 12px;
       flex-wrap: wrap;
     }
+
     .logout-btn {
       background: #fff;
       border: 1px solid #1a1f24;
       border-radius: 10px;
       padding: 9px 14px;
       cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      transition: background 0.2s, color 0.2s;
     }
+
+    .logout-btn:hover {
+      background: #1a1f24;
+      color: #fff;
+    }
+
+    /* ✅ Loading skeleton for settings fetch */
+    .loading-overlay {
+      text-align: center;
+      padding: 12px 0 4px;
+      font-size: 0.75rem;
+      color: #8a9fae;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
     @media (max-width: 640px) {
       body { padding: 18px 12px; }
       .admin-card, .login-card { padding: 22px 16px; border-radius: 14px; }
       .row { flex-direction: column; align-items: flex-start; }
       .toggle-btn { width: 100%; }
       .actions-row { flex-direction: column; align-items: stretch; }
-      .logout-btn, .login-btn { width: 100%; }
+      .logout-btn, .login-btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 <div id="app" class="shell">
+
   <!-- Password Gate -->
   <div id="loginPanel" class="login-card">
     <h1>Admin Access</h1>
     <div class="subhead">Enter password to continue</div>
-    <input type="password" id="passwordInput" class="input-field" placeholder="Password" autocomplete="off">
+    <input type="password" id="passwordInput" class="input-field" placeholder="Password" autocomplete="current-password">
     <button id="loginBtn" class="login-btn">Unlock</button>
     <div id="loginError" class="error-msg"></div>
   </div>
 
   <!-- Admin Panel (hidden initially) -->
-  <div id="adminPanel" class="admin-card" style="display: none;">
+  <div id="adminPanel" class="admin-card" style="display:none;">
     <h1>Marketing Toggle</h1>
     <div class="subhead">Global Gamazine Suppliers · Admin</div>
+
     <div class="panel-block">
       <div class="row">
         <span class="label">Sale Notification</span>
-        <button id="toggleBtn" class="toggle-btn">INACTIVE</button>
+        <button id="toggleBtn" class="toggle-btn" disabled>Loading…</button>
       </div>
       <div class="status-msg" id="statusMessage"></div>
     </div>
 
     <div class="panel-block">
       <label class="label" for="messageInput">Message</label>
-      <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale - 20% off this week!" value="Hurry! Limited time offer - Free site inspection this week.">
+      <input type="text" id="messageInput" class="input-field" placeholder="e.g. Flash Sale – 20% off this week!" disabled>
       <label class="label" for="imageUrlInput">Image URL (optional)</label>
-      <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg">
+      <input type="text" id="imageUrlInput" class="input-field" placeholder="https://i.ibb.co/.../sale-banner.jpg" disabled>
       <div id="imagePreview"></div>
     </div>
 
     <div class="hint">
       Changes are saved instantly · Visitors see the modal when ACTIVE
     </div>
+
     <div class="actions-row">
       <span style="font-size:0.75rem;color:#6a7e8b;text-transform:uppercase;letter-spacing:0.12em;">Session based admin access</span>
       <button id="logoutBtn" class="logout-btn">Log out</button>
     </div>
   </div>
+
 </div>
 
 <script>
-  (function() {
-    // ----- SUPABASE CONFIG -----
-    const SUPABASE_URL = 'https://fsakwzzcbnqkmchrvzzq.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+(function () {
+  // ── Supabase config ──────────────────────────────────────────────────────
+  const SUPABASE_URL     = 'https://fsakwzzcbnqkmchrvzzq.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const loginPanel = document.getElementById('loginPanel');
-    const adminPanel = document.getElementById('adminPanel');
-    const passwordInput = document.getElementById('passwordInput');
-    const loginBtn = document.getElementById('loginBtn');
-    const loginError = document.getElementById('loginError');
-    const logoutBtn = document.getElementById('logoutBtn');
+  // ── DOM refs ─────────────────────────────────────────────────────────────
+  const loginPanel    = document.getElementById('loginPanel');
+  const adminPanel    = document.getElementById('adminPanel');
+  const passwordInput = document.getElementById('passwordInput');
+  const loginBtn      = document.getElementById('loginBtn');
+  const loginError    = document.getElementById('loginError');
+  const logoutBtn     = document.getElementById('logoutBtn');
 
-    // Check if already authenticated
-    if (sessionStorage.getItem('ggs_admin_auth') === 'true') {
-      showAdminPanel();
+  // ── Auth ─────────────────────────────────────────────────────────────────
+  if (sessionStorage.getItem('ggs_admin_auth') === 'true') {
+    showAdminPanel();
+  }
+
+  loginBtn.addEventListener('click', handleLogin);
+
+  // ✅ FIX: Enter key support on password field
+  passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleLogin();
+  });
+
+  async function handleLogin() {
+    const password = passwordInput.value.trim();
+    if (!password) { loginError.textContent = 'Please enter a password.'; return; }
+
+    loginBtn.disabled = true;
+    loginError.textContent = 'Verifying…';
+
+    const { data, error } = await supabase.rpc('verify_admin', { uname: 'admin', pwd: password });
+
+    if (error) {
+      loginError.textContent = 'An error occurred. Please try again.';
+      console.error(error);
+      loginBtn.disabled = false;
+      return;
     }
 
-    loginBtn.addEventListener('click', async () => {
-      const password = passwordInput.value;
-      if (!password) {
-        loginError.textContent = 'Please enter a password';
-        return;
-      }
-      loginBtn.disabled = true;
-      loginError.textContent = 'Verifying...';
+    if (data === true) {
+      sessionStorage.setItem('ggs_admin_auth', 'true');
+      sessionStorage.setItem('ggs_admin_password', password);
+      passwordInput.value = '';
+      loginError.textContent = '';
+      showAdminPanel();
+    } else {
+      loginError.textContent = 'Incorrect password.';
+    }
+    loginBtn.disabled = false;
+  }
 
-      const { data, error } = await supabase.rpc('verify_admin', {
-        uname: 'admin',
-        pwd: password
-      });
+  function showAdminPanel() {
+    loginPanel.style.display = 'none';
+    adminPanel.style.display = 'block';
+    initAdminPanel();
+  }
+
+  // ✅ FIX: Clear debounce timers on logout to prevent stale saves
+  let _messageTimer, _imageTimer;
+
+  logoutBtn.addEventListener('click', () => {
+    clearTimeout(_messageTimer);
+    clearTimeout(_imageTimer);
+    sessionStorage.removeItem('ggs_admin_auth');
+    sessionStorage.removeItem('ggs_admin_password');
+    adminPanel.style.display = 'none';
+    loginPanel.style.display = 'block';
+  });
+
+  // ── Admin panel ──────────────────────────────────────────────────────────
+  function initAdminPanel() {
+    const toggleBtn    = document.getElementById('toggleBtn');
+    const messageInput = document.getElementById('messageInput');
+    const imageUrlInput = document.getElementById('imageUrlInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const statusMsg    = document.getElementById('statusMessage');
+
+    let currentActive = false;
+
+    function setInputsDisabled(state) {
+      toggleBtn.disabled    = state;
+      messageInput.disabled  = state;
+      imageUrlInput.disabled = state;
+    }
+
+    function updateToggleUI(isActive) {
+      currentActive = isActive;
+      toggleBtn.textContent = isActive ? 'ACTIVE' : 'INACTIVE';
+      toggleBtn.classList.toggle('active', isActive);
+    }
+
+    function showStatus(text, isError = false) {
+      statusMsg.textContent = text;
+      statusMsg.style.color = isError ? '#b91c1c' : '#5a6c7a';
+      if (!isError) setTimeout(() => { if (statusMsg.textContent === text) statusMsg.textContent = ''; }, 2500);
+    }
+
+    function updatePreview(url) {
+      imagePreview.innerHTML = url && url.trim()
+        ? `<img src="${url.trim()}" class="preview" alt="Sale banner preview">`
+        : '';
+    }
+
+    async function loadSettings() {
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('*')
+        .eq('id', 1)
+        .single();
 
       if (error) {
-        loginError.textContent = 'An error occurred. Please try again.';
-        console.error(error);
-        loginBtn.disabled = false;
+        showStatus('Error loading settings', true);
         return;
       }
 
-      if (data === true) {
-        sessionStorage.setItem('ggs_admin_auth', 'true');
-        // Save password in session so update functions can use it
-        sessionStorage.setItem('ggs_admin_password', password);
-        showAdminPanel();
-        passwordInput.value = '';
-        loginError.textContent = '';
-      } else {
-        loginError.textContent = 'Incorrect password';
+      if (data) {
+        updateToggleUI(data.is_sale_active);
+        messageInput.value   = data.sale_message   || '';
+        imageUrlInput.value  = data.sale_image_url || '';
+        updatePreview(data.sale_image_url);
       }
-      loginBtn.disabled = false;
-    });
 
-    passwordInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') loginBtn.click();
-    });
-
-    function showAdminPanel() {
-      loginPanel.style.display = 'none';
-      adminPanel.style.display = 'block';
-      initAdminPanel();
+      // ✅ FIX: Enable inputs only after data is loaded
+      setInputsDisabled(false);
+      toggleBtn.textContent = currentActive ? 'ACTIVE' : 'INACTIVE';
     }
 
-    logoutBtn.addEventListener('click', () => {
-      sessionStorage.removeItem('ggs_admin_auth');
-      sessionStorage.removeItem('ggs_admin_password');
-      adminPanel.style.display = 'none';
-      loginPanel.style.display = 'block';
+    async function secureUpdate(newIsActive, newMessage, newImageUrl) {
+      const password = sessionStorage.getItem('ggs_admin_password');
+      if (!password) {
+        showStatus('Session expired. Please re-login.', true);
+        logoutBtn.click();
+        return false;
+      }
+      const { data, error } = await supabase.rpc('update_site_settings', {
+        pwd: password,
+        new_is_active: newIsActive,
+        new_message:   newMessage.trim(),
+        new_image_url: newImageUrl.trim()
+      });
+      if (error) {
+        showStatus('Update failed', true);
+        console.error(error);
+        return false;
+      }
+      return data === true;
+    }
+
+    // Toggle
+    toggleBtn.addEventListener('click', async () => {
+      const newState = !currentActive;
+      setInputsDisabled(true);
+      const success = await secureUpdate(newState, messageInput.value, imageUrlInput.value);
+      if (success) {
+        updateToggleUI(newState);
+        showStatus(`Sale is now ${newState ? 'ACTIVE' : 'INACTIVE'}`);
+      }
+      setInputsDisabled(false);
     });
 
-    // ----- ADMIN PANEL LOGIC (secured) -----
-    function initAdminPanel() {
-      const toggleBtn = document.getElementById('toggleBtn');
-      const messageInput = document.getElementById('messageInput');
-      const imageUrlInput = document.getElementById('imageUrlInput');
-      const imagePreview = document.getElementById('imagePreview');
-      const statusMsg = document.getElementById('statusMessage');
+    // Message (debounced 600 ms)
+    messageInput.addEventListener('input', (e) => {
+      clearTimeout(_messageTimer);
+      _messageTimer = setTimeout(async () => {
+        const success = await secureUpdate(currentActive, e.target.value, imageUrlInput.value);
+        if (success) showStatus('Message saved');
+      }, 600);
+    });
 
-      let currentActive = false;
+    // Image URL (debounced 600 ms)
+    imageUrlInput.addEventListener('input', (e) => {
+      updatePreview(e.target.value);
+      clearTimeout(_imageTimer);
+      _imageTimer = setTimeout(async () => {
+        const success = await secureUpdate(currentActive, messageInput.value, e.target.value);
+        if (success) showStatus('Image URL saved');
+      }, 600);
+    });
 
-      function updateToggleUI(isActive) {
-        currentActive = isActive;
-        toggleBtn.textContent = isActive ? 'ACTIVE' : 'INACTIVE';
-        toggleBtn.classList.toggle('active', isActive);
-      }
-
-      function showStatus(text, isError = false) {
-        statusMsg.textContent = text;
-        statusMsg.style.color = isError ? '#b91c1c' : '#5a6c7a';
-        if (!isError) setTimeout(() => { statusMsg.textContent = ''; }, 2500);
-      }
-
-      function updatePreview(url) {
-        if (url && url.trim()) {
-          imagePreview.innerHTML = `<img src="${url}" class="preview" alt="Preview">`;
-        } else {
-          imagePreview.innerHTML = '';
-        }
-      }
-
-      async function loadSettings() {
-        const { data, error } = await supabase
-          .from('site_settings')
-          .select('*')
-          .eq('id', 1)
-          .single();
-        if (error) {
-          showStatus('Error loading settings', true);
-          return;
-        }
-        if (data) {
-          updateToggleUI(data.is_sale_active);
-          messageInput.value = data.sale_message || '';
-          imageUrlInput.value = data.sale_image_url || '';
-          updatePreview(data.sale_image_url);
-        }
-      }
-
-      // Generic secure update function
-      async function secureUpdate(newIsActive, newMessage, newImageUrl) {
-        const password = sessionStorage.getItem('ggs_admin_password');
-        if (!password) {
-          showStatus('Session expired. Please re‑login.', true);
-          logoutBtn.click();
-          return false;
-        }
-        const { data, error } = await supabase.rpc('update_site_settings', {
-          pwd: password,
-          new_is_active: newIsActive,
-          new_message: newMessage.trim(),
-          new_image_url: newImageUrl.trim()
-        });
-        if (error) {
-          showStatus('Update failed', true);
-          console.error(error);
-          return false;
-        }
-        return data === true;
-      }
-
-      // Toggle handler
-      toggleBtn.addEventListener('click', async () => {
-        const newState = !currentActive;
-        toggleBtn.disabled = true;
-        const success = await secureUpdate(newState, messageInput.value, imageUrlInput.value);
-        if (success) {
-          updateToggleUI(newState);
-          showStatus(`Sale is now ${newState ? 'ACTIVE' : 'INACTIVE'}`);
-        }
-        toggleBtn.disabled = false;
-      });
-
-      // Message input (debounced)
-      let messageTimer;
-      messageInput.addEventListener('input', (e) => {
-        clearTimeout(messageTimer);
-        messageTimer = setTimeout(async () => {
-          const success = await secureUpdate(currentActive, e.target.value, imageUrlInput.value);
-          if (success) showStatus('Message saved');
-        }, 600);
-      });
-
-      // Image URL input (debounced)
-      let imageTimer;
-      imageUrlInput.addEventListener('input', (e) => {
-        const url = e.target.value;
-        updatePreview(url);
-        clearTimeout(imageTimer);
-        imageTimer = setTimeout(async () => {
-          const success = await secureUpdate(currentActive, messageInput.value, url);
-          if (success) showStatus('Image URL saved');
-        }, 600);
-      });
-
-      // Initial load
-      loadSettings();
-    }
-  })();
+    loadSettings();
+  }
+})();
 </script>
 </body>
 </html>
