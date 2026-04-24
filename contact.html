@@ -1,107 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Contact GGS | Get a Quote</title>
-  <meta name="description" content="Contact Global Gamazine Suppliers – Free site inspection, quote within 24 hours. Serving Johannesburg, Pretoria, Randburg.">
+
+  <!-- ═══ PRIMARY SEO ═══ -->
+  <title>Contact GGS | Free Quote & Site Inspection | Global Gamazine Suppliers</title>
+  <meta name="description" content="Get a free quote and site inspection. Contact Global Gamazine Suppliers – serving Johannesburg, Pretoria, Randburg and all Gauteng. No deposit required.">
+  <meta name="keywords" content="Gamazine quote, wall coating quote, free site inspection Gauteng, contact Gamazine suppliers, construction materials Gauteng">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1a1a1a">
+
+  <!-- ═══ OPEN GRAPH ═══ -->
+  <meta property="og:title" content="Contact GGS | Get a Free Quote Today">
+  <meta property="og:description" content="Free site inspection. Fixed quote in 24h. No deposit. Serving all Gauteng.">
+  <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://globalgamazine.co.za/contact">
+  <meta property="og:locale" content="en_ZA">
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a94b' text-anchor='middle'>G</text></svg>">
+
+  <!-- ═══ FONTS ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="assets/js/supabase.js" defer></script>
+
   <style>
-    .contact-hero {
-      padding: calc(var(--header-h) + 56px) 0 34px;
-      background: linear-gradient(180deg, rgba(250,247,242,0.62) 0%, rgba(255,255,255,0.98) 100%);
-      border-bottom: 1px solid var(--border);
+    /* ════════════════════════════════════════════════════════════
+       DESIGN TOKENS — same as all pages
+       ════════════════════════════════════════════════════════════ */
+    :root {
+      --gold:          #c9a94b;
+      --gold-light:    #e8d08a;
+      --gold-muted:    rgba(201,169,75,0.15);
+      --charcoal:      #1a1a1a;
+      --off-white:     #f7f5f0;
+      --cream-card:    #faf8f4;
+      --slate:         #6b6b6b;
+      --border:        rgba(0,0,0,0.08);
+      --border-gold:   rgba(201,169,75,0.25);
+      --header-h:      72px;
+      --r-card:        12px;
+      --r-xl:          20px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+      --spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .contact-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(182,139,64,0.12);
-      border: 1px solid rgba(182,139,64,0.3);
-      color: var(--gold);
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.74rem;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      margin-bottom: 12px;
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--charcoal); background: var(--off-white); overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Scroll Progress / Cursor / Nav (same as other pages) ── */
+    #scroll-progress { position: fixed; top: 0; left: 0; z-index: 9999; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.05s linear; }
+    #cursor-dot, #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; }
+    #cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); }
+    #cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(201,169,75,0.5); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+    body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--gold); }
+    @media (hover: none) { #cursor-dot, #cursor-ring { display: none; } }
+
+    .mobile-nav { position: fixed; inset: 0; z-index: 800; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding: 48px 40px; clip-path: circle(0% at calc(100% - 32px) 36px); transition: clip-path 0.6s var(--ease-out-expo); }
+    .mobile-nav.open { clip-path: circle(150% at calc(100% - 32px) 36px); }
+    .mobile-nav a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: rgba(255,255,255,0.6); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.25s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--gold); }
+    .mobile-nav-contact { margin-top: 40px; display: flex; flex-direction: column; gap: 8px; }
+    .mobile-nav-contact a { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.35); border-bottom: none; }
+
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--header-h); display: flex; align-items: center; transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s; }
+    .site-header.scrolled { background: rgba(247,245,240,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; }
+    .nav-desktop { display: none; gap: 32px; }
+    @media (min-width: 960px) { .nav-desktop { display: flex; } }
+    .nav-desktop a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em; color: var(--slate); transition: color 0.2s; }
+    .nav-desktop a:hover, .nav-desktop a.active { color: var(--charcoal); }
+    .header-cta-group { display: flex; align-items: center; gap: 16px; }
+    .header-phone { display: none; font-size: 0.82rem; color: var(--slate); }
+    @media (min-width: 640px) { .header-phone { display: block; } }
+    .header-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; padding: 9px 18px; background: var(--charcoal); color: white; border-radius: 100px; transition: background 0.25s, transform 0.2s; }
+    .header-cta:hover { background: var(--gold); transform: translateY(-1px); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 910; }
+    @media (min-width: 960px) { .hamburger { display: none; } }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: transform 0.35s var(--ease-out-expo), opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: white; }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: white; }
+
+    /* ── Typography utilities ── */
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; position: relative; top: -1px; }
+    .mask-wrap { overflow: hidden; display: block; }
+    .mask-inner { display: block; transform: translateY(110%); opacity: 0; transition: transform 0.9s var(--ease-out-expo), opacity 0.5s; }
+    .mask-inner.revealed { transform: translateY(0); opacity: 1; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .stagger-children > * { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+    .stagger-children.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .stagger-children.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
+    .stagger-children.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
+    .stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
+
+    /* ════════════════════════════════════════════════════════════
+       CONTACT PAGE SPECIFIC
+       ════════════════════════════════════════════════════════════ */
+    .page-hero { padding: calc(var(--header-h) + 80px) 0 30px; position: relative; overflow: hidden; }
+    .page-hero::before { content: 'GGS'; position: absolute; right: -2%; bottom: -10%; font-family: 'Cormorant Garamond', serif; font-size: clamp(120px, 18vw, 220px); font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(0,0,0,0.04); pointer-events: none; user-select: none; z-index: 0; }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; margin: 20px 0 8px; }
+    .page-hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-subhead { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 400; line-height: 1.4; color: var(--charcoal); max-width: 700px; margin-top: 12px; }
+
+    /* Quick contact cards */
+    .quick-contact-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 40px 0; }
+    @media (min-width: 640px) { .quick-contact-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .quick-contact-grid { grid-template-columns: repeat(4, 1fr); } }
+    .quick-card { background: white; border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px 20px; text-align: center; transition: box-shadow 0.3s, transform 0.3s; }
+    .quick-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.06); transform: translateY(-3px); }
+    .quick-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 12px; }
+    .quick-card .k1 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate); margin-bottom: 6px; }
+    .quick-card .k2 { font-size: 0.95rem; font-weight: 500; color: var(--charcoal); }
+
+    /* Quote form card */
+    .quote-card { background: white; border: 1px solid var(--border); border-radius: var(--r-xl); padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin: 40px 0 60px; }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; color: var(--charcoal); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; color: var(--charcoal); transition: border-color 0.2s; background: white; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .submit-quote-btn { width: 100%; padding: 16px; background: var(--charcoal); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .submit-quote-btn:hover { background: var(--gold); }
+
+    /* Contact details + map */
+    .contact-details-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
+    @media (min-width: 768px) { .contact-details-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; gap: 12px; align-items: flex-start; }
+    .contact-icon { width: 44px; height: 44px; background: var(--gold-muted); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+    .contact-text strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--slate); margin-bottom: 4px; }
+    .contact-text span, .contact-text a { font-size: 0.95rem; color: var(--charcoal); }
+    .map-wrap { border-radius: var(--r-xl); overflow: hidden; height: 300px; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    /* Footer, Cookie, WhatsApp, Back-to-top (same as all pages) */
+    .footer { background: #111; color: rgba(255,255,255,0.6); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+    @media (min-width: 640px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+    .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-brand-logo img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; }
+    .footer-brand-logo span { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: white; }
+    .footer-tagline { font-size: 0.82rem; line-height: 1.7; max-width: 280px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-socials a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: border-color 0.2s, color 0.2s; }
+    .footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col-heading { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: white; margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .newsletter-desc { font-size: 0.82rem; margin-bottom: 16px; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 8px; }
+    .newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.82rem; }
+    .newsletter-btn { padding: 10px 16px; border-radius: 8px; background: var(--gold); color: var(--charcoal); border: none; cursor: pointer; font-size: 0.8rem; }
+    .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+    /* Cookie notice (flicker‑free) */
+    .cookie-hidden { display: none !important; }
+    #cookie-notice {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 1000; width: min(440px, calc(100vw - 32px));
+      background: var(--charcoal); color: white;
+      border-radius: 14px; padding: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      transition: opacity 0.4s, transform 0.4s var(--ease-out-expo);
     }
-    .quick-contact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .quick-contact-card {
-      background: var(--cream-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 14px;
-      text-align: center;
-    }
-    .quick-contact-card i { color: var(--gold); margin-bottom: 7px; }
-    .quick-contact-card .k1 { font-size: 0.72rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; }
-    .quick-contact-card .k2 { font-size: 0.82rem; color: var(--charcoal); font-weight: 500; margin-top: 4px; }
-    .section-tight { padding: 26px 0 34px; }
-    .contact-card {
-      border: 1px solid var(--border);
-      box-shadow: 0 14px 40px rgba(15,23,42,0.06);
-      border-radius: var(--r-xl);
-      overflow: hidden;
-    }
-    .quote-card {
-      border: 1px solid var(--border);
-      box-shadow: 0 14px 40px rgba(15,23,42,0.06);
-      border-radius: var(--r-xl);
-      padding: 40px;
-    }
-    .quote-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 60px;
-      align-items: start;
-    }
-    .note-strip {
-      margin-top: 18px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 14px 16px;
-      font-size: 0.82rem;
-      color: var(--slate);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      line-height: 1.65;
-    }
-    @media (max-width: 980px) {
-      .quick-contact-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .quick-contact-grid { grid-template-columns: 1fr; }
-      .quote-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .quote-card {
-        padding: 24px;
-      }
-    }
+    #cookie-notice.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
+    .cookie-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
+    .cookie-categories { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .cookie-category { display: flex; align-items: center; gap: 10px; }
+    .cookie-category input[type="checkbox"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+    .cookie-category label { font-size: 0.8rem; cursor: pointer; }
+    .cookie-btns { display: flex; gap: 10px; }
+    .cookie-btn { flex: 1; padding: 10px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
+    .cookie-accept { background: var(--gold); color: var(--charcoal); }
+    .cookie-accept:hover { background: var(--gold-light); }
+    .cookie-save { background: transparent; border-color: rgba(255,255,255,0.2); color: white; }
+    .cookie-save:hover { border-color: var(--gold); }
+
+    .wa-float-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 800; }
+    .wa-float { width: 52px; height: 52px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.3s var(--spring); }
+    .wa-float:hover { transform: scale(1.1); }
+    #back-top { position: fixed; bottom: 28px; left: 28px; z-index: 800; width: 40px; height: 40px; background: white; color: var(--charcoal); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s var(--ease-out-expo); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    #back-top.visible { opacity: 1; pointer-events: all; transform: none; }
+    #back-top:hover { background: var(--charcoal); color: white; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .mask-inner { transform: none; opacity: 1; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
-<div id="scroll-progress"></div>
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
 
-<!-- MOBILE NAV (clean URLs) -->
-<div class="mobile-nav" id="mobileNav">
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/solutions">Solutions</a>
@@ -109,352 +228,386 @@
   <a href="/projects">Projects</a>
   <a href="/epoxy">Epoxy</a>
   <a href="/shop">Shop</a>
-  <a href="/contact">Contact</a>
+  <a href="/contact" class="active" aria-current="page">Contact</a>
   <div class="mobile-nav-contact">
     <a href="tel:+27621503704">+27 62 150 3704</a>
     <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
   </div>
-</div>
+</nav>
 
-<!-- STICKY HEADER (clean URLs) -->
-<header class="site-header" id="siteHeader">
+<!-- STICKY HEADER -->
+<header class="site-header" id="siteHeader" role="banner">
   <div class="container header-inner">
-    <a href="/" class="logo-wrap">
-      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+    <a href="/" class="logo-wrap" aria-label="Global Gamazine Suppliers — Home">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="40" height="40" loading="eager">
       <span class="logo-text">GGS</span>
     </a>
-    <nav class="nav-desktop">
-  <a href="/"$(/contact -eq '/' ? ' class="active"' : '')>Home</a>
-  <a href="/about"$(/contact -eq '/about' ? ' class="active"' : '')>About</a>
-  <a href="/solutions"$(/contact -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
-  <a href="/process"$(/contact -eq '/process' ? ' class="active"' : '')>Process</a>
-  <a href="/projects"$(/contact -eq '/projects' ? ' class="active"' : '')>Projects</a>
-  <a href="/epoxy"$(/contact -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
-  <a href="/shop"$(/contact -eq '/shop' ? ' class="active"' : '')>Shop</a>
-  <a href="/contact"$(/contact -eq '/contact' ? ' class="active"' : '')>Contact</a>
-</nav>
+    <nav class="nav-desktop" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/process">Process</a>
+      <a href="/projects">Projects</a>
+      <a href="/epoxy">Epoxy</a>
+      <a href="/shop">Shop</a>
+      <a href="/contact" class="active" aria-current="page">Contact</a>
+    </nav>
     <div class="header-cta-group">
-      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+      <a href="tel:+27621503704" class="header-phone" aria-label="Call us">+27 62 150 3704</a>
       <a href="/contact#quote" class="header-cta">Get Quote →</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<main>
-  <!-- PAGE HEADER -->
-  <section class="contact-hero">
+<main id="main-content">
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ -->
+  <section class="page-hero" aria-labelledby="hero-heading">
     <div class="container">
-      <span class="contact-badge scroll-reveal"><i class="fas fa-comments"></i> FAST RESPONSE TEAM</span>
-      <h1 style="font-size:clamp(2.2rem,5vw,4rem);line-height:1.06;"><span class="masked-rise"><span class="masked-rise-inner">Let's Build</span></span><br><span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Together</span></span></h1>
-      <p style="font-size:1rem;color:var(--slate);max-width:700px;line-height:1.75;margin-top:14px;" class="scroll-reveal">Share your project details and get practical guidance, product recommendations, and a clear quote timeline from our team.</p>
-      <div class="quick-contact-grid scroll-reveal">
-        <div class="quick-contact-card"><i class="fas fa-phone"></i><div class="k1">Call</div><div class="k2">+27 62 150 3704</div></div>
-        <div class="quick-contact-card"><i class="fab fa-whatsapp"></i><div class="k1">WhatsApp</div><div class="k2">Instant Chat</div></div>
-        <div class="quick-contact-card"><i class="fas fa-clock"></i><div class="k1">Quote Time</div><div class="k2">Within 24 Hours</div></div>
-        <div class="quick-contact-card"><i class="fas fa-map-marked-alt"></i><div class="k1">Coverage</div><div class="k2">All Gauteng</div></div>
+      <span class="eyebrow reveal">Let's Talk About Your Project</span>
+      <p class="hero-subhead reveal" style="transition-delay:0.1s;">
+        No deposits. No pressure. Just a clear plan for your walls.
+      </p>
+      <h1 id="hero-heading">
+        <span class="mask-wrap"><span class="mask-inner">Let's Build</span></span>
+        <span class="mask-wrap"><span class="mask-inner"><em>Together</em></span></span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       QUICK CONTACT CARDS
+       ═══════════════════════════════════════════════════ -->
+  <div class="container">
+    <div class="quick-contact-grid stagger-children">
+      <div class="quick-card reveal">
+        <i class="fas fa-phone"></i>
+        <div class="k1">Call</div>
+        <div class="k2"><a href="tel:+27621503704">+27 62 150 3704</a></div>
+      </div>
+      <div class="quick-card reveal">
+        <i class="fab fa-whatsapp"></i>
+        <div class="k1">WhatsApp</div>
+        <div class="k2"><a href="https://wa.me/27621503704" target="_blank">Chat Now →</a></div>
+      </div>
+      <div class="quick-card reveal">
+        <i class="fas fa-envelope"></i>
+        <div class="k1">Email</div>
+        <div class="k2"><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div>
+      </div>
+      <div class="quick-card reveal">
+        <i class="fas fa-map-marker-alt"></i>
+        <div class="k1">Visit</div>
+        <div class="k2">12 Granite Road, Kya Sands, Randburg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       QUOTE FORM
+       ═══════════════════════════════════════════════════ -->
+  <section id="quote" aria-labelledby="quote-heading">
+    <div class="container">
+      <div class="quote-card reveal">
+        <span class="eyebrow">Request a Free Quote</span>
+        <h2 id="quote-heading" style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin:12px 0 24px;">Tell us about your project</h2>
+        <form id="quoteForm">
+          <div class="form-grid">
+            <div class="form-group"><label>Full Name *</label><input type="text" id="name" required></div>
+            <div class="form-group"><label>Phone *</label><input type="tel" id="phone" required></div>
+            <div class="form-group"><label>Email</label><input type="email" id="email"></div>
+            <div class="form-group"><label>Finish *</label>
+              <select id="finish">
+                <option value="Gamazine Classic (R250/20L)">Gamazine Classic — R250/20L</option>
+                <option value="Glamour Coat (R350/20L)">Glamour Coat — R350/20L</option>
+                <option value="Epoxy Flooring">Epoxy Flooring</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Rooms / Walls *</label><input type="text" id="rooms" required placeholder="e.g. Full exterior, 3 bedrooms"></div>
+            <div class="form-group"><label>Area (m²)</label>
+              <select id="area">
+                <option value="">Select approximate range</option>
+                <option>Under 50 m²</option>
+                <option>50–100 m²</option>
+                <option>100–200 m²</option>
+                <option>200–500 m²</option>
+                <option>500 m²+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:8px;"><label>Additional Notes</label><textarea id="notes" rows="3" placeholder="Any special requirements, surface conditions, or questions…"></textarea></div>
+          <button type="submit" class="submit-quote-btn">Send Request →</button>
+        </form>
+        <div id="formMessage" style="margin-top:16px; font-size:0.9rem; text-align:center;"></div>
       </div>
     </div>
   </section>
 
-  <!-- QUOTE FORM (responsive grid) -->
-  <section id="quote" class="section-tight">
-    <div class="container">
-      <div class="quote-card scroll-reveal">
-        <div class="quote-layout">
-          <div>
-            <span class="metadata-label">Request Quotation</span>
-            <h2 style="margin-bottom:0;">
-              <span class="masked-rise"><span class="masked-rise-inner">Get Quote</span></span>
-              <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">in 60 Seconds</span></span>
-            </h2>
-            <div class="gold-rule"></div>
-            <p style="font-size:0.88rem;color:var(--slate);line-height:1.75;font-weight:300;margin-bottom:28px;">Fill the form and we'll send your tailored quote via WhatsApp — typically within the hour during business hours.</p>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">No deposit required</span></div>
-              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">Free site inspection included</span></div>
-              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">Quote returned within 24 hours</span></div>
-              <div style="display:flex;align-items:center;gap:12px;"><div style="width:28px;height:28px;background:var(--gold-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-check" style="color:var(--gold);font-size:0.75rem;"></i></div><span style="font-size:0.82rem;color:var(--slate);">2–4 day delivery across Gauteng</span></div>
-            </div>
-            <div style="margin-top:32px;padding:20px;background:var(--cream-deep);border-radius:var(--r-card);border:1px solid var(--border);">
-              <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;font-weight:500;">Or call us directly</div>
-              <a href="tel:+27621503704" style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;letter-spacing:-0.02em;color:var(--charcoal);text-decoration:none;display:block;margin-bottom:4px;">+27 62 150 3704</a>
-              <a href="mailto:deliannyathi@gmail.com" style="font-size:0.8rem;color:var(--slate);text-decoration:none;">deliannyathi@gmail.com</a>
-            </div>
+  <!-- ═══════════════════════════════════════════════════
+       CONTACT DETAILS + MAP
+       ═══════════════════════════════════════════════════ -->
+  <div class="container">
+    <div class="contact-details-grid reveal">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-text">
+            <strong>Address</strong>
+            <span>12 Granite Road, Kya Sands, Randburg, Gauteng 2169</span>
           </div>
-          <div>
-            <form onsubmit="handleQuoteSubmit(event)" id="quoteForm" novalidate>
-              <div class="form-grid">
-                <div class="form-group"><label>Full Name *</label><input type="text" id="name" required placeholder="Your full name"></div>
-                <div class="form-group"><label>Phone *</label><input type="tel" id="phone" required placeholder="+27 000 000 0000"></div>
-                <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="your@email.com"></div>
-                <div class="form-group"><label>Finish *</label>
-                  <select id="finish">
-                    <option value="Gamazine Classic (R250/20L)">Gamazine Classic — R250/20L</option>
-                    <option value="Glamour Coat (R350/20L)">Glamour Coat — R350/20L</option>
-                  </select>
-                </div>
-                <div class="form-group"><label>Rooms / Walls *</label><input type="text" id="rooms" required placeholder="e.g. Full exterior, 3 bedrooms"></div>
-                <div class="form-group"><label>Area (m²)</label>
-                  <select id="area">
-                    <option value="">Select approximate range</option>
-                    <option>Under 50 m²</option>
-                    <option>50–100 m²</option>
-                    <option>100–200 m²</option>
-                    <option>200–500 m²</option>
-                    <option>500 m²+</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group" style="margin-top:20px;"><label>Additional Notes</label><textarea id="notes" rows="3" placeholder="Any special requirements, surface conditions, or questions…"></textarea></div>
-              <button type="submit" class="btn-primary" style="width:100%;margin-top:20px;justify-content:center;font-size:1rem;padding:18px 32px;"><span>Send via WhatsApp & Save</span><span>→</span></button>
-            </form>
-            <div id="formMessage" style="margin-top:16px; font-size:0.9rem;"></div>
-            <div class="note-strip">
-              <i class="fas fa-info-circle" style="color:var(--gold);margin-top:2px;"></i>
-              <span>Your details are used only to prepare your quotation and arrange inspection logistics. We do not require any upfront payment to start.</span>
-            </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-text">
+            <strong>Phone</strong>
+            <a href="tel:+27621503704">+27 62 150 3704</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-text">
+            <strong>Email</strong>
+            <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div class="contact-text">
+            <strong>Business Hours</strong>
+            <span>Mon–Fri 07:00–17:00 · Sat 08:00–13:00</span>
           </div>
         </div>
       </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.64210131345!2d27.95!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573fff3b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sKya%20Sands%2C%20Randburg!5e0!3m2!1sen!2sza!4v1712345678901"
+                title="GGS Location" loading="lazy"></iframe>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- CONTACT DETAILS + MAP -->
-  <section class="section-tight" style="padding-bottom:80px;">
-    <div class="container">
-      <div class="contact-card scroll-reveal">
-        <div class="contact-left">
-          <div class="contact-detail">
-            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div><div class="contact-detail-label">Address</div><div class="contact-detail-val">12 Granite Road, Kya Sands, Randburg</div></div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-            <div><div class="contact-detail-label">Phone</div><div class="contact-detail-val"><a href="tel:+27621503704">+27 62 150 3704</a></div></div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div><div class="contact-detail-label">Email</div><div class="contact-detail-val"><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div></div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-            <div><div class="contact-detail-label">WhatsApp</div><div class="contact-detail-val"><a href="https://wa.me/27621503704" target="_blank">Chat Now →</a></div></div>
-          </div>
-          <div style="margin-top:32px;padding:24px;background:var(--cream-deep);border-radius:var(--r-card);border:1px solid var(--border);">
-            <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--slate);margin-bottom:10px;font-weight:500;">Business Hours</div>
-            <div style="font-size:0.88rem;color:var(--charcoal);line-height:1.9;">
-              Mon – Fri: <strong>07:00 – 17:00</strong><br>
-              Saturday: <strong>08:00 – 13:00</strong><br>
-              Sunday: <span style="color:var(--slate);">Closed</span>
-            </div>
-          </div>
-        </div>
-        <div class="contact-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.64210131345!2d27.95!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573fff3b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sKya%20Sands%2C%20Randburg!5e0!3m2!1sen!2sza!4v1712345678901"
-                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="GGS Location"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
-<!-- FOOTER (consistent with rest of site) -->
-<footer class="footer">
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
-        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings across Gauteng since 2012.</p>
-        <div class="footer-socials">
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <!-- TikTok – replace "YOUR_TIKTOK_URL" with your actual link -->
-          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok">
-            <i class="fab fa-tiktok"></i>
-          </a>
-          <!-- Instagram – replace "YOUR_INSTAGRAM_URL" with your actual link -->
-          <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <!-- LinkedIn – replace "YOUR_LINKEDIN_URL" with your actual link -->
-          <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
+        <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="36" height="36" loading="lazy"><span>GGS</span></div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
+        <nav class="footer-socials" aria-label="Social media">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </nav>
       </div>
-      <div>
-        <div class="footer-col-heading">Navigate</div>
-<ul class="footer-links">
-  <li><a href="/about">Company Heritage</a></li>
-  <li><a href="/solutions">Solutions</a></li>
-  <li><a href="/process">How It Works</a></li>
-  <li><a href="/projects">Projects</a></li>
-  <li><a href="/epoxy">Epoxy Flooring</a></li>
-  <li><a href="/shop">Online Shop</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
-      </div>
-      <div>
-        <div class="footer-col-heading">Contact</div>
+      <nav aria-label="Footer navigation">
+        <p class="footer-col-heading">Navigate</p>
         <ul class="footer-links">
-          <li><strong>Global Gamazine Suppliers</strong></li>
+          <li><a href="/about">Company Heritage</a></li>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/process">How It Works</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/epoxy">Epoxy Flooring</a></li>
+          <li><a href="/shop">Online Shop</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <address>
+        <p class="footer-col-heading">Contact</p>
+        <ul class="footer-links" style="font-style:normal;">
+          <li><strong style="color:rgba(255,255,255,0.8)">Global Gamazine Suppliers</strong></li>
           <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
           <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li>
-            <a href="https://maps.google.com/?q=12+Granite+Road,+Kya+Sands,+Randburg,+Gauteng" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">
-              12 Granite Road, Kya Sands<br>Randburg, Gauteng
-            </a>
-          </li>
+          <li><a href="https://maps.google.com/?q=12+Granite+Road+Kya+Sands+Randburg" target="_blank" rel="noopener noreferrer">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</a></li>
         </ul>
-      </div>
+      </address>
       <div class="footer-newsletter">
-        <div class="footer-col-heading">Stay Updated</div>
-        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+        <p class="footer-col-heading">Stay Updated</p>
+        <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
         <div class="newsletter-form">
-          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <label for="newsletterEmail" class="visually-hidden">Email address</label>
+          <input class="newsletter-input" type="email" id="newsletterEmail" placeholder="your@email.com" autocomplete="email">
           <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
-      <span class="footer-copy">Gamazine Johannesburg · Pretoria · Randburg · Gauteng</span>
+      <span class="footer-copy">Gamazine & Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
     </div>
   </div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<div class="wa-float-wrap">
-  <a href="https://wa.me/27621503704" class="wa-float" target="_blank"><span class="wa-pulse"></span><i class="fab fa-whatsapp"></i></a>
-</div>
+<div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
-<!-- BACK TO TOP -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
-
-<!-- COOKIE NOTICE -->
-<div id="cookie-notice">
-  <div class="cookie-title">We use cookies</div>
-  <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
+<!-- COOKIE NOTICE (flicker‑free) -->
+<div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite" class="cookie-hidden">
+  <p class="cookie-title">We use cookies</p>
+  <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
+  <div class="cookie-categories">
+    <div class="cookie-category"><input type="checkbox" id="cookie-essential" checked disabled><label for="cookie-essential">Essential — required for the website to function</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-analytics"><label for="cookie-analytics">Analytics — help us understand how visitors use the site</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-marketing"><label for="cookie-marketing">Marketing — used for promotional offers and social media</label></div>
+  </div>
   <div class="cookie-btns">
-    <button class="cookie-accept" onclick="dismissCookie('all')">Accept All</button>
-    <button class="cookie-dismiss" onclick="dismissCookie('essential')">Essential Only</button>
+    <button class="cookie-btn cookie-accept" id="cookie-accept-all">Accept All</button>
+    <button class="cookie-btn cookie-save" id="cookie-save-preferences">Save Preferences</button>
   </div>
 </div>
 
+<style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
 <script>
-  // Scroll progress
-  const progressBar = document.getElementById('scroll-progress');
+(function () {
+  'use strict';
+
+  /* ── Scroll Progress ── */
+  const progress = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
-    const scrolled = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    if (progressBar) progressBar.style.width = scrolled + '%';
+    const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progress.style.width = pct + '%';
   }, { passive: true });
-  
-  // Header scroll shadow
-  const header = document.getElementById('siteHeader');
-  const backTop = document.getElementById('back-top');
+
+  /* ── Header & Back-to-top ── */
+  const header = document.getElementById('siteHeader'), backTop = document.getElementById('back-top');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    if (header) header.classList.toggle('scrolled', y > 30);
-    if (backTop) backTop.classList.toggle('visible', y > 500);
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
   }, { passive: true });
-  
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-    });
-  }
-  function closeMobile() {
-    hamburger.classList.remove('open');
-    mobileNav.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  
-  // Newsletter
-  function handleNewsletter() {
-    const input = document.getElementById('newsletterEmail');
-    if (input.value && input.value.includes('@')) {
-      input.value = '';
-      input.placeholder = 'Subscribed! (ok)';
-      alert('Thanks! We will contact you via official channels.');
-    } else {
-      alert('Please enter a valid email.');
-    }
-  }
-  
-  // Cookie
-  function safeStorageSet(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
-  function safeStorageGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
-  function dismissCookie(type) {
-    const cookieNotice = document.getElementById('cookie-notice');
-    if (cookieNotice) cookieNotice.classList.add('hidden');
-    safeStorageSet('ggs-cookie-consent', type || 'essential');
-  }
-  if (safeStorageGet('ggs-cookie-consent')) {
-    const cookieNotice = document.getElementById('cookie-notice');
-    if (cookieNotice) cookieNotice.classList.add('hidden');
-  }
 
-  // Quote Form Submission (Supabase + WhatsApp)
-  async function handleQuoteSubmit(e) {
-    e.preventDefault();
-    const name = document.getElementById('name');
-    const phone = document.getElementById('phone');
-    const rooms = document.getElementById('rooms');
-    const msgDiv = document.getElementById('formMessage');
-    
-    let valid = true;
-    [name, phone, rooms].forEach(field => {
-      if (!field.value.trim()) { field.classList.add('error'); valid = false; }
-      else field.classList.remove('error');
+  /* ── Mobile Nav ── */
+  const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open', open);
+    mobileNav.setAttribute('aria-hidden', String(!open));
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  /* ── Custom Cursor ── */
+  const dot = document.getElementById('cursor-dot'), ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  const moveCursor = () => {
+    dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+    requestAnimationFrame(moveCursor);
+  };
+  moveCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  /* ── Intersection Observer ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal, .stagger-children').forEach(el => revealObs.observe(el));
+
+  const maskObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.parentElement.querySelectorAll('.mask-inner');
+        siblings.forEach((s, i) => setTimeout(() => s.classList.add('revealed'), i * 140));
+        maskObs.unobserve(entry.target);
+      }
     });
-    
-    if (!valid) {
-      msgDiv.innerHTML = '<p style="color:#ef4444;">Please fill all required fields.</p>';
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.mask-inner').forEach(el => maskObs.observe(el));
+
+  /* ── Newsletter ── */
+  window.handleNewsletter = () => {
+    const i = document.getElementById('newsletterEmail');
+    if (i.value && i.value.includes('@')) { i.value = ''; i.placeholder = 'Subscribed ✓'; }
+    else { i.focus(); i.style.borderColor = '#e55'; setTimeout(() => i.style.borderColor = '', 1500); }
+  };
+
+  /* ── Quote Form Submission (Supabase + WhatsApp) ── */
+  document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const rooms = document.getElementById('rooms').value.trim();
+    const msgDiv = document.getElementById('formMessage');
+
+    if (!name || !phone || !rooms) {
+      msgDiv.innerHTML = '<span style="color:#ef4444;">Please fill all required fields.</span>';
       return;
     }
-    
+
     const formData = {
-      name: name.value,
-      phone: phone.value,
-      email: document.getElementById('email').value || null,
+      name: name,
+      phone: phone,
+      email: document.getElementById('email').value.trim() || null,
       finish: document.getElementById('finish').value,
-      rooms: rooms.value,
+      rooms: rooms,
       area: document.getElementById('area').value || null,
-      notes: document.getElementById('notes').value || null
+      notes: document.getElementById('notes').value.trim() || null
     };
-    
-    msgDiv.innerHTML = '<p style="color:var(--slate);">Submitting...</p>';
-    
-    // Submit to Supabase
-    const result = await submitQuoteToSupabase(formData);
-    
+
+    msgDiv.innerHTML = 'Submitting...';
+
+    // Save to Supabase if available
+    if (window.supabase) {
+      await window.supabase.from('quotes').insert([{
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        finish: formData.finish,
+        rooms: formData.rooms,
+        area: formData.area,
+        notes: formData.notes
+      }]);
+    }
+
     // WhatsApp message
     const waMsg = `Hello GGS! I'd like a quotation:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Finish: ${formData.finish}\n🏠 Rooms/Walls: ${formData.rooms}${formData.area ? '\n📐 Area: ' + formData.area : ''}${formData.notes ? '\n📝 Notes: ' + formData.notes : ''}`;
     window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
-    
-    if (result.success) {
-      msgDiv.innerHTML = '<p style="color:#22c55e;">✓ Quote submitted successfully! We\'ll contact you shortly.</p>';
-      e.target.reset();
-    } else {
-      msgDiv.innerHTML = '<p style="color:#ef4444;">Error submitting form. Please try again or call us.</p>';
-      console.error('Supabase error:', result.error);
-    }
+
+    msgDiv.innerHTML = '<span style="color:#22c55e;">✓ Quote submitted! We\'ll contact you shortly.</span>';
+    e.target.reset();
+  });
+
+  /* ── Cookie consent (flicker‑free) ── */
+  const cookieNotice = document.getElementById('cookie-notice');
+  const acceptAll = document.getElementById('cookie-accept-all');
+  const savePrefs = document.getElementById('cookie-save-preferences');
+  const analyticsChk = document.getElementById('cookie-analytics');
+  const marketingChk = document.getElementById('cookie-marketing');
+
+  function getConsent() { try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')); } catch(e) { return null; } }
+  function setConsent(obj) { try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {} }
+
+  if (!getConsent()) {
+    cookieNotice.classList.remove('cookie-hidden');
   }
+
+  acceptAll.addEventListener('click', () => {
+    setConsent({ essential: true, analytics: true, marketing: true });
+    cookieNotice.classList.add('hidden');
+    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  });
+
+  savePrefs.addEventListener('click', () => {
+    setConsent({ essential: true, analytics: analyticsChk.checked, marketing: marketingChk.checked });
+    cookieNotice.classList.add('hidden');
+    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  });
+
+})();
 </script>
-<!-- Supabase & Announcement Bar -->
-<script src="assets/js/announcement.js"></script>
+
 </body>
 </html>
