@@ -698,7 +698,7 @@
   <a href="/process">Process</a>
   <a href="/projects">Projects</a>
   <a href="/epoxy">Epoxy</a>
-  <a href="/shop">Shop</a>
+  <a href="/shop" class="active">Shop</a>
   <a href="/contact">Contact</a>
   <div class="mobile-nav-contact">
     <a href="tel:+27621503704">+27 62 150 3704</a>
@@ -714,15 +714,15 @@
       <span class="logo-text">GGS</span>
     </a>
     <nav class="nav-desktop">
-  <a href="/"$(/shop -eq '/' ? ' class="active"' : '')>Home</a>
-  <a href="/about"$(/shop -eq '/about' ? ' class="active"' : '')>About</a>
-  <a href="/solutions"$(/shop -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
-  <a href="/process"$(/shop -eq '/process' ? ' class="active"' : '')>Process</a>
-  <a href="/projects"$(/shop -eq '/projects' ? ' class="active"' : '')>Projects</a>
-  <a href="/epoxy"$(/shop -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
-  <a href="/shop"$(/shop -eq '/shop' ? ' class="active"' : '')>Shop</a>
-  <a href="/contact"$(/shop -eq '/contact' ? ' class="active"' : '')>Contact</a>
-</nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/process">Process</a>
+      <a href="/projects">Projects</a>
+      <a href="/epoxy">Epoxy</a>
+      <a href="/shop" class="active">Shop</a>
+      <a href="/contact">Contact</a>
+    </nav>
     <div class="header-cta-group">
       <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -732,7 +732,7 @@
   </div>
 </header>
 
-<!-- SHOP HERO (light, brand-consistent) -->
+<!-- SHOP HERO -->
 <section class="shop-hero">
   <div class="container">
     <span class="shop-hero-badge scroll-reveal"><i class="fas fa-truck"></i> Free Gauteng delivery on orders over R2 000</span>
@@ -740,9 +740,9 @@
       <span class="masked-rise"><span class="masked-rise-inner">Online</span></span>
       <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Shop</span></span>
     </h1>
-    <p class="scroll-reveal">Premium wall coatings and epoxy flooring products, delivered to your door. Cash on delivery — no upfront payment required.</p>
+    <p class="scroll-reveal">Premium wall coatings and epoxy flooring products, delivered to your door. Cash on delivery — no upfront payment required. <strong>We stock all colours – contact us for any custom shade.</strong></p>
     <div class="shop-hero-stats scroll-reveal">
-      <div class="stat"><strong>20+</strong><span>Products</span></div>
+      <div class="stat"><strong>45+</strong><span>Products</span></div>
       <div class="stat"><strong>COD</strong><span>Payment</span></div>
       <div class="stat"><strong>Free</strong><span>Site Check</span></div>
     </div>
@@ -753,16 +753,16 @@
 <div class="filter-bar">
   <div class="container">
     <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">
-      All <span class="count" id="cnt-all">20</span>
+      All <span class="count" id="cnt-all">45</span>
     </button>
     <button class="filter-tab" data-cat="Gamazine" onclick="setFilter('Gamazine')">
-      Gamazine <span class="count" id="cnt-gamazine">0</span>
+      Gamazine <span class="count" id="cnt-gamazine">20</span>
     </button>
     <button class="filter-tab" data-cat="Glamour Coat" onclick="setFilter('Glamour Coat')">
-      Glamour Coat <span class="count" id="cnt-glamour">0</span>
+      Glamour Coat <span class="count" id="cnt-glamour">19</span>
     </button>
     <button class="filter-tab" data-cat="Epoxy" onclick="setFilter('Epoxy')">
-      Epoxy <span class="count" id="cnt-epoxy">0</span>
+      Epoxy <span class="count" id="cnt-epoxy">6</span>
     </button>
     <div class="filter-bar-right">
       <select class="sort-select" id="sortSelect" onchange="handleSort()">
@@ -777,9 +777,7 @@
 
 <main style="padding: 0 0 80px;">
   <div class="container">
-    <!-- Product grid -->
     <div class="shop-grid" id="shopGrid"></div>
-    <!-- Pagination -->
     <div class="pagination" id="pagination"></div>
   </div>
 </main>
@@ -827,7 +825,6 @@
     <h2>Checkout</h2>
     <p class="checkout-sub">Cash on delivery — pay when your order arrives. No upfront payment.</p>
 
-    <!-- Live order summary -->
     <div class="checkout-order-summary" id="checkoutSummary">
       <h4>Order Summary</h4>
       <div id="summaryLines"></div>
@@ -869,21 +866,21 @@
         <div class="footer-socials">
           <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
       <div>
         <div class="footer-col-heading">Navigate</div>
-<ul class="footer-links">
-  <li><a href="/about">Company Heritage</a></li>
-  <li><a href="/solutions">Solutions</a></li>
-  <li><a href="/process">How It Works</a></li>
-  <li><a href="/projects">Projects</a></li>
-  <li><a href="/epoxy">Epoxy Flooring</a></li>
-  <li><a href="/shop">Online Shop</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
+        <ul class="footer-links">
+          <li><a href="/about">Company Heritage</a></li>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/process">How It Works</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/epoxy">Epoxy Flooring</a></li>
+          <li><a href="/shop">Online Shop</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
       </div>
       <div>
         <div class="footer-col-heading">Contact</div>
@@ -916,29 +913,61 @@
 
 <script>
 /* ============================================================
-   PRODUCT DATA
+   PRODUCT DATA (45 products)
 ============================================================ */
 const allProducts = [
-  { id:1,  name:"Gamazine Classic – Stone Grey",       category:"Gamazine",     price:250,   unit:"20L",    desc:"Original Gamazine wall coating. Crack‑resistant, waterproof, exterior-grade.", badge:"popular" },
-  { id:2,  name:"SDG Glamour Coat – Jasper Red",       category:"Glamour Coat", price:550,   unit:"25kg",   desc:"Decorative coating with coloured stones & resin binder.", badge:"popular" },
-  { id:3,  name:"Self‑Levelling Epoxy Kit",            category:"Epoxy",        price:380,   unit:"per m²", desc:"High‑gloss seamless epoxy for retail & modern interiors.", badge:"popular" },
-  { id:4,  name:"Metallic Epoxy Pigment Pack",         category:"Epoxy",        price:1200,  unit:"kit",    desc:"Create stunning 3D metallic effects on any floor.", badge:"" },
-  { id:5,  name:"Flake Epoxy Garage System",           category:"Epoxy",        price:450,   unit:"per m²", desc:"Decorative flakes for slip‑resistant garage floors.", badge:"" },
-  { id:6,  name:"Gamazine Classic – Charcoal",          category:"Gamazine",     price:250,   unit:"20L",    desc:"Deep charcoal matte finish for bold contemporary walls.", badge:"" },
-  { id:7,  name:"Glamour Coat – Ocean Blue",           category:"Glamour Coat", price:550,   unit:"25kg",   desc:"Rich blue tones with glitter stone accents.", badge:"new" },
-  { id:8,  name:"Industrial Epoxy Primer",              category:"Epoxy",        price:220,   unit:"5L",     desc:"High‑bond primer for concrete floors. Essential first step.", badge:"" },
-  { id:9,  name:"Gamazine Classic – Terracotta",        category:"Gamazine",     price:250,   unit:"20L",    desc:"Warm earth‑tone gamazine, ideal for natural aesthetics.", badge:"" },
-  { id:10, name:"Epoxy Top Coat UV‑Stable",             category:"Epoxy",        price:320,   unit:"5L",     desc:"Clear UV‑resistant sealer — protects epoxy floors from yellowing.", badge:"" },
-  { id:11, name:"Glamour Coat – Pearl White",           category:"Glamour Coat", price:550,   unit:"25kg",   desc:"Luminous white finish with fine shimmer stones.", badge:"popular" },
-  { id:12, name:"Gamazine Classic – Sandstone",         category:"Gamazine",     price:250,   unit:"20L",    desc:"Natural sandstone texture, blends with any exterior palette.", badge:"" },
-  { id:13, name:"Self‑Levelling Epoxy – Light Grey",   category:"Epoxy",        price:380,   unit:"per m²", desc:"Light grey — modern industrial look for studios and offices.", badge:"" },
-  { id:14, name:"Metallic Epoxy – Copper Swirl",        category:"Epoxy",        price:1200,  unit:"kit",    desc:"Copper and gold metallic effect kit. Luxury interiors.", badge:"new" },
-  { id:15, name:"Flake Epoxy – Black & White Blend",    category:"Epoxy",        price:450,   unit:"per m²", desc:"Classic black & white flake floor for workshops & garages.", badge:"" },
-  { id:16, name:"Glamour Coat – Midnight Glitter",      category:"Glamour Coat", price:550,   unit:"25kg",   desc:"Dark base with fine silver glitter stones.", badge:"" },
-  { id:17, name:"Gamazine Classic – Olive Green",       category:"Gamazine",     price:250,   unit:"20L",    desc:"Muted olive green for natural garden surroundings.", badge:"" },
-  { id:18, name:"Epoxy Flake Kit – DIY Garage",         category:"Epoxy",        price:890,   unit:"kit",    desc:"Complete DIY flake epoxy kit covering 20m². Includes all layers.", badge:"popular" },
-  { id:19, name:"Glamour Coat – Rose Gold",             category:"Glamour Coat", price:550,   unit:"25kg",   desc:"Elegant rose gold sparkle — a favourite for feature walls.", badge:"new" },
-  { id:20, name:"Gamazine Classic – White",             category:"Gamazine",     price:250,   unit:"20L",    desc:"Pure white, clean and versatile for any exterior surface.", badge:"" },
+  // ---- GAMAZINE CLASSIC (R250/20L) – 6 with real images, 14 with placeholder ----
+  { id:1,  name:"Gamazine Classic – Stone Grey",       category:"Gamazine", price:250, unit:"20L", desc:"Original Gamazine wall coating. Crack‑resistant, waterproof, exterior‑grade.", img:"https://i.postimg.cc/J0QZ1LPd/Whats-App-Image-2026-04-24-at-11-08-49-AM.jpg", badge:"popular" },
+  { id:2,  name:"Gamazine Classic – Charcoal",          category:"Gamazine", price:250, unit:"20L", desc:"Deep charcoal matte finish for bold contemporary walls.", img:"https://i.postimg.cc/HntXpgBS/Whats-App-Image-2026-04-24-at-11-11-57-AM.jpg", badge:"" },
+  { id:3,  name:"Gamazine Classic – Terracotta",        category:"Gamazine", price:250, unit:"20L", desc:"Warm earth‑tone gamazine, ideal for natural aesthetics.", img:"https://i.postimg.cc/hv0TSBpM/Whats-App-Image-2026-04-24-at-11-14-42-AM.jpg", badge:"" },
+  { id:4,  name:"Gamazine Classic – Sandstone",         category:"Gamazine", price:250, unit:"20L", desc:"Natural sandstone texture, blends with any exterior palette.", img:"https://i.postimg.cc/d39rqY44/Whats-App-Image-2026-04-24-at-11-14-42-AM-(1).jpg", badge:"" },
+  { id:5,  name:"Gamazine Classic – Olive Green",       category:"Gamazine", price:250, unit:"20L", desc:"Muted olive green for natural garden surroundings.", img:"https://i.postimg.cc/7hN0xkmK/Whats-App-Image-2026-04-24-at-11-14-43-AM.jpg", badge:"" },
+  { id:6,  name:"Gamazine Classic – White",             category:"Gamazine", price:250, unit:"20L", desc:"Pure white, clean and versatile for any exterior surface.", img:"https://i.postimg.cc/4y1VJgBb/Whats-App-Image-2026-04-24-at-11-14-45-AM.jpg", badge:"" },
+
+  // Additional Gamazine colours (image coming soon) – honest listing
+  { id:7,  name:"Gamazine Classic – Colour 7",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:8,  name:"Gamazine Classic – Colour 8",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:9,  name:"Gamazine Classic – Colour 9",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:10, name:"Gamazine Classic – Colour 10",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:11, name:"Gamazine Classic – Colour 11",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:12, name:"Gamazine Classic – Colour 12",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:13, name:"Gamazine Classic – Colour 13",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:14, name:"Gamazine Classic – Colour 14",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:15, name:"Gamazine Classic – Colour 15",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:16, name:"Gamazine Classic – Colour 16",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:17, name:"Gamazine Classic – Colour 17",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:18, name:"Gamazine Classic – Colour 18",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:19, name:"Gamazine Classic – Colour 19",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+  { id:20, name:"Gamazine Classic – Colour 20",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
+
+  // ---- GLAMOUR COAT (R350/20L) – 19 images ----
+  { id:30, name:"Glamour Coat – Jasper Red",            category:"Glamour Coat", price:350, unit:"20L", desc:"Decorative interior coating with coloured stones & resin. R350/20L.", img:"https://i.postimg.cc/dt4Vw1jP/Whats-App-Image-2026-04-24-at-11-30-33-AM.jpg", badge:"popular" },
+  { id:31, name:"Glamour Coat – Ocean Blue",            category:"Glamour Coat", price:350, unit:"20L", desc:"Rich blue tones with glitter stone accents – perfect for feature walls.", img:"https://i.postimg.cc/7YmZw6Mp/Whats-App-Image-2026-04-24-at-11-30-34-AM.jpg", badge:"" },
+  { id:32, name:"Glamour Coat – Pearl White",           category:"Glamour Coat", price:350, unit:"20L", desc:"Luminous white finish with fine shimmer stones.", img:"https://i.postimg.cc/sDwgsX9q/Whats-App-Image-2026-04-24-at-11-30-34-AM-(1).jpg", badge:"" },
+  { id:33, name:"Glamour Coat – Midnight Glitter",      category:"Glamour Coat", price:350, unit:"20L", desc:"Dark base with fine silver glitter stones.", img:"https://i.postimg.cc/X7QY4Jch/Whats-App-Image-2026-04-24-at-11-30-34-AM-(2).jpg", badge:"" },
+  { id:34, name:"Glamour Coat – Rose Gold",             category:"Glamour Coat", price:350, unit:"20L", desc:"Elegant rose gold sparkle – a favourite for feature walls.", img:"https://i.postimg.cc/wT0jgvc4/Whats-App-Image-2026-04-24-at-11-30-35-AM.jpg", badge:"" },
+  { id:35, name:"Glamour Coat – Terracotta",            category:"Glamour Coat", price:350, unit:"20L", desc:"Warm terracotta hue, perfect for accent walls.", img:"https://i.postimg.cc/15J3stcB/Whats-App-Image-2026-04-24-at-11-30-35-AM-(1).jpg", badge:"" },
+  { id:36, name:"Glamour Coat – Sandstone",             category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sandstone colour with subtle shimmer.", img:"https://i.postimg.cc/c4sLpYYw/Whats-App-Image-2026-04-24-at-11-30-35-AM-(10).jpg", badge:"" },
+  { id:37, name:"Glamour Coat – Olive",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Olive green with a refined glossy look.", img:"https://i.postimg.cc/QxXd2557/Whats-App-Image-2026-04-24-at-11-30-35-AM-(11).jpg", badge:"" },
+  { id:38, name:"Glamour Coat – Coral",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Vibrant coral shade for a fresh, modern interior.", img:"https://i.postimg.cc/bNzw7bbt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(12).jpg", badge:"" },
+  { id:39, name:"Glamour Coat – Amber",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Warm amber glow with subtle golden flecks.", img:"https://i.postimg.cc/fTwRGXXt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(13).jpg", badge:"" },
+  { id:40, name:"Glamour Coat – Teal",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Deep teal with a luxurious sheen.", img:"https://i.postimg.cc/XNKv1xZd/Whats-App-Image-2026-04-24-at-11-30-35-AM-(14).jpg", badge:"" },
+  { id:41, name:"Glamour Coat – Lavender",              category:"Glamour Coat", price:350, unit:"20L", desc:"Soft lavender tint with a pearlescent finish.", img:"https://i.postimg.cc/WbX1T36n/Whats-App-Image-2026-04-24-at-11-30-35-AM-(2).jpg", badge:"" },
+  { id:42, name:"Glamour Coat – Platinum",              category:"Glamour Coat", price:350, unit:"20L", desc:"Metallic platinum effect for high‑end interiors.", img:"https://i.postimg.cc/02cyPQdC/Whats-App-Image-2026-04-24-at-11-30-35-AM-(3).jpg", badge:"" },
+  { id:43, name:"Glamour Coat – Bronze",                category:"Glamour Coat", price:350, unit:"20L", desc:"Bronze tones with a rich, classic appeal.", img:"https://i.postimg.cc/YqpC5ggy/Whats-App-Image-2026-04-24-at-11-30-35-AM-(4).jpg", badge:"" },
+  { id:44, name:"Glamour Coat – Ivory",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Creamy ivory with a subtle sparkle.", img:"https://i.postimg.cc/zXJGsWW0/Whats-App-Image-2026-04-24-at-11-30-35-AM-(5).jpg", badge:"" },
+  { id:45, name:"Glamour Coat – Sage",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sage green, calming and elegant.", img:"https://i.postimg.cc/5Nx2hvvp/Whats-App-Image-2026-04-24-at-11-30-35-AM-(6).jpg", badge:"" },
+  { id:46, name:"Glamour Coat – Slate",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Dark slate grey, modern and dramatic.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(7).jpg", badge:"" },
+  { id:47, name:"Glamour Coat – Mocha",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Rich mocha brown, warm and inviting.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(8).jpg", badge:"" },
+  { id:48, name:"Glamour Coat – Ebony",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Deep ebony with a mirror‑like gloss.", img:"https://i.postimg.cc/CLFx3DDj/Whats-App-Image-2026-04-24-at-11-30-35-AM-(9).jpg", badge:"" },
+
+  // ---- EPOXY (Coming Soon) ----
+  { id:60, name:"Self‑Levelling Epoxy",                 category:"Epoxy", price:380, unit:"per m²", desc:"High‑gloss seamless epoxy for retail & modern interiors.", img:"", badge:"" },
+  { id:61, name:"Metallic Epoxy",                       category:"Epoxy", price:1200, unit:"kit", desc:"Create stunning 3D metallic effects on any floor.", img:"", badge:"" },
+  { id:62, name:"Flake Epoxy",                          category:"Epoxy", price:450, unit:"per m²", desc:"Decorative flakes for slip‑resistant garage floors.", img:"", badge:"" },
+  { id:63, name:"Quartz Epoxy",                         category:"Epoxy", price:420, unit:"per m²", desc:"Textured, durable finish with natural quartz aggregates.", img:"", badge:"" },
+  { id:64, name:"Anti‑Static Epoxy",                    category:"Epoxy", price:520, unit:"per m²", desc:"Controls static discharge for labs & server rooms.", img:"", badge:"" },
+  { id:65, name:"Decorative Chip Epoxy",                category:"Epoxy", price:490, unit:"per m²", desc:"Broadcast coloured chips for terrazzo‑like elegance.", img:"", badge:"" }
 ];
 
 /* Category icon & css class helpers */
@@ -1012,13 +1041,13 @@ function render() {
       const badge = p.badge
         ? `<div class="product-img-badges"><span class="product-badge badge-${p.badge}">${p.badge}</span></div>`
         : '';
+      const imgHtml = p.img
+        ? `<img src="${p.img}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`
+        : `<div class="coming-soon-img ${meta.cls}"><i class="fas ${meta.icon}"></i><span>Coming Soon</span></div>`;
       return `
       <div class="product-card">
         <div class="product-img-wrap">
-          <div class="coming-soon-img ${meta.cls}">
-            <i class="fas ${meta.icon}"></i>
-            <span>Coming Soon</span>
-          </div>
+          ${imgHtml}
           ${badge}
         </div>
         <div class="product-body">
@@ -1078,7 +1107,7 @@ window.addToCart = function(id) {
   if (!p) return;
   const qty = parseInt(document.getElementById(`qty_${id}`)?.value) || 1;
   const ex  = cart.find(x => x.id === id);
-  if (ex) { ex.qty += qty; } else { cart.push({ id, name:p.name, price:p.price, category:p.category, qty }); }
+  if (ex) { ex.qty += qty; } else { cart.push({ id, name:p.name, price:p.price, img:p.img, category:p.category, qty }); }
   saveCart();
   updateCartUI();
   showToast(`<i class="fas fa-check"></i> ${p.name} added to cart`);
@@ -1097,23 +1126,20 @@ function updateCartUI() {
   const vat        = subtotal * 0.05;
   const total      = subtotal + vat;
 
-  // count badge
   const countEl = document.getElementById('cartCount');
   if (countEl) {
     countEl.textContent = totalQty;
     countEl.classList.remove('bump');
-    void countEl.offsetWidth; // reflow
+    void countEl.offsetWidth;
     if (totalQty > 0) countEl.classList.add('bump');
   }
 
-  // sub / vat / total
   const el = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
   el('cartSubtotal', `R ${subtotal.toFixed(2)}`);
   el('cartVat',      `R ${vat.toFixed(2)}`);
   el('cartTotal',    `R ${total.toFixed(2)}`);
   el('cartHeaderSub', `${totalQty} item${totalQty !== 1?'s':''}`);
 
-  // items
   const cartItemsEl = document.getElementById('cartItems');
   if (!cartItemsEl) return;
   if (cart.length === 0) {
@@ -1121,11 +1147,12 @@ function updateCartUI() {
   } else {
     cartItemsEl.innerHTML = cart.map(item => {
       const meta = catMeta[item.category] || catMeta["Gamazine"];
+      const thumbHtml = item.img
+        ? `<img src="${item.img}" class="cart-item-thumb" style="width:48px;height:48px;border-radius:10px;object-fit:cover;">`
+        : `<div class="cart-item-thumb coming-soon-img ${meta.cls}" style="width:48px;height:48px;border-radius:10px;min-height:unset;aspect-ratio:unset;"><i class="fas ${meta.icon}" style="font-size:1rem;"></i></div>`;
       return `
       <div class="cart-item">
-        <div class="cart-item-thumb coming-soon-img ${meta.cls}" style="width:48px;height:48px;border-radius:10px;min-height:unset;aspect-ratio:unset;">
-          <i class="fas ${meta.icon}" style="font-size:1rem;"></i>
-        </div>
+        ${thumbHtml}
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">R ${item.price.toFixed(2)} ea &nbsp;<span class="cart-item-qty-chip">×${item.qty}</span></div>
@@ -1137,7 +1164,6 @@ function updateCartUI() {
     }).join('');
   }
 
-  // checkout summary
   const summaryLines = document.getElementById('summaryLines');
   if (summaryLines) {
     summaryLines.innerHTML = cart.map(i =>
