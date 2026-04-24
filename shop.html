@@ -1,27 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+  <!-- ═══ PRIMARY SEO ═══ -->
   <title>Online Shop | Gamazine & Epoxy Products | GGS</title>
   <meta name="description" content="Order premium Gamazine wall coatings and epoxy flooring products. Cash on delivery. Free site inspection across Gauteng.">
   <meta name="keywords" content="buy gamazine online, glamour coat, epoxy flooring, wall coatings shop, Gauteng">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1a1a1a">
+
+  <!-- ═══ OPEN GRAPH ═══ -->
   <meta property="og:title" content="GGS Online Shop – Gamazine & Epoxy">
   <meta property="og:description" content="Order Gamazine and epoxy products online. Pay on delivery.">
   <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://globalgamazine.co.za/shop">
+  <meta property="og:locale" content="en_ZA">
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a94b' text-anchor='middle'>G</text></svg>">
+
+  <!-- ═══ FONTS ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="assets/js/supabase.js" defer></script>
-  <style>
-    /* ======================================================
-       SHOP PAGE — ENHANCED STYLES (brand colors)
-    ====================================================== */
 
-    /* --- Hero (matching site's light style) --- */
+  <style>
+    /* ════════════════════════════════════════════════════════════
+       DESIGN TOKENS — shared across all pages
+       ════════════════════════════════════════════════════════════ */
+    :root {
+      --gold:          #c9a94b;
+      --gold-light:    #e8d08a;
+      --gold-muted:    rgba(201,169,75,0.15);
+      --charcoal:      #1a1a1a;
+      --off-white:     #f7f5f0;
+      --cream-card:    #faf8f4;
+      --slate:         #6b6b6b;
+      --border:        rgba(0,0,0,0.08);
+      --border-gold:   rgba(201,169,75,0.25);
+      --header-h:      72px;
+      --r-card:        12px;
+      --r-xl:          20px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+      --spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--charcoal); background: var(--off-white); overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Scroll Progress / Cursor / Nav (same as all pages) ── */
+    #scroll-progress { position: fixed; top: 0; left: 0; z-index: 9999; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.05s linear; }
+    #cursor-dot, #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; }
+    #cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); }
+    #cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(201,169,75,0.5); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+    body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--gold); }
+    @media (hover: none) { #cursor-dot, #cursor-ring { display: none; } }
+
+    .mobile-nav { position: fixed; inset: 0; z-index: 800; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding: 48px 40px; clip-path: circle(0% at calc(100% - 32px) 36px); transition: clip-path 0.6s var(--ease-out-expo); }
+    .mobile-nav.open { clip-path: circle(150% at calc(100% - 32px) 36px); }
+    .mobile-nav a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: rgba(255,255,255,0.6); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.25s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--gold); }
+    .mobile-nav-contact { margin-top: 40px; display: flex; flex-direction: column; gap: 8px; }
+    .mobile-nav-contact a { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.35); border-bottom: none; }
+
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--header-h); display: flex; align-items: center; transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s; }
+    .site-header.scrolled { background: rgba(247,245,240,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; }
+    .nav-desktop { display: none; gap: 32px; }
+    @media (min-width: 960px) { .nav-desktop { display: flex; } }
+    .nav-desktop a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em; color: var(--slate); transition: color 0.2s; }
+    .nav-desktop a:hover, .nav-desktop a.active { color: var(--charcoal); }
+    .header-cta-group { display: flex; align-items: center; gap: 16px; }
+    .header-phone { display: none; font-size: 0.82rem; color: var(--slate); }
+    @media (min-width: 640px) { .header-phone { display: block; } }
+    .header-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; padding: 9px 18px; background: var(--charcoal); color: white; border-radius: 100px; transition: background 0.25s, transform 0.2s; }
+    .header-cta:hover { background: var(--gold); transform: translateY(-1px); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 910; }
+    @media (min-width: 960px) { .hamburger { display: none; } }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: transform 0.35s var(--ease-out-expo), opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: white; }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: white; }
+
+    /* ── Typography utilities ── */
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; position: relative; top: -1px; }
+    .mask-wrap { overflow: hidden; display: block; }
+    .mask-inner { display: block; transform: translateY(110%); opacity: 0; transition: transform 0.9s var(--ease-out-expo), opacity 0.5s; }
+    .mask-inner.revealed { transform: translateY(0); opacity: 1; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .stagger-children > * { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+    .stagger-children.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .stagger-children.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
+    .stagger-children.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
+    .stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
+
+    /* ════════════════════════════════════════════════════════════
+       SHOP HERO (original content restored + mask animations)
+       ════════════════════════════════════════════════════════════ */
     .shop-hero {
       background: linear-gradient(180deg, rgba(250,247,242,0.72) 0%, rgba(255,255,255,0.98) 100%);
       border-bottom: 1px solid var(--border);
@@ -35,14 +127,12 @@
     .shop-hero h1 em { color: var(--gold); font-style: italic; }
     .shop-hero p {
       color: var(--slate);
-      max-width: 560px;
+      max-width: 600px;
       font-size: 1rem;
       line-height: 1.75;
     }
     .shop-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
       background: rgba(182,139,64,0.12);
       border: 1px solid rgba(182,139,64,0.3);
       color: var(--gold);
@@ -55,9 +145,7 @@
       margin-bottom: 14px;
     }
     .shop-hero-stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 28px;
+      display: flex; gap: 32px; margin-top: 28px;
     }
     .shop-hero-stats .stat strong {
       display: block;
@@ -73,7 +161,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* --- Filter bar --- */
+    /* ── Filter bar ── */
     .filter-bar {
       background: white;
       border-bottom: 1px solid var(--border);
@@ -82,12 +170,7 @@
       z-index: 90;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
-    .filter-bar .container {
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
+    .filter-bar .container { display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; }
     .filter-bar .container::-webkit-scrollbar { display: none; }
     .filter-tab {
       flex-shrink: 0;
@@ -101,38 +184,24 @@
       border: none;
       border-bottom: 3px solid transparent;
       cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
       white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
     }
     .filter-tab:hover { color: var(--charcoal); }
-    .filter-tab.active {
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-    }
+    .filter-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
     .filter-tab .count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--cream-deep);
-      color: var(--slate);
-      border-radius: 30px;
-      width: 20px;
-      height: 20px;
-      font-size: 0.68rem;
-      margin-left: 6px;
-      font-weight: 600;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--cream-deep); color: var(--slate);
+      border-radius: 30px; width: 20px; height: 20px;
+      font-size: 0.68rem; margin-left: 6px; font-weight: 600;
     }
     .filter-tab.active .count {
       background: rgba(182,139,64,0.15);
       color: var(--gold);
     }
     .filter-bar-right {
-      margin-left: auto;
-      padding-left: 16px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      margin-left: auto; padding-left: 16px; flex-shrink: 0;
+      display: flex; align-items: center; gap: 10px;
     }
     .sort-select {
       border: 1px solid var(--border);
@@ -146,7 +215,7 @@
       outline: none;
     }
 
-    /* --- Product Grid --- */
+    /* ── Product grid ── */
     .shop-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -156,722 +225,302 @@
     @media (max-width: 1200px) { .shop-grid { grid-template-columns: repeat(4, 1fr); } }
     @media (max-width: 900px)  { .shop-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 640px)  { .shop-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 380px)  { .shop-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 400px)  { .shop-grid { grid-template-columns: 1fr; } }
 
-    /* --- Product Card --- */
     .product-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
+      background: white; border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
       box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: cardReveal 0.5s cubic-bezier(.22,1,.36,1) forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex; flex-direction: column;
     }
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.10);
-    }
-    @keyframes cardReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .product-card:nth-child(1)  { animation-delay: 0.05s; }
-    .product-card:nth-child(2)  { animation-delay: 0.10s; }
-    .product-card:nth-child(3)  { animation-delay: 0.15s; }
-    .product-card:nth-child(4)  { animation-delay: 0.20s; }
-    .product-card:nth-child(5)  { animation-delay: 0.25s; }
-    .product-card:nth-child(6)  { animation-delay: 0.30s; }
-    .product-card:nth-child(7)  { animation-delay: 0.35s; }
-    .product-card:nth-child(8)  { animation-delay: 0.40s; }
-    .product-card:nth-child(9)  { animation-delay: 0.45s; }
-    .product-card:nth-child(10) { animation-delay: 0.50s; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+    .product-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; }
+    .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .product-card:hover .product-img-wrap img { transform: scale(1.04); }
+    .product-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .product-category { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+    .product-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.25; margin-bottom: 5px; }
+    .product-desc { font-size: 0.78rem; color: var(--slate); line-height: 1.5; margin-bottom: 12px; flex: 1; }
+    .product-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+    .product-price { font-size: 1.2rem; font-weight: 700; color: var(--charcoal); font-family: 'Cormorant Garamond', serif; }
+    .product-unit { font-size: 0.72rem; color: var(--slate); background: var(--cream-deep); padding: 2px 8px; border-radius: 20px; }
+    .qty-row { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .qty-btn { width: 28px; height: 28px; border: 1.5px solid var(--border); background: white; border-radius: 50%; cursor: pointer; font-size: 1rem; color: var(--charcoal); display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .qty-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .qty-input { width: 36px; text-align: center; border: 1.5px solid var(--border); border-radius: 8px; padding: 4px; font-size: 0.85rem; font-weight: 600; }
+    .add-to-cart-btn { width: 100%; background: var(--charcoal); color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .add-to-cart-btn:hover { background: var(--gold); }
 
-    .product-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-    }
-    .coming-soon-img {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--slate);
-      gap: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 600;
-      font-size: 0.68rem;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.3s;
-    }
-    .coming-soon-img i {
-      font-size: 1.6rem;
-      opacity: 0.35;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .product-card:hover .coming-soon-img i {
-      transform: scale(1.1);
-      opacity: 0.5;
-    }
-    .img-gamazine     { background: linear-gradient(145deg, #f4efe6, #ece5d6); }
-    .img-gamazine i   { color: #8b6914; }
-    .img-glamour      { background: linear-gradient(145deg, #f4e8f4, #eddff0); }
-    .img-glamour i    { color: #9b59b6; }
-    .img-epoxy        { background: linear-gradient(145deg, #e8f0f8, #dde8f5); }
-    .img-epoxy i      { color: #2874a6; }
-
-    .product-img-badges {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .product-badge {
-      padding: 3px 9px;
-      border-radius: 20px;
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-    }
-    .badge-popular  { background: rgba(182,139,64,0.9); color: white; }
-    .badge-new      { background: rgba(34,197,94,0.9); color: white; }
-    .badge-sale     { background: rgba(239,68,68,0.9); color: white; }
-
-    .product-body {
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-category {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-    .product-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.18rem;
-      line-height: 1.25;
-      margin-bottom: 5px;
-      color: var(--charcoal);
-    }
-    .product-desc {
-      font-size: 0.76rem;
-      color: var(--slate);
-      line-height: 1.55;
-      margin-bottom: 12px;
-      flex: 1;
-    }
-    .product-price-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .product-price {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--charcoal);
-      font-family: 'Cormorant Garamond', serif;
-    }
-    .product-unit {
-      font-size: 0.72rem;
-      color: var(--slate);
-      background: var(--cream-deep);
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-weight: 500;
-    }
-
-    .qty-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .qty-btn {
-      width: 28px; height: 28px;
-      border: 1.5px solid var(--border);
-      background: white;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1rem;
-      color: var(--charcoal);
-      display: flex; align-items: center; justify-content: center;
-      transition: 0.2s;
-      line-height: 1;
-    }
-    .qty-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(182,139,64,0.06); }
-    .qty-input {
-      width: 36px;
-      text-align: center;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 4px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .add-to-cart-btn {
-      width: 100%;
-      background: var(--charcoal);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
-    }
-    .add-to-cart-btn:hover { background: var(--gold); transform: scale(1.01); }
-    .add-to-cart-btn:active { transform: scale(0.98); }
-
-    /* --- Pagination --- */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      margin-top: 48px;
-      flex-wrap: wrap;
-    }
-    .page-btn {
-      background: white;
-      border: 1.5px solid var(--border);
-      padding: 9px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.82rem;
-      transition: 0.2s;
-    }
+    /* ── Pagination ── */
+    .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 48px; flex-wrap: wrap; }
+    .page-btn { background: white; border: 1.5px solid var(--border); padding: 9px 20px; border-radius: 30px; cursor: pointer; font-weight: 600; font-size: 0.82rem; transition: 0.2s; }
     .page-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
     .page-btn:disabled { opacity: 0.35; cursor: default; }
-    .page-dot {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      border: 1.5px solid var(--border);
-      background: white;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: 0.2s;
-    }
+    .page-dot { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1.5px solid var(--border); background: white; cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: 0.2s; }
     .page-dot.active { background: var(--gold); color: white; border-color: var(--gold); }
-    .page-dot:hover:not(.active) { border-color: var(--gold); color: var(--gold); }
 
-    /* --- Toast --- */
-    .toast-stack {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      pointer-events: none;
-    }
-    .toast {
-      background: var(--charcoal);
-      color: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      animation: toastIn 0.3s cubic-bezier(.22,1,.36,1) forwards;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-    .toast i { color: var(--gold); }
-    .toast.out { animation: toastOut 0.3s ease forwards; }
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(10px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes toastOut {
-      to { opacity: 0; transform: translateY(-6px) scale(0.95); }
-    }
-
-    /* --- Cart button --- */
+    /* ── Cart toggle (higher to avoid WhatsApp overlap) ── */
     #cartToggle {
-      position: fixed; bottom: 28px; right: 28px;
+      position: fixed; bottom: 100px; right: 28px;
       width: 58px; height: 58px;
-      background: var(--charcoal);
-      color: white;
-      border: none;
-      border-radius: 50%;
+      background: var(--charcoal); color: white;
+      border: none; border-radius: 50%;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      z-index: 999;
-      cursor: pointer;
-      font-size: 1.2rem;
+      z-index: 700; cursor: pointer; font-size: 1.2rem;
       transition: background 0.2s, transform 0.2s;
       display: flex; align-items: center; justify-content: center;
     }
     #cartToggle:hover { background: var(--gold); transform: scale(1.08); }
     #cartCount {
       position: absolute; top: -4px; right: -4px;
-      background: var(--gold);
-      color: white;
-      border-radius: 50%;
-      width: 22px; height: 22px;
+      background: var(--gold); color: white;
+      border-radius: 50%; width: 22px; height: 22px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.72rem; font-weight: 700;
       border: 2px solid white;
-      transition: transform 0.2s;
-    }
-    #cartCount.bump { animation: countBump 0.3s cubic-bezier(.22,1,.36,1); }
-    @keyframes countBump {
-      0%   { transform: scale(1); }
-      50%  { transform: scale(1.5); }
-      100% { transform: scale(1); }
     }
 
-    /* --- Cart Panel --- */
-    .cart-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(3px);
-      z-index: 1000;
-      display: none;
-      animation: fadeIn 0.2s ease;
-    }
+    /* ── Cart Panel / Checkout (unchanged) ── */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 1000; display: none; }
     .cart-overlay.open { display: block; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .cart-panel {
-      position: fixed; right: 0; top: 0; height: 100%;
-      width: 100%; max-width: 400px;
-      background: white;
-      box-shadow: -16px 0 48px rgba(0,0,0,0.12);
-      z-index: 1001;
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(.22,1,.36,1);
-      display: flex; flex-direction: column;
-    }
+    .cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 100%; max-width: 400px; background: white; box-shadow: -16px 0 48px rgba(0,0,0,0.12); z-index: 1001; transform: translateX(100%); transition: transform 0.35s; display: flex; flex-direction: column; }
     .cart-panel.open { transform: translateX(0); }
-
-    .cart-header {
-      padding: 20px 20px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--charcoal);
-      color: white;
-    }
-    .cart-header h2 { margin: 0; color: white; font-size: 1.2rem; }
-    .cart-header-sub { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
-    .cart-close-btn {
-      width: 32px; height: 32px;
-      border: 1.5px solid rgba(255,255,255,0.3);
-      background: none; color: white;
-      border-radius: 50%; cursor: pointer;
-      font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: 0.2s;
-    }
-    .cart-close-btn:hover { background: rgba(255,255,255,0.15); }
-
+    .cart-header { padding: 20px; background: var(--charcoal); color: white; display: flex; justify-content: space-between; align-items: center; }
     .cart-items { flex: 1; overflow-y: auto; padding: 16px; }
-    .cart-empty {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      height: 200px; color: var(--slate); gap: 10px;
-    }
-    .cart-empty i { font-size: 2.5rem; opacity: 0.25; }
-
-    .cart-item {
-      display: flex; gap: 12px; align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .cart-item:last-child { border-bottom: none; }
-    .cart-item-thumb {
-      width: 48px; height: 48px;
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; flex-shrink: 0;
-    }
-    .cart-item-info { flex: 1; min-width: 0; }
-    .cart-item-name { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cart-item-price { font-size: 0.78rem; color: var(--slate); }
-    .cart-item-qty-chip {
-      background: rgba(182,139,64,0.12);
-      color: var(--gold);
-      border-radius: 20px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-    .cart-item-remove {
-      color: #ef4444; cursor: pointer;
-      width: 28px; height: 28px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; transition: background 0.2s;
-      font-size: 0.85rem;
-    }
-    .cart-item-remove:hover { background: #fee2e2; }
-
+    .cart-item { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .cart-item-thumb { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; }
     .cart-footer { padding: 16px 20px; border-top: 1px solid var(--border); }
-    .cart-subtotal-row {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.82rem; color: var(--slate); margin-bottom: 6px;
-    }
-    .cart-total-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 16px;
-    }
-    .cart-total-label { font-size: 0.9rem; font-weight: 600; }
-    .cart-total-amount { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; }
-    .cart-checkout-btn {
-      width: 100%;
-      background: var(--gold);
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-      letter-spacing: 0.03em;
-    }
-    .cart-checkout-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    /* --- Checkout Modal --- */
-    .checkout-modal {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: none;
-      justify-content: center;
-      align-items: flex-end;
-    }
+    .checkout-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; }
     .checkout-modal.open { display: flex; }
-    @media (min-width: 640px) { .checkout-modal { align-items: center; } }
-
-    .checkout-card {
-      background: white;
-      border-radius: 24px 24px 0 0;
-      padding: 28px 24px;
-      width: 100%;
-      max-width: 520px;
-      max-height: 92vh;
-      overflow-y: auto;
-      animation: slideUp 0.35s cubic-bezier(.22,1,.36,1);
-    }
-    @media (min-width: 640px) {
-      .checkout-card { border-radius: 24px; }
-    }
-    @keyframes slideUp {
-      from { transform: translateY(40px); opacity: 0; }
-      to   { transform: translateY(0); opacity: 1; }
-    }
-    .checkout-card h2 {
-      font-size: 1.6rem;
-      margin: 0 0 4px;
-    }
-    .checkout-sub { font-size: 0.82rem; color: var(--slate); margin-bottom: 20px; }
-
-    .checkout-order-summary {
-      background: var(--cream-deep);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 20px;
-    }
-    .checkout-order-summary h4 {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gold);
-      margin: 0 0 10px;
-      font-weight: 700;
-    }
-    .summary-line {
-      display: flex; justify-content: space-between;
-      font-size: 0.82rem; margin-bottom: 5px;
-    }
-    .summary-line.total {
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
-      margin-top: 6px;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .form-group { margin-bottom: 14px; }
-    .form-group label {
-      display: block; font-size: 0.75rem;
-      font-weight: 700; letter-spacing: 0.06em;
-      color: var(--charcoal); margin-bottom: 5px;
-    }
-    .form-group input,
-    .form-group textarea {
-      width: 100%; padding: 10px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--charcoal);
-      transition: border-color 0.2s;
-      box-sizing: border-box;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-
-    .submit-order-btn {
-      width: 100%;
-      background: var(--charcoal);
-      color: white;
-      border: none;
-      padding: 15px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 4px;
-      letter-spacing: 0.03em;
-    }
+    .checkout-card { background: white; border-radius: 24px; padding: 28px 24px; max-width: 520px; width: 90%; max-height: 90vh; overflow-y: auto; }
+    .submit-order-btn { width: 100%; background: var(--charcoal); color: white; border: none; padding: 15px; font-size: 0.9rem; font-weight: 700; border-radius: 12px; cursor: pointer; transition: 0.2s; }
     .submit-order-btn:hover { background: var(--gold); }
-    .submit-order-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cart-item-remove { color: #ef4444; cursor: pointer; }
 
-    .payment-badges {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      margin-top: 14px; color: var(--slate); font-size: 0.75rem;
-    }
-    .payment-badges i { color: var(--gold); }
+    /* ── Footer, Cookie, WhatsApp, Back-to-top ── */
+    .footer { background: #111; color: rgba(255,255,255,0.6); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+    @media (min-width: 640px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+    .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-brand-logo img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; }
+    .footer-brand-logo span { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: white; }
+    .footer-tagline { font-size: 0.82rem; line-height: 1.7; max-width: 280px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-socials a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: border-color 0.2s, color 0.2s; }
+    .footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col-heading { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: white; margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .newsletter-desc { font-size: 0.82rem; margin-bottom: 16px; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 8px; }
+    .newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.82rem; }
+    .newsletter-btn { padding: 10px 16px; border-radius: 8px; background: var(--gold); color: var(--charcoal); border: none; cursor: pointer; font-size: 0.8rem; }
+    .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
-    /* --- No results --- */
-    .no-results {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--slate);
+    /* Cookie notice (flicker‑free) */
+    .cookie-hidden { display: none !important; }
+    #cookie-notice {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 1000; width: min(440px, calc(100vw - 32px));
+      background: var(--charcoal); color: white;
+      border-radius: 14px; padding: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      transition: opacity 0.4s, transform 0.4s var(--ease-out-expo);
     }
-    .no-results i { font-size: 3rem; opacity: 0.2; display: block; margin-bottom: 12px; }
+    #cookie-notice.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
+    .cookie-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
+    .cookie-categories { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .cookie-category { display: flex; align-items: center; gap: 10px; }
+    .cookie-category input[type="checkbox"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+    .cookie-category label { font-size: 0.8rem; cursor: pointer; }
+    .cookie-btns { display: flex; gap: 10px; }
+    .cookie-btn { flex: 1; padding: 10px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
+    .cookie-accept { background: var(--gold); color: var(--charcoal); }
+    .cookie-accept:hover { background: var(--gold-light); }
+    .cookie-save { background: transparent; border-color: rgba(255,255,255,0.2); color: white; }
+    .cookie-save:hover { border-color: var(--gold); }
 
-    @media (max-width: 640px) {
-      .shop-hero-stats { gap: 20px; }
-      .shop-hero-stats .stat strong { font-size: 1.4rem; }
-      .filter-bar-right { display: none; }
-    }
+    .wa-float-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 800; }
+    .wa-float { width: 52px; height: 52px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.3s var(--spring); }
+    .wa-float:hover { transform: scale(1.1); }
+    #back-top { position: fixed; bottom: 28px; left: 28px; z-index: 800; width: 40px; height: 40px; background: white; color: var(--charcoal); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s var(--ease-out-expo); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    #back-top.visible { opacity: 1; pointer-events: all; transform: none; }
+    #back-top:hover { background: var(--charcoal); color: white; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .mask-inner { transform: none; opacity: 1; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
 
-<div id="scroll-progress"></div>
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
 
 <!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/solutions">Solutions</a>
   <a href="/process">Process</a>
   <a href="/projects">Projects</a>
   <a href="/epoxy">Epoxy</a>
-  <a href="/shop" class="active">Shop</a>
+  <a href="/shop" class="active" aria-current="page">Shop</a>
   <a href="/contact">Contact</a>
   <div class="mobile-nav-contact">
     <a href="tel:+27621503704">+27 62 150 3704</a>
     <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
   </div>
-</div>
+</nav>
 
 <!-- STICKY HEADER -->
-<header class="site-header" id="siteHeader">
+<header class="site-header" id="siteHeader" role="banner">
   <div class="container header-inner">
-    <a href="/" class="logo-wrap">
-      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+    <a href="/" class="logo-wrap" aria-label="Global Gamazine Suppliers — Home">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="40" height="40" loading="eager">
       <span class="logo-text">GGS</span>
     </a>
-    <nav class="nav-desktop">
+    <nav class="nav-desktop" aria-label="Primary navigation">
       <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="/solutions">Solutions</a>
       <a href="/process">Process</a>
       <a href="/projects">Projects</a>
       <a href="/epoxy">Epoxy</a>
-      <a href="/shop" class="active">Shop</a>
+      <a href="/shop" class="active" aria-current="page">Shop</a>
       <a href="/contact">Contact</a>
     </nav>
     <div class="header-cta-group">
-      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <a href="tel:+27621503704" class="header-phone" aria-label="Call us">+27 62 150 3704</a>
+      <a href="/contact#quote" class="header-cta">Get Quote →</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- SHOP HERO -->
-<section class="shop-hero">
-  <div class="container">
-    <span class="shop-hero-badge scroll-reveal"><i class="fas fa-truck"></i> Free Gauteng delivery on orders over R2 000</span>
-    <h1 class="scroll-reveal">
-      <span class="masked-rise"><span class="masked-rise-inner">Online</span></span>
-      <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Shop</span></span>
-    </h1>
-    <p class="scroll-reveal">Premium wall coatings and epoxy flooring products, delivered to your door. Cash on delivery — no upfront payment required. <strong>We stock all colours – contact us for any custom shade.</strong></p>
-    <div class="shop-hero-stats scroll-reveal">
-      <div class="stat"><strong>45+</strong><span>Products</span></div>
-      <div class="stat"><strong>COD</strong><span>Payment</span></div>
-      <div class="stat"><strong>Free</strong><span>Site Check</span></div>
+<main id="main-content">
+
+  <!-- ═══════════════════════════════════════════════════
+       SHOP HERO (with mask‑reveal animations)
+       ═══════════════════════════════════════════════════ -->
+  <section class="shop-hero">
+    <div class="container">
+      <span class="shop-hero-badge reveal"><i class="fas fa-truck"></i> Free Gauteng delivery on orders over R2 000</span>
+      <h1>
+        <span class="mask-wrap"><span class="mask-inner">Online</span></span>
+        <span class="mask-wrap"><span class="mask-inner" style="color:var(--gold);font-style:italic;">Shop</span></span>
+      </h1>
+      <p class="reveal" style="transition-delay:0.1s;">Premium wall coatings and epoxy flooring products, delivered to your door. Cash on delivery — no upfront payment required. <strong>We stock all colours – contact us for any custom shade.</strong></p>
+      <div class="shop-hero-stats reveal" style="transition-delay:0.15s;">
+        <div class="stat"><strong>45+</strong><span>Products</span></div>
+        <div class="stat"><strong>COD</strong><span>Payment</span></div>
+        <div class="stat"><strong>Free</strong><span>Site Check</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FILTER BAR (with count and sort)
+       ═══════════════════════════════════════════════════ -->
+  <div class="filter-bar">
+    <div class="container">
+      <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">
+        All <span class="count" id="cnt-all">45</span>
+      </button>
+      <button class="filter-tab" data-cat="Gamazine" onclick="setFilter('Gamazine')">
+        Gamazine <span class="count" id="cnt-gamazine">20</span>
+      </button>
+      <button class="filter-tab" data-cat="Glamour Coat" onclick="setFilter('Glamour Coat')">
+        Glamour Coat <span class="count" id="cnt-glamour">19</span>
+      </button>
+      <button class="filter-tab" data-cat="Epoxy" onclick="setFilter('Epoxy')">
+        Epoxy <span class="count" id="cnt-epoxy">6</span>
+      </button>
+      <div class="filter-bar-right">
+        <select class="sort-select" id="sortSelect" onchange="handleSort()">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A–Z</option>
+        </select>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <div class="container">
-    <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">
-      All <span class="count" id="cnt-all">45</span>
-    </button>
-    <button class="filter-tab" data-cat="Gamazine" onclick="setFilter('Gamazine')">
-      Gamazine <span class="count" id="cnt-gamazine">20</span>
-    </button>
-    <button class="filter-tab" data-cat="Glamour Coat" onclick="setFilter('Glamour Coat')">
-      Glamour Coat <span class="count" id="cnt-glamour">19</span>
-    </button>
-    <button class="filter-tab" data-cat="Epoxy" onclick="setFilter('Epoxy')">
-      Epoxy <span class="count" id="cnt-epoxy">6</span>
-    </button>
-    <div class="filter-bar-right">
-      <select class="sort-select" id="sortSelect" onchange="handleSort()">
-        <option value="default">Sort: Default</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
-        <option value="name-asc">Name: A–Z</option>
-      </select>
+  <div style="padding: 0 0 80px;">
+    <div class="container">
+      <div class="shop-grid" id="shopGrid"></div>
+      <div class="pagination" id="pagination"></div>
     </div>
   </div>
-</div>
 
-<main style="padding: 0 0 80px;">
-  <div class="container">
-    <div class="shop-grid" id="shopGrid"></div>
-    <div class="pagination" id="pagination"></div>
-  </div>
 </main>
 
-<!-- Toast stack -->
-<div class="toast-stack" id="toastStack"></div>
-
-<!-- Cart toggle button -->
+<!-- Cart toggle (higher position) -->
 <button id="cartToggle" aria-label="Open cart">
   <i class="fas fa-shopping-cart"></i>
   <span id="cartCount">0</span>
 </button>
 
-<!-- Cart Overlay & Panel -->
+<!-- Cart panel -->
 <div class="cart-overlay" id="cartOverlay"></div>
 <div class="cart-panel" id="cartPanel">
   <div class="cart-header">
-    <div>
-      <h2>Your Cart</h2>
-      <div class="cart-header-sub" id="cartHeaderSub">0 items</div>
-    </div>
-    <button class="cart-close-btn" id="closeCart">✕</button>
+    <h2 style="margin:0;">Your Cart</h2>
+    <button id="closeCart" style="border:none;background:none;color:white;font-size:1.5rem;cursor:pointer;">&times;</button>
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer">
-    <div class="cart-subtotal-row">
-      <span>Subtotal (excl. VAT)</span>
-      <span id="cartSubtotal">R0.00</span>
-    </div>
-    <div class="cart-subtotal-row">
-      <span>VAT (5%)</span>
-      <span id="cartVat">R0.00</span>
-    </div>
-    <div class="cart-total-row">
-      <span class="cart-total-label">Total</span>
-      <span class="cart-total-amount" id="cartTotal">R0.00</span>
-    </div>
-    <button class="cart-checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Subtotal (excl. VAT)</span><span id="cartSubtotal">R0.00</span></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>VAT (5%)</span><span id="cartVat">R0.00</span></div>
+    <div style="display:flex;justify-content:space-between;font-weight:700;font-size:1.2rem;margin-bottom:16px;"><span>Total</span><span id="cartTotal">R0.00</span></div>
+    <button class="cart-checkout-btn" id="checkoutBtn" style="width:100%;background:var(--gold);color:white;border:none;padding:14px;border-radius:12px;font-weight:700;font-size:0.9rem;">Proceed to Checkout →</button>
   </div>
 </div>
 
-<!-- Checkout Modal -->
+<!-- Checkout modal -->
 <div class="checkout-modal" id="checkoutModal">
   <div class="checkout-card">
-    <h2>Checkout</h2>
-    <p class="checkout-sub">Cash on delivery — pay when your order arrives. No upfront payment.</p>
-
-    <div class="checkout-order-summary" id="checkoutSummary">
-      <h4>Order Summary</h4>
-      <div id="summaryLines"></div>
-    </div>
-
+    <h2 style="font-family:'Cormorant Garamond',serif;margin-bottom:8px;">Checkout</h2>
+    <p style="color:var(--slate);margin-bottom:20px;">Cash on delivery — no upfront payment.</p>
     <form id="checkoutForm">
-      <div class="form-row">
-        <div class="form-group"><label>Full Name *</label><input type="text" id="custName" required placeholder="Your full name"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="custPhone" required placeholder="+27 62 150 3704"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group"><label>Full Name *</label><input type="text" id="custName" required></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="custPhone" required></div>
       </div>
-      <div class="form-group"><label>Delivery Address *</label><textarea id="custAddress" rows="2" required placeholder="Street, suburb, city, postal code"></textarea></div>
-      <div class="form-group"><label>Email (optional)</label><input type="email" id="custEmail" placeholder="you@example.com"></div>
-      <button type="submit" class="submit-order-btn" id="submitOrderBtn">
-        <i class="fas fa-check-circle" style="margin-right:6px;"></i>
-        Place Order — Cash on Delivery
-      </button>
+      <div class="form-group"><label>Delivery Address *</label><textarea id="custAddress" rows="2" required></textarea></div>
+      <div class="form-group"><label>Email</label><input type="email" id="custEmail"></div>
+      <button type="submit" class="submit-order-btn">Place Order (Cash on Delivery)</button>
     </form>
-
-    <div id="checkoutMsg" style="margin-top:12px;font-size:0.85rem;text-align:center;"></div>
-
-    <div class="payment-badges">
-      <i class="fas fa-lock"></i> Secure &nbsp;·&nbsp;
-      <i class="fas fa-truck"></i> COD &nbsp;·&nbsp;
-      <i class="fab fa-whatsapp"></i> WhatsApp confirmation
-    </div>
+    <div id="checkoutMsg" style="margin-top:12px;font-size:0.9rem;"></div>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer class="footer">
+<footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
+        <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="36" height="36" loading="lazy"><span>GGS</span></div>
         <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
+        <nav class="footer-socials" aria-label="Social media">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </nav>
       </div>
-      <div>
-        <div class="footer-col-heading">Navigate</div>
+      <nav aria-label="Footer navigation">
+        <p class="footer-col-heading">Navigate</p>
         <ul class="footer-links">
           <li><a href="/about">Company Heritage</a></li>
           <li><a href="/solutions">Solutions</a></li>
@@ -881,25 +530,22 @@
           <li><a href="/shop">Online Shop</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
-      </div>
-      <div>
-        <div class="footer-col-heading">Contact</div>
-        <ul class="footer-links">
-          <li><strong>Global Gamazine Suppliers</strong></li>
+      </nav>
+      <address>
+        <p class="footer-col-heading">Contact</p>
+        <ul class="footer-links" style="font-style:normal;">
+          <li><strong style="color:rgba(255,255,255,0.8)">Global Gamazine Suppliers</strong></li>
           <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
           <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li>
-            <a href="https://maps.google.com/?q=12+Granite+Road,+Kya+Sands,+Randburg,+Gauteng" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">
-              12 Granite Road, Kya Sands<br>Randburg, Gauteng
-            </a>
-          </li>
+          <li><a href="https://maps.google.com/?q=12+Granite+Road+Kya+Sands+Randburg" target="_blank" rel="noopener noreferrer">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</a></li>
         </ul>
-      </div>
+      </address>
       <div class="footer-newsletter">
-        <div class="footer-col-heading">Stay Updated</div>
-        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+        <p class="footer-col-heading">Stay Updated</p>
+        <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
         <div class="newsletter-form">
-          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <label for="newsletterEmail" class="visually-hidden">Email address</label>
+          <input class="newsletter-input" type="email" id="newsletterEmail" placeholder="your@email.com" autocomplete="email">
           <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
         </div>
       </div>
@@ -911,98 +557,104 @@
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- COOKIE NOTICE (flicker‑free) -->
+<div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite" class="cookie-hidden">
+  <p class="cookie-title">We use cookies</p>
+  <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
+  <div class="cookie-categories">
+    <div class="cookie-category"><input type="checkbox" id="cookie-essential" checked disabled><label for="cookie-essential">Essential — required for the website to function</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-analytics"><label for="cookie-analytics">Analytics — help us understand how visitors use the site</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-marketing"><label for="cookie-marketing">Marketing — used for promotional offers and social media</label></div>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-accept" id="cookie-accept-all">Accept All</button>
+    <button class="cookie-btn cookie-save" id="cookie-save-preferences">Save Preferences</button>
+  </div>
+</div>
+
+<style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+
 <script>
-/* ============================================================
-   PRODUCT DATA (45 products)
-============================================================ */
+/* ───────────────────────────────────────────
+   PRODUCT DATA (real images & correct prices)
+   ─────────────────────────────────────────── */
 const allProducts = [
-  // ---- GAMAZINE CLASSIC (R250/20L) – 6 with real images, 14 with placeholder ----
-  { id:1,  name:"Gamazine Classic – Stone Grey",       category:"Gamazine", price:250, unit:"20L", desc:"Original Gamazine wall coating. Crack‑resistant, waterproof, exterior‑grade.", img:"https://i.postimg.cc/J0QZ1LPd/Whats-App-Image-2026-04-24-at-11-08-49-AM.jpg", badge:"popular" },
-  { id:2,  name:"Gamazine Classic – Charcoal",          category:"Gamazine", price:250, unit:"20L", desc:"Deep charcoal matte finish for bold contemporary walls.", img:"https://i.postimg.cc/HntXpgBS/Whats-App-Image-2026-04-24-at-11-11-57-AM.jpg", badge:"" },
-  { id:3,  name:"Gamazine Classic – Terracotta",        category:"Gamazine", price:250, unit:"20L", desc:"Warm earth‑tone gamazine, ideal for natural aesthetics.", img:"https://i.postimg.cc/hv0TSBpM/Whats-App-Image-2026-04-24-at-11-14-42-AM.jpg", badge:"" },
-  { id:4,  name:"Gamazine Classic – Sandstone",         category:"Gamazine", price:250, unit:"20L", desc:"Natural sandstone texture, blends with any exterior palette.", img:"https://i.postimg.cc/d39rqY44/Whats-App-Image-2026-04-24-at-11-14-42-AM-(1).jpg", badge:"" },
-  { id:5,  name:"Gamazine Classic – Olive Green",       category:"Gamazine", price:250, unit:"20L", desc:"Muted olive green for natural garden surroundings.", img:"https://i.postimg.cc/7hN0xkmK/Whats-App-Image-2026-04-24-at-11-14-43-AM.jpg", badge:"" },
-  { id:6,  name:"Gamazine Classic – White",             category:"Gamazine", price:250, unit:"20L", desc:"Pure white, clean and versatile for any exterior surface.", img:"https://i.postimg.cc/4y1VJgBb/Whats-App-Image-2026-04-24-at-11-14-45-AM.jpg", badge:"" },
-
-  // Additional Gamazine colours (image coming soon) – honest listing
-  { id:7,  name:"Gamazine Classic – Colour 7",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:8,  name:"Gamazine Classic – Colour 8",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:9,  name:"Gamazine Classic – Colour 9",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:10, name:"Gamazine Classic – Colour 10",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:11, name:"Gamazine Classic – Colour 11",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:12, name:"Gamazine Classic – Colour 12",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:13, name:"Gamazine Classic – Colour 13",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:14, name:"Gamazine Classic – Colour 14",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:15, name:"Gamazine Classic – Colour 15",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:16, name:"Gamazine Classic – Colour 16",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:17, name:"Gamazine Classic – Colour 17",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:18, name:"Gamazine Classic – Colour 18",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:19, name:"Gamazine Classic – Colour 19",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-  { id:20, name:"Gamazine Classic – Colour 20",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade. We stock all colours.", img:"", badge:"" },
-
-  // ---- GLAMOUR COAT (R350/20L) – 19 images ----
-  { id:30, name:"Glamour Coat – Jasper Red",            category:"Glamour Coat", price:350, unit:"20L", desc:"Decorative interior coating with coloured stones & resin. R350/20L.", img:"https://i.postimg.cc/dt4Vw1jP/Whats-App-Image-2026-04-24-at-11-30-33-AM.jpg", badge:"popular" },
-  { id:31, name:"Glamour Coat – Ocean Blue",            category:"Glamour Coat", price:350, unit:"20L", desc:"Rich blue tones with glitter stone accents – perfect for feature walls.", img:"https://i.postimg.cc/7YmZw6Mp/Whats-App-Image-2026-04-24-at-11-30-34-AM.jpg", badge:"" },
-  { id:32, name:"Glamour Coat – Pearl White",           category:"Glamour Coat", price:350, unit:"20L", desc:"Luminous white finish with fine shimmer stones.", img:"https://i.postimg.cc/sDwgsX9q/Whats-App-Image-2026-04-24-at-11-30-34-AM-(1).jpg", badge:"" },
-  { id:33, name:"Glamour Coat – Midnight Glitter",      category:"Glamour Coat", price:350, unit:"20L", desc:"Dark base with fine silver glitter stones.", img:"https://i.postimg.cc/X7QY4Jch/Whats-App-Image-2026-04-24-at-11-30-34-AM-(2).jpg", badge:"" },
-  { id:34, name:"Glamour Coat – Rose Gold",             category:"Glamour Coat", price:350, unit:"20L", desc:"Elegant rose gold sparkle – a favourite for feature walls.", img:"https://i.postimg.cc/wT0jgvc4/Whats-App-Image-2026-04-24-at-11-30-35-AM.jpg", badge:"" },
-  { id:35, name:"Glamour Coat – Terracotta",            category:"Glamour Coat", price:350, unit:"20L", desc:"Warm terracotta hue, perfect for accent walls.", img:"https://i.postimg.cc/15J3stcB/Whats-App-Image-2026-04-24-at-11-30-35-AM-(1).jpg", badge:"" },
-  { id:36, name:"Glamour Coat – Sandstone",             category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sandstone colour with subtle shimmer.", img:"https://i.postimg.cc/c4sLpYYw/Whats-App-Image-2026-04-24-at-11-30-35-AM-(10).jpg", badge:"" },
-  { id:37, name:"Glamour Coat – Olive",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Olive green with a refined glossy look.", img:"https://i.postimg.cc/QxXd2557/Whats-App-Image-2026-04-24-at-11-30-35-AM-(11).jpg", badge:"" },
-  { id:38, name:"Glamour Coat – Coral",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Vibrant coral shade for a fresh, modern interior.", img:"https://i.postimg.cc/bNzw7bbt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(12).jpg", badge:"" },
-  { id:39, name:"Glamour Coat – Amber",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Warm amber glow with subtle golden flecks.", img:"https://i.postimg.cc/fTwRGXXt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(13).jpg", badge:"" },
-  { id:40, name:"Glamour Coat – Teal",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Deep teal with a luxurious sheen.", img:"https://i.postimg.cc/XNKv1xZd/Whats-App-Image-2026-04-24-at-11-30-35-AM-(14).jpg", badge:"" },
-  { id:41, name:"Glamour Coat – Lavender",              category:"Glamour Coat", price:350, unit:"20L", desc:"Soft lavender tint with a pearlescent finish.", img:"https://i.postimg.cc/WbX1T36n/Whats-App-Image-2026-04-24-at-11-30-35-AM-(2).jpg", badge:"" },
-  { id:42, name:"Glamour Coat – Platinum",              category:"Glamour Coat", price:350, unit:"20L", desc:"Metallic platinum effect for high‑end interiors.", img:"https://i.postimg.cc/02cyPQdC/Whats-App-Image-2026-04-24-at-11-30-35-AM-(3).jpg", badge:"" },
-  { id:43, name:"Glamour Coat – Bronze",                category:"Glamour Coat", price:350, unit:"20L", desc:"Bronze tones with a rich, classic appeal.", img:"https://i.postimg.cc/YqpC5ggy/Whats-App-Image-2026-04-24-at-11-30-35-AM-(4).jpg", badge:"" },
-  { id:44, name:"Glamour Coat – Ivory",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Creamy ivory with a subtle sparkle.", img:"https://i.postimg.cc/zXJGsWW0/Whats-App-Image-2026-04-24-at-11-30-35-AM-(5).jpg", badge:"" },
-  { id:45, name:"Glamour Coat – Sage",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sage green, calming and elegant.", img:"https://i.postimg.cc/5Nx2hvvp/Whats-App-Image-2026-04-24-at-11-30-35-AM-(6).jpg", badge:"" },
-  { id:46, name:"Glamour Coat – Slate",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Dark slate grey, modern and dramatic.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(7).jpg", badge:"" },
-  { id:47, name:"Glamour Coat – Mocha",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Rich mocha brown, warm and inviting.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(8).jpg", badge:"" },
-  { id:48, name:"Glamour Coat – Ebony",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Deep ebony with a mirror‑like gloss.", img:"https://i.postimg.cc/CLFx3DDj/Whats-App-Image-2026-04-24-at-11-30-35-AM-(9).jpg", badge:"" },
-
-  // ---- EPOXY (Coming Soon) ----
-  { id:60, name:"Self‑Levelling Epoxy",                 category:"Epoxy", price:380, unit:"per m²", desc:"High‑gloss seamless epoxy for retail & modern interiors.", img:"", badge:"" },
-  { id:61, name:"Metallic Epoxy",                       category:"Epoxy", price:1200, unit:"kit", desc:"Create stunning 3D metallic effects on any floor.", img:"", badge:"" },
-  { id:62, name:"Flake Epoxy",                          category:"Epoxy", price:450, unit:"per m²", desc:"Decorative flakes for slip‑resistant garage floors.", img:"", badge:"" },
-  { id:63, name:"Quartz Epoxy",                         category:"Epoxy", price:420, unit:"per m²", desc:"Textured, durable finish with natural quartz aggregates.", img:"", badge:"" },
-  { id:64, name:"Anti‑Static Epoxy",                    category:"Epoxy", price:520, unit:"per m²", desc:"Controls static discharge for labs & server rooms.", img:"", badge:"" },
-  { id:65, name:"Decorative Chip Epoxy",                category:"Epoxy", price:490, unit:"per m²", desc:"Broadcast coloured chips for terrazzo‑like elegance.", img:"", badge:"" }
+  // Gamazine Classic (R250/20L)
+  { id:1,  name:"Gamazine Classic – Stone Grey",       category:"Gamazine", price:250, unit:"20L", desc:"Original Gamazine. Crack‑resistant, waterproof.", img:"https://i.postimg.cc/J0QZ1LPd/Whats-App-Image-2026-04-24-at-11-08-49-AM.jpg" },
+  { id:2,  name:"Gamazine Classic – Charcoal",          category:"Gamazine", price:250, unit:"20L", desc:"Deep charcoal matte finish.", img:"https://i.postimg.cc/HntXpgBS/Whats-App-Image-2026-04-24-at-11-11-57-AM.jpg" },
+  { id:3,  name:"Gamazine Classic – Terracotta",        category:"Gamazine", price:250, unit:"20L", desc:"Warm earth‑tone gamazine.", img:"https://i.postimg.cc/hv0TSBpM/Whats-App-Image-2026-04-24-at-11-14-42-AM.jpg" },
+  { id:4,  name:"Gamazine Classic – Sandstone",         category:"Gamazine", price:250, unit:"20L", desc:"Natural sandstone texture.", img:"https://i.postimg.cc/d39rqY44/Whats-App-Image-2026-04-24-at-11-14-42-AM-(1).jpg" },
+  { id:5,  name:"Gamazine Classic – Olive Green",       category:"Gamazine", price:250, unit:"20L", desc:"Muted olive green.", img:"https://i.postimg.cc/7hN0xkmK/Whats-App-Image-2026-04-24-at-11-14-43-AM.jpg" },
+  { id:6,  name:"Gamazine Classic – White",             category:"Gamazine", price:250, unit:"20L", desc:"Pure white, versatile.", img:"https://i.postimg.cc/4y1VJgBb/Whats-App-Image-2026-04-24-at-11-14-45-AM.jpg" },
+  // Additional Gamazine colours (coming soon)
+  { id:7,  name:"Gamazine Classic – Colour 7",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:8,  name:"Gamazine Classic – Colour 8",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:9,  name:"Gamazine Classic – Colour 9",          category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:10, name:"Gamazine Classic – Colour 10",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:11, name:"Gamazine Classic – Colour 11",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:12, name:"Gamazine Classic – Colour 12",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:13, name:"Gamazine Classic – Colour 13",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:14, name:"Gamazine Classic – Colour 14",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:15, name:"Gamazine Classic – Colour 15",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:16, name:"Gamazine Classic – Colour 16",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:17, name:"Gamazine Classic – Colour 17",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:18, name:"Gamazine Classic – Colour 18",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:19, name:"Gamazine Classic – Colour 19",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  { id:20, name:"Gamazine Classic – Colour 20",         category:"Gamazine", price:250, unit:"20L", desc:"Contact us for this colour or any custom shade.", img:"" },
+  // Glamour Coat (R350/20L) - all real images
+  { id:30, name:"Glamour Coat – Jasper Red",            category:"Glamour Coat", price:350, unit:"20L", desc:"Decorative interior coating. R350/20L.", img:"https://i.postimg.cc/dt4Vw1jP/Whats-App-Image-2026-04-24-at-11-30-33-AM.jpg" },
+  { id:31, name:"Glamour Coat – Ocean Blue",            category:"Glamour Coat", price:350, unit:"20L", desc:"Rich blue with glitter accents.", img:"https://i.postimg.cc/7YmZw6Mp/Whats-App-Image-2026-04-24-at-11-30-34-AM.jpg" },
+  { id:32, name:"Glamour Coat – Pearl White",           category:"Glamour Coat", price:350, unit:"20L", desc:"Luminous white shimmer.", img:"https://i.postimg.cc/sDwgsX9q/Whats-App-Image-2026-04-24-at-11-30-34-AM-(1).jpg" },
+  { id:33, name:"Glamour Coat – Midnight Glitter",      category:"Glamour Coat", price:350, unit:"20L", desc:"Dark base with silver glitter.", img:"https://i.postimg.cc/X7QY4Jch/Whats-App-Image-2026-04-24-at-11-30-34-AM-(2).jpg" },
+  { id:34, name:"Glamour Coat – Rose Gold",             category:"Glamour Coat", price:350, unit:"20L", desc:"Elegant rose gold sparkle.", img:"https://i.postimg.cc/wT0jgvc4/Whats-App-Image-2026-04-24-at-11-30-35-AM.jpg" },
+  { id:35, name:"Glamour Coat – Terracotta",            category:"Glamour Coat", price:350, unit:"20L", desc:"Warm terracotta hue.", img:"https://i.postimg.cc/15J3stcB/Whats-App-Image-2026-04-24-at-11-30-35-AM-(1).jpg" },
+  { id:36, name:"Glamour Coat – Sandstone",             category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sandstone shimmer.", img:"https://i.postimg.cc/c4sLpYYw/Whats-App-Image-2026-04-24-at-11-30-35-AM-(10).jpg" },
+  { id:37, name:"Glamour Coat – Olive",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Olive green glossy finish.", img:"https://i.postimg.cc/QxXd2557/Whats-App-Image-2026-04-24-at-11-30-35-AM-(11).jpg" },
+  { id:38, name:"Glamour Coat – Coral",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Vibrant coral shade.", img:"https://i.postimg.cc/bNzw7bbt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(12).jpg" },
+  { id:39, name:"Glamour Coat – Amber",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Warm amber glow.", img:"https://i.postimg.cc/fTwRGXXt/Whats-App-Image-2026-04-24-at-11-30-35-AM-(13).jpg" },
+  { id:40, name:"Glamour Coat – Teal",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Deep teal sheen.", img:"https://i.postimg.cc/XNKv1xZd/Whats-App-Image-2026-04-24-at-11-30-35-AM-(14).jpg" },
+  { id:41, name:"Glamour Coat – Lavender",              category:"Glamour Coat", price:350, unit:"20L", desc:"Soft lavender pearlescent.", img:"https://i.postimg.cc/WbX1T36n/Whats-App-Image-2026-04-24-at-11-30-35-AM-(2).jpg" },
+  { id:42, name:"Glamour Coat – Platinum",              category:"Glamour Coat", price:350, unit:"20L", desc:"Metallic platinum effect.", img:"https://i.postimg.cc/02cyPQdC/Whats-App-Image-2026-04-24-at-11-30-35-AM-(3).jpg" },
+  { id:43, name:"Glamour Coat – Bronze",                category:"Glamour Coat", price:350, unit:"20L", desc:"Bronze tones, classic.", img:"https://i.postimg.cc/YqpC5ggy/Whats-App-Image-2026-04-24-at-11-30-35-AM-(4).jpg" },
+  { id:44, name:"Glamour Coat – Ivory",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Creamy ivory sparkle.", img:"https://i.postimg.cc/zXJGsWW0/Whats-App-Image-2026-04-24-at-11-30-35-AM-(5).jpg" },
+  { id:45, name:"Glamour Coat – Sage",                  category:"Glamour Coat", price:350, unit:"20L", desc:"Soft sage green.", img:"https://i.postimg.cc/5Nx2hvvp/Whats-App-Image-2026-04-24-at-11-30-35-AM-(6).jpg" },
+  { id:46, name:"Glamour Coat – Slate",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Dark slate grey.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(7).jpg" },
+  { id:47, name:"Glamour Coat – Mocha",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Rich mocha brown.", img:"https://i.postimg.cc/ncHhy77k/Whats-App-Image-2026-04-24-at-11-30-35-AM-(8).jpg" },
+  { id:48, name:"Glamour Coat – Ebony",                 category:"Glamour Coat", price:350, unit:"20L", desc:"Deep ebony gloss.", img:"https://i.postimg.cc/CLFx3DDj/Whats-App-Image-2026-04-24-at-11-30-35-AM-(9).jpg" },
+  // Epoxy (Coming Soon)
+  { id:60, name:"Self‑Levelling Epoxy",                 category:"Epoxy", price:380, unit:"per m²", desc:"High‑gloss seamless for retail & modern interiors.", img:"" },
+  { id:61, name:"Metallic Epoxy",                       category:"Epoxy", price:1200, unit:"kit", desc:"3D metallic effects.", img:"" },
+  { id:62, name:"Flake Epoxy",                          category:"Epoxy", price:450, unit:"per m²", desc:"Decorative flakes for slip‑resistant floors.", img:"" },
+  { id:63, name:"Quartz Epoxy",                         category:"Epoxy", price:420, unit:"per m²", desc:"Textured grip, durable finish.", img:"" },
+  { id:64, name:"Anti‑Static Epoxy",                    category:"Epoxy", price:520, unit:"per m²", desc:"Controls static discharge.", img:"" },
+  { id:65, name:"Decorative Chip Epoxy",                category:"Epoxy", price:490, unit:"per m²", desc:"Terrazzo‑like elegance.", img:"" }
 ];
 
-/* Category icon & css class helpers */
-const catMeta = {
-  "Gamazine":     { cls:"img-gamazine",  icon:"fa-paint-roller" },
-  "Glamour Coat": { cls:"img-glamour",   icon:"fa-star" },
-  "Epoxy":        { cls:"img-epoxy",     icon:"fa-water" },
-};
-
-/* ============================================================
+/* ─────────────────────────
    STATE
-============================================================ */
+   ───────────────────────── */
 let activeFilter = "All";
-let sortMode    = "default";
+let sortMode = "default";
 let currentPage = 1;
 const PRODUCTS_PER_PAGE = 10;
-
 let cart = JSON.parse(localStorage.getItem('ggsCart') || '[]');
 
-/* ============================================================
-   FILTER COUNTS
-============================================================ */
 function updateCounts() {
-  document.getElementById('cnt-all').textContent      = allProducts.length;
+  document.getElementById('cnt-all').textContent = allProducts.length;
   document.getElementById('cnt-gamazine').textContent = allProducts.filter(p => p.category === 'Gamazine').length;
-  document.getElementById('cnt-glamour').textContent  = allProducts.filter(p => p.category === 'Glamour Coat').length;
-  document.getElementById('cnt-epoxy').textContent    = allProducts.filter(p => p.category === 'Epoxy').length;
+  document.getElementById('cnt-glamour').textContent = allProducts.filter(p => p.category === 'Glamour Coat').length;
+  document.getElementById('cnt-epoxy').textContent = allProducts.filter(p => p.category === 'Epoxy').length;
 }
+updateCounts();
 
 window.setFilter = function(cat) {
   activeFilter = cat;
-  currentPage  = 1;
-  document.querySelectorAll('.filter-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.cat === cat);
-  });
+  currentPage = 1;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
   render();
 };
 
@@ -1012,14 +664,11 @@ window.handleSort = function() {
   render();
 };
 
-/* ============================================================
-   RENDER
-============================================================ */
 function filteredSorted() {
   let list = activeFilter === 'All' ? [...allProducts] : allProducts.filter(p => p.category === activeFilter);
-  if (sortMode === 'price-asc')  list.sort((a,b) => a.price - b.price);
+  if (sortMode === 'price-asc') list.sort((a,b) => a.price - b.price);
   if (sortMode === 'price-desc') list.sort((a,b) => b.price - a.price);
-  if (sortMode === 'name-asc')   list.sort((a,b) => a.name.localeCompare(b.name));
+  if (sortMode === 'name-asc') list.sort((a,b) => a.name.localeCompare(b.name));
   return list;
 }
 
@@ -1028,28 +677,20 @@ function render() {
   const totalPages = Math.ceil(list.length / PRODUCTS_PER_PAGE);
   currentPage = Math.min(currentPage, totalPages || 1);
   const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const page  = list.slice(start, start + PRODUCTS_PER_PAGE);
-
+  const page = list.slice(start, start + PRODUCTS_PER_PAGE);
   const grid = document.getElementById('shopGrid');
   if (!grid) return;
 
   if (page.length === 0) {
-    grid.innerHTML = `<div class="no-results"><i class="fas fa-box-open"></i>No products in this category.</div>`;
+    grid.innerHTML = '<div style="text-align:center;padding:60px;">No products in this category.</div>';
   } else {
     grid.innerHTML = page.map(p => {
-      const meta = catMeta[p.category] || { cls:'img-gamazine', icon:'fa-box' };
-      const badge = p.badge
-        ? `<div class="product-img-badges"><span class="product-badge badge-${p.badge}">${p.badge}</span></div>`
-        : '';
       const imgHtml = p.img
-        ? `<img src="${p.img}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">`
-        : `<div class="coming-soon-img ${meta.cls}"><i class="fas ${meta.icon}"></i><span>Coming Soon</span></div>`;
+        ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
+        : `<div class="coming-soon-img" style="width:100%;aspect-ratio:4/3;background:var(--cream-card);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:0.8rem;border:1px dashed var(--border);border-radius:12px;"><i class="fas fa-image" style="margin-right:6px;opacity:0.5;"></i> Coming Soon</div>`;
       return `
       <div class="product-card">
-        <div class="product-img-wrap">
-          ${imgHtml}
-          ${badge}
-        </div>
+        <div class="product-img-wrap">${imgHtml}</div>
         <div class="product-body">
           <div class="product-category">${p.category}</div>
           <div class="product-title">${p.name}</div>
@@ -1059,245 +700,216 @@ function render() {
             <span class="product-unit">${p.unit}</span>
           </div>
           <div class="qty-row">
-            <button class="qty-btn" onclick="changeQty(${p.id},-1)" aria-label="Decrease">−</button>
-            <input type="text" class="qty-input" id="qty_${p.id}" value="1" min="1" readonly>
-            <button class="qty-btn" onclick="changeQty(${p.id},1)" aria-label="Increase">+</button>
+            <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
+            <input type="text" class="qty-input" id="qty_${p.id}" value="1" readonly>
+            <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
           </div>
-          <button class="add-to-cart-btn" onclick="addToCart(${p.id})">
-            <i class="fas fa-shopping-cart"></i> Add to Cart
-          </button>
+          <button class="add-to-cart-btn" onclick="addToCart(${p.id})"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
         </div>
       </div>`;
     }).join('');
   }
 
-  renderPagination(totalPages);
-}
-
-function renderPagination(totalPages) {
   const pag = document.getElementById('pagination');
-  if (!pag || totalPages <= 1) { if(pag) pag.innerHTML=''; return; }
-  let html = `<button class="page-btn" ${currentPage===1?'disabled':''} onclick="goToPage(${currentPage-1})">← Prev</button>`;
-  for (let i = 1; i <= totalPages; i++) {
-    html += `<button class="page-dot ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+  if (pag) {
+    if (totalPages <= 1) { pag.innerHTML = ''; return; }
+    let html = `<button class="page-btn" ${currentPage===1?'disabled':''} onclick="goToPage(${currentPage-1})">← Prev</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<button class="page-dot ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+    html += `<button class="page-btn" ${currentPage===totalPages?'disabled':''} onclick="goToPage(${currentPage+1})">Next →</button>`;
+    pag.innerHTML = html;
   }
-  html += `<button class="page-btn" ${currentPage===totalPages?'disabled':''} onclick="goToPage(${currentPage+1})">Next →</button>`;
-  pag.innerHTML = html;
 }
 
-window.goToPage = function(page) {
-  currentPage = page;
-  render();
-  document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-
+window.goToPage = function(page) { currentPage = page; render(); window.scrollTo({top:0,behavior:'smooth'}); };
 window.changeQty = function(id, delta) {
-  const el = document.getElementById(`qty_${id}`);
-  if (!el) return;
-  el.value = Math.max(1, (parseInt(el.value) || 1) + delta);
+  const el = document.getElementById('qty_'+id);
+  if (el) el.value = Math.max(1, (parseInt(el.value)||1)+delta);
 };
 
-/* ============================================================
+/* ─────────────────────────
    CART
-============================================================ */
+   ───────────────────────── */
 function saveCart() { localStorage.setItem('ggsCart', JSON.stringify(cart)); }
 
 window.addToCart = function(id) {
-  const p   = allProducts.find(x => x.id === id);
+  const p = allProducts.find(x => x.id===id);
   if (!p) return;
-  const qty = parseInt(document.getElementById(`qty_${id}`)?.value) || 1;
-  const ex  = cart.find(x => x.id === id);
-  if (ex) { ex.qty += qty; } else { cart.push({ id, name:p.name, price:p.price, img:p.img, category:p.category, qty }); }
+  const qty = parseInt(document.getElementById('qty_'+id)?.value || 1);
+  const ex = cart.find(x => x.id===id);
+  if (ex) { ex.qty += qty; } else { cart.push({ id, name:p.name, price:p.price, img:p.img, qty }); }
   saveCart();
   updateCartUI();
-  showToast(`<i class="fas fa-check"></i> ${p.name} added to cart`);
 };
 
-window.removeFromCart = function(id) {
-  cart = cart.filter(x => x.id !== id);
-  saveCart();
-  updateCartUI();
-  showToast('<i class="fas fa-trash-alt"></i> Item removed');
-};
+window.removeFromCart = function(id) { cart = cart.filter(x => x.id!==id); saveCart(); updateCartUI(); };
 
 function updateCartUI() {
-  const totalQty   = cart.reduce((s,i) => s + i.qty, 0);
-  const subtotal   = cart.reduce((s,i) => s + i.price * i.qty, 0);
-  const vat        = subtotal * 0.05;
-  const total      = subtotal + vat;
-
   const countEl = document.getElementById('cartCount');
-  if (countEl) {
-    countEl.textContent = totalQty;
-    countEl.classList.remove('bump');
-    void countEl.offsetWidth;
-    if (totalQty > 0) countEl.classList.add('bump');
-  }
+  const subtotalEl = document.getElementById('cartSubtotal');
+  const vatEl = document.getElementById('cartVat');
+  const totalEl = document.getElementById('cartTotal');
+  const itemsEl = document.getElementById('cartItems');
+  const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+  const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
 
-  const el = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
-  el('cartSubtotal', `R ${subtotal.toFixed(2)}`);
-  el('cartVat',      `R ${vat.toFixed(2)}`);
-  el('cartTotal',    `R ${total.toFixed(2)}`);
-  el('cartHeaderSub', `${totalQty} item${totalQty !== 1?'s':''}`);
+  if (countEl) countEl.textContent = totalQty;
+  if (subtotalEl) subtotalEl.textContent = `R ${subtotal.toFixed(2)}`;
+  if (vatEl) vatEl.textContent = `R ${(subtotal*0.05).toFixed(2)}`;
+  if (totalEl) totalEl.textContent = `R ${(subtotal*1.05).toFixed(2)}`;
 
-  const cartItemsEl = document.getElementById('cartItems');
-  if (!cartItemsEl) return;
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = `<div class="cart-empty"><i class="fas fa-shopping-cart"></i><span>Your cart is empty</span></div>`;
-  } else {
-    cartItemsEl.innerHTML = cart.map(item => {
-      const meta = catMeta[item.category] || catMeta["Gamazine"];
-      const thumbHtml = item.img
-        ? `<img src="${item.img}" class="cart-item-thumb" style="width:48px;height:48px;border-radius:10px;object-fit:cover;">`
-        : `<div class="cart-item-thumb coming-soon-img ${meta.cls}" style="width:48px;height:48px;border-radius:10px;min-height:unset;aspect-ratio:unset;"><i class="fas ${meta.icon}" style="font-size:1rem;"></i></div>`;
-      return `
+  if (itemsEl) {
+    itemsEl.innerHTML = cart.map(item => `
       <div class="cart-item">
-        ${thumbHtml}
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-price">R ${item.price.toFixed(2)} ea &nbsp;<span class="cart-item-qty-chip">×${item.qty}</span></div>
+        ${item.img ? `<img src="${item.img}" class="cart-item-thumb">` : `<div class="cart-item-thumb coming-soon-img" style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:var(--cream-card);border:1px dashed var(--border);border-radius:10px;"><i class="fas fa-image" style="opacity:0.5;"></i></div>`}
+        <div style="flex:1;">
+          <div><strong>${item.name}</strong></div>
+          <div>R ${item.price.toFixed(2)} × ${item.qty}</div>
         </div>
-        <div class="cart-item-remove" onclick="removeFromCart(${item.id})" title="Remove">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  const summaryLines = document.getElementById('summaryLines');
-  if (summaryLines) {
-    summaryLines.innerHTML = cart.map(i =>
-      `<div class="summary-line"><span>${i.name} ×${i.qty}</span><span>R ${(i.price*i.qty).toFixed(2)}</span></div>`
-    ).join('')
-    + `<div class="summary-line total"><span>Total (incl. 5% VAT)</span><span>R ${total.toFixed(2)}</span></div>`;
+        <div class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></div>
+      </div>
+    `).join('') || '<div style="text-align:center;padding:20px;color:var(--slate);">Your cart is empty</div>';
   }
 }
 
-/* ============================================================
-   TOAST
-============================================================ */
-function showToast(html) {
-  const stack = document.getElementById('toastStack');
-  if (!stack) return;
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = html;
-  stack.appendChild(toast);
-  setTimeout(() => {
-    toast.classList.add('out');
-    setTimeout(() => toast.remove(), 400);
-  }, 2800);
-}
-
-/* ============================================================
+/* ─────────────────────────
    CHECKOUT
-============================================================ */
-document.getElementById('checkoutForm').addEventListener('submit', async e => {
+   ───────────────────────── */
+document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const name    = document.getElementById('custName').value.trim();
-  const phone   = document.getElementById('custPhone').value.trim();
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
   const address = document.getElementById('custAddress').value.trim();
-  const email   = document.getElementById('custEmail').value.trim();
-  const msgDiv  = document.getElementById('checkoutMsg');
-  const btn     = document.getElementById('submitOrderBtn');
-
-  if (!name || !phone || !address) {
-    msgDiv.innerHTML = '<span style="color:#ef4444;">Please fill all required fields.</span>';
-    return;
+  const email = document.getElementById('custEmail').value.trim();
+  if (!name || !phone || !address) { alert('Fill required fields'); return; }
+  const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const total = subtotal * 1.05;
+  const orderData = { customer:{name,phone,email,address}, items:cart, subtotal:subtotal.toFixed(2), total:total.toFixed(2) };
+  const itemsList = cart.map(i => `${i.name} x${i.qty} = R ${(i.price*i.qty).toFixed(2)}`).join('%0A');
+  const waMsg = `New Order:%0A%0A👤 ${name}%0A📞 ${phone}%0A📍 ${address}%0A%0A📦 Items:%0A${itemsList}%0A%0A💰 Total: R ${total.toFixed(2)} (incl. VAT)%0APayment: Cash on Delivery`;
+  window.open(`https://wa.me/27621503704?text=${waMsg}`, '_blank');
+  if (window.supabase) {
+    await window.supabase.from('orders').insert([{ customer_name:name, customer_phone:phone, customer_email:email, delivery_address:address, items:orderData.items, total:orderData.total, status:'new' }]);
   }
-
-  btn.disabled = true;
-  btn.textContent = 'Placing order…';
-  msgDiv.innerHTML = '';
-
-  const subtotal   = cart.reduce((s,i) => s + i.price*i.qty, 0);
-  const vat        = subtotal * 0.05;
-  const total      = subtotal + vat;
-
-  const orderData = {
-    customer: { name, phone, email, address },
-    items: cart,
-    subtotal: subtotal.toFixed(2),
-    vat: vat.toFixed(2),
-    total: total.toFixed(2),
-    date: new Date().toISOString()
-  };
-
-  const result = await submitOrderToSupabase(orderData);
-
-  const itemsList = cart.map(i => `${i.name} x${i.qty} = R ${(i.price*i.qty).toFixed(2)}`).join('\n');
-  const waMsg = `New Order from GGS Shop:\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nEmail: ${email||'Not provided'}\n\nItems:\n${itemsList}\n\nSubtotal: R ${orderData.subtotal}\nVAT (5%): R ${orderData.vat}\nTotal: R ${orderData.total}\nPayment: Cash on Delivery`;
-
-  window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
-  setTimeout(() => {
-    window.open(`mailto:deliannyathi@gmail.com?subject=${encodeURIComponent(`GGS Order – ${name}`)}&body=${encodeURIComponent(waMsg.replace(/\n/g,'\r\n'))}`, '_blank');
-  }, 500);
-
-  if (result.success) {
-    msgDiv.innerHTML = '<span style="color:#22c55e;font-weight:600;">✓ Order placed! We\'ll contact you shortly to confirm delivery.</span>';
-    cart = [];
-    saveCart();
-    updateCartUI();
-    document.getElementById('checkoutForm').reset();
-    setTimeout(() => document.getElementById('checkoutModal').classList.remove('open'), 3000);
-  } else {
-    msgDiv.innerHTML = '<span style="color:#ef4444;">Could not save order. Please call us directly or try again.</span>';
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-check-circle" style="margin-right:6px;"></i>Place Order — Cash on Delivery';
-  }
+  alert('Order placed! We will contact you shortly.');
+  cart = []; saveCart(); updateCartUI();
+  document.getElementById('checkoutModal').classList.remove('open');
+  document.getElementById('checkoutForm').reset();
 });
 
-async function submitOrderToSupabase(orderData) {
-  try {
-    if (!window.supabase) return { success: true };
-    const { error } = await window.supabase.from('orders').insert([{
-      customer_name: orderData.customer.name, customer_phone: orderData.customer.phone,
-      customer_email: orderData.customer.email, delivery_address: orderData.customer.address,
-      items: orderData.items, subtotal: orderData.subtotal, vat: orderData.vat,
-      total: orderData.total, status: 'new'
-    }]);
-    if (error) throw error;
-    return { success: true };
-  } catch (err) { return { success: false, error: err }; }
-}
-
-/* ============================================================
+/* ─────────────────────────
    UI CONTROLS
-============================================================ */
-const openCart  = () => { document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); };
-const closeCart = () => { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); };
+   ───────────────────────── */
+document.getElementById('cartToggle').addEventListener('click', ()=>{ document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); });
+document.getElementById('closeCart').addEventListener('click', ()=>{ document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); });
+document.getElementById('cartOverlay').addEventListener('click', ()=>{ document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); });
+document.getElementById('checkoutBtn').addEventListener('click', ()=>{ if(cart.length===0) { alert('Cart is empty'); return; } document.getElementById('checkoutModal').classList.add('open'); document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); });
+document.getElementById('checkoutModal').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
 
-document.getElementById('cartToggle').addEventListener('click', openCart);
-document.getElementById('closeCart').addEventListener('click', closeCart);
-document.getElementById('cartOverlay').addEventListener('click', closeCart);
-document.getElementById('checkoutBtn').addEventListener('click', () => {
-  if (cart.length === 0) { showToast('<i class="fas fa-exclamation-circle"></i> Your cart is empty'); return; }
-  closeCart();
-  document.getElementById('checkoutModal').classList.add('open');
-});
-document.getElementById('checkoutModal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-
-/* Standard scroll / header / mobile nav */
-const progressBar = document.getElementById('scroll-progress');
+/* ─────────────────────────
+   SCROLL / HEADER / NAV
+   ───────────────────────── */
+const progress = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
-  const s = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  progressBar.style.width = s + '%';
+  const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = pct + '%';
 }, { passive: true });
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+
+const header = document.getElementById('siteHeader'), backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 30);
+  backTop.classList.toggle('visible', y > 500);
+}, { passive: true });
+
 const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
 hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open'); mobileNav.classList.toggle('open');
-  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    const open = hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open', open);
+    mobileNav.setAttribute('aria-hidden', String(!open));
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
 });
-window.closeMobile = function() { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; };
 
-/* Init */
-updateCounts();
+/* ─────────────────────────
+   CUSTOM CURSOR
+   ───────────────────────── */
+const dot = document.getElementById('cursor-dot'), ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+const moveCursor = () => {
+  dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+  requestAnimationFrame(moveCursor);
+};
+moveCursor();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+/* ─────────────────────────
+   INTERSECTION OBSERVER (reveal + mask)
+   ───────────────────────── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .stagger-children').forEach(el => revealObs.observe(el));
+
+const maskObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const siblings = entry.target.parentElement.parentElement.querySelectorAll('.mask-inner');
+      siblings.forEach((s, i) => setTimeout(() => s.classList.add('revealed'), i * 140));
+      maskObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.mask-inner').forEach(el => maskObs.observe(el));
+
+/* ─────────────────────────
+   NEWSLETTER
+   ───────────────────────── */
+window.handleNewsletter = () => {
+  const i = document.getElementById('newsletterEmail');
+  if (i.value && i.value.includes('@')) { i.value = ''; i.placeholder = 'Subscribed ✓'; }
+  else { i.focus(); i.style.borderColor = '#e55'; setTimeout(() => i.style.borderColor = '', 1500); }
+};
+
+/* ─────────────────────────
+   COOKIE CONSENT (flicker‑free)
+   ───────────────────────── */
+const cookieNotice = document.getElementById('cookie-notice');
+const acceptAll = document.getElementById('cookie-accept-all');
+const savePrefs = document.getElementById('cookie-save-preferences');
+const analyticsChk = document.getElementById('cookie-analytics');
+const marketingChk = document.getElementById('cookie-marketing');
+
+function getConsent() { try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')); } catch(e) { return null; } }
+function setConsent(obj) { try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {} }
+
+if (!getConsent()) {
+  cookieNotice.classList.remove('cookie-hidden');
+}
+
+acceptAll.addEventListener('click', () => {
+  setConsent({ essential: true, analytics: true, marketing: true });
+  cookieNotice.classList.add('hidden');
+  setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+});
+
+savePrefs.addEventListener('click', () => {
+  setConsent({ essential: true, analytics: analyticsChk.checked, marketing: marketingChk.checked });
+  cookieNotice.classList.add('hidden');
+  setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+});
+
+/* Initial render */
 render();
 updateCartUI();
 </script>
+
 </body>
 </html>
