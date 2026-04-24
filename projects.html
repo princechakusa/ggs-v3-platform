@@ -1,206 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Gamazine Projects Gallery in Gauteng | Before & After | GGS South Africa</title>
-  <meta name="description" content="Explore 1,200+ completed Gamazine and Glamour Coat projects across South Africa. Residential, commercial, and industrial wall coating transformations.">
-  <meta name="keywords" content="Gamazine projects, wall coating gallery, exterior wall transformations, Gamazine before after, construction portfolio SA, Glamour Coat projects, waterproof wall coatings">
-  <meta property="og:title" content="GGS Projects | Gamazine Gallery South Africa">
-  <meta property="og:description" content="Premium wall coating transformations. Over 1,200 projects nationwide.">
+
+  <!-- ═══ PRIMARY SEO ═══ -->
+  <title>Projects | Gamazine & Glamour Coat Gallery | GGS South Africa</title>
+  <meta name="description" content="Over 1,200 completed Gamazine and Glamour Coat projects across South Africa. Residential, commercial, and industrial transformations.">
+  <meta name="keywords" content="Gamazine projects, wall coating gallery, exterior wall transformations, Gamazine before after, construction portfolio SA, Glamour Coat projects">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#1a1a1a">
+
+  <!-- ═══ OPEN GRAPH ═══ -->
+  <meta property="og:title" content="Projects | Gamazine & Glamour Coat Gallery | GGS">
+  <meta property="og:description" content="Over 1,200 completed wall coating projects. Real homes, real finishes.">
   <meta property="og:image" content="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://globalgamazine.co.za/projects">
   <meta property="og:locale" content="en_ZA">
-  <link rel="canonical" href="https://globalgamazine.co.za/projects">
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a94b' text-anchor='middle'>G</text></svg>">
+
+  <!-- ═══ FONTS ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/css/main.css">
-  <!-- Lightbox2 for image preview -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="assets/js/supabase.js" defer></script>
+
+  <!-- ═══ LIGHTBOX2 ═══ -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" defer></script>
+
   <style>
-    /* page-specific enhancements */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin: 40px 0 30px;
+    /* ════════════════════════════════════════════════════════════
+       DESIGN TOKENS — same as all other pages
+       ════════════════════════════════════════════════════════════ */
+    :root {
+      --gold:          #c9a94b;
+      --gold-light:    #e8d08a;
+      --gold-muted:    rgba(201,169,75,0.15);
+      --charcoal:      #1a1a1a;
+      --off-white:     #f7f5f0;
+      --cream-card:    #faf8f4;
+      --slate:         #6b6b6b;
+      --border:        rgba(0,0,0,0.08);
+      --border-gold:   rgba(201,169,75,0.25);
+      --header-h:      72px;
+      --r-card:        12px;
+      --r-xl:          20px;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+      --spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--charcoal); background: var(--off-white); overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Scroll Progress / Cursor / Nav (identical to other pages) ── */
+    #scroll-progress { position: fixed; top: 0; left: 0; z-index: 9999; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.05s linear; }
+    #cursor-dot, #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; }
+    #cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); }
+    #cursor-ring { width: 32px; height: 32px; border: 1px solid rgba(201,169,75,0.5); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+    body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--gold); }
+    @media (hover: none) { #cursor-dot, #cursor-ring { display: none; } }
+
+    .mobile-nav { position: fixed; inset: 0; z-index: 800; background: var(--charcoal); display: flex; flex-direction: column; justify-content: center; padding: 48px 40px; clip-path: circle(0% at calc(100% - 32px) 36px); transition: clip-path 0.6s var(--ease-out-expo); }
+    .mobile-nav.open { clip-path: circle(150% at calc(100% - 32px) 36px); }
+    .mobile-nav a { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: rgba(255,255,255,0.6); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.25s; }
+    .mobile-nav a:hover, .mobile-nav a.active { color: var(--gold); }
+    .mobile-nav-contact { margin-top: 40px; display: flex; flex-direction: column; gap: 8px; }
+    .mobile-nav-contact a { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.35); border-bottom: none; }
+
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--header-h); display: flex; align-items: center; transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s; }
+    .site-header.scrolled { background: rgba(247,245,240,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+    .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; }
+    .nav-desktop { display: none; gap: 32px; }
+    @media (min-width: 960px) { .nav-desktop { display: flex; } }
+    .nav-desktop a { font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em; color: var(--slate); transition: color 0.2s; }
+    .nav-desktop a:hover, .nav-desktop a.active { color: var(--charcoal); }
+    .header-cta-group { display: flex; align-items: center; gap: 16px; }
+    .header-phone { display: none; font-size: 0.82rem; color: var(--slate); }
+    @media (min-width: 640px) { .header-phone { display: block; } }
+    .header-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; padding: 9px 18px; background: var(--charcoal); color: white; border-radius: 100px; transition: background 0.25s, transform 0.2s; }
+    .header-cta:hover { background: var(--gold); transform: translateY(-1px); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 910; }
+    @media (min-width: 960px) { .hamburger { display: none; } }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); transition: transform 0.35s var(--ease-out-expo), opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: white; }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: white; }
+
+    /* ── Typography utilities ── */
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; position: relative; top: -1px; }
+    .mask-wrap { overflow: hidden; display: block; }
+    .mask-inner { display: block; transform: translateY(110%); opacity: 0; transition: transform 0.9s var(--ease-out-expo), opacity 0.5s; }
+    .mask-inner.revealed { transform: translateY(0); opacity: 1; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo); }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .stagger-children > * { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo); }
+    .stagger-children.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+    .stagger-children.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.1s; }
+    .stagger-children.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.2s; }
+    .stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
+
+    /* ════════════════════════════════════════════════════════════
+       PAGE SPECIFIC — Projects
+       ════════════════════════════════════════════════════════════ */
+    .page-hero { padding: calc(var(--header-h) + 80px) 0 30px; position: relative; overflow: hidden; }
+    .page-hero::before { content: 'GGS'; position: absolute; right: -2%; bottom: -10%; font-family: 'Cormorant Garamond', serif; font-size: clamp(120px, 18vw, 220px); font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(0,0,0,0.04); pointer-events: none; user-select: none; z-index: 0; }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.08; margin: 20px 0 8px; }
+    .page-hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-subhead { font-size: 1.05rem; font-weight: 300; color: var(--slate); max-width: 600px; line-height: 1.7; margin-top: 8px; }
+
+    /* ── Filter bar ── */
+    .filter-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin: 40px 0 30px; }
     .filter-btn {
-      background: transparent;
-      border: 1.5px solid var(--border);
-      color: var(--slate);
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s ease;
+      background: transparent; border: 1.5px solid var(--border);
+      color: var(--slate); padding: 10px 24px;
+      border-radius: 40px; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.25s ease;
     }
-    .filter-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .filter-btn.active {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--charcoal);
-      font-weight: 600;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    @media (max-width: 900px) {
-      .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 560px) {
-      .projects-grid { grid-template-columns: 1fr; }
-    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--charcoal); font-weight: 600; }
+
+    /* ── Projects grid ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+    @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .projects-grid { grid-template-columns: 1fr; } }
     .project-card {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      background: var(--cream-card);
-      box-shadow: var(--sh-card);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      cursor: pointer;
+      position: relative; border-radius: 24px; overflow: hidden;
+      background: var(--cream-card); box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.35s, box-shadow 0.35s;
     }
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--sh-lift);
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+    .card-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .project-card:hover .card-img img { transform: scale(1.06); }
+    .card-info { padding: 18px 16px; display: flex; align-items: center; justify-content: space-between; }
+    .project-location { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.1em; }
+    .zoom-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--charcoal); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: background 0.25s; }
+    .project-card:hover .zoom-icon { background: var(--charcoal); color: white; }
+
+    /* ── Stats mini ── */
+    .stats-mini { display: flex; justify-content: space-around; margin: 60px 0 20px; padding: 30px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stat-mini-item { text-align: center; }
+    .stat-mini-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 600; color: var(--gold); line-height: 1; }
+    .stat-mini-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--slate); }
+
+    /* ── FAQ Section (process‑style cards) ── */
+    .faq-section { padding: 80px 0 60px; }
+    .faq-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 32px 28px;
+      transition: box-shadow 0.4s, transform 0.4s;
     }
-    .card-img {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
+    .faq-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .faq-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 8px; }
+    .faq-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 80px 0 100px; text-align: center; }
+    .cta-inner { max-width: 680px; margin: 0 auto; padding: 72px 48px; background: var(--charcoal); border-radius: var(--r-xl); position: relative; overflow: hidden; }
+    .cta-inner::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-size: 0.84rem; font-weight: 500; letter-spacing: 0.06em; padding: 14px 32px; background: var(--gold); color: var(--charcoal); border-radius: 100px; transition: background 0.25s, transform 0.2s, box-shadow 0.3s; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,169,75,0.35); }
+
+    /* ── Footer, Cookie, WhatsApp, Back-to-top (same as other pages) ── */
+    .footer { background: #111; color: rgba(255,255,255,0.6); padding: 64px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+    @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+    .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-brand-logo img { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; }
+    .footer-brand-logo span { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: white; }
+    .footer-tagline { font-size: 0.82rem; line-height: 1.7; max-width: 280px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .footer-socials a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: border-color 0.2s, color 0.2s; }
+    .footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col-heading { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: white; margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .newsletter-desc { font-size: 0.82rem; margin-bottom: 16px; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 8px; }
+    .newsletter-input { flex: 1; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: white; font-size: 0.82rem; font-family: inherit; }
+    .newsletter-input:focus { outline: none; border-color: var(--gold); }
+    .newsletter-btn { padding: 10px 16px; border-radius: 8px; background: var(--gold); color: var(--charcoal); border: none; cursor: pointer; font-size: 0.8rem; font-weight: 500; }
+    .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+    /* Cookie notice (flicker‑free) */
+    .cookie-hidden { display: none !important; }
+    #cookie-notice {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      z-index: 1000; width: min(440px, calc(100vw - 32px));
+      background: var(--charcoal); color: white;
+      border-radius: 14px; padding: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      transition: opacity 0.4s, transform 0.4s var(--ease-out-expo);
     }
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .project-card:hover .card-img img {
-      transform: scale(1.06);
-    }
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      padding: 20px;
-    }
-    .project-card:hover .card-overlay {
-      opacity: 1;
-    }
-    .overlay-content {
-      color: white;
-    }
-    .project-category {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      opacity: 0.8;
-      margin-bottom: 4px;
-    }
-    .project-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-    .card-info {
-      padding: 18px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .project-location {
-      font-size: 0.75rem;
-      color: var(--slate);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .zoom-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--charcoal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      transition: background 0.25s;
-    }
-    .project-card:hover .zoom-icon {
-      background: var(--charcoal);
-      color: white;
-    }
-    .stats-mini {
-      display: flex;
-      justify-content: space-around;
-      margin: 60px 0 20px;
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-mini-item {
-      text-align: center;
-    }
-    .stat-mini-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 600;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-mini-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--slate);
-    }
-    .cta-banner {
-      background: var(--charcoal);
-      border-radius: var(--r-xl);
-      padding: 60px 40px;
-      text-align: center;
-      margin: 60px 0;
-    }
-    .cta-banner h2 {
-      color: white;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      margin-bottom: 16px;
-    }
-    .cta-banner p {
-      color: rgba(255,255,255,0.6);
-      max-width: 500px;
-      margin: 0 auto 28px;
-    }
+    #cookie-notice.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(12px); }
+    .cookie-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+    .cookie-text { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.5; margin-bottom: 16px; }
+    .cookie-categories { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .cookie-category { display: flex; align-items: center; gap: 10px; }
+    .cookie-category input[type="checkbox"] { accent-color: var(--gold); width: 18px; height: 18px; cursor: pointer; }
+    .cookie-category label { font-size: 0.8rem; cursor: pointer; }
+    .cookie-btns { display: flex; gap: 10px; }
+    .cookie-btn { flex: 1; padding: 10px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; }
+    .cookie-accept { background: var(--gold); color: var(--charcoal); }
+    .cookie-accept:hover { background: var(--gold-light); }
+    .cookie-save { background: transparent; border-color: rgba(255,255,255,0.2); color: white; }
+    .cookie-save:hover { border-color: var(--gold); }
+
+    .wa-float-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 800; }
+    .wa-float { width: 52px; height: 52px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.3s var(--spring); }
+    .wa-float:hover { transform: scale(1.1); }
+    #back-top { position: fixed; bottom: 28px; left: 28px; z-index: 800; width: 40px; height: 40px; background: white; color: var(--charcoal); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s var(--ease-out-expo); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    #back-top.visible { opacity: 1; pointer-events: all; transform: none; }
+    #back-top:hover { background: var(--charcoal); color: white; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .mask-inner { transform: none; opacity: 1; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
-<div id="scroll-progress"></div>
 
-<!-- CORRECTED MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/solutions">Solutions</a>
   <a href="/process">Process</a>
-  <a href="/projects">Projects</a>
+  <a href="/projects" class="active" aria-current="page">Projects</a>
   <a href="/epoxy">Epoxy</a>
   <a href="/shop">Shop</a>
   <a href="/contact">Contact</a>
@@ -208,69 +256,78 @@
     <a href="tel:+27621503704">+27 62 150 3704</a>
     <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
   </div>
-</div>
+</nav>
 
-<!-- CORRECTED HEADER -->
-<header class="site-header" id="siteHeader">
+<header class="site-header" id="siteHeader" role="banner">
   <div class="container header-inner">
-    <a href="/" class="logo-wrap">
-      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+    <a href="/" class="logo-wrap" aria-label="Global Gamazine Suppliers — Home">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="40" height="40" loading="eager">
       <span class="logo-text">GGS</span>
     </a>
-    <nav class="nav-desktop">
-  <a href="/"$(/projects -eq '/' ? ' class="active"' : '')>Home</a>
-  <a href="/about"$(/projects -eq '/about' ? ' class="active"' : '')>About</a>
-  <a href="/solutions"$(/projects -eq '/solutions' ? ' class="active"' : '')>Solutions</a>
-  <a href="/process"$(/projects -eq '/process' ? ' class="active"' : '')>Process</a>
-  <a href="/projects"$(/projects -eq '/projects' ? ' class="active"' : '')>Projects</a>
-  <a href="/epoxy"$(/projects -eq '/epoxy' ? ' class="active"' : '')>Epoxy</a>
-  <a href="/shop"$(/projects -eq '/shop' ? ' class="active"' : '')>Shop</a>
-  <a href="/contact"$(/projects -eq '/contact' ? ' class="active"' : '')>Contact</a>
-</nav>
+    <nav class="nav-desktop" aria-label="Primary navigation">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/solutions">Solutions</a>
+      <a href="/process">Process</a>
+      <a href="/projects" class="active" aria-current="page">Projects</a>
+      <a href="/epoxy">Epoxy</a>
+      <a href="/shop">Shop</a>
+      <a href="/contact">Contact</a>
+    </nav>
     <div class="header-cta-group">
-      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+      <a href="tel:+27621503704" class="header-phone" aria-label="Call us">+27 62 150 3704</a>
       <a href="/contact#quote" class="header-cta">Get Quote →</a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<main>
-  <section style="padding: calc(var(--header-h,72px) + 60px) 0 40px;">
+<main id="main-content">
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO — REVAMPED HOOK
+       ═══════════════════════════════════════════════════ -->
+  <section class="page-hero" aria-labelledby="hero-heading">
     <div class="container">
-      <span class="metadata-label scroll-reveal">Our Work · 1,200+ Completed</span>
-      <h1 style="font-size:clamp(2.6rem,5vw,4.2rem);line-height:1.1;">
-        <span class="masked-rise"><span class="masked-rise-inner">Gamazine</span></span>
-        <span class="masked-rise"><span class="masked-rise-inner" style="color:var(--gold);font-style:italic;">Transformations</span></span>
-      </h1>
-      <p style="font-size:1.05rem;color:var(--slate);max-width:640px;margin-top:16px;line-height:1.75;" class="scroll-reveal">
-        Explore our portfolio of premium wall coating projects across South Africa. Each image represents our commitment to quality, durability, and aesthetic excellence.
+      <span class="eyebrow reveal">Over 1,200 homes transformed</span>
+      <p class="hero-subhead reveal" style="transition-delay:0.1s;">
+        Real walls. Real finishes. Here’s what our clients see every day.
       </p>
+      <h1 id="hero-heading">
+        <span class="mask-wrap"><span class="mask-inner">Our</span></span>
+        <span class="mask-wrap"><span class="mask-inner"><em>Work</em></span></span>
+      </h1>
     </div>
   </section>
 
-  <!-- Filter Bar -->
+  <!-- ═══════════════════════════════════════════════════
+       FILTER BAR
+       ═══════════════════════════════════════════════════ -->
   <div class="container">
-    <div class="filter-bar scroll-reveal">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="residential">Residential</button>
-      <button class="filter-btn" data-filter="commercial">Commercial</button>
-      <button class="filter-btn" data-filter="glamour">Glamour Coat</button>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+      <button class="filter-btn" onclick="filterProjects('residential')">Residential</button>
+      <button class="filter-btn" onclick="filterProjects('commercial')">Commercial</button>
+      <button class="filter-btn" onclick="filterProjects('glamour')">Glamour Coat</button>
     </div>
   </div>
 
-  <!-- Projects Grid -->
+  <!-- ═══════════════════════════════════════════════════
+       PROJECTS GRID
+       ═══════════════════════════════════════════════════ -->
   <section style="padding:0 0 60px;">
     <div class="container">
       <div class="projects-grid" id="projectsGrid"></div>
     </div>
   </section>
 
-  <!-- Mini Stats -->
+  <!-- ═══════════════════════════════════════════════════
+       STATS MINI
+       ═══════════════════════════════════════════════════ -->
   <div class="container">
-    <div class="stats-mini scroll-reveal">
+    <div class="stats-mini reveal">
       <div class="stat-mini-item"><div class="stat-mini-num">1,200+</div><div class="stat-mini-label">Projects</div></div>
       <div class="stat-mini-item"><div class="stat-mini-num">9</div><div class="stat-mini-label">Provinces</div></div>
       <div class="stat-mini-item"><div class="stat-mini-num">15yr</div><div class="stat-mini-label">Guarantee</div></div>
@@ -278,64 +335,107 @@
     </div>
   </div>
 
-  <!-- CTA Banner -->
-  <div class="container">
-    <div class="cta-banner scroll-reveal">
-      <span style="background:rgba(182,139,64,0.15);color:var(--gold);padding:6px 18px;border-radius:30px;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;display:inline-block;margin-bottom:20px;">READY TO TRANSFORM YOUR PROPERTY?</span>
-      <h2>Let's create your masterpiece</h2>
-      <p>Book a free site inspection and join 1,200+ satisfied clients across South Africa.</p>
-      <a href="/contact#quote" class="btn-primary">Get Free Quote →</a>
+  <!-- ═══════════════════════════════════════════════════
+       FAQ SECTION (process‑style cards)
+       ═══════════════════════════════════════════════════ -->
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <span class="eyebrow reveal">Frequently Asked Questions</span>
+      <h2 id="faq-heading" style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:400;margin-bottom:36px;" class="reveal">Everything you need to know</h2>
+      <div class="stagger-children" style="display:grid;grid-template-columns:1fr;gap:20px;">
+
+        <div class="faq-card reveal">
+          <h3>What is Gamazine?</h3>
+          <p>Gamazine is a premium wall coating made from quartz stone, acrylic resin, and UV‑stable pigments. It creates a durable, waterproof, crack‑resistant finish that lasts up to 15 years. It can be applied to both exterior and interior walls.</p>
+        </div>
+
+        <div class="faq-card reveal">
+          <h3>Do I need to pay a deposit?</h3>
+          <p>No. We never take deposits. You only pay once the materials are delivered to your site — not before.</p>
+        </div>
+
+        <div class="faq-card reveal">
+          <h3>How long does the application take?</h3>
+          <p>Most residential projects are completed within 2–4 days. Large commercial jobs may take longer, but we always provide a clear timeline during your quote.</p>
+        </div>
+
+        <div class="faq-card reveal">
+          <h3>Is the coating really waterproof?</h3>
+          <p>Yes. Gamazine forms a seamless, waterproof barrier that prevents moisture penetration, damp, and mould growth. It is tested in SA's harshest weather conditions.</p>
+        </div>
+
+        <div class="faq-card reveal">
+          <h3>What colours are available?</h3>
+          <p>We offer over 20 standard colours and can produce custom tints to match any architectural palette. All pigments are UV‑stable to prevent fading.</p>
+        </div>
+
+        <div class="faq-card reveal">
+          <h3>Does the 15‑year guarantee really hold?</h3>
+          <p>Absolutely. Every project comes with a signed 15‑year written guarantee covering material defects and application quality. We stand behind every wall we coat.</p>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2 style="color:white;font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:16px;">Want this look on your walls?</h2>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.92rem;line-height:1.7;margin-bottom:36px;">
+          Book a free site inspection today and get a fixed quote within 24 hours.
+        </p>
+        <a href="/contact#quote" class="btn-primary">Get Your Free Quote →</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<!-- CORRECTED FOOTER -->
-<footer class="footer">
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-logo">
-          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-          <span>GGS</span>
-        </div>
+        <div class="footer-brand-logo"><img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo" width="36" height="36" loading="lazy"><span>GGS</span></div>
         <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings & epoxy flooring across Gauteng since 2012.</p>
-        <div class="footer-socials">
-          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="YOUR_INSTAGRAM_URL" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="YOUR_LINKEDIN_URL" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
+        <nav class="footer-socials" aria-label="Social media">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </nav>
       </div>
-      <div>
-        <div class="footer-col-heading">Navigate</div>
-<ul class="footer-links">
-  <li><a href="/about">Company Heritage</a></li>
-  <li><a href="/solutions">Solutions</a></li>
-  <li><a href="/process">How It Works</a></li>
-  <li><a href="/projects">Projects</a></li>
-  <li><a href="/epoxy">Epoxy Flooring</a></li>
-  <li><a href="/shop">Online Shop</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
-      </div>
-      <div>
-        <div class="footer-col-heading">Contact</div>
+      <nav aria-label="Footer navigation">
+        <p class="footer-col-heading">Navigate</p>
         <ul class="footer-links">
-          <li><strong>Global Gamazine Suppliers</strong></li>
+          <li><a href="/about">Company Heritage</a></li>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/process">How It Works</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/epoxy">Epoxy Flooring</a></li>
+          <li><a href="/shop">Online Shop</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <address>
+        <p class="footer-col-heading">Contact</p>
+        <ul class="footer-links" style="font-style:normal;">
+          <li><strong style="color:rgba(255,255,255,0.8)">Global Gamazine Suppliers</strong></li>
           <li><a href="tel:+27621503704">+27 62 150 3704</a></li>
           <li><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></li>
-          <li>
-            <a href="https://maps.google.com/?q=12+Granite+Road,+Kya+Sands,+Randburg,+Gauteng" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">
-              12 Granite Road, Kya Sands<br>Randburg, Gauteng
-            </a>
-          </li>
+          <li><a href="https://maps.google.com/?q=12+Granite+Road+Kya+Sands+Randburg" target="_blank" rel="noopener noreferrer">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</a></li>
         </ul>
-      </div>
+      </address>
       <div class="footer-newsletter">
-        <div class="footer-col-heading">Stay Updated</div>
-        <p class="newsletter-desc">Get seasonal offers and product updates.</p>
+        <p class="footer-col-heading">Stay Updated</p>
+        <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
         <div class="newsletter-form">
-          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <label for="newsletterEmail" class="visually-hidden">Email address</label>
+          <input class="newsletter-input" type="email" id="newsletterEmail" placeholder="your@email.com" autocomplete="email">
           <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
         </div>
       </div>
@@ -347,146 +447,209 @@
   </div>
 </footer>
 
-<div class="wa-float-wrap">
-  <a href="https://wa.me/27621503704" class="wa-float" target="_blank">
-    <span class="wa-pulse"></span>
-    <i class="fab fa-whatsapp"></i>
-  </a>
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- COOKIE NOTICE (flicker‑free) -->
+<div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite" class="cookie-hidden">
+  <p class="cookie-title">We use cookies</p>
+  <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
+  <div class="cookie-categories">
+    <div class="cookie-category"><input type="checkbox" id="cookie-essential" checked disabled><label for="cookie-essential">Essential — required for the website to function</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-analytics"><label for="cookie-analytics">Analytics — help us understand how visitors use the site</label></div>
+    <div class="cookie-category"><input type="checkbox" id="cookie-marketing"><label for="cookie-marketing">Marketing — used for promotional offers and social media</label></div>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-accept" id="cookie-accept-all">Accept All</button>
+    <button class="cookie-btn cookie-save" id="cookie-save-preferences">Save Preferences</button>
+  </div>
 </div>
 
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="fas fa-arrow-up"></i>
-</button>
+<style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <script>
-  (function(){
-    // scroll progress & header
-    const progressBar=document.getElementById('scroll-progress');
-    window.addEventListener('scroll',()=>{
-      const s=(document.documentElement.scrollTop/(document.documentElement.scrollHeight-window.innerHeight))*100;
-      if(progressBar) progressBar.style.width=s+'%';
-    },{passive:true});
+(function () {
+  'use strict';
 
-    const header=document.getElementById('siteHeader'), backTopBtn=document.getElementById('back-top');
-    window.addEventListener('scroll',()=>{
-      const y=window.scrollY;
-      if(header) header.classList.toggle('scrolled',y>30);
-      if(backTopBtn) backTopBtn.classList.toggle('visible',y>500);
-    },{passive:true});
+  /* ── Scroll Progress ── */
+  const progress = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progress.style.width = pct + '%';
+  }, { passive: true });
 
-    const hamburger=document.getElementById('hamburger'), mobileNav=document.getElementById('mobileNav');
-    if(hamburger && mobileNav){
-      hamburger.addEventListener('click',()=>{
-        hamburger.classList.toggle('open');
-        mobileNav.classList.toggle('open');
-        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-      });
-    }
-    window.closeMobile=function(){
-      if(hamburger) hamburger.classList.remove('open');
-      if(mobileNav) mobileNav.classList.remove('open');
-      document.body.style.overflow='';
-    };
+  /* ── Header & Back-to-top ── */
+  const header = document.getElementById('siteHeader'), backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
+  }, { passive: true });
 
-    // Newsletter
-    window.handleNewsletter=function(){
-      const i=document.getElementById('newsletterEmail');
-      if(i && i.value && i.value.includes('@')){
-        try{ localStorage.setItem('ggs_newsletter',i.value); }catch(e){}
-        i.value='';
-        i.placeholder='Subscribed! ✓';
-        alert('Thank you for subscribing!');
-      } else {
-        alert('Please enter a valid email address.');
+  /* ── Mobile Nav ── */
+  const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open', open);
+    mobileNav.setAttribute('aria-hidden', String(!open));
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  /* ── Custom Cursor ── */
+  const dot = document.getElementById('cursor-dot'), ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  const moveCursor = () => {
+    dot.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+    requestAnimationFrame(moveCursor);
+  };
+  moveCursor();
+  document.querySelectorAll('a, button, [data-magnetic]').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  /* ── Intersection Observer ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal, .stagger-children').forEach(el => revealObs.observe(el));
+
+  const maskObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.parentElement.querySelectorAll('.mask-inner');
+        siblings.forEach((s, i) => setTimeout(() => s.classList.add('revealed'), i * 140));
+        maskObs.unobserve(entry.target);
       }
-    };
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.mask-inner').forEach(el => maskObs.observe(el));
 
-    // Project data – 37 images
-    const projects = [
-      { img:"https://i.ibb.co/272y64t8/35969d6c-72d1-46c7-99ce-6cf4ae788383.jpg", title:"Premium Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/ZptJHfbL/7a0720ba-39b6-490f-9be8-96db2a97a5cb.jpg", title:"Modern Texture", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/ks2zdyJ3/493d8b73-dc28-479a-b954-9589fe0f187d.jpg", title:"Charcoal Classic", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/xKXxWsys/3d670413-3ccd-4df5-a990-b85ea1d66bde.jpg", title:"Seamless Wall", location:"Gauteng", category:"commercial" },
-      { img:"https://i.ibb.co/hR8zZ0Sb/8e76379a-5507-4bc5-a069-9c0448695cb7.jpg", title:"Exterior Coating", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/svqbbmKS/35097934-384d-440f-8899-b6316475c381.jpg", title:"Residential Facade", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/6JZpqRGM/571719d9-e8a8-493c-a026-6377f7326691.jpg", title:"Texture Detail", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/MyMG9kP5/640d6e58-22ca-4484-a829-7712cb120774.jpg", title:"Glamour Coat", location:"Gauteng", category:"glamour" },
-      { img:"https://i.ibb.co/hJNswxQx/e32c37ce-2d78-411b-81bf-f88feaed12f4.jpg", title:"Two‑Storey Home", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/HfRgKW9V/7090368e-8abb-45de-b62e-5a57294ad362.jpg", title:"Modern Facade", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/QFQkfyQL/b3d24fb8-2f5d-4c47-a6de-6fb036632ee2.jpg", title:"Charcoal Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/QvcMZqcy/0f718823-0f5f-48e9-a8f1-fcefae8a733f.jpg", title:"Boundary Wall", location:"Gauteng", category:"commercial" },
-      { img:"https://i.ibb.co/ZRwHLm6q/4215cd3c-abf8-48e7-ac99-ce367f6843c3.jpg", title:"Classic Texture", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/TzDKNL1/33a01922-caf9-465e-9025-3d1320d45adf.jpg", title:"Premium Application", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/W45TCjjX/7908353d-1660-40d8-aed8-b8bf2c535c6e.jpg", title:"Smooth Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/bMg0sfW1/9dd7f6dc-fa53-476b-92c5-d11584acb889.jpg", title:"Luxury Coating", location:"Gauteng", category:"glamour" },
-      { img:"https://i.ibb.co/5XRp2c4B/7d634f89-a65c-4600-b30d-14605f78f64f.jpg", title:"Commercial Project", location:"Gauteng", category:"commercial" },
-      { img:"https://i.ibb.co/fdd0vrpp/101dab4d-cc6a-4da4-8b59-bf2dfe12d0e1.jpg", title:"Exterior Detail", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/DPYgHVYt/084c449d-542a-4360-bb90-1f825ba1eb6e.jpg", title:"Crack‑Resistant", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/5WCqYvbM/955645b7-054d-4573-9a2c-9e25437c0c01.jpg", title:"UV‑Stable Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/HTw5m7gB/07578c4c-53fa-4e57-ad29-325a0f23db6e.jpg", title:"Residence Upgrade", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/5XByQPNq/737328f5-d9b1-42ba-ad90-321aa7d75f21.jpg", title:"Full House Coating", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/mrn9Xk5p/7d634f89-a65c-4600-b30d-14605f78f64f.jpg", title:"Durable Gamazine", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/SDrRwPVh/a23165c2-927e-44ad-a400-6cc0cdb66bde.jpg", title:"Architectural Lines", location:"Gauteng", category:"commercial" },
-      { img:"https://i.ibb.co/tTRk9v1J/6ea3e3b1-1247-4a54-b810-fd37b1115916.jpg", title:"Seamless Application", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/3Y5kJvTD/c6b9d140-d41e-4ddf-8da6-368befc66e15.jpg", title:"Glamour Shimmer", location:"Gauteng", category:"glamour" },
-      { img:"https://i.ibb.co/QvRZrcQx/d957272f-8d9c-4ead-bca7-cb060187609c.jpg", title:"Pearl Effect", location:"Gauteng", category:"glamour" },
-      { img:"https://i.ibb.co/rRXMq6QW/586b1bec-b0b1-4e52-abe6-583f4126d8c9.jpg", title:"Waterproof Exterior", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/tpz30t1X/5d67bf72-c1ad-42a9-8e82-8cfa31fe0869.jpg", title:"Long‑Lasting Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/4Zj5Ncjt/53cce19a-e546-4a15-be2e-335a35593cea.jpg", title:"Residential Complex", location:"Gauteng", category:"commercial" },
-      { img:"https://i.ibb.co/xSndwTg0/9dd7f6dc-fa53-476b-92c5-d11584acb889.jpg", title:"Feature Wall", location:"Gauteng", category:"glamour" },
-      { img:"https://i.ibb.co/ZzhDPwmR/645b5a78-9198-4f8b-b90b-63c27779edfe.jpg", title:"Modern Home", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/5gPZLGh3/ed9d07da-0f43-4fbd-9aa8-d0a19c5254e6.jpg", title:"Charcoal & White", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/pjkK3Yww/c4e13e72-eb7a-463a-b351-fb13158428c1.jpg", title:"Classic Gamazine", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/FbQ3tJbK/f4cdce8b-1030-4bd0-9c31-be482931c684.jpg", title:"Smooth Texture", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/fYd77yTM/4215cd3c-abf8-48e7-ac99-ce367f6843c3.jpg", title:"Durable Finish", location:"Gauteng", category:"residential" },
-      { img:"https://i.ibb.co/fV1qFx3Y/fa0d35c9-bea8-4ff6-8054-16f662c80cec.jpg", title:"Premium Coating", location:"Gauteng", category:"residential" }
-    ];
+  /* ── Newsletter ── */
+  window.handleNewsletter = () => {
+    const i = document.getElementById('newsletterEmail');
+    if (i.value && i.value.includes('@')) { i.value = ''; i.placeholder = 'Subscribed ✓'; }
+    else { i.focus(); i.style.borderColor = '#e55'; setTimeout(() => i.style.borderColor = '', 1500); }
+  };
 
-    const grid = document.getElementById('projectsGrid');
-    function renderProjects(filter = 'all') {
-      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-      grid.innerHTML = filtered.map(p => `
-        <div class="project-card scroll-reveal">
-          <a href="${p.img}" data-lightbox="gallery" data-title="${p.title} · ${p.location}">
-            <div class="card-img">
-              <img src="${p.img}" alt="${p.title}" loading="lazy">
-              <div class="card-overlay">
-                <div class="overlay-content">
-                  <div class="project-category">${p.category}</div>
-                  <div class="project-title">${p.title}</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <div class="card-info">
-            <span class="project-location"><i class="fas fa-map-marker-alt" style="margin-right:6px;color:var(--gold);"></i>${p.location}</span>
-            <span class="zoom-icon"><i class="fas fa-search-plus"></i></span>
+  /* ── Cookie consent (flicker‑free) ── */
+  const cookieNotice = document.getElementById('cookie-notice');
+  const acceptAll = document.getElementById('cookie-accept-all');
+  const savePrefs = document.getElementById('cookie-save-preferences');
+  const analyticsChk = document.getElementById('cookie-analytics');
+  const marketingChk = document.getElementById('cookie-marketing');
+
+  function getConsent() { try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')); } catch(e) { return null; } }
+  function setConsent(obj) { try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {} }
+
+  if (!getConsent()) {
+    cookieNotice.classList.remove('cookie-hidden');
+  }
+
+  acceptAll.addEventListener('click', () => {
+    setConsent({ essential: true, analytics: true, marketing: true });
+    cookieNotice.classList.add('hidden');
+    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  });
+
+  savePrefs.addEventListener('click', () => {
+    setConsent({ essential: true, analytics: analyticsChk.checked, marketing: marketingChk.checked });
+    cookieNotice.classList.add('hidden');
+    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  });
+
+  /* ═══════════════════════════════════════════════════
+     PROJECT DATA & FILTERING (37 images)
+     ═══════════════════════════════════════════════════ */
+  const projects = [
+    { img:"https://i.ibb.co/272y64t8/35969d6c-72d1-46c7-99ce-6cf4ae788383.jpg", title:"Premium Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/ZptJHfbL/7a0720ba-39b6-490f-9be8-96db2a97a5cb.jpg", title:"Modern Texture", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/ks2zdyJ3/493d8b73-dc28-479a-b954-9589fe0f187d.jpg", title:"Charcoal Classic", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/xKXxWsys/3d670413-3ccd-4df5-a990-b85ea1d66bde.jpg", title:"Seamless Wall", location:"Gauteng", category:"commercial" },
+    { img:"https://i.ibb.co/hR8zZ0Sb/8e76379a-5507-4bc5-a069-9c0448695cb7.jpg", title:"Exterior Coating", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/svqbbmKS/35097934-384d-440f-8899-b6316475c381.jpg", title:"Residential Facade", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/6JZpqRGM/571719d9-e8a8-493c-a026-6377f7326691.jpg", title:"Texture Detail", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/MyMG9kP5/640d6e58-22ca-4484-a829-7712cb120774.jpg", title:"Glamour Coat", location:"Gauteng", category:"glamour" },
+    { img:"https://i.ibb.co/hJNswxQx/e32c37ce-2d78-411b-81bf-f88feaed12f4.jpg", title:"Two‑Storey Home", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/HfRgKW9V/7090368e-8abb-45de-b62e-5a57294ad362.jpg", title:"Modern Facade", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/QFQkfyQL/b3d24fb8-2f5d-4c47-a6de-6fb036632ee2.jpg", title:"Charcoal Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/QvcMZqcy/0f718823-0f5f-48e9-a8f1-fcefae8a733f.jpg", title:"Boundary Wall", location:"Gauteng", category:"commercial" },
+    { img:"https://i.ibb.co/ZRwHLm6q/4215cd3c-abf8-48e7-ac99-ce367f6843c3.jpg", title:"Classic Texture", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/TzDKNL1/33a01922-caf9-465e-9025-3d1320d45adf.jpg", title:"Premium Application", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/W45TCjjX/7908353d-1660-40d8-aed8-b8bf2c535c6e.jpg", title:"Smooth Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/bMg0sfW1/9dd7f6dc-fa53-476b-92c5-d11584acb889.jpg", title:"Luxury Coating", location:"Gauteng", category:"glamour" },
+    { img:"https://i.ibb.co/5XRp2c4B/7d634f89-a65c-4600-b30d-14605f78f64f.jpg", title:"Commercial Project", location:"Gauteng", category:"commercial" },
+    { img:"https://i.ibb.co/fdd0vrpp/101dab4d-cc6a-4da4-8b59-bf2dfe12d0e1.jpg", title:"Exterior Detail", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/DPYgHVYt/084c449d-542a-4360-bb90-1f825ba1eb6e.jpg", title:"Crack‑Resistant", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/5WCqYvbM/955645b7-054d-4573-9a2c-9e25437c0c01.jpg", title:"UV‑Stable Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/HTw5m7gB/07578c4c-53fa-4e57-ad29-325a0f23db6e.jpg", title:"Residence Upgrade", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/5XByQPNq/737328f5-d9b1-42ba-ad90-321aa7d75f21.jpg", title:"Full House Coating", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/mrn9Xk5p/7d634f89-a65c-4600-b30d-14605f78f64f.jpg", title:"Durable Gamazine", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/SDrRwPVh/a23165c2-927e-44ad-a400-6cc0cdb66bde.jpg", title:"Architectural Lines", location:"Gauteng", category:"commercial" },
+    { img:"https://i.ibb.co/tTRk9v1J/6ea3e3b1-1247-4a54-b810-fd37b1115916.jpg", title:"Seamless Application", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/3Y5kJvTD/c6b9d140-d41e-4ddf-8da6-368befc66e15.jpg", title:"Glamour Shimmer", location:"Gauteng", category:"glamour" },
+    { img:"https://i.ibb.co/QvRZrcQx/d957272f-8d9c-4ead-bca7-cb060187609c.jpg", title:"Pearl Effect", location:"Gauteng", category:"glamour" },
+    { img:"https://i.ibb.co/rRXMq6QW/586b1bec-b0b1-4e52-abe6-583f4126d8c9.jpg", title:"Waterproof Exterior", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/tpz30t1X/5d67bf72-c1ad-42a9-8e82-8cfa31fe0869.jpg", title:"Long‑Lasting Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/4Zj5Ncjt/53cce19a-e546-4a15-be2e-335a35593cea.jpg", title:"Residential Complex", location:"Gauteng", category:"commercial" },
+    { img:"https://i.ibb.co/xSndwTg0/9dd7f6dc-fa53-476b-92c5-d11584acb889.jpg", title:"Feature Wall", location:"Gauteng", category:"glamour" },
+    { img:"https://i.ibb.co/ZzhDPwmR/645b5a78-9198-4f8b-b90b-63c27779edfe.jpg", title:"Modern Home", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/5gPZLGh3/ed9d07da-0f43-4fbd-9aa8-d0a19c5254e6.jpg", title:"Charcoal & White", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/pjkK3Yww/c4e13e72-eb7a-463a-b351-fb13158428c1.jpg", title:"Classic Gamazine", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/FbQ3tJbK/f4cdce8b-1030-4bd0-9c31-be482931c684.jpg", title:"Smooth Texture", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/fYd77yTM/4215cd3c-abf8-48e7-ac99-ce367f6843c3.jpg", title:"Durable Finish", location:"Gauteng", category:"residential" },
+    { img:"https://i.ibb.co/fV1qFx3Y/fa0d35c9-bea8-4ff6-8054-16f662c80cec.jpg", title:"Premium Coating", location:"Gauteng", category:"residential" }
+  ];
+
+  const grid = document.getElementById('projectsGrid');
+
+  function renderProjects(filter = 'all') {
+    const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+    grid.innerHTML = filtered.map(p => `
+      <div class="project-card stagger-children in-view">
+        <a href="${p.img}" data-lightbox="gallery" data-title="${p.title} · ${p.location}">
+          <div class="card-img">
+            <img src="${p.img}" alt="${p.title}" loading="lazy">
           </div>
+        </a>
+        <div class="card-info">
+          <span class="project-location"><i class="fas fa-map-marker-alt" style="margin-right:6px;color:var(--gold);"></i>${p.location}</span>
+          <span class="zoom-icon"><i class="fas fa-search-plus"></i></span>
         </div>
-      `).join('');
-    }
-    renderProjects();
+      </div>
+    `).join('');
+  }
 
-    // Filter buttons
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        renderProjects(this.dataset.filter);
-      });
+  window.filterProjects = function(cat) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.textContent.toLowerCase().includes(cat === 'all' ? 'all' : cat)) {
+        btn.classList.add('active');
+      }
     });
+    renderProjects(cat);
+  };
 
-    // Lightbox initialization
+  // Initial render
+  renderProjects();
+
+  // Lightbox configuration
+  if (typeof lightbox !== 'undefined') {
     lightbox.option({
-      'resizeDuration': 200,
-      'wrapAround': true,
-      'albumLabel': 'Project %1 of %2',
-      'fadeDuration': 300
+      resizeDuration: 200,
+      wrapAround: true,
+      albumLabel: 'Project %1 of %2',
+      fadeDuration: 300
     });
-  })();
+  }
+
+})();
 </script>
-<script src="assets/js/announcement.js"></script>
+
 </body>
 </html>
