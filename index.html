@@ -51,7 +51,6 @@
       --header-h:      72px;
       --r-card:        12px;
       --r-xl:          20px;
-
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
       --spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -59,19 +58,11 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      color: var(--charcoal);
-      background: var(--off-white);
-      overflow-x: hidden;
-    }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--charcoal); background: var(--off-white); overflow-x: hidden; }
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
 
-    /* ════════════════════════════════════════════════════════════
-       SCROLL PROGRESS & CURSOR & NAV (same as before) — condensed
-       ════════════════════════════════════════════════════════════ */
+    /* ── Scroll Progress / Cursor / Nav ── */
     #scroll-progress { position: fixed; top: 0; left: 0; z-index: 9999; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.05s linear; }
     #cursor-dot, #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; }
     #cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -110,9 +101,7 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: white; }
 
-    /* ════════════════════════════════════════════════════════════
-       TYPOGRAPHY UTILITIES
-       ════════════════════════════════════════════════════════════ */
+    /* ── Typography utilities ── */
     .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
     .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; position: relative; top: -1px; }
     .mask-wrap { overflow: hidden; display: block; }
@@ -127,7 +116,7 @@
     .stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.3s; }
 
     /* ════════════════════════════════════════════════════════════
-       HERO, FEATURES, PROCESS, ETC. (unchanged, same as before)
+       HERO, FEATURES, PROCESS, BROADCAST, ABOUT SNIPPET
        ════════════════════════════════════════════════════════════ */
     .hero { padding: calc(var(--header-h) + 80px) 0 60px; position: relative; overflow: hidden; }
     .hero::before { content: 'GGS'; position: absolute; right: -5%; bottom: 0; font-family: 'Cormorant Garamond', serif; font-size: clamp(160px, 24vw, 260px); font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(0,0,0,0.04); pointer-events: none; user-select: none; z-index: 0; }
@@ -158,21 +147,18 @@
     .badge-text-top { font-size: 0.85rem; font-weight: 500; color: var(--charcoal); }
     .badge-text-sub { font-size: 0.72rem; color: var(--slate); }
 
-    /* Stats */
     .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 60px; background: var(--border); border-radius: var(--r-xl); overflow: hidden; }
     @media (min-width: 640px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
     .stat-card { background: white; padding: 30px 24px; text-align: center; }
     .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 500; color: var(--charcoal); line-height: 1; margin-bottom: 4px; }
     .stat-label { font-size: 0.72rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.1em; }
 
-    /* Marquee */
     .marquee-tape { margin-top: 60px; background: var(--charcoal); overflow: hidden; white-space: nowrap; padding: 12px 0; }
     .marquee-inner { display: inline-block; animation: marquee 25s linear infinite; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-item { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.6); padding: 0 20px; }
     .marquee-sep { color: var(--gold); }
 
-    /* Features */
     .features-section { padding: 90px 0; }
     .features-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
     @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -183,7 +169,6 @@
     .feature-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 8px; }
     .feature-card p { font-size: 0.9rem; color: var(--slate); line-height: 1.65; font-weight: 300; }
 
-    /* Process */
     .process-section { padding: 80px 0; background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(250,247,242,0.95) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .process-mini-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
     @media (min-width: 640px) { .process-mini-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -193,7 +178,6 @@
     .process-mini-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 6px; }
     .process-mini-card p { font-size: 0.88rem; color: var(--slate); line-height: 1.65; font-weight: 300; }
 
-    /* Broadcast */
     .broadcast-wrap { margin: 80px 0; }
     .broadcast-inner { display: grid; grid-template-columns: 1fr; gap: 40px; }
     @media (min-width: 768px) { .broadcast-inner { grid-template-columns: 1fr 1fr; align-items: center; } }
@@ -208,7 +192,6 @@
     .broadcast-right { position: relative; overflow: hidden; border-radius: var(--r-xl); height: clamp(280px, 40vw, 420px); }
     .broadcast-right img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* About snippet */
     .about-snippet { padding: 30px 0 90px; }
     .asymmetric-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
     @media (min-width: 768px) { .asymmetric-grid { grid-template-columns: 1fr 1fr; } }
@@ -220,8 +203,9 @@
     .asymmetric-image img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ════════════════════════════════════════════════════════════
-       COOKIE NOTICE — redesigned with categories
+       COOKIE NOTICE — flicker‑free
        ════════════════════════════════════════════════════════════ */
+    .cookie-hidden { display: none !important; }
     #cookie-notice {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
       z-index: 1000; width: min(440px, calc(100vw - 32px));
@@ -246,7 +230,7 @@
     .cookie-save:hover { border-color: var(--gold); }
 
     /* ════════════════════════════════════════════════════════════
-       SALE MODAL (unchanged)
+       SALE MODAL
        ════════════════════════════════════════════════════════════ */
     #ggs-overlay { position: fixed; inset: 0; z-index: 99999; background: rgba(15,18,22,0.65); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px; animation: ggs-fade 0.35s ease; }
     @keyframes ggs-fade { from { opacity: 0 } to { opacity: 1 } }
@@ -288,7 +272,6 @@
     .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
     .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
-    /* WhatsApp & Back-to-top */
     .wa-float-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 800; }
     .wa-float { width: 52px; height: 52px; background: #25D366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform 0.3s var(--spring); }
     .wa-float:hover { transform: scale(1.1); }
@@ -301,14 +284,10 @@
 </head>
 <body>
 
-<!-- CUSTOM CURSOR -->
 <div id="cursor-dot" aria-hidden="true"></div>
 <div id="cursor-ring" aria-hidden="true"></div>
-
-<!-- SCROLL PROGRESS -->
 <div id="scroll-progress" role="progressbar" aria-hidden="true"></div>
 
-<!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" aria-hidden="true">
   <a href="/" class="active" aria-current="page">Home</a>
   <a href="/about">About</a>
@@ -324,7 +303,6 @@
   </div>
 </nav>
 
-<!-- STICKY HEADER -->
 <header class="site-header" id="siteHeader" role="banner">
   <div class="container header-inner">
     <a href="/" class="logo-wrap" aria-label="Global Gamazine Suppliers — Home">
@@ -352,7 +330,6 @@
 </header>
 
 <main id="main-content">
-  <!-- ═══ HERO ═══ -->
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
       <div class="hero-grid">
@@ -394,7 +371,6 @@
     </div>
   </section>
 
-  <!-- ═══ MARQUEE ═══ -->
   <div class="marquee-tape" aria-hidden="true">
     <div class="marquee-inner">
       <span class="marquee-item">Gamazine Classic <span class="marquee-sep">·</span></span>
@@ -416,7 +392,6 @@
     </div>
   </div>
 
-  <!-- ═══ WHY CHOOSE US ═══ -->
   <section class="features-section" aria-labelledby="why-heading">
     <div class="container">
       <span class="eyebrow reveal">Why choose GGS</span>
@@ -430,7 +405,6 @@
     </div>
   </section>
 
-  <!-- ═══ QUICK PROCESS ═══ -->
   <section class="process-section" aria-labelledby="process-heading">
     <div class="container">
       <span class="eyebrow reveal">How it works</span>
@@ -443,7 +417,6 @@
     </div>
   </section>
 
-  <!-- ═══ BROADCAST ═══ -->
   <div class="broadcast-wrap">
     <div class="container">
       <div class="broadcast-inner reveal">
@@ -463,7 +436,6 @@
     </div>
   </div>
 
-  <!-- ═══ ABOUT SNIPPET ═══ -->
   <section class="about-snippet" aria-label="About GGS">
     <div class="container">
       <div class="asymmetric-grid reveal">
@@ -482,7 +454,6 @@
   </section>
 </main>
 
-<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -534,16 +505,13 @@
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
 <div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
-
-<!-- BACK TO TOP -->
 <button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
 <!-- ══════════════════════════════════════════════════════
-     COOKIE NOTICE — granular consent
+     COOKIE NOTICE — granular consent (flicker‑free)
      ══════════════════════════════════════════════════════ -->
-<div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite">
+<div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite" class="cookie-hidden">
   <p class="cookie-title">We use cookies</p>
   <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
   <div class="cookie-categories">
@@ -568,7 +536,6 @@
 
 <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
-<!-- ═══ SCRIPTS ═══ -->
 <script>
 (function () {
   'use strict';
@@ -613,7 +580,7 @@
     requestAnimationFrame(moveCursor);
   };
   moveCursor();
-  document.querySelectorAll('a, button, [data-magnetic]').forEach(el => {
+  document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
@@ -666,7 +633,7 @@
     }
   };
 
-  /* ── Cookie Consent ── */
+  /* ── Cookie Consent (flicker‑free) ── */
   const cookieNotice = document.getElementById('cookie-notice');
   const acceptAllBtn = document.getElementById('cookie-accept-all');
   const savePrefsBtn = document.getElementById('cookie-save-preferences');
@@ -680,13 +647,14 @@
     try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {}
   }
 
-  // Hide notice only if a consent was already saved
-  if (getCookieConsent()) {
-    cookieNotice.classList.add('hidden');
+  // Show the notice only if no consent was previously saved
+  if (!getCookieConsent()) {
+    cookieNotice.classList.remove('cookie-hidden');
   }
 
   function hideNotice() {
     cookieNotice.classList.add('hidden');
+    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
   }
 
   acceptAllBtn.addEventListener('click', () => {
