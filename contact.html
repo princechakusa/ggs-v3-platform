@@ -27,14 +27,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="assets/js/supabase.js" defer></script>
 
   <style>
-    /* ════════════════════════════════════════════════════════════
-       DESIGN TOKENS — same as all pages
-       ════════════════════════════════════════════════════════════ */
     :root {
       --gold:          #c9a94b;
       --gold-light:    #e8d08a;
@@ -59,7 +53,7 @@
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Scroll Progress / Cursor / Nav (same as other pages) ── */
+    /* ── Scroll Progress / Cursor / Nav ── */
     #scroll-progress { position: fixed; top: 0; left: 0; z-index: 9999; height: 2px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.05s linear; }
     #cursor-dot, #cursor-ring { position: fixed; z-index: 9998; pointer-events: none; }
     #cursor-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); }
@@ -141,6 +135,7 @@
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
     .submit-quote-btn { width: 100%; padding: 16px; background: var(--charcoal); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .submit-quote-btn:hover { background: var(--gold); }
+    .submit-quote-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     /* Contact details + map */
     .contact-details-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
@@ -176,7 +171,7 @@
     .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
     .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
-    /* Cookie notice (flicker‑free) */
+    /* Cookie notice (flicker-free) */
     .cookie-hidden { display: none !important; }
     #cookie-notice {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -264,9 +259,7 @@
 
 <main id="main-content">
 
-  <!-- ═══════════════════════════════════════════════════
-       HERO
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ HERO ═══ -->
   <section class="page-hero" aria-labelledby="hero-heading">
     <div class="container">
       <span class="eyebrow reveal">Let's Talk About Your Project</span>
@@ -280,9 +273,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       QUICK CONTACT CARDS
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ QUICK CONTACT CARDS ═══ -->
   <div class="container">
     <div class="quick-contact-grid stagger-children">
       <div class="quick-card reveal">
@@ -308,9 +299,7 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════
-       QUOTE FORM
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ QUOTE FORM ═══ -->
   <section id="quote" aria-labelledby="quote-heading">
     <div class="container">
       <div class="quote-card reveal">
@@ -348,9 +337,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       CONTACT DETAILS + MAP
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ CONTACT DETAILS + MAP ═══ -->
   <div class="container">
     <div class="contact-details-grid reveal">
       <div class="contact-info">
@@ -534,50 +521,67 @@
     else { i.focus(); i.style.borderColor = '#e55'; setTimeout(() => i.style.borderColor = '', 1500); }
   };
 
-  /* ── Quote Form Submission (Supabase + WhatsApp) ── */
-  document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+  /* ── Quote Form Submission ──
+     1. Replace 'YOUR_FORMSPREE_ENDPOINT' with your actual Formspree URL
+        e.g. https://formspree.io/f/yourFormID
+     2. No redirect, no new tab – pure AJAX email sending
+  ── */
+  const form = document.getElementById('quoteForm');
+  const msgDiv = document.getElementById('formMessage');
+  const submitBtn = form.querySelector('.submit-quote-btn');
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Gather data
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const rooms = document.getElementById('rooms').value.trim();
-    const msgDiv = document.getElementById('formMessage');
 
     if (!name || !phone || !rooms) {
       msgDiv.innerHTML = '<span style="color:#ef4444;">Please fill all required fields.</span>';
       return;
     }
 
-    const formData = {
-      name: name,
-      phone: phone,
-      email: document.getElementById('email').value.trim() || null,
-      finish: document.getElementById('finish').value,
-      rooms: rooms,
-      area: document.getElementById('area').value || null,
-      notes: document.getElementById('notes').value.trim() || null
-    };
+    // Prepare Formspree payload
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', document.getElementById('email').value.trim());
+    formData.append('finish', document.getElementById('finish').value);
+    formData.append('rooms', rooms);
+    formData.append('area', document.getElementById('area').value);
+    formData.append('notes', document.getElementById('notes').value.trim());
 
-    msgDiv.innerHTML = 'Submitting...';
+    // Disable button, show status
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    msgDiv.innerHTML = '';
 
-    // Save to Supabase if available
-    if (window.supabase) {
-      await window.supabase.from('quotes').insert([{
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        finish: formData.finish,
-        rooms: formData.rooms,
-        area: formData.area,
-        notes: formData.notes
-      }]);
+    try {
+      const response = await fetch('YOUR_FORMSPREE_ENDPOINT', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        msgDiv.innerHTML = '<span style="color:#22c55e;">✓ Quote submitted! We\'ll reply within 24h.</span>';
+        form.reset();
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          msgDiv.innerHTML = '<span style="color:#ef4444;">Error: ' + data.errors.map(e => e.message).join(', ') + '</span>';
+        } else {
+          throw new Error('Formspree submission failed');
+        }
+      }
+    } catch (error) {
+      msgDiv.innerHTML = '<span style="color:#ef4444;">Network error. Please try again or call us directly.</span>';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Request →';
     }
-
-    // WhatsApp message
-    const waMsg = `Hello GGS! I'd like a quotation:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Finish: ${formData.finish}\n🏠 Rooms/Walls: ${formData.rooms}${formData.area ? '\n📐 Area: ' + formData.area : ''}${formData.notes ? '\n📝 Notes: ' + formData.notes : ''}`;
-    window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
-
-    msgDiv.innerHTML = '<span style="color:#22c55e;">✓ Quote submitted! We\'ll contact you shortly.</span>';
-    e.target.reset();
   });
 
   /* ── Cookie consent (flicker‑free) ── */
