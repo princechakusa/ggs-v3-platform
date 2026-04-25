@@ -207,6 +207,75 @@
     #back-top.visible { opacity: 1; pointer-events: all; transform: none; }
     #back-top:hover { background: var(--charcoal); color: white; }
 
+    /* ── AI Chatbot Widget ── */
+    #ai-chat-bubble {
+      position: fixed; bottom: 100px; right: 28px; z-index: 700;
+      width: 56px; height: 56px;
+      background: var(--charcoal); color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      transition: transform 0.3s var(--spring), opacity 0.3s;
+      opacity: 0; pointer-events: none; transform: translateY(16px);
+    }
+    #ai-chat-bubble.show {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+    #ai-chat-window {
+      position: fixed; bottom: 170px; right: 28px; z-index: 700;
+      width: 340px; max-height: 480px;
+      background: white; border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.8); opacity: 0; pointer-events: none;
+      transition: all 0.3s var(--ease-out-expo);
+      transform-origin: bottom right;
+    }
+    #ai-chat-window.open {
+      transform: scale(1); opacity: 1; pointer-events: all;
+    }
+    .chat-header {
+      background: var(--charcoal); color: white;
+      padding: 14px 16px; font-weight: 600; font-size: 0.9rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .chat-header i { cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+    .chat-header i:hover { opacity: 1; }
+    .chat-messages {
+      flex: 1; padding: 16px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 12px;
+      max-height: 320px;
+    }
+    .chat-message {
+      max-width: 85%; padding: 10px 14px;
+      border-radius: 16px; font-size: 0.85rem; line-height: 1.5;
+      white-space: pre-line;
+    }
+    .chat-message.bot {
+      background: var(--gold-muted); color: var(--charcoal);
+      align-self: flex-start; border-bottom-left-radius: 4px;
+    }
+    .chat-message.user {
+      background: var(--charcoal); color: white;
+      align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .chat-input-area {
+      display: flex; border-top: 1px solid var(--border);
+      padding: 10px;
+    }
+    .chat-input-area input {
+      flex: 1; border: 1px solid var(--border); border-radius: 100px;
+      padding: 10px 16px; font-size: 0.85rem; outline: none;
+    }
+    .chat-input-area button {
+      background: var(--charcoal); color: white; border: none;
+      border-radius: 100px; padding: 10px 16px; margin-left: 8px;
+      cursor: pointer; font-size: 0.85rem; transition: background 0.2s;
+    }
+    .chat-input-area button:hover { background: var(--gold); }
+
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .mask-inner { transform: none; opacity: 1; } .reveal { opacity: 1; transform: none; } }
   </style>
 </head>
@@ -264,9 +333,7 @@
 
 <main id="main-content">
 
-  <!-- ═══════════════════════════════════════════════════
-       HERO
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ HERO ═══ -->
   <section class="page-hero" aria-labelledby="hero-heading">
     <div class="container">
       <span class="eyebrow reveal">Let's Talk About Your Project</span>
@@ -280,9 +347,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       QUICK CONTACT CARDS
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ QUICK CONTACT CARDS ═══ -->
   <div class="container">
     <div class="quick-contact-grid stagger-children">
       <div class="quick-card reveal">
@@ -308,9 +373,7 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════
-       QUOTE FORM
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ QUOTE FORM ═══ -->
   <section id="quote" aria-labelledby="quote-heading">
     <div class="container">
       <div class="quote-card reveal">
@@ -348,9 +411,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════
-       CONTACT DETAILS + MAP
-       ═══════════════════════════════════════════════════ -->
+  <!-- ═══ CONTACT DETAILS + MAP ═══ -->
   <div class="container">
     <div class="contact-details-grid reveal">
       <div class="contact-info">
@@ -463,6 +524,22 @@
   </div>
 </div>
 
+<!-- PRINCE AI CHATBOT -->
+<div id="ai-chat-bubble" aria-label="Chat with Prince">
+  <img src="https://i.postimg.cc/YSG8gwgZ/Whats-App-Image-2026-04-23-at-7-58-18-PM-1.jpg" alt="Prince" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+</div>
+<div id="ai-chat-window">
+  <div class="chat-header">
+    <span>🤖 Prince – GGS Assistant</span>
+    <i class="fas fa-times" id="close-chat"></i>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask me about Gamazine, Glamour, Epoxy...">
+    <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
 <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
 <script>
@@ -559,7 +636,6 @@
 
     msgDiv.innerHTML = 'Submitting...';
 
-    // Save to Supabase if available
     if (window.supabase) {
       await window.supabase.from('quotes').insert([{
         name: formData.name,
@@ -572,7 +648,6 @@
       }]);
     }
 
-    // WhatsApp message
     const waMsg = `Hello GGS! I'd like a quotation:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Finish: ${formData.finish}\n🏠 Rooms/Walls: ${formData.rooms}${formData.area ? '\n📐 Area: ' + formData.area : ''}${formData.notes ? '\n📝 Notes: ' + formData.notes : ''}`;
     window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
 
@@ -605,6 +680,246 @@
     cookieNotice.classList.add('hidden');
     setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
   });
+
+  
+
+/*/* ──────────────────────────────────────────────
+   PRINCE AI CRM SALES ENGINE (FULL REBUILD)
+   FIXES:
+   ✔ No repetition loops
+   ✔ Proper CRM state machine
+   ✔ Clean booking funnel
+   ✔ South Africa location awareness
+   ✔ Stable quote system
+────────────────────────────────────────────── */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ─────────────────────────────
+  // UI ELEMENTS
+  // ─────────────────────────────
+  const bubble = document.getElementById("ai-chat-bubble");
+  const chatWindow = document.getElementById("ai-chat-window");
+  const chatMessages = document.getElementById("chat-messages");
+  const chatInput = document.getElementById("chat-input");
+  const chatSend = document.getElementById("chat-send");
+
+  if (!bubble || !chatWindow || !chatMessages || !chatInput || !chatSend) {
+    console.error("Chat UI missing");
+    return;
+  }
+
+  // ─────────────────────────────
+  // SOUTH AFRICA INTELLIGENCE
+  // ─────────────────────────────
+  const SA_CITIES = [
+    "Johannesburg","Pretoria","Cape Town","Durban","Sandton",
+    "Randburg","Midrand","Roodepoort","Centurion",
+    "Soweto","Bloemfontein","Port Elizabeth","East London"
+  ];
+
+  // ─────────────────────────────
+  // PRODUCT DATABASE
+  // ─────────────────────────────
+  const DB = {
+    "gamazine classic": { price: 250, coverage: 100 },
+    "glamour coat": { price: 350, coverage: 100 },
+    "epoxy flooring": { price: 180 }
+  };
+
+  // ─────────────────────────────
+  // CRM STATE MACHINE
+  // ─────────────────────────────
+  let lead = {
+    stage: "idle",
+    product: null,
+    rooms: null,
+    location: null,
+    name: null,
+    phone: null,
+    lastMessage: ""
+  };
+
+  // ─────────────────────────────
+  // HELPERS
+  // ─────────────────────────────
+  const extractRooms = (t) => {
+    const m = t.match(/(\d+)/);
+    return m ? parseInt(m[1]) : null;
+  };
+
+  const detectProduct = (t) => {
+    t = t.toLowerCase();
+    if (/epoxy|floor/.test(t)) return "epoxy flooring";
+    if (/glamour/.test(t)) return "glamour coat";
+    if (/gamazine|wall/.test(t)) return "gamazine classic";
+    return null;
+  };
+
+  const detectLocation = (t) => {
+    return SA_CITIES.find(c => t.toLowerCase().includes(c.toLowerCase())) || null;
+  };
+
+  const isRepeat = (msg) => msg === lead.lastMessage;
+
+  const intent = (msg) => {
+    msg = msg.toLowerCase();
+    if (/hi|hello|hey/.test(msg)) return "greet";
+    if (/price|cost|quote/.test(msg)) return "pricing";
+    if (/yes|ok|sure/.test(msg)) return "confirm";
+    if (/book|inspection/.test(msg)) return "booking";
+    return "data";
+  };
+
+  // ─────────────────────────────
+  // SAVE LEAD (CRM)
+  // ─────────────────────────────
+  const saveLead = () => {
+    const leads = JSON.parse(localStorage.getItem("ggs_leads") || "[]");
+    leads.push({ ...lead, time: new Date().toISOString() });
+    localStorage.setItem("ggs_leads", JSON.stringify(leads));
+  };
+
+  // ─────────────────────────────
+  // CORE ENGINE
+  // ─────────────────────────────
+  function getReply(msg) {
+
+    if (!msg) return "";
+
+    // anti-loop protection
+    if (isRepeat(msg)) return "👍 Got it — continue please.";
+
+    lead.lastMessage = msg;
+
+    const i = intent(msg);
+
+    // ── CAPTURE DATA CONTINUOUSLY ──
+    lead.product = lead.product || detectProduct(msg);
+    lead.rooms = lead.rooms || extractRooms(msg);
+    lead.location = lead.location || detectLocation(msg);
+
+    // ── GREETING ──
+    if (i === "greet") {
+      lead.stage = "collecting";
+      return "Hi 👋 I'm Prince — your GGS assistant.\nI can help you with pricing or a free inspection in South Africa.\nWhat are you looking for?";
+    }
+
+    // ── PRODUCT MISSING ──
+    if (!lead.product) {
+      return "What service do you need?\n• Gamazine Classic\n• Glamour Coat\n• Epoxy Flooring";
+    }
+
+    // ── ROOMS MISSING ──
+    if (!lead.rooms) {
+      return `How many rooms or m² for ${lead.product}?`;
+    }
+
+    // ── QUOTE GENERATION (ONE TIME ONLY) ──
+    if (lead.stage === "collecting" || lead.stage === "idle") {
+
+      lead.stage = "quoted";
+
+      const p = DB[lead.product];
+
+      let area = lead.product === "epoxy flooring"
+        ? lead.rooms
+        : lead.rooms * 30;
+
+      let cost = lead.product === "epoxy flooring"
+        ? area * p.price
+        : Math.ceil(area / p.coverage) * p.price;
+
+      return `📐 QUOTE
+
+• Product: ${lead.product}
+• Area: ~${area} m²
+• Estimated Cost: R${cost.toLocaleString()}
+
+🇿🇦 South Africa estimate
+
+Want a FREE inspection for exact pricing?`;
+    }
+
+    // ── BOOKING FLOW (FIXED STATE MACHINE) ──
+    if (i === "confirm" && lead.stage === "quoted") {
+      lead.stage = "name";
+      return "Perfect 👍 What is your full name?";
+    }
+
+    if (lead.stage === "name") {
+      lead.name = msg;
+      lead.stage = "phone";
+      return `Nice to meet you ${lead.name} 👍\nWhat is your phone number?`;
+    }
+
+    if (lead.stage === "phone") {
+      lead.phone = msg;
+      lead.stage = "done";
+
+      saveLead();
+
+      return `✅ BOOKING CONFIRMED
+
+• Name: ${lead.name}
+• Phone: ${lead.phone}
+• Location: ${lead.location || "South Africa"}
+
+We will contact you soon for your FREE inspection.`;
+    }
+
+    // ── FALLBACK ──
+    return "I can help with pricing, quotes, and booking inspections.\nWhat would you like?";
+  }
+
+  // ─────────────────────────────
+  // UI RENDER
+  // ─────────────────────────────
+  function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = "chat-message " + type;
+    div.innerHTML = text.replace(/\n/g, "<br>");
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function send() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, "user");
+    chatInput.value = "";
+
+    setTimeout(() => {
+      const reply = getReply(text);
+      addMessage(reply, "bot");
+    }, 400);
+  }
+
+  // ─────────────────────────────
+  // EVENTS
+  // ─────────────────────────────
+  chatSend.addEventListener("click", send);
+  chatInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") send();
+  });
+
+  bubble.addEventListener("click", () => {
+    chatWindow.classList.toggle("open");
+  });
+
+  // ─────────────────────────────
+  // START MESSAGE
+  // ─────────────────────────────
+  setTimeout(() => {
+    chatWindow.classList.add("open");
+    addMessage(
+      "Hi 👋 I'm Prince — I can help you get pricing or book a free inspection anywhere in South Africa 🇿🇦",
+      "bot"
+    );
+  }, 2000);
+
+});
 
 })();
 </script>
