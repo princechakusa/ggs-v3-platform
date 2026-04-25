@@ -633,7 +633,12 @@
     }
   };
 
-  /* ── Cookie Consent (flicker‑free) ── */
+  /* ════════════════════════════════════════════════════════════
+     COOKIE CONSENT — shows on EVERY page load (mandatory)
+     Consent choice is still saved so other scripts can read it,
+     but the banner always appears so the visitor can always
+     review / change their preferences.
+     ════════════════════════════════════════════════════════════ */
   const cookieNotice = document.getElementById('cookie-notice');
   const acceptAllBtn = document.getElementById('cookie-accept-all');
   const savePrefsBtn = document.getElementById('cookie-save-preferences');
@@ -647,10 +652,15 @@
     try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {}
   }
 
-  // Show the notice only if no consent was previously saved
-  if (!getCookieConsent()) {
-    cookieNotice.classList.remove('cookie-hidden');
+  /* Pre-tick checkboxes if a previous choice was saved */
+  const savedConsent = getCookieConsent();
+  if (savedConsent) {
+    analyticsChk.checked = !!savedConsent.analytics;
+    marketingChk.checked = !!savedConsent.marketing;
   }
+
+  /* Always show — remove cookie-hidden class unconditionally */
+  cookieNotice.classList.remove('cookie-hidden');
 
   function hideNotice() {
     cookieNotice.classList.add('hidden');
@@ -671,56 +681,123 @@
     hideNotice();
   });
 
-  /* ── SALE MODAL (Supabase) ── */
+  /* ════════════════════════════════════════════════════════════
+     SALE MODAL — Supabase, enhanced with retry + rich render
+     ════════════════════════════════════════════════════════════ */
   (function () {
-    const SUPABASE_URL = 'https://fsakwzzcbnqkmchrvzzq.supabase.co';
+    const SUPABASE_URL     = 'https://fsakwzzcbnqkmchrvzzq.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzYWt3enpjYm5xa21jaHJ2enpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MDUxOTQsImV4cCI6MjA5MjI4MTE5NH0.zxt49Ow0QExcMozFUWayhCrqczxy-HpSBzbon60dAhA';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    async function checkSaleModal() {
+    /* Wait until the Supabase SDK has loaded, then run */
+    function waitForSupabase(cb, attempts) {
+      attempts = attempts || 0;
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        cb(window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY));
+      } else if (attempts < 20) {
+        setTimeout(() => waitForSupabase(cb, attempts + 1), 300);
+      } else {
+        console.warn('GGS: Supabase SDK did not load in time — sale modal skipped.');
+      }
+    }
+
+    async function checkSaleModal(client) {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await client
           .from('site_settings')
           .select('is_sale_active, sale_message, sale_image_url')
           .eq('id', 1)
           .single();
-        if (error || !data || !data.is_sale_active) return;
 
+        console.log('GGS sale modal data:', data, 'error:', error);
+
+        if (error) { console.warn('GGS Supabase error:', error.message); return; }
+        if (!data)  { console.warn('GGS: No row found in site_settings with id=1'); return; }
+        if (!data.is_sale_active) { console.log('GGS: Sale is not active — modal hidden.'); return; }
+
+        /* ── Build overlay ── */
         const overlay = document.createElement('div');
         overlay.id = 'ggs-overlay';
         overlay.setAttribute('role', 'dialog');
         overlay.setAttribute('aria-modal', 'true');
         overlay.setAttribute('aria-label', 'Special offer');
+
+        const imgHtml = data.sale_image_url
+          ? `<div id="ggs-modal-img-wrap">
+               <img id="ggs-modal-img" src="${data.sale_image_url}" alt="Special offer" onerror="this.parentElement.style.display='none'">
+             </div>`
+          : '';
+
+        const messageHtml = data.sale_message
+          ? data.sale_message
+          : 'Limited-time offer — contact us today!';
+
         overlay.innerHTML = `
           <div id="ggs-modal">
             <button id="ggs-close" aria-label="Close offer">&#x2715;</button>
-            ${data.sale_image_url ? `<img id="ggs-modal-img" src="${data.sale_image_url}" alt="Special offer banner">` : ''}
+            ${imgHtml}
             <div id="ggs-modal-body">
-              <div id="ggs-modal-eyebrow"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);"></span> Limited Offer · Gauteng</div>
-              <div id="ggs-modal-message">${data.sale_message}</div>
+              <div id="ggs-modal-eyebrow">
+                <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);animation:livePulse 2s ease-in-out infinite;"></span>
+                Limited Offer · Gauteng
+              </div>
+              <div id="ggs-modal-message">${messageHtml}</div>
               <div id="ggs-modal-actions">
-                <a id="ggs-cta" href="/contact#quote"><i class="fas fa-calendar-check"></i> Book Free Inspection</a>
+                <a id="ggs-cta" href="/contact#quote">
+                  <i class="fas fa-calendar-check"></i> Book Free Inspection
+                </a>
                 <button id="ggs-dismiss">Maybe later</button>
               </div>
             </div>
-          </div>
-        `;
+          </div>`;
+
         document.body.appendChild(overlay);
 
+        /* ── Extra styles injected once ── */
+        if (!document.getElementById('ggs-modal-extra-styles')) {
+          const style = document.createElement('style');
+          style.id = 'ggs-modal-extra-styles';
+          style.textContent = `
+            #ggs-overlay { position:fixed;inset:0;z-index:99999;background:rgba(15,18,22,0.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;animation:ggs-fade 0.35s ease; }
+            @keyframes ggs-fade { from{opacity:0} to{opacity:1} }
+            #ggs-modal { background:#fff;border-radius:20px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.28);animation:ggs-rise 0.42s var(--ease-out-expo,cubic-bezier(0.16,1,0.3,1)); position:relative; }
+            @keyframes ggs-rise { from{transform:translateY(32px) scale(0.96);opacity:0} to{transform:translateY(0) scale(1);opacity:1} }
+            #ggs-modal-img-wrap { width:100%;max-height:220px;overflow:hidden;display:block; }
+            #ggs-modal-img { width:100%;height:220px;object-fit:cover;display:block; }
+            #ggs-modal-body { padding:28px 28px 26px; }
+            #ggs-modal-eyebrow { font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold,#c9a94b);margin-bottom:12px;display:flex;align-items:center;gap:8px; }
+            #ggs-modal-message { font-family:'Cormorant Garamond',Georgia,serif;font-size:1.55rem;font-weight:500;color:var(--charcoal,#1a1a1a);line-height:1.35;margin-bottom:22px;white-space:pre-line; }
+            #ggs-modal-actions { display:flex;gap:10px; }
+            #ggs-cta { flex:1;background:var(--charcoal,#1a1a1a);color:white;border:none;border-radius:10px;padding:14px 20px;font-family:'Inter','DM Sans',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.22s,transform 0.18s; }
+            #ggs-cta:hover { background:var(--gold,#c9a94b);transform:translateY(-1px); }
+            #ggs-dismiss { background:transparent;border:1px solid rgba(0,0,0,0.12);border-radius:10px;padding:14px 18px;font-family:'Inter','DM Sans',sans-serif;font-size:0.85rem;color:#6b6b6b;cursor:pointer;transition:border-color 0.2s,color 0.2s; }
+            #ggs-dismiss:hover { border-color:var(--charcoal,#1a1a1a);color:var(--charcoal,#1a1a1a); }
+            #ggs-close { position:absolute;top:12px;right:14px;background:rgba(255,255,255,0.9);border:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;color:#444;z-index:2;transition:background 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+            #ggs-close:hover { background:white;color:#111; }
+          `;
+          document.head.appendChild(style);
+        }
+
+        /* ── Close handlers ── */
         const close = () => {
-          overlay.style.animation = 'ggs-fade 0.2s ease reverse';
-          setTimeout(() => overlay.remove(), 200);
+          overlay.style.animation = 'ggs-fade 0.2s ease reverse forwards';
+          setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 220);
         };
         document.getElementById('ggs-close').addEventListener('click', close);
         document.getElementById('ggs-dismiss').addEventListener('click', close);
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+        overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
         document.addEventListener('keydown', function escHandler(e) {
           if (e.key === 'Escape') { close(); document.removeEventListener('keydown', escHandler); }
         });
-      } catch (err) { console.warn('GGS sale modal:', err); }
+
+      } catch (err) {
+        console.error('GGS sale modal unexpected error:', err);
+      }
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(checkSaleModal, 1200));
-    else setTimeout(checkSaleModal, 1200);
+
+    /* Trigger after a short delay so page paints first */
+    const run = () => setTimeout(() => waitForSupabase(checkSaleModal), 1400);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+    else run();
   })();
 
 })();
