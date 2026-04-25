@@ -1,39 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-ZA">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-
-  <!-- ═══ PRIMARY SEO ═══ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Contact GGS | Free Quote & Site Inspection | Global Gamazine Suppliers</title>
-  <meta name="description" content="Get a free quote and site inspection. Contact Global Gamazine Suppliers – serving Johannesburg, Pretoria, Randburg and all Gauteng. No deposit required.">
-  <meta name="keywords" content="Gamazine quote, wall coating quote, free site inspection Gauteng, contact Gamazine suppliers, construction materials Gauteng">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="theme-color" content="#1a1a1a">
-
-  <!-- ═══ OPEN GRAPH ═══ -->
-  <meta property="og:title" content="Contact GGS | Get a Free Quote Today">
-  <meta property="og:description" content="Free site inspection. Fixed quote in 24h. No deposit. Serving all Gauteng.">
-  <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://globalgamazine.co.za/contact">
-  <meta property="og:locale" content="en_ZA">
-
-  <!-- ═══ FAVICON ═══ -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a94b' text-anchor='middle'>G</text></svg>">
-
-  <!-- ═══ FONTS ═══ -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <meta name="description" content="Get a free quote and site inspection. Contact Global Gamazine Suppliers – serving Johannesburg, Pretoria, Randburg and all Gauteng. No deposit required." />
+  <meta name="keywords" content="Gamazine quote, wall coating quote, free site inspection Gauteng, contact Gamazine suppliers, construction materials Gauteng" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <meta property="og:title" content="Contact GGS | Get a Free Quote Today" />
+  <meta property="og:description" content="Free site inspection. Fixed quote in 24h. No deposit. Serving all Gauteng." />
+  <meta property="og:image" content="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://globalgamazine.co.za/contact" />
+  <meta property="og:locale" content="en_ZA" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a1f24'/><text x='50' y='72' font-family='serif' font-size='68' fill='%23c9a94b' text-anchor='middle'>G</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="assets/css/main.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="assets/js/supabase.js" defer></script>
 
   <style>
     /* ════════════════════════════════════════════════════════════
-       DESIGN TOKENS — same as all pages
+       DESIGN TOKENS — Contact page (original)
        ════════════════════════════════════════════════════════════ */
     :root {
       --gold:          #c9a94b;
@@ -121,7 +113,6 @@
     .page-hero h1 em { color: var(--gold); font-style: italic; }
     .hero-subhead { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 400; line-height: 1.4; color: var(--charcoal); max-width: 700px; margin-top: 12px; }
 
-    /* Quick contact cards */
     .quick-contact-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 40px 0; }
     @media (min-width: 640px) { .quick-contact-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 960px) { .quick-contact-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -131,7 +122,6 @@
     .quick-card .k1 { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--slate); margin-bottom: 6px; }
     .quick-card .k2 { font-size: 0.95rem; font-weight: 500; color: var(--charcoal); }
 
-    /* Quote form card */
     .quote-card { background: white; border: 1px solid var(--border); border-radius: var(--r-xl); padding: 40px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin: 40px 0 60px; }
     .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
@@ -142,7 +132,6 @@
     .submit-quote-btn { width: 100%; padding: 16px; background: var(--charcoal); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .submit-quote-btn:hover { background: var(--gold); }
 
-    /* Contact details + map */
     .contact-details-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
     @media (min-width: 768px) { .contact-details-grid { grid-template-columns: 1fr 1fr; } }
     .contact-info { display: flex; flex-direction: column; gap: 20px; }
@@ -153,7 +142,6 @@
     .map-wrap { border-radius: var(--r-xl); overflow: hidden; height: 300px; }
     .map-wrap iframe { width: 100%; height: 100%; border: none; }
 
-    /* Footer, Cookie, WhatsApp, Back-to-top (same as all pages) */
     .footer { background: #111; color: rgba(255,255,255,0.6); padding: 64px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
     @media (min-width: 640px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -176,7 +164,6 @@
     .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
     .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
 
-    /* Cookie notice (flicker‑free) */
     .cookie-hidden { display: none !important; }
     #cookie-notice {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -207,74 +194,139 @@
     #back-top.visible { opacity: 1; pointer-events: all; transform: none; }
     #back-top:hover { background: var(--charcoal); color: white; }
 
-    /* ── AI Chatbot Widget ── */
-    #ai-chat-bubble {
-      position: fixed; bottom: 100px; right: 28px; z-index: 700;
-      width: 56px; height: 56px;
-      background: var(--charcoal); color: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-      transition: transform 0.3s var(--spring), opacity 0.3s;
-      opacity: 0; pointer-events: none; transform: translateY(16px);
+    /* ── CHATBOT (scoped under #prince-chat-root) ── */
+    #prince-chat-root {
+      --p-gold: #c9a94b;
+      --p-gold-light: #e8d08a;
+      --p-charcoal: #1a1a1a;
+      --p-off-white: #f7f5f0;
+      --p-white: #ffffff;
+      --p-slate: #6b6b6b;
+      --p-border: rgba(0,0,0,0.08);
+      --p-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 1px rgba(201,169,75,0.1);
+      --p-bubble-shadow: 0 8px 24px rgba(201,169,75,0.3);
+      font-family: 'DM Sans', sans-serif;
     }
-    #ai-chat-bubble.show {
-      opacity: 1; pointer-events: all; transform: translateY(0);
+
+    #prince-chat-bubble {
+      position: fixed; bottom: 90px; right: 22px; z-index: 2147483646;
+      width: 56px; height: 56px; border: none; border-radius: 50%;
+      background: var(--p-charcoal); color: var(--p-gold);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; box-shadow: var(--p-bubble-shadow);
+      transition: transform 0.3s var(--spring), box-shadow 0.3s;
+      outline: none; border: 2px solid rgba(201,169,75,0.4);
     }
-    #ai-chat-window {
-      position: fixed; bottom: 170px; right: 28px; z-index: 700;
-      width: 340px; max-height: 480px;
-      background: white; border-radius: 16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-      display: flex; flex-direction: column;
-      overflow: hidden;
-      transform: scale(0.8); opacity: 0; pointer-events: none;
-      transition: all 0.3s var(--ease-out-expo);
+    #prince-chat-bubble:hover { transform: scale(1.1); box-shadow: 0 12px 30px rgba(201,169,75,0.5); }
+    #prince-chat-bubble.open { background: var(--p-gold); color: var(--p-charcoal); }
+    #prince-chat-bubble.pulse::after {
+      content: ''; position: absolute; inset: -8px; border-radius: 50%;
+      border: 2px solid var(--p-gold); opacity: 0; animation: prince-pulse 2s ease-out infinite;
+    }
+    @keyframes prince-pulse { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
+
+    #prince-chat-window {
+      position: fixed; bottom: 160px; right: 22px; z-index: 2147483647;
+      width: 360px; max-height: 580px; background: var(--p-white);
+      border-radius: 18px; box-shadow: var(--p-shadow);
+      display: flex; flex-direction: column; overflow: hidden;
       transform-origin: bottom right;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none;
+      border: 1px solid var(--p-border);
     }
-    #ai-chat-window.open {
-      transform: scale(1); opacity: 1; pointer-events: all;
+    #prince-chat-window.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    @media (max-width: 480px) { #prince-chat-window { left: 12px; right: 12px; width: auto; bottom: 160px; } }
+
+    .prince-chat-header {
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+      background: var(--p-charcoal); color: white; flex-shrink: 0;
     }
-    .chat-header {
-      background: var(--charcoal); color: white;
-      padding: 14px 16px; font-weight: 600; font-size: 0.9rem;
-      display: flex; justify-content: space-between; align-items: center;
+    .prince-chat-header .avatar {
+      width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--p-gold), var(--p-gold-light));
+      display: flex; align-items: center; justify-content: center; color: var(--p-charcoal);
     }
-    .chat-header i { cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
-    .chat-header i:hover { opacity: 1; }
-    .chat-messages {
-      flex: 1; padding: 16px; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 12px;
-      max-height: 320px;
+    .prince-chat-header .info { flex: 1; }
+    .prince-chat-header .info .name { font-weight: 600; font-size: 15px; }
+    .prince-chat-header .info .status { font-size: 11px; color: var(--p-gold); margin-top: 2px; }
+    .prince-chat-header .header-btns { display: flex; gap: 4px; }
+    .prince-chat-header button {
+      background: transparent; border: none; color: rgba(255,255,255,0.7); cursor: pointer;
+      width: 30px; height: 30px; border-radius: 8px; transition: background 0.15s; display: flex; align-items: center; justify-content: center;
     }
-    .chat-message {
-      max-width: 85%; padding: 10px 14px;
-      border-radius: 16px; font-size: 0.85rem; line-height: 1.5;
-      white-space: pre-line;
+    .prince-chat-header button:hover { background: rgba(255,255,255,0.1); }
+    .prince-chat-header button.settings-btn { font-size: 14px; }
+
+    /* Settings panel */
+    #prince-settings-panel {
+      display: none; padding: 14px 16px; background: var(--p-off-white); border-bottom: 1px solid var(--p-border); flex-shrink: 0;
+      flex-direction: column; gap: 10px;
     }
-    .chat-message.bot {
-      background: var(--gold-muted); color: var(--charcoal);
-      align-self: flex-start; border-bottom-left-radius: 4px;
+    #prince-settings-panel.open { display: flex; }
+    #prince-settings-panel label { font-size: 13px; font-weight: 600; color: var(--p-charcoal); }
+    #prince-settings-panel input {
+      width: 100%; padding: 8px 10px; border: 1px solid var(--p-border); border-radius: 8px; font-family: inherit;
     }
-    .chat-message.user {
-      background: var(--charcoal); color: white;
-      align-self: flex-end; border-bottom-right-radius: 4px;
+    .prince-settings-actions { display: flex; gap: 8px; }
+    .prince-settings-actions button {
+      background: var(--p-charcoal); color: white; border: none; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-size: 12px;
     }
-    .chat-input-area {
-      display: flex; border-top: 1px solid var(--border);
-      padding: 10px;
+    .prince-settings-actions button:hover { background: var(--p-gold); }
+
+    .prince-chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px;
+      background: var(--p-off-white);
     }
-    .chat-input-area input {
-      flex: 1; border: 1px solid var(--border); border-radius: 100px;
-      padding: 10px 16px; font-size: 0.85rem; outline: none;
+    .prince-msg {
+      display: flex; flex-direction: column; max-width: 85%; animation: prince-fade 0.25s ease;
     }
-    .chat-input-area button {
-      background: var(--charcoal); color: white; border: none;
-      border-radius: 100px; padding: 10px 16px; margin-left: 8px;
-      cursor: pointer; font-size: 0.85rem; transition: background 0.2s;
+    @keyframes prince-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .prince-msg.user { align-self: flex-end; }
+    .prince-msg.bot { align-self: flex-start; }
+    .prince-bubble {
+      padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; word-wrap: break-word;
     }
-    .chat-input-area button:hover { background: var(--gold); }
+    .prince-msg.user .prince-bubble {
+      background: var(--p-charcoal); color: white; border-bottom-right-radius: 4px;
+    }
+    .prince-msg.bot .prince-bubble {
+      background: white; border: 1px solid var(--p-border); border-bottom-left-radius: 4px; color: var(--p-charcoal);
+    }
+    .prince-bubble strong { font-weight: 700; }
+    .prince-bubble em { font-style: italic; opacity: 0.8; }
+
+    .prince-quick {
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-top: 1px solid var(--p-border);
+      background: white; flex-shrink: 0;
+    }
+    .prince-quick button {
+      background: var(--p-off-white); border: 1px solid var(--p-border); border-radius: 999px;
+      padding: 6px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: background 0.15s, transform 0.1s; font-family: inherit; color: var(--p-charcoal);
+    }
+    .prince-quick button:hover { background: var(--gold-muted); border-color: var(--p-gold); transform: translateY(-1px); }
+
+    .prince-input-area {
+      display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+      border-top: 1px solid var(--p-border); background: white; flex-shrink: 0;
+    }
+    .prince-input-area input {
+      flex: 1; border: 1px solid var(--p-border); background: white; border-radius: 999px;
+      padding: 10px 16px; font-size: 14px; outline: none; font-family: inherit; color: var(--p-charcoal);
+    }
+    .prince-input-area input:focus { border-color: var(--p-gold); box-shadow: 0 0 0 3px rgba(201,169,75,0.15); }
+    .prince-send-btn {
+      width: 40px; height: 40px; border: none; border-radius: 50%;
+      background: var(--p-charcoal); color: white; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: background 0.15s;
+    }
+    .prince-send-btn:hover { background: var(--p-gold); }
+    .prince-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .prince-footer {
+      text-align: center; font-size: 10px; color: var(--p-slate); padding: 6px;
+      border-top: 1px solid var(--p-border); background: white;
+    }
 
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .mask-inner { transform: none; opacity: 1; } .reveal { opacity: 1; transform: none; } }
   </style>
@@ -333,13 +385,11 @@
 
 <main id="main-content">
 
-  <!-- ═══ HERO ═══ -->
+  <!-- ══ HERO ══ -->
   <section class="page-hero" aria-labelledby="hero-heading">
     <div class="container">
       <span class="eyebrow reveal">Let's Talk About Your Project</span>
-      <p class="hero-subhead reveal" style="transition-delay:0.1s;">
-        No deposits. No pressure. Just a clear plan for your walls.
-      </p>
+      <p class="hero-subhead reveal" style="transition-delay:0.1s;">No deposits. No pressure. Just a clear plan for your walls.</p>
       <h1 id="hero-heading">
         <span class="mask-wrap"><span class="mask-inner">Let's Build</span></span>
         <span class="mask-wrap"><span class="mask-inner"><em>Together</em></span></span>
@@ -347,33 +397,17 @@
     </div>
   </section>
 
-  <!-- ═══ QUICK CONTACT CARDS ═══ -->
+  <!-- ══ QUICK CONTACT CARDS ══ -->
   <div class="container">
     <div class="quick-contact-grid stagger-children">
-      <div class="quick-card reveal">
-        <i class="fas fa-phone"></i>
-        <div class="k1">Call</div>
-        <div class="k2"><a href="tel:+27621503704">+27 62 150 3704</a></div>
-      </div>
-      <div class="quick-card reveal">
-        <i class="fab fa-whatsapp"></i>
-        <div class="k1">WhatsApp</div>
-        <div class="k2"><a href="https://wa.me/27621503704" target="_blank">Chat Now →</a></div>
-      </div>
-      <div class="quick-card reveal">
-        <i class="fas fa-envelope"></i>
-        <div class="k1">Email</div>
-        <div class="k2"><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div>
-      </div>
-      <div class="quick-card reveal">
-        <i class="fas fa-map-marker-alt"></i>
-        <div class="k1">Visit</div>
-        <div class="k2">12 Granite Road, Kya Sands, Randburg</div>
-      </div>
+      <div class="quick-card reveal"><i class="fas fa-phone"></i><div class="k1">Call</div><div class="k2"><a href="tel:+27621503704">+27 62 150 3704</a></div></div>
+      <div class="quick-card reveal"><i class="fab fa-whatsapp"></i><div class="k1">WhatsApp</div><div class="k2"><a href="https://wa.me/27621503704" target="_blank">Chat Now →</a></div></div>
+      <div class="quick-card reveal"><i class="fas fa-envelope"></i><div class="k1">Email</div><div class="k2"><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div></div>
+      <div class="quick-card reveal"><i class="fas fa-map-marker-alt"></i><div class="k1">Visit</div><div class="k2">12 Granite Road, Kya Sands, Randburg</div></div>
     </div>
   </div>
 
-  <!-- ═══ QUOTE FORM ═══ -->
+  <!-- ══ QUOTE FORM ══ -->
   <section id="quote" aria-labelledby="quote-heading">
     <div class="container">
       <div class="quote-card reveal">
@@ -411,42 +445,17 @@
     </div>
   </section>
 
-  <!-- ═══ CONTACT DETAILS + MAP ═══ -->
+  <!-- ══ CONTACT DETAILS + MAP ══ -->
   <div class="container">
     <div class="contact-details-grid reveal">
       <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="contact-text">
-            <strong>Address</strong>
-            <span>12 Granite Road, Kya Sands, Randburg, Gauteng 2169</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-phone"></i></div>
-          <div class="contact-text">
-            <strong>Phone</strong>
-            <a href="tel:+27621503704">+27 62 150 3704</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-text">
-            <strong>Email</strong>
-            <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><i class="fas fa-clock"></i></div>
-          <div class="contact-text">
-            <strong>Business Hours</strong>
-            <span>Mon–Fri 07:00–17:00 · Sat 08:00–13:00</span>
-          </div>
-        </div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><strong>Address</strong><span>12 Granite Road, Kya Sands, Randburg, Gauteng 2169</span></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-text"><strong>Phone</strong><a href="tel:+27621503704">+27 62 150 3704</a></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><strong>Email</strong><a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="fas fa-clock"></i></div><div class="contact-text"><strong>Business Hours</strong><span>Mon–Fri 07:00–17:00 · Sat 08:00–13:00</span></div></div>
       </div>
       <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.64210131345!2d27.95!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573fff3b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sKya%20Sands%2C%20Randburg!5e0!3m2!1sen!2sza!4v1712345678901"
-                title="GGS Location" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114584.64210131345!2d27.95!3d-26.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9573fff3b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sKya%20Sands%2C%20Randburg!5e0!3m2!1sen!2sza!4v1712345678901" title="GGS Location" loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -509,7 +518,7 @@
 <div class="wa-float-wrap"><a href="https://wa.me/27621503704" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
 <button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
-<!-- COOKIE NOTICE (flicker‑free) -->
+<!-- COOKIE NOTICE -->
 <div id="cookie-notice" role="dialog" aria-label="Cookie preferences" aria-live="polite" class="cookie-hidden">
   <p class="cookie-title">We use cookies</p>
   <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
@@ -524,36 +533,57 @@
   </div>
 </div>
 
-<!-- PRINCE AI CHATBOT -->
-<div id="ai-chat-bubble" aria-label="Chat with Prince">
-  <img src="https://i.postimg.cc/YSG8gwgZ/Whats-App-Image-2026-04-23-at-7-58-18-PM-1.jpg" alt="Prince" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
-</div>
-<div id="ai-chat-window">
-  <div class="chat-header">
-    <span>🤖 Prince – GGS Assistant</span>
-    <i class="fas fa-times" id="close-chat"></i>
-  </div>
-  <div class="chat-messages" id="chat-messages"></div>
-  <div class="chat-input-area">
-    <input type="text" id="chat-input" placeholder="Ask me about Gamazine, Glamour, Epoxy...">
-    <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+<!-- ══ PRINCE CHATBOT WIDGET ══ -->
+<div id="prince-chat-root">
+  <button id="prince-chat-bubble" class="pulse" aria-label="Chat with Prince">
+    <i class="fas fa-comment-dots"></i>
+  </button>
+  <div id="prince-chat-window">
+    <div class="prince-chat-header">
+      <div class="avatar"><i class="fas fa-crown"></i></div>
+      <div class="info">
+        <div class="name">Prince – GGS Assistant</div>
+        <div class="status">Online · replies instantly</div>
+      </div>
+      <div class="header-btns">
+        <button id="prince-settings-toggle" class="settings-btn" title="Price Settings"><i class="fas fa-sliders-h"></i></button>
+        <button id="prince-close-btn" title="Close chat"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div id="prince-settings-panel">
+      <label>Gamazine Classic (R/20L)</label>
+      <input type="number" id="prince-price-gamazine" value="250" step="10" />
+      <label>Glamour Coat (R/20L)</label>
+      <input type="number" id="prince-price-glamour" value="350" step="10" />
+      <label>Epoxy Flooring (R/m²)</label>
+      <input type="number" id="prince-price-epoxy" value="180" step="10" />
+      <div class="prince-settings-actions">
+        <button id="prince-save-settings">Save Prices</button>
+        <button id="prince-reset-settings">Reset Defaults</button>
+      </div>
+    </div>
+    <div class="prince-chat-messages" id="prince-messages"></div>
+    <div class="prince-quick" id="prince-quick"></div>
+    <div class="prince-input-area">
+      <input type="text" id="prince-input" placeholder="Ask about products, pricing, or book an inspection…" autocomplete="off" />
+      <button class="prince-send-btn" id="prince-send-btn" disabled><i class="fas fa-paper-plane"></i></button>
+    </div>
+    <div class="prince-footer">Prince AI · Premium Coatings Expert</div>
   </div>
 </div>
 
 <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 
+<!-- Original contact page scripts -->
 <script>
 (function () {
   'use strict';
-
-  /* ── Scroll Progress ── */
   const progress = document.getElementById('scroll-progress');
   window.addEventListener('scroll', () => {
     const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     progress.style.width = pct + '%';
   }, { passive: true });
 
-  /* ── Header & Back-to-top ── */
   const header = document.getElementById('siteHeader'), backTop = document.getElementById('back-top');
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
@@ -561,7 +591,6 @@
     backTop.classList.toggle('visible', y > 500);
   }, { passive: true });
 
-  /* ── Mobile Nav ── */
   const hamburger = document.getElementById('hamburger'), mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', () => {
     const open = hamburger.classList.toggle('open');
@@ -571,7 +600,6 @@
     document.body.style.overflow = open ? 'hidden' : '';
   });
 
-  /* ── Custom Cursor ── */
   const dot = document.getElementById('cursor-dot'), ring = document.getElementById('cursor-ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
@@ -587,7 +615,6 @@
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
 
-  /* ── Intersection Observer ── */
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObs.unobserve(entry.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
@@ -604,323 +631,250 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.mask-inner').forEach(el => maskObs.observe(el));
 
-  /* ── Newsletter ── */
   window.handleNewsletter = () => {
     const i = document.getElementById('newsletterEmail');
     if (i.value && i.value.includes('@')) { i.value = ''; i.placeholder = 'Subscribed ✓'; }
     else { i.focus(); i.style.borderColor = '#e55'; setTimeout(() => i.style.borderColor = '', 1500); }
   };
 
-  /* ── Quote Form Submission (Supabase + WhatsApp) ── */
   document.getElementById('quoteForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const rooms = document.getElementById('rooms').value.trim();
-    const msgDiv = document.getElementById('formMessage');
-
-    if (!name || !phone || !rooms) {
-      msgDiv.innerHTML = '<span style="color:#ef4444;">Please fill all required fields.</span>';
-      return;
-    }
-
-    const formData = {
-      name: name,
-      phone: phone,
-      email: document.getElementById('email').value.trim() || null,
-      finish: document.getElementById('finish').value,
-      rooms: rooms,
-      area: document.getElementById('area').value || null,
-      notes: document.getElementById('notes').value.trim() || null
-    };
-
+    const name = document.getElementById('name').value.trim(), phone = document.getElementById('phone').value.trim(), rooms = document.getElementById('rooms').value.trim(), msgDiv = document.getElementById('formMessage');
+    if (!name || !phone || !rooms) { msgDiv.innerHTML = '<span style="color:#ef4444;">Please fill all required fields.</span>'; return; }
+    const formData = { name, phone, email: document.getElementById('email').value.trim() || null, finish: document.getElementById('finish').value, rooms, area: document.getElementById('area').value || null, notes: document.getElementById('notes').value.trim() || null };
     msgDiv.innerHTML = 'Submitting...';
-
-    if (window.supabase) {
-      await window.supabase.from('quotes').insert([{
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        finish: formData.finish,
-        rooms: formData.rooms,
-        area: formData.area,
-        notes: formData.notes
-      }]);
-    }
-
+    if (window.supabase) { await window.supabase.from('quotes').insert([{ name: formData.name, phone: formData.phone, email: formData.email, finish: formData.finish, rooms: formData.rooms, area: formData.area, notes: formData.notes }]); }
     const waMsg = `Hello GGS! I'd like a quotation:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n✨ Finish: ${formData.finish}\n🏠 Rooms/Walls: ${formData.rooms}${formData.area ? '\n📐 Area: ' + formData.area : ''}${formData.notes ? '\n📝 Notes: ' + formData.notes : ''}`;
     window.open(`https://wa.me/27621503704?text=${encodeURIComponent(waMsg)}`, '_blank');
-
     msgDiv.innerHTML = '<span style="color:#22c55e;">✓ Quote submitted! We\'ll contact you shortly.</span>';
     e.target.reset();
   });
 
-  /* ── Cookie consent (flicker‑free) ── */
-  const cookieNotice = document.getElementById('cookie-notice');
-  const acceptAll = document.getElementById('cookie-accept-all');
-  const savePrefs = document.getElementById('cookie-save-preferences');
-  const analyticsChk = document.getElementById('cookie-analytics');
-  const marketingChk = document.getElementById('cookie-marketing');
-
+  const cookieNotice = document.getElementById('cookie-notice'), acceptAll = document.getElementById('cookie-accept-all'), savePrefs = document.getElementById('cookie-save-preferences'), analyticsChk = document.getElementById('cookie-analytics'), marketingChk = document.getElementById('cookie-marketing');
   function getConsent() { try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')); } catch(e) { return null; } }
   function setConsent(obj) { try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)); } catch(e) {} }
+  if (!getConsent()) { cookieNotice.classList.remove('cookie-hidden'); }
+  acceptAll.addEventListener('click', () => { setConsent({ essential: true, analytics: true, marketing: true }); cookieNotice.classList.add('hidden'); setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400); });
+  savePrefs.addEventListener('click', () => { setConsent({ essential: true, analytics: analyticsChk.checked, marketing: marketingChk.checked }); cookieNotice.classList.add('hidden'); setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400); });
+})();
+</script>
 
-  if (!getConsent()) {
-    cookieNotice.classList.remove('cookie-hidden');
+<!-- ══ PRINCE AI CRM CHATBOT ══ -->
+<script>
+(function() {
+  // UI Elements
+  const bubble = document.getElementById('prince-chat-bubble');
+  const win = document.getElementById('prince-chat-window');
+  const closeBtn = document.getElementById('prince-close-btn');
+  const msgs = document.getElementById('prince-messages');
+  const quickWrap = document.getElementById('prince-quick');
+  const input = document.getElementById('prince-input');
+  const sendBtn = document.getElementById('prince-send-btn');
+  const settingsToggle = document.getElementById('prince-settings-toggle');
+  const settingsPanel = document.getElementById('prince-settings-panel');
+  const saveSettingsBtn = document.getElementById('prince-save-settings');
+  const resetSettingsBtn = document.getElementById('prince-reset-settings');
+
+  if (!bubble || !win || !msgs || !quickWrap || !input || !sendBtn) return;
+
+  // Prices (customizable via settings)
+  let prices = { gamazine: 250, glamour: 350, epoxy: 180 };
+  function loadPrices() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('prince_prices'));
+      if (saved) { prices.gamazine = saved.gamazine||250; prices.glamour = saved.glamour||350; prices.epoxy = saved.epoxy||180; }
+    } catch(e) {}
+    document.getElementById('prince-price-gamazine').value = prices.gamazine;
+    document.getElementById('prince-price-glamour').value = prices.glamour;
+    document.getElementById('prince-price-epoxy').value = prices.epoxy;
   }
+  loadPrices();
 
-  acceptAll.addEventListener('click', () => {
-    setConsent({ essential: true, analytics: true, marketing: true });
-    cookieNotice.classList.add('hidden');
-    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  saveSettingsBtn.addEventListener('click', () => {
+    prices.gamazine = parseInt(document.getElementById('prince-price-gamazine').value)||250;
+    prices.glamour = parseInt(document.getElementById('prince-price-glamour').value)||350;
+    prices.epoxy = parseInt(document.getElementById('prince-price-epoxy').value)||180;
+    localStorage.setItem('prince_prices', JSON.stringify(prices));
+    settingsPanel.classList.remove('open');
+    addBotMessage('✅ Prices updated. All new quotes will use these values.');
   });
-
-  savePrefs.addEventListener('click', () => {
-    setConsent({ essential: true, analytics: analyticsChk.checked, marketing: marketingChk.checked });
-    cookieNotice.classList.add('hidden');
-    setTimeout(() => cookieNotice.classList.add('cookie-hidden'), 400);
+  resetSettingsBtn.addEventListener('click', () => {
+    prices.gamazine=250; prices.glamour=350; prices.epoxy=180;
+    document.getElementById('prince-price-gamazine').value=250;
+    document.getElementById('prince-price-glamour').value=350;
+    document.getElementById('prince-price-epoxy').value=180;
+    localStorage.removeItem('prince_prices');
+    settingsPanel.classList.remove('open');
+    addBotMessage('✅ Prices reset to default.');
   });
+  settingsToggle.addEventListener('click', () => settingsPanel.classList.toggle('open'));
 
-  
+  // CRM State
+  let lead = { stage: 'idle', service: null, rooms: null, color: null, location: null, timeline: null, name: null, phone: null, quoteGiven: false };
 
-/*/* ──────────────────────────────────────────────
-   PRINCE AI CRM SALES ENGINE (FULL REBUILD)
-   FIXES:
-   ✔ No repetition loops
-   ✔ Proper CRM state machine
-   ✔ Clean booking funnel
-   ✔ South Africa location awareness
-   ✔ Stable quote system
-────────────────────────────────────────────── */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  // ─────────────────────────────
-  // UI ELEMENTS
-  // ─────────────────────────────
-  const bubble = document.getElementById("ai-chat-bubble");
-  const chatWindow = document.getElementById("ai-chat-window");
-  const chatMessages = document.getElementById("chat-messages");
-  const chatInput = document.getElementById("chat-input");
-  const chatSend = document.getElementById("chat-send");
-
-  if (!bubble || !chatWindow || !chatMessages || !chatInput || !chatSend) {
-    console.error("Chat UI missing");
-    return;
-  }
-
-  // ─────────────────────────────
-  // SOUTH AFRICA INTELLIGENCE
-  // ─────────────────────────────
-  const SA_CITIES = [
-    "Johannesburg","Pretoria","Cape Town","Durban","Sandton",
-    "Randburg","Midrand","Roodepoort","Centurion",
-    "Soweto","Bloemfontein","Port Elizabeth","East London"
-  ];
-
-  // ─────────────────────────────
-  // PRODUCT DATABASE
-  // ─────────────────────────────
-  const DB = {
-    "gamazine classic": { price: 250, coverage: 100 },
-    "glamour coat": { price: 350, coverage: 100 },
-    "epoxy flooring": { price: 180 }
-  };
-
-  // ─────────────────────────────
-  // CRM STATE MACHINE
-  // ─────────────────────────────
-  let lead = {
-    stage: "idle",
-    product: null,
-    rooms: null,
-    location: null,
-    name: null,
-    phone: null,
-    lastMessage: ""
-  };
-
-  // ─────────────────────────────
-  // HELPERS
-  // ─────────────────────────────
-  const extractRooms = (t) => {
-    const m = t.match(/(\d+)/);
-    return m ? parseInt(m[1]) : null;
-  };
-
-  const detectProduct = (t) => {
-    t = t.toLowerCase();
-    if (/epoxy|floor/.test(t)) return "epoxy flooring";
-    if (/glamour/.test(t)) return "glamour coat";
-    if (/gamazine|wall/.test(t)) return "gamazine classic";
+  function extractRooms(t) { const m = t.match(/(\d+)/); return m ? parseInt(m[1]) : null; }
+  function extractService(t) {
+    const s = t.toLowerCase();
+    if (/epoxy/i.test(s)) return 'epoxy';
+    if (/glamour/i.test(s)) return 'glamour';
+    if (/gamazine/i.test(s)) return 'gamazine';
     return null;
-  };
+  }
+  function extractColor(t) {
+    const cols = ['white','cream','beige','grey','stone','terracotta','green','blue','black','charcoal','navy','forest','burgundy','ivory','silver'];
+    for (const c of cols) if (t.toLowerCase().includes(c)) return c;
+    return null;
+  }
+  function isYes(m) { return /^(yes|yeah|yep|ok|sure|book|inspection)/i.test(m.trim()); }
+  function isNo(m) { return /^(no|nope|not now|maybe later)/i.test(m.trim()); }
 
-  const detectLocation = (t) => {
-    return SA_CITIES.find(c => t.toLowerCase().includes(c.toLowerCase())) || null;
-  };
-
-  const isRepeat = (msg) => msg === lead.lastMessage;
-
-  const intent = (msg) => {
-    msg = msg.toLowerCase();
-    if (/hi|hello|hey/.test(msg)) return "greet";
-    if (/price|cost|quote/.test(msg)) return "pricing";
-    if (/yes|ok|sure/.test(msg)) return "confirm";
-    if (/book|inspection/.test(msg)) return "booking";
-    return "data";
-  };
-
-  // ─────────────────────────────
-  // SAVE LEAD (CRM)
-  // ─────────────────────────────
-  const saveLead = () => {
-    const leads = JSON.parse(localStorage.getItem("ggs_leads") || "[]");
-    leads.push({ ...lead, time: new Date().toISOString() });
-    localStorage.setItem("ggs_leads", JSON.stringify(leads));
-  };
-
-  // ─────────────────────────────
-  // CORE ENGINE
-  // ─────────────────────────────
   function getReply(msg) {
+    const text = msg.trim();
+    if (!text) return 'How can I help with your wall coating or flooring project?';
 
-    if (!msg) return "";
-
-    // anti-loop protection
-    if (isRepeat(msg)) return "👍 Got it — continue please.";
-
-    lead.lastMessage = msg;
-
-    const i = intent(msg);
-
-    // ── CAPTURE DATA CONTINUOUSLY ──
-    lead.product = lead.product || detectProduct(msg);
-    lead.rooms = lead.rooms || extractRooms(msg);
-    lead.location = lead.location || detectLocation(msg);
-
-    // ── GREETING ──
-    if (i === "greet") {
-      lead.stage = "collecting";
-      return "Hi 👋 I'm Prince — your GGS assistant.\nI can help you with pricing or a free inspection in South Africa.\nWhat are you looking for?";
+    // Booking flow (name/phone)
+    if (lead.stage === 'name') {
+      if (text.length < 2) return "Please enter your full name.";
+      lead.name = text; lead.stage = 'phone';
+      return `Thanks ${text}! What's your phone number?`;
+    }
+    if (lead.stage === 'phone') {
+      const dig = text.replace(/\D/g,'');
+      if (dig.length < 7) return "That doesn't look like a valid number. Please provide at least 7 digits.";
+      lead.phone = text; lead.stage = 'done';
+      try {
+        const leads = JSON.parse(localStorage.getItem('prince_crm')||'[]');
+        leads.push({...lead, timestamp: new Date().toISOString()});
+        localStorage.setItem('prince_crm', JSON.stringify(leads));
+      } catch(e) {}
+      const pName = lead.service==='gamazine'?'Gamazine Classic':lead.service==='glamour'?'Glamour Coat':'Epoxy Flooring';
+      const sz = lead.service==='epoxy'?`${lead.rooms} m²`:`${lead.rooms} rooms`;
+      const summary = `*New Quote Request*\n\n• Service: ${pName}\n• Size: ${sz}\n• Color: ${lead.color||'Not specified'}\n• Location: ${lead.location||'Not provided'}\n• Timeline: ${lead.timeline||'Not provided'}\n• Name: ${lead.name}\n• Phone: ${lead.phone}\n\n_Sent via Prince AI_`;
+      window.open(`https://wa.me/27621503704?text=${encodeURIComponent(summary)}`, '_blank');
+      return `Perfect ✅ Your request has been sent via WhatsApp. We'll contact you shortly to arrange a free inspection.`;
     }
 
-    // ── PRODUCT MISSING ──
-    if (!lead.product) {
-      return "What service do you need?\n• Gamazine Classic\n• Glamour Coat\n• Epoxy Flooring";
-    }
+    // Data capture
+    const sv = extractService(text), rm = extractRooms(text), col = extractColor(text);
+    if (sv) lead.service = sv;
+    if (rm) lead.rooms = rm;
+    if (col) lead.color = col;
+    if (/johannesburg|pretoria|midrand|randburg|sandton|alex/i.test(text)) lead.location = text;
+    if (/today|tomorrow|this week|asap|flexible/i.test(text)) lead.timeline = text;
 
-    // ── ROOMS MISSING ──
+    // Guided funnel
+    if (/hi|hello|hey/i.test(text) && lead.stage==='idle') {
+      lead.stage='service';
+      return "Hi 👋 I'm Prince, your coatings expert. Which product are you interested in?\n\n• Gamazine Classic\n• Glamour Coat\n• Epoxy Flooring";
+    }
+    if (!lead.service) {
+      lead.stage='service';
+      return "Which product would you like? Gamazine Classic, Glamour Coat, or Epoxy Flooring?";
+    }
     if (!lead.rooms) {
-      return `How many rooms or m² for ${lead.product}?`;
+      lead.stage='rooms';
+      return lead.service==='epoxy' ? "How many square meters of Epoxy Flooring do you need?" : "How many rooms would you like to cover? (e.g., 3 rooms)";
     }
-
-    // ── QUOTE GENERATION (ONE TIME ONLY) ──
-    if (lead.stage === "collecting" || lead.stage === "idle") {
-
-      lead.stage = "quoted";
-
-      const p = DB[lead.product];
-
-      let area = lead.product === "epoxy flooring"
-        ? lead.rooms
-        : lead.rooms * 30;
-
-      let cost = lead.product === "epoxy flooring"
-        ? area * p.price
-        : Math.ceil(area / p.coverage) * p.price;
-
-      return `📐 QUOTE
-
-• Product: ${lead.product}
-• Area: ~${area} m²
-• Estimated Cost: R${cost.toLocaleString()}
-
-🇿🇦 South Africa estimate
-
-Want a FREE inspection for exact pricing?`;
+    if (!lead.color && lead.service!=='epoxy') {
+      lead.stage='color';
+      return "Do you have a preferred colour? (White, Cream, Beige, Grey, Stone, Terracotta, Green, Blue, or custom)";
     }
-
-    // ── BOOKING FLOW (FIXED STATE MACHINE) ──
-    if (i === "confirm" && lead.stage === "quoted") {
-      lead.stage = "name";
-      return "Perfect 👍 What is your full name?";
+    if (!lead.location) {
+      lead.stage='location';
+      return "Where is the property located? (City or suburb)";
     }
-
-    if (lead.stage === "name") {
-      lead.name = msg;
-      lead.stage = "phone";
-      return `Nice to meet you ${lead.name} 👍\nWhat is your phone number?`;
+    if (!lead.timeline) {
+      lead.stage='timeline';
+      return "When would you like the work done? (ASAP, this week, flexible, etc.)";
     }
-
-    if (lead.stage === "phone") {
-      lead.phone = msg;
-      lead.stage = "done";
-
-      saveLead();
-
-      return `✅ BOOKING CONFIRMED
-
-• Name: ${lead.name}
-• Phone: ${lead.phone}
-• Location: ${lead.location || "South Africa"}
-
-We will contact you soon for your FREE inspection.`;
+    if (lead.rooms && lead.service && !lead.quoteGiven) {
+      lead.quoteGiven=true; lead.stage='quote';
+      let cost, breakdown;
+      if (lead.service==='epoxy') {
+        const area = lead.rooms; // m²
+        cost = area * prices.epoxy;
+        breakdown = `• Area: ${area} m²\n• Rate: R${prices.epoxy}/m²`;
+      } else {
+        const area = lead.rooms * 30; // avg wall area per room
+        const buckets = Math.ceil(area / 100);
+        const unit = lead.service==='gamazine' ? prices.gamazine : prices.glamour;
+        cost = buckets * unit;
+        breakdown = `• Est. wall area: ~${area} m²\n• Buckets needed: ${buckets} × R${unit}`;
+      }
+      const total = cost.toLocaleString();
+      const sName = lead.service==='gamazine'?'Gamazine Classic':lead.service==='glamour'?'Glamour Coat':'Epoxy Flooring';
+      return `📐 **Estimate for ${sName}**\n\n${breakdown}\n• **Total material cost: R${total}**\n\n_This is a material‑only estimate. The final installed price includes labour and is **negotiable** after a free site inspection._\n\nWould you like me to book a **free inspection**?`;
     }
-
-    // ── FALLBACK ──
-    return "I can help with pricing, quotes, and booking inspections.\nWhat would you like?";
+    if (lead.stage==='quote') {
+      if (isYes(text)) { lead.stage='name'; return "Great! What's your full name?"; }
+      if (isNo(text)) return "No worries. If you change your mind, just say 'book inspection'.";
+      return "Would you like a free inspection? (Yes / No)";
+    }
+    return "I'm here to help with pricing, quotes, or booking a free inspection. Just let me know what you need.";
   }
 
-  // ─────────────────────────────
-  // UI RENDER
-  // ─────────────────────────────
-  function addMessage(text, type) {
-    const div = document.createElement("div");
-    div.className = "chat-message " + type;
-    div.innerHTML = text.replace(/\n/g, "<br>");
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+  function addMessage(text, sender) {
+    const row = document.createElement('div');
+    row.className = `prince-msg ${sender}`;
+    const b = document.createElement('div');
+    b.className = 'prince-bubble';
+    b.innerHTML = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    row.appendChild(b);
+    msgs.appendChild(row);
+    msgs.scrollTop = msgs.scrollHeight;
   }
+  function addBotMessage(text) { addMessage(text, 'bot'); }
 
-  function send() {
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    addMessage(text, "user");
-    chatInput.value = "";
-
+  function send(text) {
+    if (!text.trim()) return;
+    addMessage(text, 'user');
+    input.value=''; sendBtn.disabled=true;
     setTimeout(() => {
       const reply = getReply(text);
-      addMessage(reply, "bot");
+      addBotMessage(reply);
+      sendBtn.disabled=false;
+      updateQuickReplies();
     }, 400);
   }
 
-  // ─────────────────────────────
-  // EVENTS
-  // ─────────────────────────────
-  chatSend.addEventListener("click", send);
-  chatInput.addEventListener("keypress", e => {
-    if (e.key === "Enter") send();
-  });
+  function updateQuickReplies() {
+    quickWrap.innerHTML='';
+    const replies = [];
+    if (!lead.service) replies.push('Gamazine', 'Glamour', 'Epoxy');
+    if (lead.stage==='quote') replies.push('Yes, book inspection', 'No, thanks');
+    if (lead.stage==='done') replies.push('Ask another question');
+    replies.forEach(t => {
+      const btn = document.createElement('button');
+      btn.textContent=t;
+      btn.addEventListener('click', () => send(t));
+      quickWrap.appendChild(btn);
+    });
+  }
 
-  bubble.addEventListener("click", () => {
-    chatWindow.classList.toggle("open");
+  bubble.addEventListener('click', () => {
+    const open = !win.classList.contains('open');
+    win.classList.toggle('open', open);
+    bubble.classList.toggle('open', open);
+    if (open) input.focus();
   });
+  closeBtn.addEventListener('click', () => {
+    win.classList.remove('open');
+    bubble.classList.remove('open');
+  });
+  sendBtn.addEventListener('click', () => send(input.value));
+  input.addEventListener('keypress', e => { if (e.key==='Enter') send(input.value); });
+  input.addEventListener('input', () => sendBtn.disabled = !input.value.trim());
 
-  // ─────────────────────────────
-  // START MESSAGE
-  // ─────────────────────────────
+  addBotMessage("Hi 👋 I'm **Prince**. I can give you a quick quote or book a free inspection.\n\nWhich product are you interested in?\n• Gamazine Classic\n• Glamour Coat\n• Epoxy Flooring");
+  updateQuickReplies();
+
   setTimeout(() => {
-    chatWindow.classList.add("open");
-    addMessage(
-      "Hi 👋 I'm Prince — I can help you get pricing or book a free inspection anywhere in South Africa 🇿🇦",
-      "bot"
-    );
-  }, 2000);
-
-});
-
+    if (!win.classList.contains('open')) {
+      win.classList.add('open');
+      bubble.classList.add('open');
+      input.focus();
+    }
+  }, 4000);
 })();
 </script>
 
