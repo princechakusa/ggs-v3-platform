@@ -425,7 +425,7 @@
         }
 
         /* ═══════════════════════════════════════════
-           HERO
+           HERO — 3D SLIDER (REPLACES STATIC HERO)
         ═══════════════════════════════════════════ */
         .hero-section {
             position: relative;
@@ -433,34 +433,140 @@
             height: 100vh;
             max-height: 800px;
             margin-top: var(--header-h);
-            overflow: hidden
+            overflow: hidden;
+            background: var(--ink);
         }
-        .hero-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover
-        }
-        .hero-overlay {
+
+        /* ── 3D stage ── */
+        .hero-3d-stage {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(13, 15, 18, .7) 0%, rgba(13, 15, 18, .2) 50%, rgba(13, 15, 18, .4) 100%);
+            perspective: 1200px;
+            perspective-origin: 50% 50%;
+            overflow: hidden;
+        }
+
+        /* ── track holds all slides ── */
+        .hero-3d-track {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+        }
+
+        /* ── individual slide ── */
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            will-change: transform, opacity;
+            transform-origin: center center;
+            /* default hidden state */
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(100%) rotateY(-25deg) scale(0.88);
+            transition:
+                transform 1.1s cubic-bezier(0.77, 0, 0.18, 1),
+                opacity   0.9s cubic-bezier(0.77, 0, 0.18, 1);
+        }
+
+        /* ── ACTIVE slide ── */
+        .hero-slide.is-active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(0%) rotateY(0deg) scale(1);
+            z-index: 10;
+        }
+
+        /* ── PREV slide (exit to left) ── */
+        .hero-slide.is-prev {
+            opacity: 0;
+            transform: translateX(-100%) rotateY(25deg) scale(0.88);
+            z-index: 5;
+        }
+
+        /* ── Image inside slide with subtle Ken Burns ── */
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.08);
+            transition: transform 6s ease-out;
+        }
+        .hero-slide.is-active img {
+            transform: scale(1.0);
+        }
+
+        /* ── Gradient overlay ── */
+        .hero-slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(13, 15, 18, .82) 0%,
+                rgba(13, 15, 18, .25) 45%,
+                rgba(13, 15, 18, .45) 100%
+            );
+        }
+
+        /* ── Slide decorative stripe ── */
+        .hero-slide-overlay::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity .6s .5s;
+        }
+        .hero-slide.is-active .hero-slide-overlay::before {
+            opacity: 1;
+        }
+
+        /* ── Caption container ── */
+        .hero-caption-wrap {
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            padding: 80px 48px
+            padding: 80px 48px;
+            z-index: 20;
+            pointer-events: none;
         }
+
         .hero-caption {
             text-align: center;
             color: var(--white);
-            max-width: 900px
+            max-width: 900px;
+            pointer-events: all;
         }
+
+        /* ── Slide counter badge ── */
+        .hero-slide-badge {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(182, 139, 64, .4);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(8px);
+            background: rgba(13, 15, 18, .3);
+        }
+
         .hero-caption h1 {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(2.8rem, 6vw, 5rem);
             font-weight: 300;
             line-height: 1.1;
             letter-spacing: -.02em;
-            margin-bottom: 24px
+            margin-bottom: 24px;
+            /* Per-slide text set via JS */
         }
         .hero-caption h1 em {
             color: var(--gold);
@@ -505,9 +611,171 @@
         .btn-hero:hover .arrow-icon {
             transform: translateX(3px);
         }
+
+        /* ── Caption animation ── */
+        .hero-caption .caption-inner {
+            overflow: hidden;
+        }
+        .hero-caption-anim {
+            animation: captionSlideUp .9s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+        @keyframes captionSlideUp {
+            from { opacity: 0; transform: translateY(36px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-caption-anim-delay {
+            animation: captionSlideUp .9s .18s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+        .hero-caption-anim-delay2 {
+            animation: captionSlideUp .9s .32s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+        .hero-caption-anim-delay3 {
+            animation: captionSlideUp .9s .46s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        /* ── Arrow navigation ── */
+        .hero-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(13, 15, 18, .45);
+            border: 1px solid rgba(182, 139, 64, .35);
+            color: var(--white);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+        }
+        .hero-arrow:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 8px 28px rgba(182, 139, 64, .4);
+        }
+        .hero-arrow-prev { left: 28px; }
+        .hero-arrow-next { right: 28px; }
+        @media(max-width:600px) {
+            .hero-arrow { width: 40px; height: 40px; font-size: .8rem; }
+            .hero-arrow-prev { left: 14px; }
+            .hero-arrow-next { right: 14px; }
+        }
+
+        /* ── Dot navigation ── */
+        .hero-dots {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .hero-dot {
+            width: 28px;
+            height: 3px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, .3);
+            cursor: pointer;
+            transition: background .3s, width .4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .3s;
+            border: none;
+            padding: 0;
+        }
+        .hero-dot.is-active {
+            background: var(--gold);
+            width: 48px;
+            box-shadow: 0 0 12px rgba(182, 139, 64, .6);
+        }
+
+        /* ── Progress bar ── */
+        .hero-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            z-index: 30;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Slide number label ── */
+        .hero-slide-counter {
+            position: absolute;
+            top: 50%;
+            right: 36px;
+            transform: translateY(-50%);
+            z-index: 30;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: .68rem;
+            font-weight: 500;
+            letter-spacing: .2em;
+            color: rgba(255, 255, 255, .35);
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .hero-slide-counter .current-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--gold);
+            writing-mode: initial;
+            text-orientation: initial;
+        }
+        .hero-slide-counter .total-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: .9rem;
+            font-weight: 300;
+            writing-mode: initial;
+            text-orientation: initial;
+            color: rgba(255,255,255,.3);
+        }
         @media(max-width:768px) {
-            .hero-overlay { padding: 48px 24px }
+            .hero-slide-counter { display: none; }
+            .hero-caption-wrap { padding: 48px 24px; }
             .btn-hero { padding: 14px 28px; font-size: .78rem; }
+        }
+
+        /* ── 3D depth side previews (decorative panels) ── */
+        .hero-3d-side {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 180px;
+            z-index: 8;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .hero-3d-side-left {
+            left: 0;
+            background: linear-gradient(to right, rgba(13,15,18,.9), transparent);
+        }
+        .hero-3d-side-right {
+            right: 0;
+            background: linear-gradient(to left, rgba(13,15,18,.9), transparent);
+        }
+        @media(max-width:768px) {
+            .hero-3d-side { width: 80px; }
+        }
+
+        /* ── Ambient glow behind active slide ── */
+        .hero-ambient {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: radial-gradient(ellipse at 50% 120%, rgba(182,139,64,.18) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         /* ═══════════════════════════════════════════
@@ -1233,16 +1501,90 @@
 
     <main>
 
-        <!-- ═══ HERO ═══ -->
-        <section class="hero-section">
-            <img src="https://i.postimg.cc/d1FS1Bfq/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Premium Gamazine home exterior">
-            <div class="hero-overlay">
-                <div class="hero-caption">
-                    <h1>Premium Gamazine Coatings <em>for Homes &amp; Developments</em></h1>
-                    <p>From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.</p>
-                    <a href="contact.html#quote" class="btn-hero">Get Your Free Quote in 24 Hours <span class="arrow-icon">→</span></a>
+        <!-- ═══ HERO — 3D SLIDER ═══ -->
+        <section class="hero-section" id="heroSection">
+
+            <!-- 3D Stage -->
+            <div class="hero-3d-stage" id="hero3dStage">
+                <div class="hero-3d-track" id="hero3dTrack">
+
+                    <!-- Slide 1 -->
+                    <div class="hero-slide is-active" data-index="0">
+                        <img src="https://i.postimg.cc/d1FS1Bfq/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Premium Gamazine home exterior" loading="eager">
+                        <div class="hero-slide-overlay"></div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="hero-slide" data-index="1">
+                        <img src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic finish" loading="lazy">
+                        <div class="hero-slide-overlay"></div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="hero-slide" data-index="2">
+                        <img src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat luxury interior" loading="lazy">
+                        <div class="hero-slide-overlay"></div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="hero-slide" data-index="3">
+                        <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy flooring" loading="lazy">
+                        <div class="hero-slide-overlay"></div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="hero-slide" data-index="4">
+                        <img src="https://i.postimg.cc/9fgDbW6s/Whats-App-Image-2026-04-20-at-11-04-44-PM.jpg" alt="Charcoal classic coating" loading="lazy">
+                        <div class="hero-slide-overlay"></div>
+                    </div>
+
+                </div>
+
+                <!-- Ambient glow -->
+                <div class="hero-ambient"></div>
+
+                <!-- Side depth shadows -->
+                <div class="hero-3d-side hero-3d-side-left"></div>
+                <div class="hero-3d-side hero-3d-side-right"></div>
+            </div>
+
+            <!-- Caption (sits above track) -->
+            <div class="hero-caption-wrap">
+                <div class="hero-caption" id="heroCaption">
+                    <div class="hero-slide-badge" id="heroBadge">Premium Wall Coatings · Gauteng</div>
+                    <h1 id="heroHeading">Premium Gamazine Coatings <em>for Homes &amp; Developments</em></h1>
+                    <p id="heroSubtext">From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.</p>
+                    <a href="contact.html#quote" class="btn-hero" id="heroBtn">Get Your Free Quote in 24 Hours <span class="arrow-icon">→</span></a>
                 </div>
             </div>
+
+            <!-- Arrow navigation -->
+            <button class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous slide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next slide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Slide counter -->
+            <div class="hero-slide-counter" id="heroCounter">
+                <span class="current-num" id="counterCurrent">01</span>
+                <span style="color:rgba(255,255,255,.2);font-size:.7rem;">—</span>
+                <span class="total-num" id="counterTotal">05</span>
+            </div>
+
+            <!-- Dot navigation -->
+            <div class="hero-dots" id="heroDots">
+                <button class="hero-dot is-active" data-slide="0" aria-label="Slide 1"></button>
+                <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+                <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+                <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+                <button class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
+            </div>
+
+            <!-- Autoplay progress bar -->
+            <div class="hero-progress-bar" id="heroProgressBar"></div>
+
         </section>
 
         <!-- ═══ WHAT MAKES US DIFFERENT ═══ -->
@@ -1472,50 +1814,60 @@
     </div>
 
     <script>
-        // ── CURSOR (original smooth follow – as before) ──
+        /* ══════════════════════════════════════════════════
+           CURSOR (original smooth follow — unchanged)
+        ══════════════════════════════════════════════════ */
         (function() {
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (!dot || !ring) return;
-    let mx=0, my=0, rx=0, ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-    const tick = () => {
-      dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
-      rx += (mx-rx)*.12; ry += (my-ry)*.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(tick);
-    };
-    tick();
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
-    });
-  })();
+            const dot  = document.getElementById('cursor-dot');
+            const ring = document.getElementById('cursor-ring');
+            if (!dot || !ring) return;
+            let mx=0, my=0, rx=0, ry=0;
+            document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+            const tick = () => {
+                dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+                rx += (mx-rx)*.12; ry += (my-ry)*.12;
+                ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+                requestAnimationFrame(tick);
+            };
+            tick();
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
+            });
+        })();
 
-        // ── PRELOADER ──
+        /* ══════════════════════════════════════════════════
+           PRELOADER (original — unchanged)
+        ══════════════════════════════════════════════════ */
         window.addEventListener('load', () => {
             setTimeout(() => document.getElementById('preloader').classList.add('done'), 1800)
         });
 
-        // ── SCROLL PROGRESS ──
+        /* ══════════════════════════════════════════════════
+           SCROLL PROGRESS (original — unchanged)
+        ══════════════════════════════════════════════════ */
         const progressBar = document.getElementById('scroll-progress');
         window.addEventListener('scroll', () => {
             const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             progressBar.style.width = pct + '%'
         }, { passive: true });
 
-        // ── HEADER & BACK-TOP ──
+        /* ══════════════════════════════════════════════════
+           HEADER & BACK-TOP (original — unchanged)
+        ══════════════════════════════════════════════════ */
         const header = document.getElementById('siteHeader'),
-            backTop = document.getElementById('back-top');
+              backTop = document.getElementById('back-top');
         window.addEventListener('scroll', () => {
             const y = window.scrollY;
             header.classList.toggle('scrolled', y > 30);
             backTop.classList.toggle('visible', y > 500)
         }, { passive: true });
 
-        // ── MOBILE NAV ──
+        /* ══════════════════════════════════════════════════
+           MOBILE NAV (original — unchanged)
+        ══════════════════════════════════════════════════ */
         const hamburger = document.getElementById('hamburger'),
-            mobileNav = document.getElementById('mobileNav');
+              mobileNav = document.getElementById('mobileNav');
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('open');
             mobileNav.classList.toggle('open');
@@ -1529,7 +1881,9 @@
             })
         });
 
-        // ── TABS ──
+        /* ══════════════════════════════════════════════════
+           TABS (original — unchanged)
+        ══════════════════════════════════════════════════ */
         document.querySelectorAll('.tab-menu button').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active-tab'));
@@ -1539,7 +1893,9 @@
             })
         });
 
-        // ── SCROLL REVEAL ──
+        /* ══════════════════════════════════════════════════
+           SCROLL REVEAL (original — unchanged)
+        ══════════════════════════════════════════════════ */
         const revealObs = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -1550,7 +1906,9 @@
         }, { threshold: .15 });
         document.querySelectorAll('.scroll-reveal').forEach(el => revealObs.observe(el));
 
-        // ── NEWSLETTER ──
+        /* ══════════════════════════════════════════════════
+           NEWSLETTER (original — unchanged)
+        ══════════════════════════════════════════════════ */
         function handleNewsletter() {
             const input = document.getElementById('newsletterEmail');
             if (input.value && input.value.includes('@')) {
@@ -1562,14 +1920,15 @@
             }
         }
 
-        // ── COOKIE CONSENT ──
+        /* ══════════════════════════════════════════════════
+           COOKIE CONSENT (original — unchanged)
+        ══════════════════════════════════════════════════ */
         (function() {
             const cn = document.getElementById('cookie-notice');
             const aa = document.getElementById('cookie-accept-all');
             const sp = document.getElementById('cookie-save-preferences');
             const ac = document.getElementById('cookie-analytics');
             const mc = document.getElementById('cookie-marketing');
-
             function getConsent() {
                 try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')) } catch (e) { return null }
             }
@@ -1583,11 +1942,7 @@
                     cn.classList.remove('cookie-fade-out');
                 }, 420);
             }
-
-            if (!getConsent()) {
-                cn.classList.remove('cookie-hidden');
-            }
-
+            if (!getConsent()) { cn.classList.remove('cookie-hidden'); }
             aa.addEventListener('click', () => {
                 saveConsent({ essential: true, analytics: true, marketing: true });
                 hideNotice();
@@ -1596,6 +1951,256 @@
                 saveConsent({ essential: true, analytics: ac.checked, marketing: mc.checked });
                 hideNotice();
             });
+        })();
+
+        /* ══════════════════════════════════════════════════
+           ★  HERO 3D SLIDER  ★
+        ══════════════════════════════════════════════════ */
+        (function() {
+            /* ── Slide data ── */
+            const slides = [
+                {
+                    badge: 'Premium Wall Coatings · Gauteng',
+                    heading: 'Premium Gamazine Coatings <em>for Homes &amp; Developments</em>',
+                    sub: 'From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.',
+                    cta: 'Get Your Free Quote in 24 Hours',
+                    href: 'contact.html#quote'
+                },
+                {
+                    badge: 'Gamazine Classic · Exterior Finish',
+                    heading: 'Timeless Texture, <em>Built to Last 15 Years</em>',
+                    sub: 'Our signature Gamazine Classic delivers an enduring textured finish that protects and beautifies any exterior surface.',
+                    cta: 'Explore Gamazine Classic',
+                    href: 'solutions.html'
+                },
+                {
+                    badge: 'Glamour Coat · Interior Luxury',
+                    heading: 'Glamour Coat — <em>Where Walls Become Art</em>',
+                    sub: 'Metallic and silk finishes that transform interiors into statement spaces. Available in three new 2026 shades.',
+                    cta: 'View Glamour Coat Range',
+                    href: 'solutions.html'
+                },
+                {
+                    badge: 'Epoxy Flooring · Premium Surfaces',
+                    heading: 'Industrial-Strength Epoxy, <em>Garage to Kitchen</em>',
+                    sub: 'Seamless, durable epoxy floor coatings installed by our certified team. Zero mess. Guaranteed finish.',
+                    cta: 'Learn About Epoxy Flooring',
+                    href: 'epoxy.html'
+                },
+                {
+                    badge: 'Portfolio · Gauteng Projects',
+                    heading: 'Over 1,200 Projects <em>Delivered Across Gauteng</em>',
+                    sub: 'From single residences to 50-unit developments — we coat them all with the same precision and care.',
+                    cta: 'See Our Work',
+                    href: 'projects.html'
+                }
+            ];
+
+            let current  = 0;
+            let prev     = -1;
+            let isAnim   = false;
+            const TOTAL  = slides.length;
+            const AUTOPLAY_MS = 5500;
+
+            /* ── DOM refs ── */
+            const slideEls   = document.querySelectorAll('.hero-slide');
+            const dotEls     = document.querySelectorAll('.hero-dot');
+            const badge      = document.getElementById('heroBadge');
+            const heading    = document.getElementById('heroHeading');
+            const subtext    = document.getElementById('heroSubtext');
+            const heroBtn    = document.getElementById('heroBtn');
+            const heroCaption = document.getElementById('heroCaption');
+            const counterCur = document.getElementById('counterCurrent');
+            const counterTot = document.getElementById('counterTotal');
+            const progressEl = document.getElementById('heroProgressBar');
+            const prevBtn    = document.getElementById('heroPrev');
+            const nextBtn    = document.getElementById('heroNext');
+            const heroSection = document.getElementById('heroSection');
+
+            counterTot.textContent = String(TOTAL).padStart(2, '0');
+
+            /* ── Autoplay timer ── */
+            let autoTimer  = null;
+            let progTimer  = null;
+            let progStart  = null;
+            let progWidth  = 0;
+
+            function startProgress() {
+                clearInterval(progTimer);
+                progWidth = 0;
+                progressEl.style.transition = 'none';
+                progressEl.style.width = '0%';
+                progStart = Date.now();
+                progTimer = setInterval(() => {
+                    const elapsed = Date.now() - progStart;
+                    progWidth = Math.min((elapsed / AUTOPLAY_MS) * 100, 100);
+                    progressEl.style.transition = 'width 0.1s linear';
+                    progressEl.style.width = progWidth + '%';
+                    if (progWidth >= 100) {
+                        clearInterval(progTimer);
+                    }
+                }, 80);
+            }
+
+            function startAutoplay() {
+                clearInterval(autoTimer);
+                startProgress();
+                autoTimer = setInterval(() => goTo((current + 1) % TOTAL, 'next'), AUTOPLAY_MS);
+            }
+
+            function stopAutoplay() {
+                clearInterval(autoTimer);
+                clearInterval(progTimer);
+                progressEl.style.width = '0%';
+            }
+
+            /* ── Animate caption ── */
+            function animateCaption(data) {
+                // Reset animations by cloning/replacing children
+                badge.className   = 'hero-slide-badge hero-caption-anim';
+                badge.textContent = data.badge;
+
+                heading.className   = '';
+                heading.innerHTML   = data.heading;
+
+                subtext.className   = '';
+                subtext.textContent = data.sub;
+
+                heroBtn.className   = 'btn-hero';
+                heroBtn.innerHTML   = data.cta + ' <span class="arrow-icon">→</span>';
+                heroBtn.href        = data.href;
+
+                // Force reflow to restart animations
+                void badge.offsetWidth;
+
+                badge.className   = 'hero-slide-badge hero-caption-anim';
+                heading.className = 'hero-caption-anim-delay';
+                subtext.className = 'hero-caption-anim-delay2';
+                heroBtn.className = 'btn-hero hero-caption-anim-delay3';
+            }
+
+            /* ── Go to slide ── */
+            function goTo(index, direction) {
+                if (isAnim || index === current) return;
+                isAnim = true;
+
+                prev = current;
+                current = index;
+
+                const prevSlide = slideEls[prev];
+                const nextSlide = slideEls[current];
+
+                // Mark outgoing slide
+                prevSlide.classList.remove('is-active');
+                prevSlide.classList.add('is-prev');
+
+                // Prepare incoming from the correct side
+                if (direction === 'next') {
+                    nextSlide.style.transform = 'translateX(100%) rotateY(-22deg) scale(0.88)';
+                } else {
+                    nextSlide.style.transform = 'translateX(-100%) rotateY(22deg) scale(0.88)';
+                }
+                nextSlide.style.opacity = '0';
+                nextSlide.style.transition = 'none';
+                nextSlide.style.pointerEvents = 'all';
+
+                // Force reflow
+                void nextSlide.offsetWidth;
+
+                // Restore transition and activate
+                nextSlide.style.transition = '';
+                nextSlide.classList.add('is-active');
+                nextSlide.style.transform = '';
+                nextSlide.style.opacity   = '';
+
+                // Dots
+                dotEls.forEach((d, i) => d.classList.toggle('is-active', i === current));
+
+                // Counter
+                counterCur.textContent = String(current + 1).padStart(2, '0');
+
+                // Caption
+                animateCaption(slides[current]);
+
+                // Clean up after transition
+                const TRANSITION_MS = 1150;
+                setTimeout(() => {
+                    prevSlide.classList.remove('is-prev');
+                    prevSlide.style.transform = '';
+                    prevSlide.style.opacity   = '';
+                    prevSlide.style.pointerEvents = '';
+                    isAnim = false;
+                }, TRANSITION_MS);
+
+                // Restart autoplay progress
+                startProgress();
+            }
+
+            /* ── Arrow buttons ── */
+            prevBtn.addEventListener('click', () => {
+                stopAutoplay();
+                goTo((current - 1 + TOTAL) % TOTAL, 'prev');
+                startAutoplay();
+            });
+            nextBtn.addEventListener('click', () => {
+                stopAutoplay();
+                goTo((current + 1) % TOTAL, 'next');
+                startAutoplay();
+            });
+
+            /* ── Dot buttons ── */
+            dotEls.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    if (i === current) return;
+                    stopAutoplay();
+                    goTo(i, i > current ? 'next' : 'prev');
+                    startAutoplay();
+                });
+            });
+
+            /* ── Touch / swipe ── */
+            let touchStartX = 0;
+            let touchStartY = 0;
+            heroSection.addEventListener('touchstart', e => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+            heroSection.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                const dy = e.changedTouches[0].clientY - touchStartY;
+                if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+                    stopAutoplay();
+                    goTo(dx < 0 ? (current + 1) % TOTAL : (current - 1 + TOTAL) % TOTAL, dx < 0 ? 'next' : 'prev');
+                    startAutoplay();
+                }
+            }, { passive: true });
+
+            /* ── Keyboard navigation ── */
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowLeft') {
+                    stopAutoplay();
+                    goTo((current - 1 + TOTAL) % TOTAL, 'prev');
+                    startAutoplay();
+                } else if (e.key === 'ArrowRight') {
+                    stopAutoplay();
+                    goTo((current + 1) % TOTAL, 'next');
+                    startAutoplay();
+                }
+            });
+
+            /* ── Pause on hover ── */
+            heroSection.addEventListener('mouseenter', stopAutoplay);
+            heroSection.addEventListener('mouseleave', startAutoplay);
+
+            /* ── Pause when tab hidden ── */
+            document.addEventListener('visibilitychange', () => {
+                document.hidden ? stopAutoplay() : startAutoplay();
+            });
+
+            /* ── Boot ── */
+            animateCaption(slides[0]);
+            startAutoplay();
+
         })();
     </script>
 </body>
