@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Global Gamazine Suppliers | Premium Wall Coatings · Gauteng</title>
+  <meta name="description" content="GGS – est. 2012. Premium Gamazine wall coatings from R250/20L. No deposit, pay on delivery. Free site inspection across Gauteng.">
+  <meta name="keywords" content="gamazine, glamour coat, wall coatings, johannesburg, pretoria, randburg, gauteng, exterior coating">
+  <meta property="og:title" content="Global Gamazine Suppliers | Premium Wall Coatings">
+  <meta property="og:description" content="Gamazine from R250/20L. No deposit. Free site inspection.">
+  <meta property="og:image" content="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:       #b68b40;
+      --gold-light: #d4aa62;
+      --gold-pale:  rgba(182,139,64,0.12);
+      --charcoal:   #1a1f24;
+      --ink:        #0d0f12;
+      --slate:      #8a9aaa;
+      --mist:       #f5f3ef;
+      --cream:      #faf8f4;
+      --white:      #ffffff;
+      --border:     rgba(182,139,64,0.18);
+      --header-h:   80px;
+      --container:  1280px;
+      --radius:     4px;
+      --ease-out:   cubic-bezier(0.23,1,0.32,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ═══════════════════════════════════════════
+       CURSOR
+    ═══════════════════════════════════════════ */
+    #cursor-dot, #cursor-ring {
+      position: fixed; z-index: 9998; pointer-events: none;
+    }
+    #cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%;
+      transform: translate(-50%,-50%);
+    }
+    #cursor-ring {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(182,139,64,0.5); border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width .3s, height .3s, border-color .3s;
+    }
+    body.cursor-hover #cursor-ring { width: 56px; height: 56px; border-color: var(--gold); }
+    @media (hover: none) { #cursor-dot, #cursor-ring { display: none; } }
+
+    /* ═══════════════════════════════════════════
+       PRELOADER
+    ═══════════════════════════════════════════ */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 24px;
+      transition: opacity .6s .2s, visibility .6s .2s;
+    }
+    #preloader.done { opacity: 0; visibility: hidden; }
+
+    .preloader-logo {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .preloader-logo img {
+      width: 56px; height: 56px; border-radius: 8px; object-fit: cover;
+    }
+    .preloader-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 500;
+      color: var(--gold); letter-spacing: 0.12em;
+    }
+    .preloader-bar {
+      width: 200px; height: 1px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px; overflow: hidden;
+    }
+    .preloader-bar-fill {
+      height: 100%; width: 0;
+      background: var(--gold);
+      animation: preloadFill 1.6s var(--ease-out) forwards;
+    }
+    @keyframes preloadFill { to { width: 100%; } }
+    .preloader-text {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem; font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: .15em; text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL PROGRESS
+    ═══════════════════════════════════════════ */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; z-index: 9000;
+      height: 2px; width: 0;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: width .1s linear;
+    }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════ */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+    .section-pad { padding: 100px 0; }
+    @media (max-width: 768px) { .section-pad { padding: 64px 0; } }
+
+    /* ═══════════════════════════════════════════
+       HEADER  — fixed spacing to match screenshot
+    ═══════════════════════════════════════════ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+      height: var(--header-h);
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .site-header.scrolled {
+      border-color: var(--border);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+    }
+    .header-inner {
+      display: flex; align-items: center;
+      height: 100%; gap: 0;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      display: flex; align-items: center; gap: 12px;
+      flex-shrink: 0;
+    }
+    .logo-img {
+      width: 44px; height: 44px;
+      border-radius: 6px; object-fit: cover; flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 500;
+      color: var(--charcoal); letter-spacing: .08em;
+    }
+
+    /* Desktop nav — even gaps matching screenshot */
+    .nav-desktop {
+      display: flex; align-items: center;
+      gap: 36px;                    /* ← uniform gap, matches screenshot */
+      margin: 0 auto;
+    }
+    .nav-desktop a {
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem; font-weight: 400;
+      color: var(--charcoal); letter-spacing: .04em;
+      position: relative; padding-bottom: 4px;
+      transition: color .2s;
+    }
+    .nav-desktop a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .3s var(--ease-out);
+    }
+    .nav-desktop a:hover, .nav-desktop a.active { color: var(--gold); }
+    .nav-desktop a:hover::after, .nav-desktop a.active::after { width: 100%; }
+
+    /* CTA group */
+    .header-cta-group {
+      display: flex; align-items: center; gap: 20px;
+      flex-shrink: 0;
+    }
+    .header-phone {
+      font-size: .82rem; font-weight: 400;
+      color: var(--charcoal); letter-spacing: .03em;
+      transition: color .2s;
+    }
+    .header-phone:hover { color: var(--gold); }
+    .header-cta {
+      background: var(--charcoal); color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem; font-weight: 500;
+      letter-spacing: .06em;
+      padding: 10px 24px; border-radius: 2px;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .header-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 8px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--charcoal);
+      transition: transform .3s var(--ease-out), opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    @media (max-width: 1024px) {
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+      .header-phone { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV
+    ═══════════════════════════════════════════ */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--charcoal);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      padding-top: 100px; padding-bottom: 48px;
+      overflow-y: auto;
+      clip-path: circle(0% at calc(100% - 52px) 36px);
+      transition: clip-path .65s var(--ease-out);
+      pointer-events: none;
+    }
+    .mobile-nav.open {
+      clip-path: circle(150% at calc(100% - 52px) 36px);
+      pointer-events: all;
+    }
+    .mobile-nav a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: -.02em;
+      transition: color .2s, transform .3s ease;
+      opacity: 0; transform: translateY(20px);
+    }
+    .mobile-nav.open a { opacity: 1; transform: translateY(0); }
+    .mobile-nav.open a:nth-child(1){ transition-delay:.08s; }
+    .mobile-nav.open a:nth-child(2){ transition-delay:.14s; }
+    .mobile-nav.open a:nth-child(3){ transition-delay:.20s; }
+    .mobile-nav.open a:nth-child(4){ transition-delay:.26s; }
+    .mobile-nav.open a:nth-child(5){ transition-delay:.32s; }
+    .mobile-nav.open a:nth-child(6){ transition-delay:.38s; }
+    .mobile-nav.open a:nth-child(7){ transition-delay:.44s; }
+    .mobile-nav.open a:nth-child(8){ transition-delay:.50s; }
+    .mobile-nav a:hover { color: var(--gold); transform: translateX(8px); }
+    .mobile-nav-contact {
+      margin-top: 32px; display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      opacity: 0; transform: translateY(20px);
+      transition: all .4s .5s ease;
+    }
+    .mobile-nav.open .mobile-nav-contact { opacity: 1; transform: none; }
+    .mobile-nav-contact a {
+      font-size: 1rem; letter-spacing: .05em;
+      color: rgba(255,255,255,.5);
+      font-family: 'Inter', sans-serif; font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    #hero {
+      padding-top: calc(var(--header-h) + 80px);
+      padding-bottom: 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .hero-content { display: flex; flex-direction: column; gap: 36px; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--slate);
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      animation: livePulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes livePulse {
+      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(182,139,64,.4); }
+      50%       { opacity: .7; box-shadow: 0 0 0 6px rgba(182,139,64,0); }
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .italic-gold { font-style: italic; color: var(--gold); }
+
+    .masked-rise { overflow: hidden; display: block; }
+    .masked-rise-inner {
+      display: block;
+      animation: riseUp .9s var(--ease-out) forwards;
+      transform: translateY(100%);
+    }
+    .masked-rise:nth-child(1) .masked-rise-inner { animation-delay: .1s; }
+    .masked-rise:nth-child(2) .masked-rise-inner { animation-delay: .22s; }
+    .masked-rise:nth-child(3) .masked-rise-inner { animation-delay: .34s; }
+    @keyframes riseUp { to { transform: translateY(0); } }
+
+    .hero-sub {
+      font-size: 1rem; color: var(--slate); line-height: 1.8;
+      font-weight: 300; max-width: 400px;
+    }
+    .hero-sub strong { color: var(--charcoal); font-weight: 500; }
+
+    .hero-btns {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--charcoal); color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem; font-weight: 500;
+      letter-spacing: .06em;
+      padding: 14px 28px; border-radius: 2px;
+      transition: background .25s, transform .25s, gap .25s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--gold); transform: translateY(-2px); gap: 18px;
+    }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(26,31,36,.25); color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem; font-weight: 400;
+      letter-spacing: .06em;
+      padding: 14px 24px; border-radius: 2px;
+      transition: border-color .25s, color .25s, background .25s;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold); color: var(--gold);
+    }
+
+    .hero-trust {
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .78rem; font-weight: 400;
+      color: var(--slate); letter-spacing: .02em;
+    }
+    .trust-item i { color: var(--gold); font-size: .9rem; }
+
+    /* Hero image */
+    .hero-image-pane {
+      position: relative;
+      border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.14);
+    }
+    .cinematic-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 8s ease;
+    }
+    .hero-image-pane:hover .cinematic-img { transform: scale(1.04); }
+
+    .hero-image-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(13,15,18,.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 20px;
+    }
+    .badge-icon {
+      width: 40px; height: 40px;
+      background: var(--gold-pale);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: .9rem;
+    }
+    .badge-text-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white); line-height: 1;
+    }
+    .badge-text-sub {
+      font-size: .7rem; color: var(--slate); letter-spacing: .05em;
+      margin-top: 2px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; margin-top: 64px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+    }
+
+    .stat-card {
+      background: var(--cream);
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 500;
+      color: var(--charcoal); line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .stat-num .gold { color: var(--gold); font-size: 1.4rem; }
+    .stat-label {
+      font-size: .72rem; font-weight: 400;
+      color: var(--slate); letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════
+       MARQUEE
+    ═══════════════════════════════════════════ */
+    .marquee-tape {
+      overflow: hidden;
+      background: var(--charcoal);
+      padding: 16px 0;
+    }
+    .marquee-inner {
+      display: flex; align-items: center;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+      will-change: transform;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center;
+      font-size: .75rem; font-weight: 400;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      padding: 0 8px;
+    }
+    .marquee-sep { color: var(--gold); margin: 0 4px; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       WHY CHOOSE US
+    ═══════════════════════════════════════════ */
+    .metadata-label {
+      display: block;
+      font-size: .7rem; font-weight: 500;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-card {
+      background: var(--cream);
+      padding: 36px 28px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background .25s;
+    }
+    .feature-card:hover { background: var(--white); }
+    .feature-card i {
+      font-size: 1.4rem; color: var(--gold);
+    }
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 500;
+      color: var(--charcoal); line-height: 1.2;
+    }
+    .feature-card p {
+      font-size: .85rem; color: var(--slate);
+      line-height: 1.78; font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════════════
+       BROADCAST / CAMPAIGN
+    ═══════════════════════════════════════════ */
+    .broadcast-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      background: var(--charcoal);
+    }
+    .broadcast-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 900px) {
+      .broadcast-inner { grid-template-columns: 1fr; }
+      .broadcast-right { display: none; }
+    }
+
+    .broadcast-left {
+      padding: 56px 48px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    @media (max-width: 600px) { .broadcast-left { padding: 40px 28px; } }
+
+    .campaign-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .68rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .campaign-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+    .broadcast-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+    }
+    .broadcast-headline em { font-style: italic; color: var(--gold); }
+
+    .gold-rule {
+      width: 48px; height: 1px;
+      background: var(--gold);
+    }
+
+    .broadcast-desc {
+      font-size: .9rem; color: rgba(255,255,255,.55);
+      line-height: 1.8; font-weight: 300;
+      max-width: 380px;
+    }
+
+    .pill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      font-size: .68rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    .broadcast-validity {
+      font-size: .72rem; color: rgba(255,255,255,.25);
+      letter-spacing: .05em; margin-top: 4px;
+    }
+
+    .broadcast-right {
+      position: relative; min-height: 400px;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       ENHANCED ABOUT SNIPPET
+    ═══════════════════════════════════════════ */
+    #about-snippet {
+      background: var(--white);
+      padding: 100px 0;
+    }
+
+    .about-full-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .about-full-grid { grid-template-columns: 1fr; gap: 52px; }
+    }
+
+    .about-image-stack {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.12);
+    }
+    .about-img-secondary {
+      position: absolute;
+      bottom: -32px; right: -32px;
+      width: 54%;
+      aspect-ratio: 4/3;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 6px solid var(--white);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 600px) {
+      .about-img-secondary { display: none; }
+    }
+    .about-year-badge {
+      position: absolute;
+      top: 32px; left: -20px;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .about-year-badge .badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 600;
+      color: var(--gold); line-height: 1;
+      display: block;
+    }
+    .about-year-badge .badge-lbl {
+      font-size: .65rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      display: block; margin-top: 4px;
+    }
+
+    .about-content {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .about-content .metadata-label { margin-bottom: 0; }
+
+    .about-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin: 0;
+    }
+    .about-headline .gold-italic {
+      color: var(--gold); font-style: italic;
+    }
+
+    .about-body {
+      font-size: .95rem;
+      color: var(--slate);
+      line-height: 1.85;
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .about-pillar {
+      background: var(--cream);
+      padding: 20px 20px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .about-pillar i {
+      color: var(--gold); font-size: .9rem;
+      margin-bottom: 2px;
+    }
+    .about-pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--charcoal);
+    }
+    .about-pillar-text {
+      font-size: .78rem; color: var(--slate);
+      line-height: 1.6; font-weight: 300;
+    }
+
+    .about-cta-row {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .about-cta-note {
+      font-size: .78rem; color: var(--slate); font-weight: 300;
+    }
+    .about-cta-note strong {
+      color: var(--gold); font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER  — matching screenshot exactly
+    ═══════════════════════════════════════════ */
+    .footer {
+      background: #0c0e11;
+      padding: 80px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    .footer-brand-logo {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .footer-brand-logo img {
+      width: 40px; height: 40px; border-radius: 6px; object-fit: cover;
+    }
+    .footer-brand-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 500;
+      color: var(--white); letter-spacing: .08em;
+    }
+
+    .footer-tagline {
+      font-size: .82rem; color: rgba(203,213,225,.4);
+      line-height: 1.7; font-weight: 300;
+      max-width: 240px;
+      margin-bottom: 24px;
+    }
+
+    .footer-socials {
+      display: flex; gap: 10px;
+    }
+    .footer-socials a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.4); font-size: .8rem;
+      transition: border-color .2s, color .2s;
+    }
+    .footer-socials a:hover {
+      border-color: var(--gold); color: var(--gold);
+    }
+
+    .footer-col-heading {
+      font-size: .65rem; font-weight: 600;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .footer-links li a {
+      font-size: .84rem; color: rgba(203,213,225,.5);
+      font-weight: 300; letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .footer-links li a:hover { color: var(--gold); }
+
+    /* Contact column — company name + address matching screenshot */
+    .footer-contact-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .footer-contact-list {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .footer-contact-list a {
+      font-size: .84rem; color: rgba(203,213,225,.5);
+      font-weight: 300; transition: color .2s;
+    }
+    .footer-contact-list a:hover { color: var(--gold); }
+    .footer-contact-addr {
+      font-size: .78rem; color: rgba(203,213,225,.25);
+      line-height: 1.6; font-weight: 300;
+      margin-top: 4px;
+    }
+
+    /* Newsletter */
+    .newsletter-desc {
+      font-size: .82rem; color: rgba(203,213,225,.4);
+      line-height: 1.6; font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .newsletter-form {
+      display: flex; gap: 0;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 3px; overflow: hidden;
+    }
+    .newsletter-input {
+      flex: 1; background: rgba(255,255,255,.04);
+      border: none; outline: none;
+      padding: 12px 16px;
+      font-size: .8rem; color: var(--white);
+      font-family: 'Inter', sans-serif; font-weight: 300;
+    }
+    .newsletter-input::placeholder { color: rgba(255,255,255,.2); }
+    .newsletter-btn {
+      background: var(--gold); color: var(--white);
+      border: none; cursor: pointer;
+      padding: 12px 20px;
+      font-size: .78rem; font-weight: 500;
+      letter-spacing: .06em;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s;
+    }
+    .newsletter-btn:hover { background: var(--gold-light); }
+
+    /* Footer bottom — matching screenshot */
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: .72rem; color: rgba(203,213,225,.2);
+      font-weight: 300; letter-spacing: .04em;
+    }
+
+    /* ═══════════════════════════════════════════
+       WHATSAPP FLOAT
+    ═══════════════════════════════════════════ */
+    .wa-float-wrap {
+      position: fixed; bottom: 28px; right: 28px;
+      z-index: 700;
+    }
+    .wa-float {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.4rem;
+      box-shadow: 0 8px 24px rgba(37,211,102,.35);
+      position: relative;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .wa-float:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,.45); }
+    .wa-pulse {
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #25d366;
+      animation: waPulse 2s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%  { opacity: .6; transform: scale(1); }
+      100%{ opacity: 0;  transform: scale(1.5); }
+    }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+    ═══════════════════════════════════════════ */
+    #back-top {
+      position: fixed; bottom: 28px; left: 28px;
+      z-index: 700;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      color: var(--white); font-size: .8rem;
+      cursor: pointer;
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s, transform .3s;
+    }
+    #back-top.visible { opacity: 1; visibility: visible; }
+    #back-top:hover { transform: translateY(-2px); background: var(--gold); }
+
+    /* ═══════════════════════════════════════════
+       COOKIE NOTICE
+    ═══════════════════════════════════════════ */
+    #cookie-notice {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 8000;
+      background: var(--charcoal);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px 28px;
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+      max-width: 600px; width: calc(100% - 48px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.3);
+      transition: opacity .4s, transform .4s;
+    }
+    #cookie-notice.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(20px); }
+    .cookie-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--white);
+    }
+    .cookie-text {
+      font-size: .78rem; color: rgba(255,255,255,.4);
+      font-weight: 300; flex: 1;
+    }
+    .cookie-btns { display: flex; gap: 10px; }
+    .cookie-accept {
+      background: var(--gold); color: var(--white);
+      border: none; cursor: pointer;
+      padding: 8px 18px; border-radius: 2px;
+      font-size: .78rem; font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .cookie-dismiss {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.4);
+      cursor: pointer; padding: 8px 18px;
+      border-radius: 2px; font-size: .78rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+    ═══════════════════════════════════════════ */
+    .scroll-reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+    }
+    .scroll-reveal.revealed { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-logo">
+    <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+    <span class="preloader-wordmark">GGS</span>
+  </div>
+  <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+  <span class="preloader-text">Global Gamazine Suppliers · Est. 2012</span>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="process.html">Process</a>
+  <a href="projects.html">Projects</a>
+  <a href="epoxy.html">Epoxy</a>
+  <a href="shop.html">Shop</a>
+  <a href="contact.html">Contact</a>
+  <div class="mobile-nav-contact">
+    <a href="tel:+27621503704">+27 62 150 3704</a>
+    <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-wrap">
+      <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+      <span class="logo-text">GGS</span>
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="process.html">Process</a>
+      <a href="projects.html">Projects</a>
+      <a href="epoxy.html">Epoxy</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-cta-group">
+      <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+      <a href="contact.html#quote" class="header-cta">Get Quote →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div>
+            <div class="hero-eyebrow">
+              <span class="live-dot"></span>
+              01 / Implementation Hub · Est. 2012
+            </div>
+            <h1 class="hero-headline">
+              <span class="masked-rise"><span class="masked-rise-inner">Premium</span></span>
+              <span class="masked-rise"><span class="masked-rise-inner">Gamazine</span></span>
+              <span class="masked-rise"><span class="masked-rise-inner italic-gold">Coatings</span></span>
+            </h1>
+            <p class="hero-sub scroll-reveal">From <strong>R250/20L.</strong> No deposit — pay only on delivery. Complimentary site inspection across all of Gauteng.</p>
+            <div class="hero-btns scroll-reveal">
+              <a href="contact.html#quote" class="btn-primary"><span>Get Free Quote</span><span>→</span></a>
+              <a href="solutions.html" class="btn-outline">Our Products</a>
+            </div>
+          </div>
+          <div class="hero-trust scroll-reveal">
+            <div class="trust-item"><i class="fas fa-shield-check"></i><span>No Deposit Required</span></div>
+            <div class="trust-item"><i class="fas fa-clock"></i><span>2–4 Day Delivery</span></div>
+            <div class="trust-item"><i class="fas fa-star"></i><span>15-Year Lifespan</span></div>
+          </div>
+        </div>
+        <div class="hero-image-pane">
+          <img class="cinematic-img" src="https://i.ibb.co/5g7wJJ0d/Whats-App-Image-2026-04-16-at-9-52-39-AM-2.jpg" alt="Two-story home with premium Gamazine finish — Gauteng">
+          <div class="hero-image-badge">
+            <div class="badge-icon"><i class="fas fa-award"></i></div>
+            <div>
+              <div class="badge-text-top">1,200+ Projects</div>
+              <div class="badge-text-sub">Completed across Gauteng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-row scroll-reveal">
+        <div class="stat-card"><div class="stat-num" data-target="1200" data-suffix="+">0+</div><div class="stat-label">Projects Completed</div></div>
+        <div class="stat-card"><div class="stat-num">14<span class="gold">yr</span></div><div class="stat-label">Industry Experience</div></div>
+        <div class="stat-card"><div class="stat-num">15<span class="gold">yr</span></div><div class="stat-label">Product Lifespan</div></div>
+        <div class="stat-card"><div class="stat-num">2–4<span class="gold">d</span></div><div class="stat-label">Delivery Turnaround</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee-tape" style="margin-top:28px;">
+    <div class="marquee-inner">
+      <span class="marquee-item">Gamazine Classic<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Glamour Coat<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">No Deposit Required<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Pay on Delivery<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Free Site Inspection<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Johannesburg · Pretoria · Randburg<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Trusted Since 2012<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">UV-Stable · Crack-Resistant<span class="marquee-sep"> · </span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">Gamazine Classic<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Glamour Coat<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">No Deposit Required<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Pay on Delivery<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Free Site Inspection<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Johannesburg · Pretoria · Randburg<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">Trusted Since 2012<span class="marquee-sep"> · </span></span>
+      <span class="marquee-item">UV-Stable · Crack-Resistant<span class="marquee-sep"> · </span></span>
+    </div>
+  </div>
+
+  <!-- ═══ WHY CHOOSE US ═══ -->
+  <section id="why-us" class="section-pad">
+    <div class="container">
+      <span class="metadata-label scroll-reveal">Why choose GGS</span>
+      <h2><span class="masked-rise"><span class="masked-rise-inner">Why choose GGS?</span></span></h2>
+      <div class="features-grid">
+        <div class="feature-card scroll-reveal">
+          <i class="fas fa-hand-holding-usd"></i>
+          <h3>No Deposit</h3>
+          <p>Pay only when material arrives on your site. Zero financial risk, complete peace of mind.</p>
+        </div>
+        <div class="feature-card scroll-reveal">
+          <i class="fas fa-medal"></i>
+          <h3>10+ Years</h3>
+          <p>Trusted since 2012. Over 1,200 successful completions delivered across Gauteng.</p>
+        </div>
+        <div class="feature-card scroll-reveal">
+          <i class="fas fa-tint-slash"></i>
+          <h3>Waterproof</h3>
+          <p>Crack-resistant, UV-stable pigmentation. 15-year product life expectancy guaranteed.</p>
+        </div>
+        <div class="feature-card scroll-reveal">
+          <i class="fas fa-truck-fast"></i>
+          <h3>Fast Turnaround</h3>
+          <p>2–4 day delivery. Complimentary site inspection and itemised quote within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BROADCAST / CAMPAIGN ═══ -->
+  <div style="padding:0 0 100px;">
+    <div class="container">
+      <div class="broadcast-wrap scroll-reveal">
+        <div class="broadcast-inner">
+          <div class="broadcast-left">
+            <div class="campaign-badge">
+              <span class="campaign-dot"></span>
+              Seasonal Campaign · Limited Offer
+            </div>
+            <h3 class="broadcast-headline">Free site inspection<br><em>this week</em></h3>
+            <div class="gold-rule"></div>
+            <p class="broadcast-desc">Book your complimentary on-site assessment and receive a detailed, itemised quote within 24 hours — absolutely no cost and no obligation.</p>
+            <div class="pill-tags">
+              <span class="pill">Free Inspection</span>
+              <span class="pill">24-Hour Quote</span>
+              <span class="pill">All Gauteng</span>
+              <span class="pill">No Obligation</span>
+            </div>
+            <a href="contact.html#quote" class="btn-primary" style="align-self:flex-start;"><span>Secure Slot</span><span>→</span></a>
+            <p class="broadcast-validity">Valid for bookings placed before 30 April 2026 · Gauteng properties only</p>
+          </div>
+          <div class="broadcast-right">
+            <img class="cinematic-img" src="https://i.ibb.co/sdDqPqVw/Whats-App-Image-2026-04-19-at-3-47-10-PM-1.jpg" alt="Gamazine wall coating texture close-up">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ENHANCED ABOUT SNIPPET ═══ -->
+  <section id="about-snippet">
+    <div class="container">
+      <div class="about-full-grid">
+
+        <!-- Image stack -->
+        <div class="about-image-stack">
+          <div class="about-img-main">
+            <img class="cinematic-img" src="https://i.ibb.co/75QVyXB/Whats-App-Image-2026-04-16-at-9-52-39-AM-1.jpg" alt="Beautiful charcoal Gamazine home exterior — Gauteng">
+          </div>
+          <div class="about-img-secondary">
+            <img class="cinematic-img" src="https://i.ibb.co/sdDqPqVw/Whats-App-Image-2026-04-19-at-3-47-10-PM-1.jpg" alt="Gamazine texture detail">
+          </div>
+          <div class="about-year-badge">
+            <span class="badge-num">14</span>
+            <span class="badge-lbl">Years of<br>Excellence</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about-content">
+          <span class="metadata-label">02 / Company Heritage</span>
+
+          <h2 class="about-headline">
+            Trusted<br>
+            <span class="gold-italic">since 2012</span>
+          </h2>
+
+          <div class="gold-rule"></div>
+
+          <p class="about-body">
+            Global Gamazine Suppliers was founded on a single principle: deliver premium coating solutions with zero compromise. Over 14 years and 1,200+ projects across Gauteng, our methodology ensures uniform thickness, zero-waste application, and lasting beauty that withstands the elements.
+          </p>
+          <p class="about-body">
+            We work directly with homeowners, developers, and contractors — providing the same standard of excellence whether it's a single residence or an entire housing estate. Our no-deposit model reflects the confidence we place in every product we supply.
+          </p>
+
+          <!-- Four pillars -->
+          <div class="about-pillars">
+            <div class="about-pillar">
+              <i class="fas fa-layer-group"></i>
+              <div class="about-pillar-title">Uniform Thickness</div>
+              <div class="about-pillar-text">Consistent coverage every time, no thin spots or waste.</div>
+            </div>
+            <div class="about-pillar">
+              <i class="fas fa-sun"></i>
+              <div class="about-pillar-title">UV-Stable Pigments</div>
+              <div class="about-pillar-text">Colours that hold for 15+ years in South Africa's sun.</div>
+            </div>
+            <div class="about-pillar">
+              <i class="fas fa-droplet-slash"></i>
+              <div class="about-pillar-title">Crack-Resistant</div>
+              <div class="about-pillar-text">Flexible formulation moves with the structure, not against it.</div>
+            </div>
+            <div class="about-pillar">
+              <i class="fas fa-hand-shake"></i>
+              <div class="about-pillar-title">Pay on Delivery</div>
+              <div class="about-pillar-text">No deposit, ever. Your money stays yours until we deliver.</div>
+            </div>
+          </div>
+
+          <div class="about-cta-row">
+            <a href="about.html" class="btn-primary"><span>Our Full Story</span><span>→</span></a>
+            <p class="about-cta-note">Serving <strong>Johannesburg · Pretoria · Randburg</strong> and all of Gauteng</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER — matching screenshot ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand col -->
+      <div>
+        <div class="footer-brand-logo">
+          <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+          <span>GGS</span>
+        </div>
+        <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings &amp; epoxy flooring across Gauteng since 2012.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Navigate col -->
+      <div>
+        <div class="footer-col-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Company Heritage</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="process.html">How It Works</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="epoxy.html">Epoxy Flooring</a></li>
+          <li><a href="shop.html">Online Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact col — matching screenshot exactly -->
+      <div>
+        <div class="footer-col-heading">Contact</div>
+        <span class="footer-contact-name">Global Gamazine Suppliers</span>
+        <div class="footer-contact-list">
+          <a href="tel:+27621503704">+27 62 150 3704</a>
+          <a href="mailto:deliannyathi@gmail.com">deliannyathi@gmail.com</a>
+          <p class="footer-contact-addr">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</p>
+        </div>
+      </div>
+
+      <!-- Newsletter col -->
+      <div class="footer-newsletter">
+        <div class="footer-col-heading">Stay Updated</div>
+        <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
+        <div class="newsletter-form">
+          <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+          <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom — matching screenshot -->
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Global Gamazine Suppliers · All rights reserved</span>
+      <span class="footer-copy">Gamazine &amp; Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap">
+  <a href="https://wa.me/27621503704" class="wa-float" target="_blank">
+    <span class="wa-pulse"></span>
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- COOKIE NOTICE -->
+<div id="cookie-notice">
+  <div class="cookie-title">We use cookies</div>
+  <p class="cookie-text">We use essential cookies to improve your browsing experience.</p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="dismissCookie()">Accept All</button>
+    <button class="cookie-dismiss" onclick="dismissCookie()">Essential Only</button>
+  </div>
+</div>
+
+<script>
+  // ── CUSTOM CURSOR ──
+  (function() {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+    let mx=0, my=0, rx=0, ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    const tick = () => {
+      dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
+      rx += (mx-rx)*.12; ry += (my-ry)*.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(tick);
+    };
+    tick();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
+    });
+  })();
+
+  // ── PRELOADER ──
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('done'), 1800);
+  });
+
+  // ── SCROLL PROGRESS ──
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const pct = (document.documentElement.scrollTop /
+      (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = pct + '%';
+  }, { passive: true });
+
+  // ── HEADER & BACK-TOP ──
+  const header  = document.getElementById('siteHeader');
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
+  }, { passive: true });
+
+  // ── MOBILE NAV ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── COUNTER ──
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      let v = 0;
+      const step = target / (1600 / 16);
+      const t = setInterval(() => {
+        v = Math.min(v + step, target);
+        el.textContent = Math.floor(v).toLocaleString() + suffix;
+        if (v >= target) clearInterval(t);
+      }, 16);
+      obs.disconnect();
+    }, { threshold: .7 });
+    obs.observe(el);
+  });
+
+  // ── SCROLL REVEAL ──
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll('.scroll-reveal').forEach(el => revealObs.observe(el));
+
+  // ── NEWSLETTER ──
+  function handleNewsletter() {
+    const input = document.getElementById('newsletterEmail');
+    if (input.value && input.value.includes('@')) {
+      localStorage.setItem('ggs_newsletter', input.value);
+      input.value = '';
+      input.placeholder = 'Subscribed! ✓';
+    } else {
+      alert('Please enter a valid email.');
+    }
+  }
+
+  // ── COOKIE ──
+  function dismissCookie() {
+    document.getElementById('cookie-notice').classList.add('hidden');
+    localStorage.setItem('ggs-cookie','1');
+  }
+  if (localStorage.getItem('ggs-cookie')) {
+    document.getElementById('cookie-notice').classList.add('hidden');
+  }
+</script>
+</body>
+</html>
