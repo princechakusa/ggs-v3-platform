@@ -8,9 +8,7 @@
     <meta property="og:title" content="Global Gamazine Suppliers | Premium Wall Coatings">
     <meta property="og:description" content="Gamazine from R250/20L. No deposit. Free site inspection.">
     <meta property="og:image" content="https://i.postimg.cc/d1FS1Bfq/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg">
-
     <link rel="icon" type="image/png" href="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,2190 +16,1563 @@
 
     <style>
         /* ═══════════════════════════════════════════
-           RESET & TOKENS (GGS Brand)
+           RESET & TOKENS
         ═══════════════════════════════════════════ */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
         :root {
-            --gold: #b68b40;
-            --gold-light: #d4aa62;
-            --gold-pale: rgba(182, 139, 64, 0.12);
-            --charcoal: #1a1f24;
-            --ink: #0d0f12;
-            --cta-charcoal: #1A1A1A;
-            --slate: #8a9aaa;
-            --mist: #f5f3ef;
-            --cream: #faf8f4;
-            --white: #ffffff;
-            --border: rgba(182, 139, 64, 0.18);
-            --header-h: 80px;
-            --container: 1280px;
-            --radius: 4px;
-            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --gold:#b68b40; --gold-light:#d4aa62; --gold-pale:rgba(182,139,64,.12);
+            --charcoal:#1a1f24; --ink:#0d0f12; --cta-charcoal:#1A1A1A;
+            --slate:#8a9aaa; --mist:#f5f3ef; --cream:#faf8f4; --white:#ffffff;
+            --border:rgba(182,139,64,.18); --header-h:80px; --container:1280px;
+            --radius:4px; --ease-out:cubic-bezier(0.23,1,0.32,1);
         }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            background: var(--cream);
-            color: var(--charcoal);
-            overflow-x: hidden;
-            cursor: none;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover
-        }
-        a {
-            text-decoration: none;
-            color: inherit
-        }
-        ul {
-            list-style: none
-        }
+        html { scroll-behavior:smooth }
+        body { font-family:'DM Sans',sans-serif; font-weight:300; background:var(--cream); color:var(--charcoal); overflow-x:hidden; cursor:none }
+        img { display:block; width:100%; height:100%; object-fit:cover }
+        a { text-decoration:none; color:inherit }
+        ul { list-style:none }
 
         /* ═══════════════════════════════════════════
-           CUSTOM CURSOR (original smooth follow)
+           CUSTOM CURSOR
         ═══════════════════════════════════════════ */
-        #cursor-dot,
-        #cursor-ring {
-            position: fixed;
-            z-index: 9998;
-            pointer-events: none;
-            transition: none;
-        }
-        #cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #cursor-ring {
-            width: 32px;
-            height: 32px;
-            border: 1px solid rgba(182, 139, 64, 0.5);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width .3s, height .3s, border-color .3s;
-        }
-        body.cursor-hover #cursor-ring {
-            width: 56px;
-            height: 56px;
-            border-color: var(--gold);
-        }
-        @media(hover:none) {
-            #cursor-dot,
-            #cursor-ring {
-                display: none
-            }
-        }
+        #cursor-dot, #cursor-ring { position:fixed; z-index:9998; pointer-events:none; transition:none }
+        #cursor-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; transform:translate(-50%,-50%) }
+        #cursor-ring { width:32px; height:32px; border:1px solid rgba(182,139,64,.5); border-radius:50%; transform:translate(-50%,-50%); transition:width .3s, height .3s, border-color .3s, background .3s }
+        body.cursor-hover #cursor-ring { width:56px; height:56px; border-color:var(--gold); background:rgba(182,139,64,.08) }
+        #cursor-click-ring { position:fixed; z-index:9997; pointer-events:none; width:0; height:0; border-radius:50%; border:2px solid var(--gold); transform:translate(-50%,-50%); opacity:0 }
+        @media(hover:none) { #cursor-dot,#cursor-ring,#cursor-click-ring { display:none } }
 
         /* ═══════════════════════════════════════════
            PRELOADER
         ═══════════════════════════════════════════ */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: var(--ink);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            transition: opacity .6s .2s, visibility .6s .2s
-        }
-        #preloader.done {
-            opacity: 0;
-            visibility: hidden
-        }
-        .preloader-logo {
-            display: flex;
-            align-items: center;
-            gap: 16px
-        }
-        .preloader-logo img {
-            width: 56px;
-            height: 56px;
-            border-radius: 8px;
-            object-fit: cover
-        }
-        .preloader-wordmark {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            font-weight: 500;
-            color: var(--gold);
-            letter-spacing: .12em
-        }
-        .preloader-bar {
-            width: 200px;
-            height: 1px;
-            background: rgba(255, 255, 255, .1);
-            border-radius: 2px;
-            overflow: hidden
-        }
-        .preloader-bar-fill {
-            height: 100%;
-            width: 0;
-            background: var(--gold);
-            animation: preloadFill 1.6s var(--ease-out) forwards
-        }
-        @keyframes preloadFill {
-            to { width: 100% }
-        }
-        .preloader-text {
-            font-family: 'DM Sans', sans-serif;
-            font-size: .72rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .35);
-            letter-spacing: .15em;
-            text-transform: uppercase
-        }
+        #preloader { position:fixed; inset:0; z-index:9999; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; transition:opacity .6s .2s,visibility .6s .2s }
+        #preloader.done { opacity:0; visibility:hidden }
+        .preloader-logo { display:flex; align-items:center; gap:16px }
+        .preloader-logo img { width:56px; height:56px; border-radius:8px; object-fit:cover }
+        .preloader-wordmark { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:500; color:var(--gold); letter-spacing:.12em }
+        .preloader-bar { width:200px; height:1px; background:rgba(255,255,255,.1); border-radius:2px; overflow:hidden }
+        .preloader-bar-fill { height:100%; width:0; background:var(--gold); animation:preloadFill 1.6s var(--ease-out) forwards }
+        @keyframes preloadFill { to { width:100% } }
+        .preloader-text { font-size:.72rem; font-weight:300; color:rgba(255,255,255,.35); letter-spacing:.15em; text-transform:uppercase }
 
         /* ═══════════════════════════════════════════
            SCROLL PROGRESS
         ═══════════════════════════════════════════ */
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 9000;
-            height: 2px;
-            width: 0;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            transition: width .1s linear
-        }
+        #scroll-progress { position:fixed; top:0; left:0; z-index:9000; height:2px; width:0; background:linear-gradient(90deg,var(--gold),var(--gold-light)); transition:width .1s linear }
 
         /* ═══════════════════════════════════════════
            LAYOUT
         ═══════════════════════════════════════════ */
-        .container {
-            max-width: var(--container);
-            margin: 0 auto;
-            padding: 0 48px
-        }
-        @media(max-width:768px) {
-            .container { padding: 0 24px }
-        }
+        .container { max-width:var(--container); margin:0 auto; padding:0 48px }
+        @media(max-width:768px) { .container { padding:0 24px } }
 
         /* ═══════════════════════════════════════════
            HEADER
         ═══════════════════════════════════════════ */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 800;
-            height: var(--header-h);
-            background: rgba(250, 248, 244, .92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid transparent;
-            transition: border-color .3s, box-shadow .3s
-        }
-        .site-header.scrolled {
-            border-color: var(--border);
-            box-shadow: 0 4px 32px rgba(0, 0, 0, .06)
-        }
-        .header-inner {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            gap: 0;
-            justify-content: space-between
-        }
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0
-        }
-        .logo-img {
-            width: 44px;
-            height: 44px;
-            border-radius: 6px;
-            object-fit: cover;
-            flex-shrink: 0
-        }
-        .logo-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            letter-spacing: .08em
-        }
-        .nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            margin: 0 auto
-        }
-        .nav-desktop a {
-            font-family: 'DM Sans', sans-serif;
-            font-size: .82rem;
-            font-weight: 400;
-            color: var(--charcoal);
-            letter-spacing: .04em;
-            position: relative;
-            padding-bottom: 4px;
-            transition: color .2s
-        }
-        .nav-desktop a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: width .3s var(--ease-out)
-        }
-        .nav-desktop a:hover,
-        .nav-desktop a.active {
-            color: var(--gold)
-        }
-        .nav-desktop a:hover::after,
-        .nav-desktop a.active::after {
-            width: 100%
-        }
-        .header-cta-group {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-shrink: 0
-        }
-        .header-phone {
-            font-size: .82rem;
-            font-weight: 400;
-            color: var(--charcoal);
-            letter-spacing: .03em;
-            transition: color .2s
-        }
-        .header-phone:hover {
-            color: var(--gold)
-        }
-        .header-cta {
-            background: var(--cta-charcoal);
-            color: var(--white);
-            font-family: 'DM Sans', sans-serif;
-            font-size: .82rem;
-            font-weight: 600;
-            letter-spacing: .03em;
-            padding: 12px 28px;
-            border-radius: 50px;
-            transition: background .25s, transform .2s, box-shadow .25s;
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
-        }
-        .header-cta:hover {
-            background: #2a2a2a;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, .14);
-        }
-        .header-cta .arrow-icon {
-            display: inline-block;
-            transition: transform .25s var(--ease-out);
-            font-weight: 400;
-        }
-        .header-cta:hover .arrow-icon {
-            transform: translateX(3px);
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1100
-        }
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 1.5px;
-            background: var(--charcoal);
-            transition: transform .3s var(--ease-out), opacity .3s
-        }
-        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg) }
-        .hamburger.open span:nth-child(2) { opacity: 0 }
-        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg) }
-        @media(max-width:1024px) {
-            .nav-desktop { display: none }
-            .hamburger { display: flex }
-            .header-phone { display: none }
-        }
+        .site-header { position:fixed; top:0; left:0; right:0; z-index:800; height:var(--header-h); background:rgba(250,248,244,.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid transparent; transition:border-color .3s,box-shadow .3s }
+        .site-header.scrolled { border-color:var(--border); box-shadow:0 4px 32px rgba(0,0,0,.06) }
+        .header-inner { display:flex; align-items:center; height:100%; justify-content:space-between }
+        .logo-wrap { display:flex; align-items:center; gap:12px; flex-shrink:0 }
+        .logo-img { width:44px; height:44px; border-radius:6px; object-fit:cover; flex-shrink:0 }
+        .logo-text { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:500; color:var(--charcoal); letter-spacing:.08em }
+        .nav-desktop { display:flex; align-items:center; gap:32px; margin:0 auto }
+        .nav-desktop a { font-size:.82rem; font-weight:400; color:var(--charcoal); letter-spacing:.04em; position:relative; padding-bottom:4px; transition:color .2s }
+        .nav-desktop a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--gold); transition:width .3s var(--ease-out) }
+        .nav-desktop a:hover, .nav-desktop a.active { color:var(--gold) }
+        .nav-desktop a:hover::after, .nav-desktop a.active::after { width:100% }
+        .header-cta-group { display:flex; align-items:center; gap:20px; flex-shrink:0 }
+        .header-phone { font-size:.82rem; font-weight:400; color:var(--charcoal); letter-spacing:.03em; transition:color .2s }
+        .header-phone:hover { color:var(--gold) }
+        .header-cta { background:var(--cta-charcoal); color:var(--white); font-size:.82rem; font-weight:600; letter-spacing:.03em; padding:12px 28px; border-radius:50px; transition:background .25s,transform .2s,box-shadow .25s; white-space:nowrap; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; box-shadow:0 1px 3px rgba(0,0,0,.08); position:relative; overflow:hidden }
+        .header-cta::before { content:''; position:absolute; inset:0; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease-out); z-index:0 }
+        .header-cta:hover::before { transform:scaleX(1) }
+        .header-cta span, .header-cta .arrow-icon { position:relative; z-index:1 }
+        .header-cta:hover { transform:translateY(-1px); box-shadow:0 8px 24px rgba(182,139,64,.35) }
+        .header-cta .arrow-icon { display:inline-block; transition:transform .25s var(--ease-out); font-weight:400 }
+        .header-cta:hover .arrow-icon { transform:translateX(3px) }
+        .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; z-index:1100 }
+        .hamburger span { display:block; width:24px; height:1.5px; background:var(--charcoal); transition:transform .3s var(--ease-out),opacity .3s }
+        .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg) }
+        .hamburger.open span:nth-child(2) { opacity:0 }
+        .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg) }
+        @media(max-width:1024px) { .nav-desktop { display:none } .hamburger { display:flex } .header-phone { display:none } }
 
         /* ═══════════════════════════════════════════
            MOBILE NAV
         ═══════════════════════════════════════════ */
-        .mobile-nav {
-            position: fixed;
-            inset: 0;
-            z-index: 1000;
-            background: var(--charcoal);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding-top: 100px;
-            padding-bottom: 48px;
-            overflow-y: auto;
-            clip-path: circle(0% at calc(100% - 52px) 36px);
-            transition: clip-path .65s var(--ease-out);
-            pointer-events: none
-        }
-        .mobile-nav.open {
-            clip-path: circle(150% at calc(100% - 52px) 36px);
-            pointer-events: all
-        }
-        .mobile-nav a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.6rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .85);
-            letter-spacing: -.02em;
-            transition: color .2s, transform .3s ease;
-            opacity: 0;
-            transform: translateY(20px)
-        }
-        .mobile-nav.open a {
-            opacity: 1;
-            transform: translateY(0)
-        }
-        .mobile-nav.open a:nth-child(1) { transition-delay: .06s }
-        .mobile-nav.open a:nth-child(2) { transition-delay: .10s }
-        .mobile-nav.open a:nth-child(3) { transition-delay: .14s }
-        .mobile-nav.open a:nth-child(4) { transition-delay: .18s }
-        .mobile-nav.open a:nth-child(5) { transition-delay: .22s }
-        .mobile-nav.open a:nth-child(6) { transition-delay: .26s }
-        .mobile-nav.open a:nth-child(7) { transition-delay: .30s }
-        .mobile-nav.open a:nth-child(8) { transition-delay: .34s }
-        .mobile-nav a:hover {
-            color: var(--gold);
-            transform: translateX(8px)
-        }
-        .mobile-nav-contact {
-            margin-top: 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all .4s .46s ease
-        }
-        .mobile-nav.open .mobile-nav-contact {
-            opacity: 1;
-            transform: none
-        }
-        .mobile-nav-contact a {
-            font-size: 1rem;
-            letter-spacing: .05em;
-            color: rgba(255, 255, 255, .5);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300
-        }
+        .mobile-nav { position:fixed; inset:0; z-index:1000; background:var(--charcoal); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding-top:100px; padding-bottom:48px; overflow-y:auto; clip-path:circle(0% at calc(100% - 52px) 36px); transition:clip-path .65s var(--ease-out); pointer-events:none }
+        .mobile-nav.open { clip-path:circle(150% at calc(100% - 52px) 36px); pointer-events:all }
+        .mobile-nav a { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; color:rgba(255,255,255,.85); letter-spacing:-.02em; transition:color .2s,transform .3s ease; opacity:0; transform:translateY(20px) }
+        .mobile-nav.open a { opacity:1; transform:translateY(0) }
+        .mobile-nav.open a:nth-child(1){transition-delay:.06s} .mobile-nav.open a:nth-child(2){transition-delay:.10s} .mobile-nav.open a:nth-child(3){transition-delay:.14s} .mobile-nav.open a:nth-child(4){transition-delay:.18s} .mobile-nav.open a:nth-child(5){transition-delay:.22s} .mobile-nav.open a:nth-child(6){transition-delay:.26s} .mobile-nav.open a:nth-child(7){transition-delay:.30s} .mobile-nav.open a:nth-child(8){transition-delay:.34s}
+        .mobile-nav a:hover { color:var(--gold); transform:translateX(8px) }
+        .mobile-nav-contact { margin-top:32px; display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; transform:translateY(20px); transition:all .4s .46s ease }
+        .mobile-nav.open .mobile-nav-contact { opacity:1; transform:none }
+        .mobile-nav-contact a { font-size:1rem; letter-spacing:.05em; color:rgba(255,255,255,.5); font-family:'DM Sans',sans-serif; font-weight:300 }
 
         /* ═══════════════════════════════════════════
-           HERO — 3D SLIDER (REPLACES STATIC HERO)
+           HERO — 3D SLIDER + WebGL
         ═══════════════════════════════════════════ */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            max-height: 800px;
-            margin-top: var(--header-h);
-            overflow: hidden;
-            background: var(--ink);
-        }
-
-        /* ── 3D stage ── */
-        .hero-3d-stage {
-            position: absolute;
-            inset: 0;
-            perspective: 1200px;
-            perspective-origin: 50% 50%;
-            overflow: hidden;
-        }
-
-        /* ── track holds all slides ── */
-        .hero-3d-track {
-            position: absolute;
-            inset: 0;
-            transform-style: preserve-3d;
-        }
-
-        /* ── individual slide ── */
-        .hero-slide {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            will-change: transform, opacity;
-            transform-origin: center center;
-            /* default hidden state */
-            opacity: 0;
-            pointer-events: none;
-            transform: translateX(100%) rotateY(-25deg) scale(0.88);
-            transition:
-                transform 1.1s cubic-bezier(0.77, 0, 0.18, 1),
-                opacity   0.9s cubic-bezier(0.77, 0, 0.18, 1);
-        }
-
-        /* ── ACTIVE slide ── */
-        .hero-slide.is-active {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateX(0%) rotateY(0deg) scale(1);
-            z-index: 10;
-        }
-
-        /* ── PREV slide (exit to left) ── */
-        .hero-slide.is-prev {
-            opacity: 0;
-            transform: translateX(-100%) rotateY(25deg) scale(0.88);
-            z-index: 5;
-        }
-
-        /* ── Image inside slide with subtle Ken Burns ── */
-        .hero-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.08);
-            transition: transform 6s ease-out;
-        }
-        .hero-slide.is-active img {
-            transform: scale(1.0);
-        }
-
-        /* ── Gradient overlay ── */
-        .hero-slide-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(13, 15, 18, .82) 0%,
-                rgba(13, 15, 18, .25) 45%,
-                rgba(13, 15, 18, .45) 100%
-            );
-        }
-
-        /* ── Slide decorative stripe ── */
-        .hero-slide-overlay::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-            opacity: 0;
-            transition: opacity .6s .5s;
-        }
-        .hero-slide.is-active .hero-slide-overlay::before {
-            opacity: 1;
-        }
-
-        /* ── Caption container ── */
-        .hero-caption-wrap {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 80px 48px;
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        .hero-caption {
-            text-align: center;
-            color: var(--white);
-            max-width: 900px;
-            pointer-events: all;
-        }
-
-        /* ── Slide counter badge ── */
-        .hero-slide-badge {
-            display: inline-block;
-            font-size: .68rem;
-            font-weight: 600;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(182, 139, 64, .4);
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(8px);
-            background: rgba(13, 15, 18, .3);
-        }
-
-        .hero-caption h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: -.02em;
-            margin-bottom: 24px;
-            /* Per-slide text set via JS */
-        }
-        .hero-caption h1 em {
-            color: var(--gold);
-            font-style: italic
-        }
-        .hero-caption p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, .8);
-            line-height: 1.8;
-            margin-bottom: 36px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto
-        }
-        .btn-hero {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gold);
-            color: var(--white);
-            font-family: 'DM Sans', sans-serif;
-            font-size: .84rem;
-            font-weight: 600;
-            letter-spacing: .04em;
-            padding: 16px 36px;
-            border-radius: 50px;
-            transition: background .25s, transform .2s, box-shadow .25s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
-        }
-        .btn-hero:hover {
-            background: var(--charcoal);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
-        }
-        .btn-hero .arrow-icon {
-            display: inline-block;
-            transition: transform .25s var(--ease-out);
-            font-weight: 400;
-        }
-        .btn-hero:hover .arrow-icon {
-            transform: translateX(3px);
-        }
-
-        /* ── Caption animation ── */
-        .hero-caption .caption-inner {
-            overflow: hidden;
-        }
-        .hero-caption-anim {
-            animation: captionSlideUp .9s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        @keyframes captionSlideUp {
-            from { opacity: 0; transform: translateY(36px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .hero-caption-anim-delay {
-            animation: captionSlideUp .9s .18s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        .hero-caption-anim-delay2 {
-            animation: captionSlideUp .9s .32s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        .hero-caption-anim-delay3 {
-            animation: captionSlideUp .9s .46s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-
-        /* ── Arrow navigation ── */
-        .hero-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 30;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: rgba(13, 15, 18, .45);
-            border: 1px solid rgba(182, 139, 64, .35);
-            color: var(--white);
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(8px);
-            transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
-        }
-        .hero-arrow:hover {
-            background: var(--gold);
-            border-color: var(--gold);
-            transform: translateY(-50%) scale(1.08);
-            box-shadow: 0 8px 28px rgba(182, 139, 64, .4);
-        }
-        .hero-arrow-prev { left: 28px; }
-        .hero-arrow-next { right: 28px; }
-        @media(max-width:600px) {
-            .hero-arrow { width: 40px; height: 40px; font-size: .8rem; }
-            .hero-arrow-prev { left: 14px; }
-            .hero-arrow-next { right: 14px; }
-        }
-
-        /* ── Dot navigation ── */
-        .hero-dots {
-            position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 30;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .hero-dot {
-            width: 28px;
-            height: 3px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, .3);
-            cursor: pointer;
-            transition: background .3s, width .4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow .3s;
-            border: none;
-            padding: 0;
-        }
-        .hero-dot.is-active {
-            background: var(--gold);
-            width: 48px;
-            box-shadow: 0 0 12px rgba(182, 139, 64, .6);
-        }
-
-        /* ── Progress bar ── */
-        .hero-progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            z-index: 30;
-            transition: width 0.1s linear;
-        }
-
-        /* ── Slide number label ── */
-        .hero-slide-counter {
-            position: absolute;
-            top: 50%;
-            right: 36px;
-            transform: translateY(-50%);
-            z-index: 30;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            font-size: .68rem;
-            font-weight: 500;
-            letter-spacing: .2em;
-            color: rgba(255, 255, 255, .35);
-            text-transform: uppercase;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .hero-slide-counter .current-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: var(--gold);
-            writing-mode: initial;
-            text-orientation: initial;
-        }
-        .hero-slide-counter .total-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .9rem;
-            font-weight: 300;
-            writing-mode: initial;
-            text-orientation: initial;
-            color: rgba(255,255,255,.3);
-        }
-        @media(max-width:768px) {
-            .hero-slide-counter { display: none; }
-            .hero-caption-wrap { padding: 48px 24px; }
-            .btn-hero { padding: 14px 28px; font-size: .78rem; }
-        }
-
-        /* ── 3D depth side previews (decorative panels) ── */
-        .hero-3d-side {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 180px;
-            z-index: 8;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .hero-3d-side-left {
-            left: 0;
-            background: linear-gradient(to right, rgba(13,15,18,.9), transparent);
-        }
-        .hero-3d-side-right {
-            right: 0;
-            background: linear-gradient(to left, rgba(13,15,18,.9), transparent);
-        }
-        @media(max-width:768px) {
-            .hero-3d-side { width: 80px; }
-        }
-
-        /* ── Ambient glow behind active slide ── */
-        .hero-ambient {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            background: radial-gradient(ellipse at 50% 120%, rgba(182,139,64,.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
+        .hero-section { position:relative; width:100%; height:100vh; max-height:800px; margin-top:var(--header-h); overflow:hidden; background:var(--ink) }
+        #hero-webgl { position:absolute; inset:0; z-index:15; pointer-events:none; mix-blend-mode:screen; opacity:.85 }
+        .hero-3d-stage { position:absolute; inset:0; perspective:1200px; perspective-origin:50% 50%; overflow:hidden }
+        .hero-3d-track { position:absolute; inset:0; transform-style:preserve-3d }
+        .hero-slide { position:absolute; inset:0; overflow:hidden; will-change:transform,opacity; transform-origin:center center; opacity:0; pointer-events:none; transform:translateX(100%) rotateY(-25deg) scale(0.88); transition:transform 1.1s cubic-bezier(0.77,0,0.18,1),opacity .9s cubic-bezier(0.77,0,0.18,1) }
+        .hero-slide.is-active { opacity:1; pointer-events:all; transform:translateX(0%) rotateY(0deg) scale(1); z-index:10 }
+        .hero-slide.is-prev { opacity:0; transform:translateX(-100%) rotateY(25deg) scale(0.88); z-index:5 }
+        .hero-slide img { width:100%; height:100%; object-fit:cover; transform:scale(1.08); transition:transform 6s ease-out }
+        .hero-slide.is-active img { transform:scale(1.0) }
+        .hero-slide-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(13,15,18,.82) 0%,rgba(13,15,18,.25) 45%,rgba(13,15,18,.45) 100%) }
+        .hero-slide-overlay::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,transparent,var(--gold),transparent); opacity:0; transition:opacity .6s .5s }
+        .hero-slide.is-active .hero-slide-overlay::before { opacity:1 }
+        .hero-caption-wrap { position:absolute; inset:0; display:flex; align-items:flex-end; justify-content:center; padding:80px 48px; z-index:20; pointer-events:none }
+        .hero-caption { text-align:center; color:var(--white); max-width:900px; pointer-events:all }
+        .hero-slide-badge { display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(182,139,64,.4); padding:6px 16px; border-radius:50px; margin-bottom:20px; backdrop-filter:blur(8px); background:rgba(13,15,18,.3) }
+        .hero-caption h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,5rem); font-weight:300; line-height:1.1; letter-spacing:-.02em; margin-bottom:24px }
+        .hero-caption h1 em { color:var(--gold); font-style:italic }
+        .hero-caption p { font-size:1.1rem; color:rgba(255,255,255,.8); line-height:1.8; margin-bottom:36px; max-width:600px; margin-left:auto; margin-right:auto }
+        .btn-hero { display:inline-flex; align-items:center; gap:10px; background:var(--gold); color:var(--white); font-size:.84rem; font-weight:600; letter-spacing:.04em; padding:16px 36px; border-radius:50px; transition:background .25s,transform .2s,box-shadow .25s; border:none; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.18); position:relative; overflow:hidden }
+        .btn-hero::before { content:''; position:absolute; inset:0; background:var(--charcoal); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease-out) }
+        .btn-hero:hover::before { transform:scaleX(1) }
+        .btn-hero span, .btn-hero .arrow-icon { position:relative; z-index:1 }
+        .btn-hero:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,.3) }
+        .btn-hero .arrow-icon { transition:transform .25s var(--ease-out) }
+        .btn-hero:hover .arrow-icon { transform:translateX(3px) }
+        .hero-caption-anim { animation:captionSlideUp .9s cubic-bezier(0.23,1,0.32,1) both }
+        @keyframes captionSlideUp { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
+        .hero-caption-anim-delay  { animation:captionSlideUp .9s .18s cubic-bezier(0.23,1,0.32,1) both }
+        .hero-caption-anim-delay2 { animation:captionSlideUp .9s .32s cubic-bezier(0.23,1,0.32,1) both }
+        .hero-caption-anim-delay3 { animation:captionSlideUp .9s .46s cubic-bezier(0.23,1,0.32,1) both }
+        .hero-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:30; width:52px; height:52px; border-radius:50%; background:rgba(13,15,18,.45); border:1px solid rgba(182,139,64,.35); color:var(--white); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px); transition:background .25s,border-color .25s,transform .25s,box-shadow .25s }
+        .hero-arrow:hover { background:var(--gold); border-color:var(--gold); transform:translateY(-50%) scale(1.08); box-shadow:0 8px 28px rgba(182,139,64,.4) }
+        .hero-arrow-prev { left:28px } .hero-arrow-next { right:28px }
+        @media(max-width:600px) { .hero-arrow{width:40px;height:40px;font-size:.8rem} .hero-arrow-prev{left:14px} .hero-arrow-next{right:14px} }
+        .hero-dots { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); z-index:30; display:flex; gap:10px; align-items:center }
+        .hero-dot { width:28px; height:3px; border-radius:2px; background:rgba(255,255,255,.3); cursor:pointer; transition:background .3s,width .4s cubic-bezier(0.23,1,0.32,1),box-shadow .3s; border:none; padding:0 }
+        .hero-dot.is-active { background:var(--gold); width:48px; box-shadow:0 0 12px rgba(182,139,64,.6) }
+        .hero-progress-bar { position:absolute; bottom:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); z-index:30; transition:width 0.1s linear }
+        .hero-slide-counter { position:absolute; top:50%; right:36px; transform:translateY(-50%); z-index:30; writing-mode:vertical-rl; text-orientation:mixed; font-size:.68rem; font-weight:500; letter-spacing:.2em; color:rgba(255,255,255,.35); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:12px }
+        .hero-slide-counter .current-num { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; color:var(--gold); writing-mode:initial; text-orientation:initial }
+        .hero-slide-counter .total-num { font-family:'Cormorant Garamond',serif; font-size:.9rem; font-weight:300; writing-mode:initial; text-orientation:initial; color:rgba(255,255,255,.3) }
+        @media(max-width:768px) { .hero-slide-counter{display:none} .hero-caption-wrap{padding:48px 24px} .btn-hero{padding:14px 28px;font-size:.78rem} }
+        .hero-3d-side { position:absolute; top:0; bottom:0; width:180px; z-index:8; overflow:hidden; pointer-events:none }
+        .hero-3d-side-left { left:0; background:linear-gradient(to right,rgba(13,15,18,.9),transparent) }
+        .hero-3d-side-right { right:0; background:linear-gradient(to left,rgba(13,15,18,.9),transparent) }
+        @media(max-width:768px) { .hero-3d-side{width:80px} }
+        .hero-ambient { position:absolute; inset:0; z-index:1; background:radial-gradient(ellipse at 50% 120%,rgba(182,139,64,.18) 0%,transparent 70%); pointer-events:none }
 
         /* ═══════════════════════════════════════════
            INTRO / STATS
         ═══════════════════════════════════════════ */
-        .intro-section {
-            padding: 80px 0;
-            background: var(--cream)
-        }
-        .intro-text {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 60px
-        }
-        .intro-text h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 300;
-            color: var(--gold);
-            margin-bottom: 20px
-        }
-        .intro-text p {
-            font-size: 1rem;
-            color: var(--slate);
-            line-height: 1.8;
-            font-weight: 300
-        }
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px
-        }
-        @media(max-width:900px) { .stats-row { grid-template-columns: repeat(2, 1fr) } }
-        @media(max-width:480px) { .stats-row { grid-template-columns: 1fr } }
-        .stat-box {
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 36px 24px;
-            text-align: center;
-            border-radius: 4px;
-            transition: transform .3s, box-shadow .3s
-        }
-        .stat-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .15)
-        }
-        .stat-box strong {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 500;
-            display: block;
-            color: var(--gold)
-        }
-        .stat-box p {
-            font-size: .9rem;
-            opacity: .75;
-            margin-top: 8px
-        }
+        .intro-section { padding:100px 0; background:var(--cream); position:relative; overflow:hidden }
+        .intro-section::before { content:''; position:absolute; top:-200px; left:-200px; width:600px; height:600px; background:radial-gradient(circle,rgba(182,139,64,.06) 0%,transparent 70%); pointer-events:none }
+        .intro-text { text-align:center; max-width:800px; margin:0 auto 60px }
+        .intro-text h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:300; color:var(--gold); margin-bottom:20px }
+        .intro-text p { font-size:1rem; color:var(--slate); line-height:1.8; font-weight:300 }
+        .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; perspective:1400px }
+        @media(max-width:900px) { .stats-row{grid-template-columns:repeat(2,1fr)} }
+        @media(max-width:480px) { .stats-row{grid-template-columns:1fr} }
+        .stat-box { background:var(--charcoal); color:var(--white); padding:40px 24px; text-align:center; border-radius:4px; transition:transform .4s var(--ease-out),box-shadow .4s; transform-style:preserve-3d; position:relative; overflow:hidden; cursor:default }
+        .stat-box::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(182,139,64,.12) 0%,transparent 60%); opacity:0; transition:opacity .4s }
+        .stat-box:hover { transform:translateY(-8px) rotateX(6deg); box-shadow:0 24px 60px rgba(0,0,0,.25) }
+        .stat-box:hover::after { opacity:1 }
+        .stat-box strong { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:500; display:block; color:var(--gold) }
+        .stat-box p { font-size:.9rem; opacity:.75; margin-top:8px }
+        .stat-box .stat-line { width:32px; height:1px; background:var(--gold); margin:16px auto 0; opacity:.3 }
 
         /* ═══════════════════════════════════════════
-           SERVICES
+           SERVICES — 3D FLIP CARDS
         ═══════════════════════════════════════════ */
-        .services-section {
-            padding: 100px 0;
-            background: var(--white)
-        }
-        .section-title {
-            text-align: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 2.6rem);
-            font-weight: 300;
-            color: var(--gold);
-            margin-bottom: 48px
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px
-        }
-        @media(max-width:900px) { .services-grid { grid-template-columns: repeat(2, 1fr) } }
-        @media(max-width:600px) { .services-grid { grid-template-columns: 1fr } }
-        .service-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
-            transition: transform .3s, box-shadow .3s
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .15)
-        }
-        .service-card img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover
-        }
-        .service-card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent 0%, rgba(13, 15, 18, .85) 100%);
-            padding: 24px;
-            color: var(--white)
-        }
-        .service-card-overlay h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: .05em
-        }
+        .services-section { padding:100px 0; background:var(--white); position:relative; overflow:hidden }
+        .services-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent) }
+        .section-label { display:block; text-align:center; font-size:.68rem; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; opacity:.7 }
+        .section-title { text-align:center; font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:300; color:var(--charcoal); margin-bottom:12px }
+        .section-title em { color:var(--gold); font-style:italic }
+        .section-sub { text-align:center; color:var(--slate); font-size:.95rem; line-height:1.7; margin-bottom:56px; max-width:600px; margin-left:auto; margin-right:auto }
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; perspective:2000px }
+        @media(max-width:900px) { .services-grid{grid-template-columns:repeat(2,1fr)} }
+        @media(max-width:600px) { .services-grid{grid-template-columns:1fr} }
+
+        .service-card { position:relative; border-radius:4px; height:380px; cursor:pointer }
+        .service-card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .9s cubic-bezier(0.23,1,0.32,1); transform-origin:center center }
+        .service-card:hover .service-card-inner, .service-card.flipped .service-card-inner { transform:rotateY(180deg) }
+        .service-card-front, .service-card-back { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:4px; overflow:hidden }
+        .service-card-front { box-shadow:0 8px 24px rgba(0,0,0,.1) }
+        .service-card-front img { width:100%; height:100%; object-fit:cover; transition:transform .6s }
+        .service-card:hover .service-card-front img { transform:scale(1.04) }
+        .service-card-front-overlay { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent 0%,rgba(13,15,18,.85) 100%); padding:32px 24px 28px; color:var(--white) }
+        .service-card-front-overlay h3 { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; text-transform:uppercase; letter-spacing:.05em }
+        .service-card-front-overlay .flip-hint { font-size:.72rem; color:rgba(255,255,255,.45); letter-spacing:.1em; text-transform:uppercase; margin-top:6px; display:flex; align-items:center; gap:6px }
+        .service-card-front-overlay .flip-hint i { font-size:.65rem; animation:flipHint 2s ease-in-out infinite }
+        @keyframes flipHint { 0%,100%{opacity:.4;transform:rotateY(0)} 50%{opacity:.9;transform:rotateY(180deg)} }
+        .service-card-back { transform:rotateY(180deg); background:var(--charcoal); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px 28px; color:var(--white); text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.2) }
+        .service-back-icon { width:72px; height:72px; border-radius:50%; background:rgba(182,139,64,.12); border:1px solid rgba(182,139,64,.3); display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition:transform .4s var(--ease-out),background .4s }
+        .service-card:hover .service-back-icon { transform:scale(1.1) rotateZ(15deg); background:rgba(182,139,64,.22) }
+        .service-back-icon i { font-size:1.6rem; color:var(--gold) }
+        .service-card-back h3 { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; margin-bottom:14px; color:var(--white) }
+        .service-card-back p { font-size:.88rem; color:rgba(203,213,225,.65); line-height:1.7; font-weight:300; margin-bottom:20px }
+        .service-back-price { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:500; color:var(--gold); margin-bottom:20px }
+        .service-back-price span { font-size:.72rem; font-family:'DM Sans',sans-serif; color:rgba(182,139,64,.7); font-weight:300 }
+        .service-back-cta { display:inline-flex; align-items:center; gap:8px; background:var(--gold); color:var(--charcoal); font-size:.8rem; font-weight:700; letter-spacing:.05em; padding:12px 24px; border-radius:50px; transition:background .25s,transform .2s; text-transform:uppercase }
+        .service-back-cta:hover { background:var(--gold-light); transform:translateY(-2px) }
+
+        /* ═══════════════════════════════════════════
+           WHY CHOOSE GGS — FEATURE CARDS
+        ═══════════════════════════════════════════ */
+        .features-section { padding:100px 0; background:var(--cream); position:relative; overflow:hidden }
+        .features-section::after { content:''; position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle,rgba(182,139,64,.08) 0%,transparent 70%); pointer-events:none }
+        .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+        @media(max-width:900px) { .features-grid{grid-template-columns:repeat(2,1fr)} }
+        @media(max-width:600px) { .features-grid{grid-template-columns:1fr} }
+        .feature-card { background:var(--white); border-radius:8px; padding:40px 28px; position:relative; overflow:hidden; border:1px solid rgba(182,139,64,.08); transition:transform .4s var(--ease-out),box-shadow .4s; transform-style:preserve-3d; cursor:default }
+        .feature-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(182,139,64,.06) 0%,transparent 50%); opacity:0; transition:opacity .4s }
+        .feature-card:hover { box-shadow:0 20px 60px rgba(0,0,0,.1) }
+        .feature-card:hover::before { opacity:1 }
+        .feature-card-glow { position:absolute; width:120px; height:120px; background:radial-gradient(circle,rgba(182,139,64,.15),transparent 70%); border-radius:50%; top:-30px; right:-30px; transition:transform .6s var(--ease-out),opacity .4s; opacity:0 }
+        .feature-card:hover .feature-card-glow { opacity:1; transform:scale(1.5) }
+        .feature-icon { width:64px; height:64px; border-radius:12px; background:var(--gold-pale); border:1px solid rgba(182,139,64,.2); display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition:transform .4s var(--ease-out),background .4s,box-shadow .4s; position:relative }
+        .feature-card:hover .feature-icon { transform:translateY(-4px) rotateZ(-8deg); background:rgba(182,139,64,.18); box-shadow:0 12px 32px rgba(182,139,64,.25) }
+        .feature-icon i { font-size:1.4rem; color:var(--gold); transition:transform .4s var(--ease-out) }
+        .feature-card:hover .feature-icon i { transform:scale(1.1) }
+        .feature-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:500; color:var(--charcoal); margin-bottom:10px }
+        .feature-card p { font-size:.88rem; color:var(--slate); line-height:1.7; font-weight:300 }
+        .feature-card-line { width:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); margin-top:20px; transition:width .6s var(--ease-out); border-radius:2px }
+        .feature-card:hover .feature-card-line { width:48px }
 
         /* ═══════════════════════════════════════════
            PROJECTS TABS
         ═══════════════════════════════════════════ */
-        .projects-section {
-            padding: 100px 0;
-            background: var(--cream)
-        }
-        .tab-menu {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--border);
-            flex-wrap: wrap;
-        }
-        .tab-menu button {
-            background: transparent;
-            border: none;
-            padding: 14px 32px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: .85rem;
-            font-weight: 500;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--slate);
-            cursor: pointer;
-            transition: color .2s, border-bottom .2s;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px
-        }
-        .tab-menu button.active-tab {
-            color: var(--gold);
-            border-bottom-color: var(--gold)
-        }
-        .tab-content {
-            display: none
-        }
-        .tab-content.active-tab {
-            display: block
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px
-        }
-        @media(max-width:900px) { .projects-grid { grid-template-columns: 1fr 1fr } }
-        @media(max-width:600px) { .projects-grid { grid-template-columns: 1fr } }
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            aspect-ratio: 4/3;
-            background: var(--mist);
-        }
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .7s
-        }
-        .project-card:hover img {
-            transform: scale(1.06)
-        }
-        .project-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(13, 15, 18, .7);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 24px;
-            opacity: 0;
-            transition: opacity .3s
-        }
-        .project-card:hover .project-card-overlay {
-            opacity: 1
-        }
-        .project-card-overlay h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--white);
-            margin-bottom: 4px
-        }
-        .project-card-overlay span {
-            font-size: .8rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: .1em
-        }
+        .projects-section { padding:100px 0; background:var(--white) }
+        .tab-menu { display:flex; justify-content:center; gap:0; margin-bottom:40px; border-bottom:2px solid var(--border); flex-wrap:wrap }
+        .tab-menu button { background:transparent; border:none; padding:14px 32px; font-size:.85rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); cursor:pointer; transition:color .2s,border-bottom .2s; border-bottom:2px solid transparent; margin-bottom:-2px }
+        .tab-menu button.active-tab { color:var(--gold); border-bottom-color:var(--gold) }
+        .tab-content { display:none }
+        .tab-content.active-tab { display:block }
+        .projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+        @media(max-width:900px) { .projects-grid{grid-template-columns:1fr 1fr} }
+        @media(max-width:600px) { .projects-grid{grid-template-columns:1fr} }
+        .project-card { position:relative; overflow:hidden; border-radius:4px; aspect-ratio:4/3; background:var(--mist); transition:transform .4s var(--ease-out),box-shadow .4s; transform-style:preserve-3d }
+        .project-card:hover { transform:translateY(-6px) scale(1.02); box-shadow:0 20px 60px rgba(0,0,0,.2) }
+        .project-card img { width:100%; height:100%; object-fit:cover; transition:transform .7s }
+        .project-card:hover img { transform:scale(1.08) }
+        .project-card-overlay { position:absolute; inset:0; background:rgba(13,15,18,.7); display:flex; flex-direction:column; justify-content:flex-end; padding:24px; opacity:0; transition:opacity .3s }
+        .project-card:hover .project-card-overlay { opacity:1 }
+        .project-card-overlay h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:var(--white); margin-bottom:4px }
+        .project-card-overlay span { font-size:.8rem; color:var(--gold); text-transform:uppercase; letter-spacing:.1em }
+        .placeholder-card { background:var(--cream); border:2px dashed var(--border); display:flex; align-items:center; justify-content:center; transition:all .3s; box-shadow:none }
+        .placeholder-card:hover { border-color:var(--gold); background:var(--white) }
+        .placeholder-content { text-align:center; color:var(--slate); font-size:1rem; display:flex; flex-direction:column; align-items:center; gap:10px; opacity:.7 }
+        .placeholder-content i { font-size:2rem; color:var(--gold-light) }
+        .placeholder-content span { font-weight:500; letter-spacing:.1em; text-transform:uppercase; font-size:.8rem }
 
-        /* ── COMING SOON PLACEHOLDER CARDS ── */
-        .placeholder-card {
-            background: var(--white);
-            border: 2px dashed var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all .3s;
-            box-shadow: none;
-        }
-        .placeholder-card:hover {
-            border-color: var(--gold);
-            background: var(--cream);
-        }
-        .placeholder-content {
-            text-align: center;
-            color: var(--slate);
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0.7;
-        }
-        .placeholder-content i {
-            font-size: 2rem;
-            color: var(--gold-light);
-        }
-        .placeholder-content span {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            font-size: .8rem;
-        }
+        /* ═══════════════════════════════════════════
+           TESTIMONIALS — 3D CARD STACK
+        ═══════════════════════════════════════════ */
+        .testimonials-section { padding:100px 0; background:var(--charcoal); position:relative; overflow:hidden }
+        .testimonials-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent) }
+        .testimonials-section .section-title { color:var(--white) }
+        .testimonials-section .section-sub { color:rgba(203,213,225,.5) }
+        .testimonials-bg-shape { position:absolute; border-radius:50%; pointer-events:none; opacity:.04 }
+        .testimonials-bg-shape.s1 { width:600px; height:600px; border:1px solid var(--gold); top:-200px; left:-200px; animation:slowSpin 30s linear infinite }
+        .testimonials-bg-shape.s2 { width:400px; height:400px; border:1px solid var(--gold); bottom:-100px; right:-100px; animation:slowSpin 20s linear infinite reverse }
+        @keyframes slowSpin { to{transform:rotate(360deg)} }
+        .test-stack-wrap { perspective:2400px; position:relative; max-width:760px; margin:0 auto; padding-bottom:80px }
+        .test-stack { position:relative; height:320px }
+        @media(max-width:600px) { .test-stack{height:auto; min-height:360px} }
+        .test-card { position:absolute; width:100%; padding:40px 44px; background:rgba(255,255,255,.05); border:1px solid rgba(182,139,64,.18); border-radius:12px; backdrop-filter:blur(12px); color:var(--white); transition:all .8s cubic-bezier(0.23,1,0.32,1); backface-visibility:hidden }
+        @media(max-width:600px) { .test-card{padding:28px 24px; position:relative; margin-bottom:16px} }
+        .test-card.state-0 { transform:translateZ(0) translateY(0) scale(1); opacity:1; z-index:3 }
+        .test-card.state-1 { transform:translateZ(-70px) translateY(16px) scale(0.96); opacity:.55; z-index:2 }
+        .test-card.state-2 { transform:translateZ(-140px) translateY(32px) scale(0.92); opacity:.25; z-index:1 }
+        .test-card.state-exit { transform:translateZ(60px) translateY(-30px) scale(1.04); opacity:0; z-index:4 }
+        .test-quote-icon { font-family:'Cormorant Garamond',serif; font-size:5rem; color:var(--gold); line-height:1; opacity:.3; margin-bottom:-16px; display:block }
+        .test-text { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(255,255,255,.9); margin-bottom:24px }
+        @media(max-width:600px) { .test-text{font-size:1.1rem} }
+        .test-author { display:flex; align-items:center; gap:14px }
+        .test-avatar { width:44px; height:44px; border-radius:50%; background:var(--gold-pale); border:2px solid rgba(182,139,64,.4); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:var(--gold); flex-shrink:0 }
+        .test-info strong { display:block; font-size:.9rem; color:var(--white); font-weight:500 }
+        .test-info span { font-size:.78rem; color:var(--gold); text-transform:uppercase; letter-spacing:.08em }
+        .test-stars { display:flex; gap:3px; margin-bottom:6px }
+        .test-stars i { font-size:.75rem; color:var(--gold) }
+        .test-controls { display:flex; align-items:center; justify-content:space-between; margin-top:32px }
+        .test-nav-dots { display:flex; gap:8px }
+        .test-nav-dot { width:24px; height:3px; border-radius:2px; background:rgba(255,255,255,.2); border:none; cursor:pointer; transition:background .3s,width .4s var(--ease-out) }
+        .test-nav-dot.active { background:var(--gold); width:40px }
+        .test-nav-btn { width:44px; height:44px; border-radius:50%; border:1px solid rgba(182,139,64,.35); background:transparent; color:rgba(255,255,255,.7); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:.9rem; transition:all .25s; backdrop-filter:blur(8px) }
+        .test-nav-btn:hover { background:var(--gold); border-color:var(--gold); color:var(--white); transform:scale(1.08) }
 
         /* ═══════════════════════════════════════════
            LATEST NEWS
         ═══════════════════════════════════════════ */
-        .news-section {
-            padding: 100px 0;
-            background: var(--white)
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px
-        }
-        @media(max-width:900px) { .news-grid { grid-template-columns: 1fr 1fr } }
-        @media(max-width:600px) { .news-grid { grid-template-columns: 1fr } }
-        .news-card {
-            background: var(--cream);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: transform .3s, box-shadow .3s
-        }
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .1)
-        }
-        .news-card img {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover
-        }
-        .news-card-body {
-            padding: 24px
-        }
-        .news-card-body span {
-            font-size: .75rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            display: block;
-            margin-bottom: 8px
-        }
-        .news-card-body h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 500;
-            line-height: 1.3;
-            margin-bottom: 12px
-        }
-        .news-card-body p {
-            font-size: .9rem;
-            color: var(--slate);
-            line-height: 1.6;
-            margin-bottom: 16px
-        }
-        .news-read-more {
-            font-size: .8rem;
-            font-weight: 500;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: .05em;
-            transition: color .2s
-        }
-        .news-read-more:hover {
-            color: var(--charcoal)
-        }
+        .news-section { padding:100px 0; background:var(--cream); position:relative }
+        .news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px }
+        @media(max-width:900px) { .news-grid{grid-template-columns:1fr 1fr} }
+        @media(max-width:600px) { .news-grid{grid-template-columns:1fr} }
+        .news-card { background:var(--white); border-radius:8px; overflow:hidden; transition:transform .4s var(--ease-out),box-shadow .4s; transform-style:preserve-3d; border:1px solid rgba(182,139,64,.06) }
+        .news-card:hover { transform:translateY(-8px) rotateX(3deg); box-shadow:0 24px 64px rgba(0,0,0,.12) }
+        .news-card-img-wrap { overflow:hidden; position:relative }
+        .news-card img { width:100%; aspect-ratio:16/9; object-fit:cover; transition:transform .6s var(--ease-out) }
+        .news-card:hover img { transform:scale(1.06) }
+        .news-card-img-wrap::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 60%,rgba(13,15,18,.4) 100%); opacity:0; transition:opacity .4s }
+        .news-card:hover .news-card-img-wrap::after { opacity:1 }
+        .news-card-body { padding:28px }
+        .news-card-body .news-tag { font-size:.72rem; color:var(--gold); text-transform:uppercase; letter-spacing:.12em; display:block; margin-bottom:10px }
+        .news-card-body h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:500; line-height:1.3; margin-bottom:12px; transition:color .2s }
+        .news-card:hover .news-card-body h3 { color:var(--gold) }
+        .news-card-body p { font-size:.88rem; color:var(--slate); line-height:1.7; margin-bottom:18px }
+        .news-read-more { font-size:.8rem; font-weight:600; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; transition:color .2s,gap .2s }
+        .news-read-more:hover { color:var(--charcoal); gap:10px }
+
+        /* ═══════════════════════════════════════════
+           CTA BANNER
+        ═══════════════════════════════════════════ */
+        .cta-banner { padding:80px 0; background:var(--gold); position:relative; overflow:hidden }
+        .cta-banner::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") }
+        .cta-banner-inner { display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap }
+        .cta-banner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:300; color:var(--charcoal); line-height:1.2 }
+        .cta-banner h2 strong { font-weight:600; display:block }
+        .cta-banner p { color:rgba(26,31,36,.7); font-size:.95rem; margin-top:8px }
+        .btn-dark { display:inline-flex; align-items:center; gap:10px; background:var(--charcoal); color:var(--white); font-size:.84rem; font-weight:600; letter-spacing:.04em; padding:18px 40px; border-radius:50px; transition:background .25s,transform .2s,box-shadow .25s; border:none; cursor:pointer; white-space:nowrap }
+        .btn-dark:hover { background:var(--ink); transform:translateY(-2px); box-shadow:0 12px 36px rgba(0,0,0,.3) }
 
         /* ═══════════════════════════════════════════
            FOOTER
         ═══════════════════════════════════════════ */
-        .footer {
-            background: var(--charcoal);
-            padding: 80px 0 0
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-            gap: 48px;
-            padding-bottom: 64px;
-            border-bottom: 1px solid rgba(255, 255, 255, .06)
-        }
-        @media(max-width:1024px) { .footer-grid { grid-template-columns: 1fr 1fr } }
-        @media(max-width:600px) { .footer-grid { grid-template-columns: 1fr } }
-        .footer-brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px
-        }
-        .footer-brand-logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            object-fit: cover
-        }
-        .footer-brand-logo span {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--white);
-            letter-spacing: .08em
-        }
-        .footer-tagline {
-            font-size: .82rem;
-            color: rgba(203, 213, 225, .4);
-            line-height: 1.7;
-            font-weight: 300;
-            max-width: 240px;
-            margin-bottom: 24px
-        }
-        .footer-socials {
-            display: flex;
-            gap: 10px
-        }
-        .footer-socials a {
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(255, 255, 255, .12);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, .4);
-            font-size: .8rem;
-            transition: border-color .2s, color .2s
-        }
-        .footer-socials a:hover {
-            border-color: var(--gold);
-            color: var(--gold)
-        }
-        .footer-col-heading {
-            font-size: .65rem;
-            font-weight: 600;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .25);
-            margin-bottom: 20px
-        }
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px
-        }
-        .footer-links li a {
-            font-size: .84rem;
-            color: rgba(203, 213, 225, .5);
-            font-weight: 300;
-            letter-spacing: .02em;
-            transition: color .2s
-        }
-        .footer-links li a:hover {
-            color: var(--gold)
-        }
-        .footer-contact-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 14px;
-            display: block
-        }
-        .footer-contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px
-        }
-        .footer-contact-list a {
-            font-size: .84rem;
-            color: rgba(203, 213, 225, .5);
-            font-weight: 300;
-            transition: color .2s
-        }
-        .footer-contact-list a:hover {
-            color: var(--gold)
-        }
-        .footer-contact-addr {
-            font-size: .78rem;
-            color: rgba(203, 213, 225, .25);
-            line-height: 1.6;
-            font-weight: 300;
-            margin-top: 4px
-        }
-        .newsletter-desc {
-            font-size: .82rem;
-            color: rgba(203, 213, 225, .4);
-            line-height: 1.6;
-            font-weight: 300;
-            margin-bottom: 16px
-        }
-        .newsletter-form {
-            display: flex;
-            gap: 0;
-            border: 1px solid rgba(255, 255, 255, .1);
-            border-radius: 50px;
-            overflow: hidden
-        }
-        .newsletter-input {
-            flex: 1;
-            background: rgba(255, 255, 255, .04);
-            border: none;
-            outline: none;
-            padding: 12px 18px;
-            font-size: .8rem;
-            color: var(--white);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300
-        }
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, .2)
-        }
-        .newsletter-btn {
-            background: var(--gold);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            padding: 12px 22px;
-            font-size: .78rem;
-            font-weight: 600;
-            letter-spacing: .04em;
-            font-family: 'DM Sans', sans-serif;
-            transition: background .2s
-        }
-        .newsletter-btn:hover {
-            background: var(--gold-light)
-        }
-        .footer-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 0;
-            gap: 16px;
-            flex-wrap: wrap
-        }
-        .footer-copy {
-            font-size: .72rem;
-            color: rgba(203, 213, 225, .2);
-            font-weight: 300;
-            letter-spacing: .04em
-        }
+        .footer { background:var(--charcoal); padding:80px 0 0 }
+        .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:48px; padding-bottom:64px; border-bottom:1px solid rgba(255,255,255,.06) }
+        @media(max-width:1024px) { .footer-grid{grid-template-columns:1fr 1fr} }
+        @media(max-width:600px) { .footer-grid{grid-template-columns:1fr} }
+        .footer-brand-logo { display:flex; align-items:center; gap:12px; margin-bottom:16px }
+        .footer-brand-logo img { width:40px; height:40px; border-radius:6px; object-fit:cover }
+        .footer-brand-logo span { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:500; color:var(--white); letter-spacing:.08em }
+        .footer-tagline { font-size:.82rem; color:rgba(203,213,225,.4); line-height:1.7; font-weight:300; max-width:240px; margin-bottom:24px }
+        .footer-socials { display:flex; gap:10px }
+        .footer-socials a { width:36px; height:36px; border:1px solid rgba(255,255,255,.12); border-radius:4px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.4); font-size:.8rem; transition:border-color .2s,color .2s,transform .2s,background .2s }
+        .footer-socials a:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-3px); background:rgba(182,139,64,.08) }
+        .footer-col-heading { font-size:.65rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:20px }
+        .footer-links { display:flex; flex-direction:column; gap:10px }
+        .footer-links li a { font-size:.84rem; color:rgba(203,213,225,.5); font-weight:300; transition:color .2s,padding-left .2s }
+        .footer-links li a:hover { color:var(--gold); padding-left:4px }
+        .footer-contact-name { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--white); margin-bottom:14px; display:block }
+        .footer-contact-list { display:flex; flex-direction:column; gap:8px }
+        .footer-contact-list a { font-size:.84rem; color:rgba(203,213,225,.5); font-weight:300; transition:color .2s }
+        .footer-contact-list a:hover { color:var(--gold) }
+        .footer-contact-addr { font-size:.78rem; color:rgba(203,213,225,.25); line-height:1.6; font-weight:300; margin-top:4px }
+        .newsletter-desc { font-size:.82rem; color:rgba(203,213,225,.4); line-height:1.6; font-weight:300; margin-bottom:16px }
+        .newsletter-form { display:flex; gap:0; border:1px solid rgba(255,255,255,.1); border-radius:50px; overflow:hidden }
+        .newsletter-input { flex:1; background:rgba(255,255,255,.04); border:none; outline:none; padding:12px 18px; font-size:.8rem; color:var(--white); font-family:'DM Sans',sans-serif; font-weight:300 }
+        .newsletter-input::placeholder { color:rgba(255,255,255,.2) }
+        .newsletter-btn { background:var(--gold); color:var(--white); border:none; cursor:pointer; padding:12px 22px; font-size:.78rem; font-weight:600; letter-spacing:.04em; font-family:'DM Sans',sans-serif; transition:background .2s }
+        .newsletter-btn:hover { background:var(--gold-light) }
+        .footer-bottom { display:flex; align-items:center; justify-content:space-between; padding:20px 0; gap:16px; flex-wrap:wrap }
+        .footer-copy { font-size:.72rem; color:rgba(203,213,225,.2); font-weight:300; letter-spacing:.04em }
 
         /* ═══════════════════════════════════════════
-           WHATSAPP FLOAT & BACK-TO-TOP
+           WHATSAPP FLOAT & BACK-TOP
         ═══════════════════════════════════════════ */
-        .wa-float-wrap {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 700
-        }
-        .wa-float {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: #25d366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.4rem;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, .35);
-            position: relative;
-            transition: transform .25s, box-shadow .25s
-        }
-        .wa-float:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(37, 211, 102, .45)
-        }
-        .wa-pulse {
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            border: 2px solid #25d366;
-            animation: waPulse 2s ease-out infinite
-        }
-        @keyframes waPulse {
-            0% { opacity: .6; transform: scale(1) }
-            100% { opacity: 0; transform: scale(1.5) }
-        }
-        #back-top {
-            position: fixed;
-            bottom: 28px;
-            left: 28px;
-            z-index: 700;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--charcoal);
-            border: 1px solid var(--border);
-            color: var(--white);
-            font-size: .8rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity .3s, visibility .3s, transform .3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #back-top.visible {
-            opacity: 1;
-            visibility: visible
-        }
-        #back-top:hover {
-            transform: translateY(-2px);
-            background: var(--gold)
-        }
+        .wa-float-wrap { position:fixed; bottom:28px; right:28px; z-index:700 }
+        .wa-float { width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:1.4rem; box-shadow:0 8px 24px rgba(37,211,102,.35); position:relative; transition:transform .25s,box-shadow .25s }
+        .wa-float:hover { transform:translateY(-3px) scale(1.08); box-shadow:0 12px 32px rgba(37,211,102,.45) }
+        .wa-pulse { position:absolute; inset:-4px; border-radius:50%; border:2px solid #25d366; animation:waPulse 2s ease-out infinite }
+        @keyframes waPulse { 0%{opacity:.6;transform:scale(1)} 100%{opacity:0;transform:scale(1.5)} }
+        #back-top { position:fixed; bottom:28px; left:28px; z-index:700; width:40px; height:40px; border-radius:50%; background:var(--charcoal); border:1px solid var(--border); color:var(--white); font-size:.8rem; cursor:pointer; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s,transform .3s; display:flex; align-items:center; justify-content:center }
+        #back-top.visible { opacity:1; visibility:visible }
+        #back-top:hover { transform:translateY(-2px); background:var(--gold) }
 
         /* ═══════════════════════════════════════════
            COOKIE NOTICE
         ═══════════════════════════════════════════ */
-        .cookie-hidden {
-            display: none !important;
-        }
-        #cookie-notice {
-            position: fixed;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 8000;
-            width: min(460px, calc(100vw - 32px));
-            background: var(--charcoal);
-            color: var(--white);
-            border-radius: 16px;
-            padding: 26px 28px;
-            box-shadow: 0 12px 48px rgba(0, 0, 0, .55);
-            border: 1px solid rgba(255, 255, 255, .08);
-            transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), visibility .4s;
-        }
-        #cookie-notice.cookie-fade-out {
-            opacity: 0;
-            transform: translateX(-50%) translateY(16px);
-            pointer-events: none;
-            visibility: hidden;
-        }
-        .cookie-title {
-            font-size: .95rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: .02em;
-        }
-        .cookie-text {
-            font-size: .82rem;
-            color: rgba(255, 255, 255, .55);
-            line-height: 1.5;
-            margin-bottom: 18px;
-            font-weight: 300;
-        }
-        .cookie-categories {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .cookie-category {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .cookie-category input[type="checkbox"] {
-            accent-color: var(--gold);
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .cookie-category label {
-            font-size: .8rem;
-            cursor: pointer;
-            color: rgba(255, 255, 255, .7);
-            font-weight: 300;
-            line-height: 1.4;
-        }
-        .cookie-btns {
-            display: flex;
-            gap: 10px;
-        }
-        .cookie-btn {
-            flex: 1;
-            padding: 11px 16px;
-            border-radius: 50px;
-            font-size: .8rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: background .2s, border-color .2s, transform .15s;
-            font-family: 'DM Sans', sans-serif;
-            letter-spacing: .03em;
-            text-align: center;
-        }
-        .cookie-accept {
-            background: var(--gold);
-            color: var(--charcoal);
-        }
-        .cookie-accept:hover {
-            background: var(--gold-light);
-            transform: translateY(-1px);
-        }
-        .cookie-save {
-            background: transparent;
-            border-color: rgba(255, 255, 255, .2);
-            color: var(--white);
-        }
-        .cookie-save:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-1px);
-        }
+        .cookie-hidden { display:none !important }
+        #cookie-notice { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); z-index:8000; width:min(460px,calc(100vw - 32px)); background:var(--charcoal); color:var(--white); border-radius:16px; padding:26px 28px; box-shadow:0 12px 48px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.08); transition:opacity .4s var(--ease-out),transform .4s var(--ease-out),visibility .4s }
+        #cookie-notice.cookie-fade-out { opacity:0; transform:translateX(-50%) translateY(16px); pointer-events:none; visibility:hidden }
+        .cookie-title { font-size:.95rem; font-weight:600; margin-bottom:8px; letter-spacing:.02em }
+        .cookie-text { font-size:.82rem; color:rgba(255,255,255,.55); line-height:1.5; margin-bottom:18px; font-weight:300 }
+        .cookie-categories { display:flex; flex-direction:column; gap:10px; margin-bottom:20px }
+        .cookie-category { display:flex; align-items:center; gap:10px }
+        .cookie-category input[type="checkbox"] { accent-color:var(--gold); width:18px; height:18px; cursor:pointer; flex-shrink:0 }
+        .cookie-category label { font-size:.8rem; cursor:pointer; color:rgba(255,255,255,.7); font-weight:300; line-height:1.4 }
+        .cookie-btns { display:flex; gap:10px }
+        .cookie-btn { flex:1; padding:11px 16px; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; border:1px solid transparent; transition:background .2s,border-color .2s,transform .15s; font-family:'DM Sans',sans-serif; letter-spacing:.03em; text-align:center }
+        .cookie-accept { background:var(--gold); color:var(--charcoal) }
+        .cookie-accept:hover { background:var(--gold-light); transform:translateY(-1px) }
+        .cookie-save { background:transparent; border-color:rgba(255,255,255,.2); color:var(--white) }
+        .cookie-save:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-1px) }
 
         /* ═══════════════════════════════════════════
-           SCROLL REVEAL
+           FLOATING PARTICLES (CSS)
         ═══════════════════════════════════════════ */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity .7s var(--ease-out), transform .7s var(--ease-out)
-        }
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: none
+        .float-orb { position:absolute; border-radius:50%; pointer-events:none; will-change:transform; animation:floatOrb var(--dur,8s) var(--delay,0s) ease-in-out infinite alternate }
+        @keyframes floatOrb { from{transform:translateY(0) rotate(0deg)} to{transform:translateY(-30px) rotate(20deg)} }
+
+        /* ═══════════════════════════════════════════
+           SECTION DIVIDER
+        ═══════════════════════════════════════════ */
+        .gold-divider { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.25 }
+
+        /* ═══════════════════════════════════════════
+           SCROLL REVEAL (fallback)
+        ═══════════════════════════════════════════ */
+        .scroll-reveal { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease-out),transform .7s var(--ease-out) }
+        .scroll-reveal.revealed { opacity:1; transform:none }
+
+        /* ═══════════════════════════════════════════
+           3D TILT UTILITY
+        ═══════════════════════════════════════════ */
+        [data-tilt] { transform-style:preserve-3d; will-change:transform }
+
+        /* ═══════════════════════════════════════════
+           REDUCED MOTION
+        ═══════════════════════════════════════════ */
+        @media(prefers-reduced-motion:reduce) {
+            *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important }
+            .hero-slide { transition:none }
         }
     </style>
 </head>
 <body>
 
-    <!-- CURSOR -->
-    <div id="cursor-dot" aria-hidden="true"></div>
-    <div id="cursor-ring" aria-hidden="true"></div>
+<!-- CURSOR -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="cursor-click-ring" aria-hidden="true"></div>
 
-    <!-- PRELOADER -->
-    <div id="preloader">
-        <div class="preloader-logo">
-            <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-            <span class="preloader-wordmark">GGS</span>
-        </div>
-        <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
-        <span class="preloader-text">Global Gamazine Suppliers · Est. 2012</span>
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="preloader-logo">
+        <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+        <span class="preloader-wordmark">GGS</span>
     </div>
+    <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+    <span class="preloader-text">Global Gamazine Suppliers · Est. 2012</span>
+</div>
 
-    <!-- SCROLL PROGRESS -->
-    <div id="scroll-progress"></div>
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
 
-    <!-- MOBILE NAV -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="solutions.html">Solutions</a>
-        <a href="process.html">Process</a>
-        <a href="projects.html">Projects</a>
-        <a href="epoxy.html">Epoxy</a>
-        <a href="shop.html">Shop</a>
-        <a href="contact.html">Contact</a>
-        <div class="mobile-nav-contact">
-            <a href="tel:+27621503704">+27 62 150 3704</a>
-            <a href="mailto:globalgamazine@gmail.com">globalgamazine@gmail.com</a>
-        </div>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="process.html">Process</a>
+    <a href="projects.html">Projects</a>
+    <a href="epoxy.html">Epoxy</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <div class="mobile-nav-contact">
+        <a href="tel:+27621503704">+27 62 150 3704</a>
+        <a href="mailto:globalgamazine@gmail.com">globalgamazine@gmail.com</a>
     </div>
+</div>
 
-    <!-- HEADER -->
-    <header class="site-header" id="siteHeader">
-        <div class="container header-inner">
-            <a href="index.html" class="logo-wrap">
-                <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-                <span class="logo-text">GGS</span>
-            </a>
-            <nav class="nav-desktop">
-                <a href="index.html" class="active">Home</a>
-                <a href="about.html">About</a>
-                <a href="solutions.html">Solutions</a>
-                <a href="process.html">Process</a>
-                <a href="projects.html">Projects</a>
-                <a href="epoxy.html">Epoxy</a>
-                <a href="shop.html">Shop</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-            <div class="header-cta-group">
-                <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
-                <a href="contact.html#quote" class="header-cta">Get Quote <span class="arrow-icon">→</span></a>
-                <button class="hamburger" id="hamburger" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main>
-
-        <!-- ═══ HERO — 3D SLIDER ═══ -->
-        <section class="hero-section" id="heroSection">
-
-            <!-- 3D Stage -->
-            <div class="hero-3d-stage" id="hero3dStage">
-                <div class="hero-3d-track" id="hero3dTrack">
-
-                    <!-- Slide 1 -->
-                    <div class="hero-slide is-active" data-index="0">
-                        <img src="https://i.postimg.cc/d1FS1Bfq/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Premium Gamazine home exterior" loading="eager">
-                        <div class="hero-slide-overlay"></div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="hero-slide" data-index="1">
-                        <img src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic finish" loading="lazy">
-                        <div class="hero-slide-overlay"></div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="hero-slide" data-index="2">
-                        <img src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat luxury interior" loading="lazy">
-                        <div class="hero-slide-overlay"></div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="hero-slide" data-index="3">
-                        <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy flooring" loading="lazy">
-                        <div class="hero-slide-overlay"></div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="hero-slide" data-index="4">
-                        <img src="https://i.postimg.cc/9fgDbW6s/Whats-App-Image-2026-04-20-at-11-04-44-PM.jpg" alt="Charcoal classic coating" loading="lazy">
-                        <div class="hero-slide-overlay"></div>
-                    </div>
-
-                </div>
-
-                <!-- Ambient glow -->
-                <div class="hero-ambient"></div>
-
-                <!-- Side depth shadows -->
-                <div class="hero-3d-side hero-3d-side-left"></div>
-                <div class="hero-3d-side hero-3d-side-right"></div>
-            </div>
-
-            <!-- Caption (sits above track) -->
-            <div class="hero-caption-wrap">
-                <div class="hero-caption" id="heroCaption">
-                    <div class="hero-slide-badge" id="heroBadge">Premium Wall Coatings · Gauteng</div>
-                    <h1 id="heroHeading">Premium Gamazine Coatings <em>for Homes &amp; Developments</em></h1>
-                    <p id="heroSubtext">From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.</p>
-                    <a href="contact.html#quote" class="btn-hero" id="heroBtn">Get Your Free Quote in 24 Hours <span class="arrow-icon">→</span></a>
-                </div>
-            </div>
-
-            <!-- Arrow navigation -->
-            <button class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-
-            <!-- Slide counter -->
-            <div class="hero-slide-counter" id="heroCounter">
-                <span class="current-num" id="counterCurrent">01</span>
-                <span style="color:rgba(255,255,255,.2);font-size:.7rem;">—</span>
-                <span class="total-num" id="counterTotal">05</span>
-            </div>
-
-            <!-- Dot navigation -->
-            <div class="hero-dots" id="heroDots">
-                <button class="hero-dot is-active" data-slide="0" aria-label="Slide 1"></button>
-                <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
-                <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
-                <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
-                <button class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
-            </div>
-
-            <!-- Autoplay progress bar -->
-            <div class="hero-progress-bar" id="heroProgressBar"></div>
-
-        </section>
-
-        <!-- ═══ WHAT MAKES US DIFFERENT ═══ -->
-        <section class="intro-section">
-            <div class="container">
-                <div class="intro-text scroll-reveal">
-                    <h2>What makes us different</h2>
-                    <p>Since 2012, GGS has delivered premium wall coatings and epoxy flooring with zero deposit, a 15‑year product lifespan, and a free site inspection — because you should never pay for uncertainty.</p>
-                </div>
-                <div class="stats-row scroll-reveal">
-                    <div class="stat-box"><strong>1,200+</strong><p>Projects Completed</p></div>
-                    <div class="stat-box"><strong>14 yr</strong><p>Industry Experience</p></div>
-                    <div class="stat-box"><strong>15 yr</strong><p>Product Lifespan</p></div>
-                    <div class="stat-box"><strong>2–4 d</strong><p>Delivery Turnaround</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══ OUR SERVICES ═══ -->
-        <section class="services-section">
-            <div class="container">
-                <h2 class="section-title scroll-reveal">Our Services</h2>
-                <div class="services-grid scroll-reveal">
-                    <div class="service-card">
-                        <img src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic">
-                        <div class="service-card-overlay"><h3>Gamazine Classic</h3></div>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat">
-                        <div class="service-card-overlay"><h3>Glamour Coat</h3></div>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy Flooring">
-                        <div class="service-card-overlay"><h3>Epoxy Flooring</h3></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══ OUR WORK (TABS) ═══ -->
-        <section class="projects-section">
-            <div class="container">
-                <h2 class="section-title scroll-reveal">Our Work</h2>
-                <div class="tab-menu scroll-reveal">
-                    <button class="active-tab" data-tab="tab-latest">Latest Projects</button>
-                    <button data-tab="tab-ongoing">Ongoing Projects</button>
-                    <button data-tab="tab-completed">Completed Projects</button>
-                </div>
-
-                <!-- Latest Projects (active) -->
-                <div class="tab-content active-tab" id="tab-latest">
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <img src="https://i.ibb.co/272y64t8/35969d6c-72d1-46c7-99ce-6cf4ae788383.jpg" alt="Project">
-                            <div class="project-card-overlay"><h3>Premium Finish</h3><span>Gauteng</span></div>
-                        </div>
-                        <div class="project-card">
-                            <img src="https://i.ibb.co/ZptJHfbL/7a0720ba-39b6-490f-9be8-96db2a97a5cb.jpg" alt="Project">
-                            <div class="project-card-overlay"><h3>Modern Texture</h3><span>Gauteng</span></div>
-                        </div>
-                        <div class="project-card">
-                            <img src="https://i.postimg.cc/9fgDbW6s/Whats-App-Image-2026-04-20-at-11-04-44-PM.jpg" alt="Gamazine Wall Coating Project">
-                            <div class="project-card-overlay"><h3>Charcoal Classic</h3><span>Gauteng</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ongoing Projects (coming soon placeholder) -->
-                <div class="tab-content" id="tab-ongoing">
-                    <div class="projects-grid">
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Completed Projects (coming soon placeholder) -->
-                <div class="tab-content" id="tab-completed">
-                    <div class="projects-grid">
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                        <div class="project-card placeholder-card">
-                            <div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══ LATEST NEWS ═══ -->
-        <section class="news-section">
-            <div class="container">
-                <h2 class="section-title scroll-reveal">Latest News</h2>
-                <div class="news-grid scroll-reveal">
-                    <div class="news-card">
-                        <img src="https://i.postimg.cc/cCpkPgzF/Whats-App-Image-2026-04-19-at-3-47-11-PM-(1).jpg" alt="New Glamour Coat Range">
-                        <div class="news-card-body">
-                            <span>April 2026</span>
-                            <h3>New Glamour Coat Range Released</h3>
-                            <p>Introducing three new metallic finishes now available for luxury interiors.</p>
-                            <a href="#" class="news-read-more">Read More</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <img src="https://i.ibb.co/75QVyXB/Whats-App-Image-2026-04-16-at-9-52-39-AM-1.jpg" alt="50-Unit Estate">
-                        <div class="news-card-body">
-                            <span>March 2026</span>
-                            <h3>50‑Unit Estate Completed</h3>
-                            <p>Delivered full exterior Gamazine coating in 3 days for a Pretoria development.</p>
-                            <a href="#" class="news-read-more">Read More</a>
-                        </div>
-                    </div>
-                    <div class="news-card">
-                        <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy Flooring Demand">
-                        <div class="news-card-body">
-                            <span>February 2026</span>
-                            <h3>Epoxy Flooring Demand Soars</h3>
-                            <p>Garage and kitchen epoxy installations up 40% this quarter.</p>
-                            <a href="#" class="news-read-more">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ═══ FOOTER ═══ -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-brand-logo">
-                        <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
-                        <span>GGS</span>
-                    </div>
-                    <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings &amp; epoxy flooring across Gauteng since 2012.</p>
-                    <div class="footer-socials">
-                        <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <div class="footer-col-heading">Navigate</div>
-                    <ul class="footer-links">
-                        <li><a href="about.html">Company Heritage</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="process.html">Process</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="epoxy.html">Epoxy Flooring</a></li>
-                        <li><a href="shop.html">Online Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-heading">Contact</div>
-                    <span class="footer-contact-name">Global Gamazine Suppliers</span>
-                    <div class="footer-contact-list">
-                        <a href="tel:+27621503704">+27 62 150 3704</a>
-                        <a href="mailto:globalgamazine@gmail.com">globalgamazine@gmail.com</a>
-                        <p class="footer-contact-addr">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</p>
-                    </div>
-                </div>
-                <div class="footer-newsletter">
-                    <div class="footer-col-heading">Stay Updated</div>
-                    <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
-                    <div class="newsletter-form">
-                        <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
-                        <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span class="footer-copy">&copy; 2026 Global Gamazine Suppliers · All rights reserved</span>
-                <span class="footer-copy">Gamazine &amp; Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WHATSAPP FLOAT -->
-    <div class="wa-float-wrap">
-        <a href="https://wa.me/27621503704" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
-            <span class="wa-pulse"></span>
-            <i class="fab fa-whatsapp"></i>
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+        <a href="index.html" class="logo-wrap">
+            <img class="logo-img" src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+            <span class="logo-text">GGS</span>
         </a>
-    </div>
-
-    <!-- BACK TO TOP -->
-    <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- COOKIE NOTICE -->
-    <div id="cookie-notice" class="cookie-hidden">
-        <p class="cookie-title">We use cookies</p>
-        <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
-        <div class="cookie-categories">
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-essential" checked disabled>
-                <label for="cookie-essential">Essential — required for the website to function</label>
-            </div>
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-analytics">
-                <label for="cookie-analytics">Analytics — help us understand how visitors use the site</label>
-            </div>
-            <div class="cookie-category">
-                <input type="checkbox" id="cookie-marketing">
-                <label for="cookie-marketing">Marketing — used for promotional offers and social media</label>
-            </div>
-        </div>
-        <div class="cookie-btns">
-            <button class="cookie-btn cookie-accept" id="cookie-accept-all">Accept All</button>
-            <button class="cookie-btn cookie-save" id="cookie-save-preferences">Save Preferences</button>
+        <nav class="nav-desktop">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="solutions.html">Solutions</a>
+            <a href="process.html">Process</a>
+            <a href="projects.html">Projects</a>
+            <a href="epoxy.html">Epoxy</a>
+            <a href="shop.html">Shop</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-cta-group">
+            <a href="tel:+27621503704" class="header-phone">+27 62 150 3704</a>
+            <a href="contact.html#quote" class="header-cta magnetic-btn">
+                <span>Get Quote</span> <span class="arrow-icon">→</span>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
+</header>
 
-    <script>
-        /* ══════════════════════════════════════════════════
-           CURSOR (original smooth follow — unchanged)
-        ══════════════════════════════════════════════════ */
-        (function() {
-            const dot  = document.getElementById('cursor-dot');
-            const ring = document.getElementById('cursor-ring');
-            if (!dot || !ring) return;
-            let mx=0, my=0, rx=0, ry=0;
-            document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-            const tick = () => {
-                dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
-                rx += (mx-rx)*.12; ry += (my-ry)*.12;
-                ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-                requestAnimationFrame(tick);
-            };
-            tick();
-            document.querySelectorAll('a, button').forEach(el => {
-                el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
-                el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
-            });
-        })();
+<main>
 
-        /* ══════════════════════════════════════════════════
-           PRELOADER (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('preloader').classList.add('done'), 1800)
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-section" id="heroSection">
+        <!-- Three.js WebGL Canvas -->
+        <canvas id="hero-webgl" aria-hidden="true"></canvas>
+
+        <!-- 3D Stage -->
+        <div class="hero-3d-stage" id="hero3dStage">
+            <div class="hero-3d-track" id="hero3dTrack">
+                <div class="hero-slide is-active" data-index="0">
+                    <img src="https://i.postimg.cc/d1FS1Bfq/Whats-App-Image-2026-04-16-at-9-52-39-AM.jpg" alt="Premium Gamazine home exterior" loading="eager">
+                    <div class="hero-slide-overlay"></div>
+                </div>
+                <div class="hero-slide" data-index="1">
+                    <img src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic finish" loading="lazy">
+                    <div class="hero-slide-overlay"></div>
+                </div>
+                <div class="hero-slide" data-index="2">
+                    <img src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat luxury interior" loading="lazy">
+                    <div class="hero-slide-overlay"></div>
+                </div>
+                <div class="hero-slide" data-index="3">
+                    <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy flooring" loading="lazy">
+                    <div class="hero-slide-overlay"></div>
+                </div>
+                <div class="hero-slide" data-index="4">
+                    <img src="https://i.postimg.cc/9fgDbW6s/Whats-App-Image-2026-04-20-at-11-04-44-PM.jpg" alt="Charcoal classic coating" loading="lazy">
+                    <div class="hero-slide-overlay"></div>
+                </div>
+            </div>
+            <div class="hero-ambient"></div>
+            <div class="hero-3d-side hero-3d-side-left"></div>
+            <div class="hero-3d-side hero-3d-side-right"></div>
+        </div>
+
+        <!-- Caption -->
+        <div class="hero-caption-wrap">
+            <div class="hero-caption" id="heroCaption">
+                <div class="hero-slide-badge" id="heroBadge">Premium Wall Coatings · Gauteng</div>
+                <h1 id="heroHeading">Premium Gamazine Coatings <em>for Homes &amp; Developments</em></h1>
+                <p id="heroSubtext">From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.</p>
+                <a href="contact.html#quote" class="btn-hero magnetic-btn" id="heroBtn">
+                    <span>Get Your Free Quote in 24 Hours</span> <span class="arrow-icon">→</span>
+                </a>
+            </div>
+        </div>
+
+        <button class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+        <button class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+        <div class="hero-slide-counter" id="heroCounter">
+            <span class="current-num" id="counterCurrent">01</span>
+            <span style="color:rgba(255,255,255,.2);font-size:.7rem;">—</span>
+            <span class="total-num" id="counterTotal">05</span>
+        </div>
+        <div class="hero-dots" id="heroDots">
+            <button class="hero-dot is-active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+            <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
+            <button class="hero-dot" data-slide="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="hero-progress-bar" id="heroProgressBar"></div>
+    </section>
+
+    <!-- ═══ INTRO / STATS ═══ -->
+    <section class="intro-section" id="statsSection">
+        <div class="container">
+            <div class="intro-text" id="introText">
+                <h2>What makes us different</h2>
+                <p>Since 2012, GGS has delivered premium wall coatings and epoxy flooring with zero deposit, a 15-year product lifespan, and a free site inspection — because you should never pay for uncertainty.</p>
+            </div>
+            <div class="stats-row" id="statsRow">
+                <div class="stat-box" data-tilt data-count="1200" data-suffix="+">
+                    <strong class="stat-num">0+</strong>
+                    <p>Projects Completed</p>
+                    <div class="stat-line"></div>
+                </div>
+                <div class="stat-box" data-tilt data-count="14" data-suffix=" yr">
+                    <strong class="stat-num">0 yr</strong>
+                    <p>Industry Experience</p>
+                    <div class="stat-line"></div>
+                </div>
+                <div class="stat-box" data-tilt data-count="15" data-suffix=" yr">
+                    <strong class="stat-num">0 yr</strong>
+                    <p>Product Lifespan</p>
+                    <div class="stat-line"></div>
+                </div>
+                <div class="stat-box" data-tilt data-static="2–4 d">
+                    <strong class="stat-num">2–4 d</strong>
+                    <p>Delivery Turnaround</p>
+                    <div class="stat-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SERVICES — 3D FLIP ═══ -->
+    <section class="services-section" id="servicesSection">
+        <div class="container">
+            <span class="section-label">What we offer</span>
+            <h2 class="section-title">Our <em>Services</em></h2>
+            <p class="section-sub">Premium coatings and flooring solutions — applied by certified professionals, backed by a 15-year guarantee.</p>
+            <div class="services-grid">
+                <!-- Gamazine Classic -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="https://i.ibb.co/VWmmbhVW/Whats-App-Image-2026-04-16-at-9-52-40-AM.jpg" alt="Gamazine Classic">
+                            <div class="service-card-front-overlay">
+                                <h3>Gamazine Classic</h3>
+                                <p class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</p>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div class="service-back-icon"><i class="fas fa-paint-roller"></i></div>
+                            <h3>Gamazine Classic</h3>
+                            <p>Signature exterior texture coating. Self-priming, weather-resistant, 50+ colour options with a 15-year product lifespan.</p>
+                            <div class="service-back-price">From <strong>R250</strong> <span>/ 20L</span></div>
+                            <a href="solutions.html" class="service-back-cta">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Glamour Coat -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="https://i.ibb.co/bSqgrQs/Whats-App-Image-2026-04-19-at-3-47-10-PM.jpg" alt="Glamour Coat">
+                            <div class="service-card-front-overlay">
+                                <h3>Glamour Coat</h3>
+                                <p class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</p>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div class="service-back-icon"><i class="fas fa-gem"></i></div>
+                            <h3>Glamour Coat</h3>
+                            <p>Metallic and silk interior finish. Transforms any wall into a statement piece. Three new 2026 shades just released.</p>
+                            <div class="service-back-price">From <strong>R320</strong> <span>/ 20L</span></div>
+                            <a href="solutions.html" class="service-back-cta">View Range →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Epoxy Flooring -->
+                <div class="service-card">
+                    <div class="service-card-inner">
+                        <div class="service-card-front">
+                            <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy Flooring">
+                            <div class="service-card-front-overlay">
+                                <h3>Epoxy Flooring</h3>
+                                <p class="flip-hint"><i class="fas fa-sync-alt"></i> Hover to explore</p>
+                            </div>
+                        </div>
+                        <div class="service-card-back">
+                            <div class="service-back-icon"><i class="fas fa-layer-group"></i></div>
+                            <h3>Epoxy Flooring</h3>
+                            <p>Industrial-grade seamless floor coatings. Installed by our certified team in 48 hours. Zero mess. 10-year guarantee.</p>
+                            <div class="service-back-price">Custom <strong>Quote</strong> <span>per m²</span></div>
+                            <a href="epoxy.html" class="service-back-cta">Get Quote →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHY CHOOSE GGS — FEATURE CARDS ═══ -->
+    <section class="features-section" id="featuresSection">
+        <div class="container">
+            <span class="section-label">Our promise</span>
+            <h2 class="section-title">Why Choose <em>GGS</em></h2>
+            <p class="section-sub">Six reasons 1,200+ clients trust us with their most visible surfaces.</p>
+            <div class="features-grid">
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Zero Deposit</h3>
+                    <p>Pay only on delivery. No upfront cash. No financial risk. We earn your trust before you spend a rand.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-hard-hat"></i></div>
+                    <h3>Free Site Inspection</h3>
+                    <p>Our expert consultants visit your site at no charge. Get an accurate quote with zero obligation.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Certified Team</h3>
+                    <p>Every application is executed by our certified professional team, trained to manufacturer specification.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>15-Year Lifespan</h3>
+                    <p>Our Gamazine products are engineered for longevity. Premium ingredients, no shortcuts.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>2–4 Day Delivery</h3>
+                    <p>Fast, reliable turnaround across Johannesburg, Pretoria, and Randburg. We don't keep you waiting.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon"><i class="fas fa-award"></i></div>
+                    <h3>14 Years Experience</h3>
+                    <p>Founded in 2012, GGS has coated over 1,200 projects across Gauteng. Experience you can see on every wall.</p>
+                    <div class="feature-card-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ OUR WORK (TABS) ═══ -->
+    <section class="projects-section" id="projectsSection">
+        <div class="container">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-title">Our <em>Work</em></h2>
+            <p class="section-sub">Every project tells a story of precision, quality, and care.</p>
+            <div class="tab-menu">
+                <button class="active-tab" data-tab="tab-latest">Latest Projects</button>
+                <button data-tab="tab-ongoing">Ongoing Projects</button>
+                <button data-tab="tab-completed">Completed Projects</button>
+            </div>
+            <div class="tab-content active-tab" id="tab-latest">
+                <div class="projects-grid">
+                    <div class="project-card" data-tilt>
+                        <img src="https://i.ibb.co/272y64t8/35969d6c-72d1-46c7-99ce-6cf4ae788383.jpg" alt="Project">
+                        <div class="project-card-overlay"><h3>Premium Finish</h3><span>Gauteng</span></div>
+                    </div>
+                    <div class="project-card" data-tilt>
+                        <img src="https://i.ibb.co/ZptJHfbL/7a0720ba-39b6-490f-9be8-96db2a97a5cb.jpg" alt="Project">
+                        <div class="project-card-overlay"><h3>Modern Texture</h3><span>Gauteng</span></div>
+                    </div>
+                    <div class="project-card" data-tilt>
+                        <img src="https://i.postimg.cc/9fgDbW6s/Whats-App-Image-2026-04-20-at-11-04-44-PM.jpg" alt="Gamazine Wall Coating Project">
+                        <div class="project-card-overlay"><h3>Charcoal Classic</h3><span>Gauteng</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab-ongoing">
+                <div class="projects-grid">
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab-completed">
+                <div class="projects-grid">
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                    <div class="project-card placeholder-card"><div class="placeholder-content"><i class="fas fa-plus"></i><span>Coming Soon</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS — 3D STACK ═══ -->
+    <section class="testimonials-section" id="testimonialsSection">
+        <div class="testimonials-bg-shape s1"></div>
+        <div class="testimonials-bg-shape s2"></div>
+        <div class="container">
+            <span class="section-label" style="color:rgba(182,139,64,.6)">Client voices</span>
+            <h2 class="section-title" style="color:var(--white);margin-bottom:8px">What Our <em>Clients Say</em></h2>
+            <p class="section-sub">Over 1,200 projects. Countless happy walls.</p>
+            <div class="test-stack-wrap">
+                <div class="test-stack" id="testStack">
+                    <!-- Card 0 -->
+                    <div class="test-card state-0" data-index="0">
+                        <span class="test-quote-icon">"</span>
+                        <p class="test-text">GGS completely transformed our estate's exterior. The Gamazine Classic finish is flawless — no deposit required made the decision even easier. Delivered in 3 days for all 50 units. Absolutely professional.</p>
+                        <div class="test-author">
+                            <div class="test-avatar">JM</div>
+                            <div class="test-info">
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <strong>James Mokoena</strong>
+                                <span>Estate Developer · Pretoria</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 1 -->
+                    <div class="test-card state-1" data-index="1">
+                        <span class="test-quote-icon">"</span>
+                        <p class="test-text">We've used GGS on three separate builds now. The quality of the Glamour Coat interior finish is unlike anything else available at this price. Our clients always ask about it. Couldn't recommend more highly.</p>
+                        <div class="test-author">
+                            <div class="test-avatar">PN</div>
+                            <div class="test-info">
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <strong>Priya Naidoo</strong>
+                                <span>Interior Architect · Sandton</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="test-card state-2" data-index="2">
+                        <span class="test-quote-icon">"</span>
+                        <p class="test-text">The epoxy flooring team was meticulous. My garage and kitchen look like something out of a magazine. Zero deposit, clean installation, done on time. GGS is the real deal — genuine experts.</p>
+                        <div class="test-author">
+                            <div class="test-avatar">TK</div>
+                            <div class="test-info">
+                                <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <strong>Thabo Khumalo</strong>
+                                <span>Homeowner · Johannesburg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-controls">
+                    <div class="test-nav-dots">
+                        <button class="test-nav-dot active" data-slide="0"></button>
+                        <button class="test-nav-dot" data-slide="1"></button>
+                        <button class="test-nav-dot" data-slide="2"></button>
+                    </div>
+                    <div style="display:flex;gap:10px">
+                        <button class="test-nav-btn" id="testPrev"><i class="fas fa-chevron-left"></i></button>
+                        <button class="test-nav-btn" id="testNext"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ LATEST NEWS ═══ -->
+    <section class="news-section" id="newsSection">
+        <div class="container">
+            <span class="section-label">Latest from GGS</span>
+            <h2 class="section-title">Latest <em>News</em></h2>
+            <p class="section-sub">Stay updated with GGS product launches, project completions, and industry insights.</p>
+            <div class="news-grid">
+                <div class="news-card" data-tilt>
+                    <div class="news-card-img-wrap">
+                        <img src="https://i.postimg.cc/cCpkPgzF/Whats-App-Image-2026-04-19-at-3-47-11-PM-(1).jpg" alt="New Glamour Coat Range">
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">April 2026</span>
+                        <h3>New Glamour Coat Range Released</h3>
+                        <p>Introducing three new metallic finishes now available for luxury interiors.</p>
+                        <a href="#" class="news-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card" data-tilt>
+                    <div class="news-card-img-wrap">
+                        <img src="https://i.ibb.co/75QVyXB/Whats-App-Image-2026-04-16-at-9-52-39-AM-1.jpg" alt="50-Unit Estate">
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">March 2026</span>
+                        <h3>50-Unit Estate Completed</h3>
+                        <p>Delivered full exterior Gamazine coating in 3 days for a Pretoria development.</p>
+                        <a href="#" class="news-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card" data-tilt>
+                    <div class="news-card-img-wrap">
+                        <img src="https://i.postimg.cc/W15HTcJW/Screenshot-2026-04-24-182111.png" alt="Epoxy Flooring Demand">
+                    </div>
+                    <div class="news-card-body">
+                        <span class="news-tag">February 2026</span>
+                        <h3>Epoxy Flooring Demand Soars</h3>
+                        <p>Garage and kitchen epoxy installations up 40% this quarter across Gauteng.</p>
+                        <a href="#" class="news-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA BANNER ═══ -->
+    <div class="cta-banner" id="ctaBanner">
+        <div class="container">
+            <div class="cta-banner-inner">
+                <div>
+                    <h2>Ready to transform <strong>your walls?</strong></h2>
+                    <p>Free site inspection · Zero deposit · 24-hour quote turnaround</p>
+                </div>
+                <a href="contact.html#quote" class="btn-dark magnetic-btn">
+                    Book Free Site Visit <span style="margin-left:4px">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-logo">
+                    <img src="https://i.ibb.co/cc0QLQFJ/Whats-App-Image-2026-04-20-at-7-21-27-PM.jpg" alt="GGS Logo">
+                    <span>GGS</span>
+                </div>
+                <p class="footer-tagline">Global Gamazine Suppliers. Premium wall coatings &amp; epoxy flooring across Gauteng since 2012.</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/share/14Zv2kjykkp/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@gamazine.supplier0" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-heading">Navigate</div>
+                <ul class="footer-links">
+                    <li><a href="about.html">Company Heritage</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="process.html">Process</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="epoxy.html">Epoxy Flooring</a></li>
+                    <li><a href="shop.html">Online Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-col-heading">Contact</div>
+                <span class="footer-contact-name">Global Gamazine Suppliers</span>
+                <div class="footer-contact-list">
+                    <a href="tel:+27621503704">+27 62 150 3704</a>
+                    <a href="mailto:globalgamazine@gmail.com">globalgamazine@gmail.com</a>
+                    <p class="footer-contact-addr">12 Granite Road, Kya Sands<br>Randburg, Gauteng 2169</p>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-heading">Stay Updated</div>
+                <p class="newsletter-desc">Seasonal offers, product updates, and project inspiration.</p>
+                <div class="newsletter-form">
+                    <input class="newsletter-input" type="email" placeholder="your@email.com" id="newsletterEmail">
+                    <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Global Gamazine Suppliers · All rights reserved</span>
+            <span class="footer-copy">Gamazine &amp; Epoxy · Johannesburg · Pretoria · Randburg · Gauteng</span>
+        </div>
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float-wrap">
+    <a href="https://wa.me/27621503704" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="wa-pulse"></span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- COOKIE NOTICE -->
+<div id="cookie-notice" class="cookie-hidden">
+    <p class="cookie-title">We use cookies</p>
+    <p class="cookie-text">We use essential cookies to ensure the site functions, and we'd like to use analytics and marketing cookies to improve your experience.</p>
+    <div class="cookie-categories">
+        <div class="cookie-category"><input type="checkbox" id="cookie-essential" checked disabled><label for="cookie-essential">Essential — required for the website to function</label></div>
+        <div class="cookie-category"><input type="checkbox" id="cookie-analytics"><label for="cookie-analytics">Analytics — help us understand how visitors use the site</label></div>
+        <div class="cookie-category"><input type="checkbox" id="cookie-marketing"><label for="cookie-marketing">Marketing — used for promotional offers and social media</label></div>
+    </div>
+    <div class="cookie-btns">
+        <button class="cookie-btn cookie-accept" id="cookie-accept-all">Accept All</button>
+        <button class="cookie-btn cookie-save" id="cookie-save-preferences">Save Preferences</button>
+    </div>
+</div>
+
+<!-- LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════════
+   CURSOR
+══════════════════════════════════════════════════ */
+(function() {
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    const clickRing = document.getElementById('cursor-click-ring');
+    if (!dot || !ring) return;
+    let mx=0, my=0, rx=0, ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    const tick = () => {
+        dot.style.left = mx+'px'; dot.style.top = my+'px';
+        rx += (mx-rx)*.12; ry += (my-ry)*.12;
+        ring.style.left = rx+'px'; ring.style.top = ry+'px';
+        requestAnimationFrame(tick);
+    };
+    tick();
+    document.querySelectorAll('a,button,[data-tilt],.service-card').forEach(el => {
+        el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
+    });
+    document.addEventListener('click', e => {
+        clickRing.style.left = e.clientX+'px';
+        clickRing.style.top = e.clientY+'px';
+        clickRing.style.width = '0'; clickRing.style.height = '0'; clickRing.style.opacity = '1';
+        clickRing.style.transition = 'none';
+        requestAnimationFrame(()=>{
+            clickRing.style.transition = 'width .6s ease-out, height .6s ease-out, opacity .6s ease-out';
+            clickRing.style.width = '80px'; clickRing.style.height = '80px';
+            clickRing.style.opacity = '0';
+            clickRing.style.marginLeft = '-40px'; clickRing.style.marginTop = '-40px';
         });
+    });
+})();
 
-        /* ══════════════════════════════════════════════════
-           SCROLL PROGRESS (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        const progressBar = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-            const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            progressBar.style.width = pct + '%'
-        }, { passive: true });
+/* ══════════════════════════════════════════════════
+   PRELOADER
+══════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+    setTimeout(()=>document.getElementById('preloader').classList.add('done'), 1800);
+});
 
-        /* ══════════════════════════════════════════════════
-           HEADER & BACK-TOP (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        const header = document.getElementById('siteHeader'),
-              backTop = document.getElementById('back-top');
-        window.addEventListener('scroll', () => {
-            const y = window.scrollY;
-            header.classList.toggle('scrolled', y > 30);
-            backTop.classList.toggle('visible', y > 500)
-        }, { passive: true });
+/* ══════════════════════════════════════════════════
+   SCROLL PROGRESS
+══════════════════════════════════════════════════ */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+    const pct = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = pct + '%';
+}, { passive:true });
 
-        /* ══════════════════════════════════════════════════
-           MOBILE NAV (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        const hamburger = document.getElementById('hamburger'),
-              mobileNav = document.getElementById('mobileNav');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            mobileNav.classList.toggle('open');
-            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : ''
-        });
-        mobileNav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                mobileNav.classList.remove('open');
-                document.body.style.overflow = ''
-            })
-        });
+/* ══════════════════════════════════════════════════
+   HEADER & BACK-TOP
+══════════════════════════════════════════════════ */
+const header = document.getElementById('siteHeader');
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 30);
+    backTop.classList.toggle('visible', y > 500);
+}, { passive:true });
 
-        /* ══════════════════════════════════════════════════
-           TABS (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        document.querySelectorAll('.tab-menu button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active-tab'));
-                btn.classList.add('active-tab');
-                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
-                document.getElementById(btn.dataset.tab).classList.add('active-tab')
-            })
-        });
+/* ══════════════════════════════════════════════════
+   MOBILE NAV
+══════════════════════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', ()=>{ hamburger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow=''; });
+});
 
-        /* ══════════════════════════════════════════════════
-           SCROLL REVEAL (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        const revealObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('revealed');
-                    revealObs.unobserve(e.target)
-                }
-            })
-        }, { threshold: .15 });
-        document.querySelectorAll('.scroll-reveal').forEach(el => revealObs.observe(el));
+/* ══════════════════════════════════════════════════
+   TABS
+══════════════════════════════════════════════════ */
+document.querySelectorAll('.tab-menu button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-menu button').forEach(b=>b.classList.remove('active-tab'));
+        btn.classList.add('active-tab');
+        document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active-tab'));
+        document.getElementById(btn.dataset.tab).classList.add('active-tab');
+    });
+});
 
-        /* ══════════════════════════════════════════════════
-           NEWSLETTER (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        function handleNewsletter() {
-            const input = document.getElementById('newsletterEmail');
-            if (input.value && input.value.includes('@')) {
-                localStorage.setItem('ggs_newsletter', input.value);
-                input.value = '';
-                input.placeholder = 'Subscribed! ✓'
-            } else {
-                alert('Please enter a valid email.')
-            }
+/* ══════════════════════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════════════════════ */
+function handleNewsletter() {
+    const input = document.getElementById('newsletterEmail');
+    if (input.value && input.value.includes('@')) {
+        localStorage.setItem('ggs_newsletter', input.value);
+        input.value = ''; input.placeholder = 'Subscribed! ✓';
+    } else { alert('Please enter a valid email.'); }
+}
+
+/* ══════════════════════════════════════════════════
+   COOKIE CONSENT
+══════════════════════════════════════════════════ */
+(function(){
+    const cn=document.getElementById('cookie-notice');
+    const aa=document.getElementById('cookie-accept-all');
+    const sp=document.getElementById('cookie-save-preferences');
+    const ac=document.getElementById('cookie-analytics');
+    const mc=document.getElementById('cookie-marketing');
+    function getConsent(){try{return JSON.parse(localStorage.getItem('ggs-cookie-consent'))}catch(e){return null}}
+    function saveConsent(obj){try{localStorage.setItem('ggs-cookie-consent',JSON.stringify(obj))}catch(e){}}
+    function hideNotice(){cn.classList.add('cookie-fade-out');setTimeout(()=>{cn.classList.add('cookie-hidden');cn.classList.remove('cookie-fade-out');},420);}
+    if(!getConsent()){cn.classList.remove('cookie-hidden');}
+    aa.addEventListener('click',()=>{saveConsent({essential:true,analytics:true,marketing:true});hideNotice();});
+    sp.addEventListener('click',()=>{saveConsent({essential:true,analytics:ac.checked,marketing:mc.checked});hideNotice();});
+})();
+
+/* ══════════════════════════════════════════════════
+   ★  HERO 3D SLIDER  ★
+══════════════════════════════════════════════════ */
+(function(){
+    const slides = [
+        { badge:'Premium Wall Coatings · Gauteng', heading:'Premium Gamazine Coatings <em>for Homes &amp; Developments</em>', sub:'From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.', cta:'Get Your Free Quote in 24 Hours', href:'contact.html#quote' },
+        { badge:'Gamazine Classic · Exterior Finish', heading:'Timeless Texture, <em>Built to Last 15 Years</em>', sub:'Our signature Gamazine Classic delivers an enduring textured finish that protects and beautifies any exterior surface.', cta:'Explore Gamazine Classic', href:'solutions.html' },
+        { badge:'Glamour Coat · Interior Luxury', heading:'Glamour Coat — <em>Where Walls Become Art</em>', sub:'Metallic and silk finishes that transform interiors into statement spaces. Available in three new 2026 shades.', cta:'View Glamour Coat Range', href:'solutions.html' },
+        { badge:'Epoxy Flooring · Premium Surfaces', heading:'Industrial-Strength Epoxy, <em>Garage to Kitchen</em>', sub:'Seamless, durable epoxy floor coatings installed by our certified team. Zero mess. Guaranteed finish.', cta:'Learn About Epoxy Flooring', href:'epoxy.html' },
+        { badge:'Portfolio · Gauteng Projects', heading:'Over 1,200 Projects <em>Delivered Across Gauteng</em>', sub:'From single residences to 50-unit developments — we coat them all with the same precision and care.', cta:'See Our Work', href:'projects.html' }
+    ];
+    let current=0, prev=-1, isAnim=false;
+    const TOTAL=slides.length, AUTOPLAY_MS=5500;
+    const slideEls=document.querySelectorAll('.hero-slide');
+    const dotEls=document.querySelectorAll('.hero-dot');
+    const badge=document.getElementById('heroBadge');
+    const heading=document.getElementById('heroHeading');
+    const subtext=document.getElementById('heroSubtext');
+    const heroBtn=document.getElementById('heroBtn');
+    const counterCur=document.getElementById('counterCurrent');
+    const counterTot=document.getElementById('counterTotal');
+    const progressEl=document.getElementById('heroProgressBar');
+    const prevBtn=document.getElementById('heroPrev');
+    const nextBtn=document.getElementById('heroNext');
+    const heroSection=document.getElementById('heroSection');
+    counterTot.textContent=String(TOTAL).padStart(2,'0');
+    let autoTimer=null, progTimer=null, progStart=null;
+
+    function startProgress(){
+        clearInterval(progTimer);
+        progressEl.style.transition='none'; progressEl.style.width='0%';
+        progStart=Date.now();
+        progTimer=setInterval(()=>{
+            const elapsed=Date.now()-progStart;
+            const w=Math.min((elapsed/AUTOPLAY_MS)*100,100);
+            progressEl.style.transition='width 0.1s linear'; progressEl.style.width=w+'%';
+            if(w>=100) clearInterval(progTimer);
+        },80);
+    }
+    function startAutoplay(){clearInterval(autoTimer);startProgress();autoTimer=setInterval(()=>goTo((current+1)%TOTAL,'next'),AUTOPLAY_MS);}
+    function stopAutoplay(){clearInterval(autoTimer);clearInterval(progTimer);progressEl.style.width='0%';}
+
+    function animateCaption(data){
+        badge.className='hero-slide-badge hero-caption-anim'; badge.textContent=data.badge;
+        heading.className=''; heading.innerHTML=data.heading;
+        subtext.className=''; subtext.textContent=data.sub;
+        heroBtn.className='btn-hero magnetic-btn'; heroBtn.innerHTML='<span>'+data.cta+'</span> <span class="arrow-icon">→</span>'; heroBtn.href=data.href;
+        void badge.offsetWidth;
+        badge.className='hero-slide-badge hero-caption-anim';
+        heading.className='hero-caption-anim-delay';
+        subtext.className='hero-caption-anim-delay2';
+        heroBtn.className='btn-hero magnetic-btn hero-caption-anim-delay3';
+    }
+
+    function goTo(index,direction){
+        if(isAnim||index===current) return;
+        isAnim=true; prev=current; current=index;
+        const prevSlide=slideEls[prev], nextSlide=slideEls[current];
+        prevSlide.classList.remove('is-active'); prevSlide.classList.add('is-prev');
+        nextSlide.style.transform=direction==='next'?'translateX(100%) rotateY(-22deg) scale(0.88)':'translateX(-100%) rotateY(22deg) scale(0.88)';
+        nextSlide.style.opacity='0'; nextSlide.style.transition='none'; nextSlide.style.pointerEvents='all';
+        void nextSlide.offsetWidth;
+        nextSlide.style.transition=''; nextSlide.classList.add('is-active'); nextSlide.style.transform=''; nextSlide.style.opacity='';
+        dotEls.forEach((d,i)=>d.classList.toggle('is-active',i===current));
+        counterCur.textContent=String(current+1).padStart(2,'0');
+        animateCaption(slides[current]);
+        setTimeout(()=>{ prevSlide.classList.remove('is-prev'); prevSlide.style.transform=''; prevSlide.style.opacity=''; prevSlide.style.pointerEvents=''; isAnim=false; },1150);
+        startProgress();
+    }
+    prevBtn.addEventListener('click',()=>{stopAutoplay();goTo((current-1+TOTAL)%TOTAL,'prev');startAutoplay();});
+    nextBtn.addEventListener('click',()=>{stopAutoplay();goTo((current+1)%TOTAL,'next');startAutoplay();});
+    dotEls.forEach((dot,i)=>{dot.addEventListener('click',()=>{if(i===current)return;stopAutoplay();goTo(i,i>current?'next':'prev');startAutoplay();});});
+    let touchStartX=0,touchStartY=0;
+    heroSection.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;},{passive:true});
+    heroSection.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>48){stopAutoplay();goTo(dx<0?(current+1)%TOTAL:(current-1+TOTAL)%TOTAL,dx<0?'next':'prev');startAutoplay();}},{passive:true});
+    document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){stopAutoplay();goTo((current-1+TOTAL)%TOTAL,'prev');startAutoplay();}else if(e.key==='ArrowRight'){stopAutoplay();goTo((current+1)%TOTAL,'next');startAutoplay();}});
+    heroSection.addEventListener('mouseenter',stopAutoplay);
+    heroSection.addEventListener('mouseleave',startAutoplay);
+    document.addEventListener('visibilitychange',()=>{document.hidden?stopAutoplay():startAutoplay();});
+    animateCaption(slides[0]);
+    startAutoplay();
+})();
+
+/* ══════════════════════════════════════════════════
+   ★  THREE.JS WebGL HERO SCENE  ★
+══════════════════════════════════════════════════ */
+(function(){
+    if(typeof THREE==='undefined') return;
+    const canvas=document.getElementById('hero-webgl');
+    if(!canvas) return;
+    const hero=document.getElementById('heroSection');
+    const W=hero.offsetWidth, H=hero.offsetHeight;
+
+    const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(W,H);
+    renderer.setClearColor(0x000000,0);
+
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(60,W/H,0.1,200);
+    camera.position.z=12;
+
+    // Lighting for mesh shapes
+    const ambLight=new THREE.AmbientLight(0xb68b40,0.4);
+    scene.add(ambLight);
+    const ptLight1=new THREE.PointLight(0xd4aa62,2.5,40);
+    ptLight1.position.set(8,6,6);
+    scene.add(ptLight1);
+    const ptLight2=new THREE.PointLight(0xb68b40,1.5,30);
+    ptLight2.position.set(-8,-4,4);
+    scene.add(ptLight2);
+
+    // Materials
+    const wireMat=new THREE.LineBasicMaterial({color:0xb68b40,transparent:true,opacity:.35});
+    const wireMat2=new THREE.LineBasicMaterial({color:0xd4aa62,transparent:true,opacity:.2});
+    const meshMat=new THREE.MeshPhongMaterial({color:0xb68b40,shininess:80,transparent:true,opacity:.08,wireframe:false});
+
+    // Shape definitions
+    const shapeDefs=[
+        {geo:new THREE.IcosahedronGeometry(1.4,0),x:-9,y:3,z:-2,rx:.004,ry:.007},
+        {geo:new THREE.OctahedronGeometry(1.0,0),x:9,y:2,z:-1,rx:.006,ry:.004},
+        {geo:new THREE.IcosahedronGeometry(.7,0),x:-7,y:-3,z:1,rx:.009,ry:.005},
+        {geo:new THREE.OctahedronGeometry(1.3,0),x:7,y:-2.5,z:-3,rx:.003,ry:.008},
+        {geo:new THREE.IcosahedronGeometry(.5,0),x:0,y:4.5,z:0,rx:.01,ry:.006},
+        {geo:new THREE.TetrahedronGeometry(.9,0),x:-5,y:0,z:2,rx:.007,ry:.009},
+        {geo:new THREE.TetrahedronGeometry(1.1,0),x:5.5,y:.5,z:-2,rx:.005,ry:.007},
+        {geo:new THREE.IcosahedronGeometry(.6,0),x:2,y:-4.5,z:1,rx:.008,ry:.004},
+    ];
+
+    const meshes=[];
+    shapeDefs.forEach((def,i)=>{
+        const edges=new THREE.EdgesGeometry(def.geo);
+        const mat=i%2===0?wireMat.clone():wireMat2.clone();
+        const wire=new THREE.LineSegments(edges,mat);
+        wire.position.set(def.x,def.y,def.z);
+        wire.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);
+        wire.userData={rx:def.rx,ry:def.ry,baseY:def.y,floatSpeed:0.2+Math.random()*0.3,floatOff:Math.random()*Math.PI*2};
+        scene.add(wire);
+        meshes.push(wire);
+
+        // Solid ghost behind wire
+        if(i<4){
+            const solid=new THREE.Mesh(def.geo,meshMat.clone());
+            solid.position.copy(wire.position);
+            solid.rotation.copy(wire.rotation);
+            solid.userData=wire.userData;
+            scene.add(solid);
+            meshes.push(solid);
         }
+    });
 
-        /* ══════════════════════════════════════════════════
-           COOKIE CONSENT (original — unchanged)
-        ══════════════════════════════════════════════════ */
-        (function() {
-            const cn = document.getElementById('cookie-notice');
-            const aa = document.getElementById('cookie-accept-all');
-            const sp = document.getElementById('cookie-save-preferences');
-            const ac = document.getElementById('cookie-analytics');
-            const mc = document.getElementById('cookie-marketing');
-            function getConsent() {
-                try { return JSON.parse(localStorage.getItem('ggs-cookie-consent')) } catch (e) { return null }
+    // Particles
+    const pCount=180;
+    const pPositions=new Float32Array(pCount*3);
+    const pSpeeds=[];
+    for(let i=0;i<pCount;i++){
+        pPositions[i*3]=(Math.random()-.5)*28;
+        pPositions[i*3+1]=(Math.random()-.5)*18;
+        pPositions[i*3+2]=(Math.random()-.5)*14-4;
+        pSpeeds.push({x:(Math.random()-.5)*.002,y:(Math.random()-.5)*.002});
+    }
+    const pGeo=new THREE.BufferGeometry();
+    pGeo.setAttribute('position',new THREE.BufferAttribute(pPositions,3));
+    const pMat=new THREE.PointsMaterial({color:0xd4aa62,size:.05,transparent:true,opacity:.7});
+    const particles=new THREE.Points(pGeo,pMat);
+    scene.add(particles);
+
+    let mouseX=0,mouseY=0;
+    let targetCamX=0,targetCamY=0;
+    document.addEventListener('mousemove',e=>{
+        mouseX=(e.clientX/window.innerWidth-.5)*3;
+        mouseY=-(e.clientY/window.innerHeight-.5)*2;
+    });
+    // Mobile gyroscope
+    if(window.DeviceOrientationEvent){
+        window.addEventListener('deviceorientation',e=>{
+            if(e.gamma!=null&&e.beta!=null){
+                mouseX=e.gamma/45*1.5;
+                mouseY=-e.beta/90*1.5;
             }
-            function saveConsent(obj) {
-                try { localStorage.setItem('ggs-cookie-consent', JSON.stringify(obj)) } catch (e) {}
-            }
-            function hideNotice() {
-                cn.classList.add('cookie-fade-out');
-                setTimeout(() => {
-                    cn.classList.add('cookie-hidden');
-                    cn.classList.remove('cookie-fade-out');
-                }, 420);
-            }
-            if (!getConsent()) { cn.classList.remove('cookie-hidden'); }
-            aa.addEventListener('click', () => {
-                saveConsent({ essential: true, analytics: true, marketing: true });
-                hideNotice();
+        },{passive:true});
+    }
+
+    const clock=new THREE.Clock();
+    let animId;
+    function animate(){
+        animId=requestAnimationFrame(animate);
+        const t=clock.getElapsedTime();
+
+        meshes.forEach(m=>{
+            if(!m.userData.rx) return;
+            m.rotation.x+=m.userData.rx;
+            m.rotation.y+=m.userData.ry;
+            m.position.y=m.userData.baseY+Math.sin(t*m.userData.floatSpeed+m.userData.floatOff)*0.4;
+        });
+
+        // Animate particles
+        const pos=pGeo.attributes.position.array;
+        for(let i=0;i<pCount;i++){
+            pos[i*3]+=pSpeeds[i].x;
+            pos[i*3+1]+=pSpeeds[i].y;
+            if(Math.abs(pos[i*3])>14) pSpeeds[i].x*=-1;
+            if(Math.abs(pos[i*3+1])>9) pSpeeds[i].y*=-1;
+        }
+        pGeo.attributes.position.needsUpdate=true;
+        particles.rotation.z=t*0.008;
+
+        // Camera mouse follow
+        targetCamX+=(mouseX-targetCamX)*.04;
+        targetCamY+=(mouseY-targetCamY)*.04;
+        camera.position.x=targetCamX;
+        camera.position.y=targetCamY;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene,camera);
+    }
+    animate();
+
+    // Resize
+    window.addEventListener('resize',()=>{
+        const w=hero.offsetWidth,h=hero.offsetHeight;
+        camera.aspect=w/h; camera.updateProjectionMatrix();
+        renderer.setSize(w,h);
+    });
+
+    // Pause when off screen
+    const heroObs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting) animate();
+            else { cancelAnimationFrame(animId); }
+        });
+    },{threshold:0});
+    heroObs.observe(hero);
+})();
+
+/* ══════════════════════════════════════════════════
+   ★  GSAP SCROLL ANIMATIONS  ★
+══════════════════════════════════════════════════ */
+(function(){
+    if(typeof gsap==='undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Intro text
+    gsap.from('#introText', {
+        scrollTrigger:{trigger:'#introText',start:'top 80%',toggleActions:'play none none none'},
+        y:60, opacity:0, duration:1, ease:'power3.out'
+    });
+
+    // Stats — stagger with 3D flip from below
+    gsap.from('#statsRow .stat-box', {
+        scrollTrigger:{trigger:'#statsRow',start:'top 80%',toggleActions:'play none none none'},
+        y:80, opacity:0, rotateX:45, duration:1, ease:'power3.out', stagger:.12,
+        transformOrigin:'center bottom'
+    });
+
+    // Services section label + title
+    gsap.from('#servicesSection .section-label, #servicesSection .section-title, #servicesSection .section-sub', {
+        scrollTrigger:{trigger:'#servicesSection',start:'top 80%'},
+        y:40, opacity:0, duration:.9, ease:'power2.out', stagger:.12
+    });
+
+    // Service cards — 3D rotate in
+    gsap.from('.service-card', {
+        scrollTrigger:{trigger:'.services-grid',start:'top 80%'},
+        y:80, opacity:0, rotateY:25, duration:1.1, ease:'power3.out', stagger:.18,
+        transformOrigin:'center center'
+    });
+
+    // Features section
+    gsap.from('#featuresSection .section-label, #featuresSection .section-title, #featuresSection .section-sub', {
+        scrollTrigger:{trigger:'#featuresSection',start:'top 80%'},
+        y:40, opacity:0, duration:.9, ease:'power2.out', stagger:.12
+    });
+    gsap.from('.feature-card', {
+        scrollTrigger:{trigger:'.features-grid',start:'top 80%'},
+        y:60, opacity:0, scale:.92, duration:1, ease:'power3.out', stagger:.1
+    });
+
+    // Projects
+    gsap.from('#projectsSection .section-label, #projectsSection .section-title, #projectsSection .section-sub', {
+        scrollTrigger:{trigger:'#projectsSection',start:'top 80%'},
+        y:40, opacity:0, duration:.9, ease:'power2.out', stagger:.12
+    });
+    gsap.from('.project-card', {
+        scrollTrigger:{trigger:'.projects-grid',start:'top 80%'},
+        y:50, opacity:0, scale:.94, duration:.9, ease:'power2.out', stagger:.12
+    });
+
+    // Testimonials
+    gsap.from('#testimonialsSection .section-title, #testimonialsSection .section-sub', {
+        scrollTrigger:{trigger:'#testimonialsSection',start:'top 80%'},
+        y:50, opacity:0, duration:1, ease:'power3.out', stagger:.15
+    });
+    gsap.from('.test-stack-wrap', {
+        scrollTrigger:{trigger:'.test-stack-wrap',start:'top 80%'},
+        y:60, opacity:0, duration:1.2, ease:'power3.out'
+    });
+
+    // News cards
+    gsap.from('.news-card', {
+        scrollTrigger:{trigger:'.news-grid',start:'top 80%'},
+        y:60, opacity:0, duration:1, ease:'power3.out', stagger:.15
+    });
+
+    // CTA banner
+    gsap.from('.cta-banner h2, .cta-banner p, .cta-banner .btn-dark', {
+        scrollTrigger:{trigger:'.cta-banner',start:'top 80%'},
+        y:40, opacity:0, duration:.9, ease:'power2.out', stagger:.12
+    });
+
+    // Footer grid items
+    gsap.from('.footer-grid > div', {
+        scrollTrigger:{trigger:'.footer-grid',start:'top 90%'},
+        y:40, opacity:0, duration:.9, ease:'power2.out', stagger:.12
+    });
+
+    // Parallax on hero caption
+    gsap.to('.hero-caption', {
+        scrollTrigger:{trigger:'.hero-section',start:'top top',end:'bottom top',scrub:true},
+        y:80, opacity:.5, ease:'none'
+    });
+})();
+
+/* ══════════════════════════════════════════════════
+   ★  3D CARD TILT SYSTEM  ★
+══════════════════════════════════════════════════ */
+(function(){
+    const isMobile=window.matchMedia('(hover:none)').matches;
+    if(isMobile){
+        // Mobile: gyroscope tilt
+        window.addEventListener('deviceorientation',e=>{
+            if(e.gamma==null) return;
+            const gx=Math.max(-15,Math.min(15,e.gamma));
+            const gy=Math.max(-15,Math.min(15,e.beta-30));
+            document.querySelectorAll('[data-tilt]').forEach(el=>{
+                el.style.transform=`perspective(1000px) rotateX(${-gy*.15}deg) rotateY(${gx*.15}deg)`;
             });
-            sp.addEventListener('click', () => {
-                saveConsent({ essential: true, analytics: ac.checked, marketing: mc.checked });
-                hideNotice();
-            });
-        })();
+        },{passive:true});
+        return;
+    }
 
-        /* ══════════════════════════════════════════════════
-           ★  HERO 3D SLIDER  ★
-        ══════════════════════════════════════════════════ */
-        (function() {
-            /* ── Slide data ── */
-            const slides = [
-                {
-                    badge: 'Premium Wall Coatings · Gauteng',
-                    heading: 'Premium Gamazine Coatings <em>for Homes &amp; Developments</em>',
-                    sub: 'From R250/20L. No deposit — pay only on delivery. Trusted by over 1,200 clients across Johannesburg, Pretoria, and Randburg.',
-                    cta: 'Get Your Free Quote in 24 Hours',
-                    href: 'contact.html#quote'
-                },
-                {
-                    badge: 'Gamazine Classic · Exterior Finish',
-                    heading: 'Timeless Texture, <em>Built to Last 15 Years</em>',
-                    sub: 'Our signature Gamazine Classic delivers an enduring textured finish that protects and beautifies any exterior surface.',
-                    cta: 'Explore Gamazine Classic',
-                    href: 'solutions.html'
-                },
-                {
-                    badge: 'Glamour Coat · Interior Luxury',
-                    heading: 'Glamour Coat — <em>Where Walls Become Art</em>',
-                    sub: 'Metallic and silk finishes that transform interiors into statement spaces. Available in three new 2026 shades.',
-                    cta: 'View Glamour Coat Range',
-                    href: 'solutions.html'
-                },
-                {
-                    badge: 'Epoxy Flooring · Premium Surfaces',
-                    heading: 'Industrial-Strength Epoxy, <em>Garage to Kitchen</em>',
-                    sub: 'Seamless, durable epoxy floor coatings installed by our certified team. Zero mess. Guaranteed finish.',
-                    cta: 'Learn About Epoxy Flooring',
-                    href: 'epoxy.html'
-                },
-                {
-                    badge: 'Portfolio · Gauteng Projects',
-                    heading: 'Over 1,200 Projects <em>Delivered Across Gauteng</em>',
-                    sub: 'From single residences to 50-unit developments — we coat them all with the same precision and care.',
-                    cta: 'See Our Work',
-                    href: 'projects.html'
-                }
-            ];
-
-            let current  = 0;
-            let prev     = -1;
-            let isAnim   = false;
-            const TOTAL  = slides.length;
-            const AUTOPLAY_MS = 5500;
-
-            /* ── DOM refs ── */
-            const slideEls   = document.querySelectorAll('.hero-slide');
-            const dotEls     = document.querySelectorAll('.hero-dot');
-            const badge      = document.getElementById('heroBadge');
-            const heading    = document.getElementById('heroHeading');
-            const subtext    = document.getElementById('heroSubtext');
-            const heroBtn    = document.getElementById('heroBtn');
-            const heroCaption = document.getElementById('heroCaption');
-            const counterCur = document.getElementById('counterCurrent');
-            const counterTot = document.getElementById('counterTotal');
-            const progressEl = document.getElementById('heroProgressBar');
-            const prevBtn    = document.getElementById('heroPrev');
-            const nextBtn    = document.getElementById('heroNext');
-            const heroSection = document.getElementById('heroSection');
-
-            counterTot.textContent = String(TOTAL).padStart(2, '0');
-
-            /* ── Autoplay timer ── */
-            let autoTimer  = null;
-            let progTimer  = null;
-            let progStart  = null;
-            let progWidth  = 0;
-
-            function startProgress() {
-                clearInterval(progTimer);
-                progWidth = 0;
-                progressEl.style.transition = 'none';
-                progressEl.style.width = '0%';
-                progStart = Date.now();
-                progTimer = setInterval(() => {
-                    const elapsed = Date.now() - progStart;
-                    progWidth = Math.min((elapsed / AUTOPLAY_MS) * 100, 100);
-                    progressEl.style.transition = 'width 0.1s linear';
-                    progressEl.style.width = progWidth + '%';
-                    if (progWidth >= 100) {
-                        clearInterval(progTimer);
-                    }
-                }, 80);
+    function makeTilt(el){
+        const strength=parseFloat(el.dataset.tiltStrength)||12;
+        el.addEventListener('mousemove',e=>{
+            const r=el.getBoundingClientRect();
+            const x=(e.clientX-r.left)/r.width-.5;
+            const y=(e.clientY-r.top)/r.height-.5;
+            const rotY=x*strength;
+            const rotX=-y*strength;
+            el.style.transform=`perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(8px)`;
+            // Move glow if present
+            const glow=el.querySelector('.feature-card-glow');
+            if(glow){
+                glow.style.left=(e.clientX-r.left-60)+'px';
+                glow.style.top=(e.clientY-r.top-60)+'px';
             }
+        });
+        el.addEventListener('mouseleave',()=>{
+            el.style.transform='perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            el.style.transition='transform .5s cubic-bezier(0.23,1,0.32,1)';
+            setTimeout(()=>el.style.transition='',500);
+        });
+    }
+    document.querySelectorAll('[data-tilt]').forEach(makeTilt);
+})();
 
-            function startAutoplay() {
-                clearInterval(autoTimer);
-                startProgress();
-                autoTimer = setInterval(() => goTo((current + 1) % TOTAL, 'next'), AUTOPLAY_MS);
+/* ══════════════════════════════════════════════════
+   ★  MAGNETIC BUTTONS  ★
+══════════════════════════════════════════════════ */
+(function(){
+    if(window.matchMedia('(hover:none)').matches) return;
+    document.querySelectorAll('.magnetic-btn').forEach(btn=>{
+        btn.addEventListener('mousemove',e=>{
+            const r=btn.getBoundingClientRect();
+            const cx=r.left+r.width/2;
+            const cy=r.top+r.height/2;
+            const dx=(e.clientX-cx)*.25;
+            const dy=(e.clientY-cy)*.25;
+            btn.style.transform=`translate(${dx}px,${dy}px)`;
+        });
+        btn.addEventListener('mouseleave',()=>{
+            btn.style.transform='translate(0,0)';
+            btn.style.transition='transform .5s cubic-bezier(0.23,1,0.32,1)';
+            setTimeout(()=>btn.style.transition='',500);
+        });
+    });
+})();
+
+/* ══════════════════════════════════════════════════
+   ★  COUNTER ANIMATION  ★
+══════════════════════════════════════════════════ */
+(function(){
+    const statBoxes=document.querySelectorAll('.stat-box[data-count]');
+    let animated=false;
+    function animateCounters(){
+        if(animated) return;
+        animated=true;
+        statBoxes.forEach(box=>{
+            const target=parseInt(box.dataset.count);
+            const suffix=box.dataset.suffix||'';
+            const numEl=box.querySelector('.stat-num');
+            if(!numEl) return;
+            const duration=2000;
+            const start=performance.now();
+            function step(now){
+                const elapsed=now-start;
+                const progress=Math.min(elapsed/duration,1);
+                const ease=1-Math.pow(1-progress,4);
+                const current=Math.round(ease*target);
+                numEl.textContent=current.toLocaleString()+suffix;
+                if(progress<1) requestAnimationFrame(step);
             }
+            requestAnimationFrame(step);
+        });
+    }
+    const statsEl=document.getElementById('statsRow');
+    if(!statsEl) return;
+    const obs=new IntersectionObserver(entries=>{
+        if(entries[0].isIntersecting){ animateCounters(); obs.disconnect(); }
+    },{threshold:.3});
+    obs.observe(statsEl);
+})();
 
-            function stopAutoplay() {
-                clearInterval(autoTimer);
-                clearInterval(progTimer);
-                progressEl.style.width = '0%';
-            }
+/* ══════════════════════════════════════════════════
+   ★  SERVICE CARD MOBILE FLIP  ★
+══════════════════════════════════════════════════ */
+(function(){
+    const isTouch=window.matchMedia('(hover:none)').matches;
+    if(!isTouch) return;
+    document.querySelectorAll('.service-card').forEach(card=>{
+        card.addEventListener('click',()=>{
+            card.classList.toggle('flipped');
+        });
+    });
+})();
 
-            /* ── Animate caption ── */
-            function animateCaption(data) {
-                // Reset animations by cloning/replacing children
-                badge.className   = 'hero-slide-badge hero-caption-anim';
-                badge.textContent = data.badge;
+/* ══════════════════════════════════════════════════
+   ★  TESTIMONIALS 3D STACK  ★
+══════════════════════════════════════════════════ */
+(function(){
+    const cards=document.querySelectorAll('.test-card');
+    const dots=document.querySelectorAll('.test-nav-dot');
+    const nextBtn=document.getElementById('testNext');
+    const prevBtn=document.getElementById('testPrev');
+    if(!cards.length) return;
+    let current=0;
+    const TOTAL=cards.length;
+    const states=['state-0','state-1','state-2','state-exit'];
 
-                heading.className   = '';
-                heading.innerHTML   = data.heading;
+    function setState(cardEl,stateIdx){
+        cardEl.className='test-card '+states[stateIdx];
+    }
 
-                subtext.className   = '';
-                subtext.textContent = data.sub;
-
-                heroBtn.className   = 'btn-hero';
-                heroBtn.innerHTML   = data.cta + ' <span class="arrow-icon">→</span>';
-                heroBtn.href        = data.href;
-
-                // Force reflow to restart animations
-                void badge.offsetWidth;
-
-                badge.className   = 'hero-slide-badge hero-caption-anim';
-                heading.className = 'hero-caption-anim-delay';
-                subtext.className = 'hero-caption-anim-delay2';
-                heroBtn.className = 'btn-hero hero-caption-anim-delay3';
-            }
-
-            /* ── Go to slide ── */
-            function goTo(index, direction) {
-                if (isAnim || index === current) return;
-                isAnim = true;
-
-                prev = current;
-                current = index;
-
-                const prevSlide = slideEls[prev];
-                const nextSlide = slideEls[current];
-
-                // Mark outgoing slide
-                prevSlide.classList.remove('is-active');
-                prevSlide.classList.add('is-prev');
-
-                // Prepare incoming from the correct side
-                if (direction === 'next') {
-                    nextSlide.style.transform = 'translateX(100%) rotateY(-22deg) scale(0.88)';
-                } else {
-                    nextSlide.style.transform = 'translateX(-100%) rotateY(22deg) scale(0.88)';
-                }
-                nextSlide.style.opacity = '0';
-                nextSlide.style.transition = 'none';
-                nextSlide.style.pointerEvents = 'all';
-
-                // Force reflow
-                void nextSlide.offsetWidth;
-
-                // Restore transition and activate
-                nextSlide.style.transition = '';
-                nextSlide.classList.add('is-active');
-                nextSlide.style.transform = '';
-                nextSlide.style.opacity   = '';
-
-                // Dots
-                dotEls.forEach((d, i) => d.classList.toggle('is-active', i === current));
-
-                // Counter
-                counterCur.textContent = String(current + 1).padStart(2, '0');
-
-                // Caption
-                animateCaption(slides[current]);
-
-                // Clean up after transition
-                const TRANSITION_MS = 1150;
-                setTimeout(() => {
-                    prevSlide.classList.remove('is-prev');
-                    prevSlide.style.transform = '';
-                    prevSlide.style.opacity   = '';
-                    prevSlide.style.pointerEvents = '';
-                    isAnim = false;
-                }, TRANSITION_MS);
-
-                // Restart autoplay progress
-                startProgress();
-            }
-
-            /* ── Arrow buttons ── */
-            prevBtn.addEventListener('click', () => {
-                stopAutoplay();
-                goTo((current - 1 + TOTAL) % TOTAL, 'prev');
-                startAutoplay();
+    function goTo(next){
+        const prev=current;
+        current=((next%TOTAL)+TOTAL)%TOTAL;
+        // Animate out current top card
+        setState(cards[prev],'state-exit');
+        setTimeout(()=>{
+            cards.forEach((c,i)=>{
+                const offset=((i-current+TOTAL)%TOTAL);
+                if(offset<3) setState(c,states[offset]);
+                else c.className='test-card'; // hidden
+                // reset exit to back
+                if(i===prev && offset>=3){ c.className='test-card state-2'; }
             });
-            nextBtn.addEventListener('click', () => {
-                stopAutoplay();
-                goTo((current + 1) % TOTAL, 'next');
-                startAutoplay();
-            });
+        },50);
+        dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+    }
 
-            /* ── Dot buttons ── */
-            dotEls.forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    if (i === current) return;
-                    stopAutoplay();
-                    goTo(i, i > current ? 'next' : 'prev');
-                    startAutoplay();
-                });
-            });
+    nextBtn&&nextBtn.addEventListener('click',()=>goTo(current+1));
+    prevBtn&&prevBtn.addEventListener('click',()=>goTo(current-1));
+    dots.forEach((dot,i)=>dot.addEventListener('click',()=>goTo(i)));
 
-            /* ── Touch / swipe ── */
-            let touchStartX = 0;
-            let touchStartY = 0;
-            heroSection.addEventListener('touchstart', e => {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-            heroSection.addEventListener('touchend', e => {
-                const dx = e.changedTouches[0].clientX - touchStartX;
-                const dy = e.changedTouches[0].clientY - touchStartY;
-                if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
-                    stopAutoplay();
-                    goTo(dx < 0 ? (current + 1) % TOTAL : (current - 1 + TOTAL) % TOTAL, dx < 0 ? 'next' : 'prev');
-                    startAutoplay();
-                }
-            }, { passive: true });
+    // Auto-advance
+    setInterval(()=>goTo(current+1),5000);
+})();
 
-            /* ── Keyboard navigation ── */
-            document.addEventListener('keydown', e => {
-                if (e.key === 'ArrowLeft') {
-                    stopAutoplay();
-                    goTo((current - 1 + TOTAL) % TOTAL, 'prev');
-                    startAutoplay();
-                } else if (e.key === 'ArrowRight') {
-                    stopAutoplay();
-                    goTo((current + 1) % TOTAL, 'next');
-                    startAutoplay();
-                }
-            });
-
-            /* ── Pause on hover ── */
-            heroSection.addEventListener('mouseenter', stopAutoplay);
-            heroSection.addEventListener('mouseleave', startAutoplay);
-
-            /* ── Pause when tab hidden ── */
-            document.addEventListener('visibilitychange', () => {
-                document.hidden ? stopAutoplay() : startAutoplay();
-            });
-
-            /* ── Boot ── */
-            animateCaption(slides[0]);
-            startAutoplay();
-
-        })();
-    </script>
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL FALLBACK
+══════════════════════════════════════════════════ */
+if(typeof gsap==='undefined'){
+    const obs=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+    },{threshold:.15});
+    document.querySelectorAll('.scroll-reveal').forEach(el=>obs.observe(el));
+}
+</script>
 </body>
 </html>
